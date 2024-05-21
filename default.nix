@@ -18,13 +18,7 @@ pkgs.stdenv.mkDerivation {
 
   # Define the build phase to execute the scripts
   buildPhase = ''
-    python json_to_dbc.py can_descriptor.json ./dbc-output/ksu_can.dbc Orion RMS_PM Megasquirt
-  '';
-
-  # Specify the output of the build process
-  # In this case, it will be the generated file
-  installPhase = ''
     mkdir -p $out
-    mv ./dbc-output/ksu_can.dbc $out/ksu_can.dbc
+    python json_to_dbc.py can_descriptor.json $out/ksu_can Orion RMS_PM Megasquirt
   '';
 }
