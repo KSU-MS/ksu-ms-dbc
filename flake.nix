@@ -7,6 +7,10 @@
 
   outputs = { self, nixpkgs }:
   let 
+    dbc_overlay = final: prev: {
+      can_pkg = final.callPackage ./default.nix { };
+    };
+
     # Abstract what platform we are building for
     forAllSystems = function:
       nixpkgs.lib.genAttrs [
@@ -15,6 +19,8 @@
       ] (system: function nixpkgs.legacyPackages.${system});
 
   in {
+    overlays.default = dbc_overlay;
+
     packages = forAllSystems (pkgs: {
       default = pkgs.callPackage ./default.nix {};
     });
