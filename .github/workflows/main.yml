@@ -47,7 +47,7 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
 
-        name: ded
+      - name: ded
         run: ls -R ./
           
       - name: Release
