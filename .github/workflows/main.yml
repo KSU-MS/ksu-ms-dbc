@@ -50,9 +50,7 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}-${{ steps.date.outputs.date }} 
           files: | 
-            # ./dbc-files/*.dbc
             ./dbc-output/*.dbc
-            # *.json
       - name: Publish artifacts
         uses: actions/upload-artifact@v2
         with:
