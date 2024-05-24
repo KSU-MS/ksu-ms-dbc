@@ -41,10 +41,15 @@ jobs:
           mkdir dbc-output
           python json_to_dbc.py can_descriptor.json ./dbc-output/ksu_ev_dbc ${{ github.sha }} Orion RMS_PM
           python json_to_dbc.py can_descriptor.json ./dbc-output/ksu_dbc ${{ github.sha }} Orion RMS_PM Megasquirt
+          ls -R ./
 
       - name: Get current date and time
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
+
+        name: ded
+        run: ls -R ./
+          
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
