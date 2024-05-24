@@ -1,9 +1,11 @@
-{ pkgs, python311Packages, fetchPypi }:
+{ pkgs, python311Packages, fetchPypi, rev_hash }:
 
 pkgs.stdenv.mkDerivation {
   name = "dbc_pkg";
 
   src = ./.;
+
+  rev_string = rev_hash;
 
   buildInputs = [
     (python311Packages.cantools.overridePythonAttrs (old: {
@@ -19,6 +21,6 @@ pkgs.stdenv.mkDerivation {
   # Define the build phase to execute the scripts
   buildPhase = ''
     mkdir -p $out
-    python json_to_dbc.py can_descriptor.json $out/car Orion RMS_PM Megasquirt
+    python json_to_dbc.py can_descriptor.json $out/car ${rev_hash} Orion RMS_PM Megasquirt
   '';
 }
