@@ -5,3 +5,4 @@ dbc-output/*.dbc
 dbc-output/*.sym
 dbc-output/*.log
 dbc-output/*.dbf
+result
