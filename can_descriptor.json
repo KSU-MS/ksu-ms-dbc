@@ -45,12 +45,41 @@
                 "vcu"
             ]
         },
+        "vcu_launchcontrol_diagdata": {
+            "id": 203,
+            "length": 8,
+            "signals": [
+                "vcu_launchcontrol_elapsed_time",
+                "vcu_launchcontrol_outputtorquecommand",
+                "vcu_launchcontrol_state",
+                "vcu_launchcontrol_type"
+            ],
+            "comment": "vcu launchController system status",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_pedals_travel": {
+            "id": 204,
+            "length": 6,
+            "signals": [
+                "vcu_apps1_travel",
+                "vcu_apps2_travel",
+                "vcu_bse1_travel"
+            ],
+            "comment": "the calculated pedal travels",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
         "VCU_WHEELSPEED_READINGS": {
             "id": 198,
             "length": 8,
             "signals": [
-                "RPM_FL",
-                "RPM_FR"
+                "vcu_rpm_front_left",
+                "vcu_rpm_front_right"
             ],
             "comment": "VCU wheel speed sensor readings",
             "bus_name": "inverter",
@@ -105,6 +134,37 @@
             "bus_name": "inverter",
             "senders": [
                 "vcu"
+            ]
+        },
+        "acu_shutdown_status": {
+            "id": 600,
+            "length": 7,
+            "signals": [
+                "acu_imd_relay_state",
+                "acu_bms_relay_state",
+                "acu_imd_gpio_state",
+                "acu_bms_gpio_state",
+                "acu_imd_pwm_frequency",
+                "acu_imd_pwm_duty"
+            ],
+            "comment": "information on IMD and BMS shutdown circuit relays, as well as IMD diagnostic info",
+            "bus_name": "accumulator",
+            "senders": [
+                "acu"
+            ]
+        },
+        "acu_board_voltage_readings": {
+            "id": 601,
+            "length": 3,
+            "signals": [
+                "acu_glv_voltage",
+                "acu_sdc_voltage",
+                "acu_5v_voltage"
+            ],
+            "comment": "ACU voltage measurements",
+            "bus_name": "accumulator",
+            "senders": [
+                "acu"
             ]
         },
         "acu_firmware_version": {
@@ -173,6 +233,18 @@
                 "dash"
             ]
         },
+        "precharge_status": {
+            "id": 105,
+            "length": 8,
+            "signals": [
+                "precharge_state",
+                "precharge_accVoltageMod100",
+                "precharge_accVoltageDiv100",
+                "precharge_tsVoltageMod100",
+                "precharge_tsVoltageDiv100",
+                "precharge_errorCode"
+            ]
+        },
         "segment1_temps1": {
             "id": 26,
             "length": 8,
@@ -182,9 +254,7 @@
                 "cell3temp",
                 "cell4temp",
                 "cell5temp",
-                "cell6temp",
-                "mintemp1to6",
-                "maxtemp1to6"
+                "cell6temp"
             ],
             "comment": "raw ADC voltage reading of module1 cells 1-6",
             "bus_name": "accumulator",
@@ -199,11 +269,20 @@
                 "cell9temp",
                 "cell10temp",
                 "cell11temp",
-                "cell12temp",
-                "mintemp7to12",
-                "maxtemp7to12"
+                "cell12temp"
             ],
             "comment": "raw ADC voltage reading of module1 cells 6-12",
+            "bus_name": "accumulator",
+            "senders": []
+        },
+        "segment1_sht": {
+            "id": 28,
+            "length": 4,
+            "signals": [
+                "segment1_temperature",
+                "segment1_humidity"
+            ],
+            "comment": "temperature and humidity from sht sensor of segment 1",
             "bus_name": "accumulator",
             "senders": []
         },
@@ -216,9 +295,7 @@
                 "cell15temp",
                 "cell16temp",
                 "cell17temp",
-                "cell18temp",
-                "mintemp13to18",
-                "maxtemp13to18"
+                "cell18temp"
             ],
             "comment": "raw ADC voltage reading of module2 cells 1-6",
             "bus_name": "accumulator",
@@ -233,11 +310,20 @@
                 "cell21temp",
                 "cell22temp",
                 "cell23temp",
-                "cell24temp",
-                "mintemp19to24",
-                "maxtemp19to24"
+                "cell24temp"
             ],
             "comment": "raw ADC voltage reading of module2 cells 6-12",
+            "bus_name": "accumulator",
+            "senders": []
+        },
+        "segment2_sht": {
+            "id": 44,
+            "length": 4,
+            "signals": [
+                "segment2_temperature",
+                "segment2_humidity"
+            ],
+            "comment": "temperature and humidity from sht sensor of segment 2",
             "bus_name": "accumulator",
             "senders": []
         },
@@ -250,9 +336,7 @@
                 "cell27temp",
                 "cell28temp",
                 "cell29temp",
-                "cell30temp",
-                "mintemp25to30",
-                "maxtemp25to30"
+                "cell30temp"
             ],
             "comment": "raw ADC voltage reading of module3 cells 1-6",
             "bus_name": "accumulator",
@@ -267,11 +351,20 @@
                 "cell33temp",
                 "cell34temp",
                 "cell35temp",
-                "cell36temp",
-                "mintemp31to36",
-                "maxtemp31to36"
+                "cell36temp"
             ],
             "comment": "raw ADC voltage reading of module3 cells 6-12",
+            "bus_name": "accumulator",
+            "senders": []
+        },
+        "segment3_sht": {
+            "id": 60,
+            "length": 4,
+            "signals": [
+                "segment3_temperature",
+                "segment3_humidity"
+            ],
+            "comment": "temperature and humidity from sht sensor of segment 3",
             "bus_name": "accumulator",
             "senders": []
         },
@@ -284,9 +377,7 @@
                 "cell39temp",
                 "cell40temp",
                 "cell41temp",
-                "cell42temp",
-                "mintemp37to42",
-                "maxtemp37to42"
+                "cell42temp"
             ],
             "comment": "raw ADC voltage reading of module4 cells 1-6",
             "bus_name": "accumulator",
@@ -301,11 +392,20 @@
                 "cell45temp",
                 "cell46temp",
                 "cell47temp",
-                "cell48temp",
-                "mintemp43to48",
-                "maxtemp43to48"
+                "cell48temp"
             ],
             "comment": "raw ADC voltage reading of module4 cells 6-12",
+            "bus_name": "accumulator",
+            "senders": []
+        },
+        "segment4_sht": {
+            "id": 76,
+            "length": 4,
+            "signals": [
+                "segment4_temperature",
+                "segment4_humidity"
+            ],
+            "comment": "temperature and humidity from sht sensor of segment 4",
             "bus_name": "accumulator",
             "senders": []
         },
@@ -318,9 +418,7 @@
                 "cell51temp",
                 "cell52temp",
                 "cell53temp",
-                "cell54temp",
-                "mintemp49to54",
-                "maxtemp49to54"
+                "cell54temp"
             ],
             "comment": "raw ADC voltage reading of module5 cells 1-6",
             "bus_name": "accumulator",
@@ -335,11 +433,20 @@
                 "cell57temp",
                 "cell58temp",
                 "cell59temp",
-                "cell60temp",
-                "mintemp55to60",
-                "maxtemp55to60"
+                "cell60temp"
             ],
             "comment": "raw ADC voltage reading of module5 cells 6-12",
+            "bus_name": "accumulator",
+            "senders": []
+        },
+        "segment5_sht": {
+            "id": 92,
+            "length": 4,
+            "signals": [
+                "segment5_temperature",
+                "segment5_humidity"
+            ],
+            "comment": "temperature and humidity from sht sensor of segment 5",
             "bus_name": "accumulator",
             "senders": []
         },
@@ -352,9 +459,7 @@
                 "cell63temp",
                 "cell64temp",
                 "cell65temp",
-                "cell66temp",
-                "mintemp61to66",
-                "maxtemp61to66"
+                "cell66temp"
             ],
             "comment": "raw ADC voltage reading of module6 cells 1-6",
             "bus_name": "accumulator",
@@ -369,13 +474,368 @@
                 "cell69temp",
                 "cell70temp",
                 "cell71temp",
-                "cell72temp",
-                "mintemp67to72",
-                "maxtemp67to72"
+                "cell72temp"
             ],
             "comment": "raw ADC voltage reading of module6 cells 6-12",
             "bus_name": "accumulator",
             "senders": []
+        },
+        "segment6_sht": {
+            "id": 108,
+            "length": 4,
+            "signals": [
+                "segment6_temperature",
+                "segment6_humidity"
+            ],
+            "comment": "temperature and humidity from sht sensor of segment 6",
+            "bus_name": "accumulator",
+            "senders": []
+        },
+        "omni_status": {
+            "id": 1100,
+            "length": 8,
+            "signals": [
+                "omni_fw_version",
+                "omni_on_time_seconds",
+                "omni_project_on_main",
+                "omni_project_is_dirty"
+            ],
+            "comment": "information on the running omni firmware and system on-timer",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_accel_data": {
+            "id": 1101,
+            "length": 6,
+            "signals": [
+                "omni_accel_x",
+                "omni_accel_y",
+                "omni_accel_z"
+            ],
+            "comment": "LSM9DS1 accelerometer readings",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_gyro_data": {
+            "id": 1102,
+            "length": 6,
+            "signals": [
+                "omni_gyro_x",
+                "omni_gyro_y",
+                "omni_gyro_z"
+            ],
+            "comment": "LSM9DS1 gyro readings",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_heading_data": {
+            "id": 1103,
+            "length": 6,
+            "signals": [
+                "omni_heading",
+                "omni_pitch",
+                "omni_roll"
+            ],
+            "comment": "LSM9DS1 heading readings, calculated with magnetometer and accel",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_shockpot_data": {
+            "id": 1104,
+            "length": 8,
+            "signals": [
+                "omni_shockpot_fl",
+                "omni_shockpot_fr",
+                "omni_shockpot_rl",
+                "omni_shockpot_rr"
+            ],
+            "comment": "raw shock pot readings with teensy 12bit adc, assume 3v3 ref",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_steering_data": {
+            "id": 1105,
+            "length": 2,
+            "signals": [
+                "omni_steering"
+            ],
+            "comment": "raw steering angle sensor reading with teensy 12bit adc, assume 3v3 ref",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_gps_position": {
+            "id": 1106,
+            "length": 8,
+            "signals": [
+                "omni_gps_latitude",
+                "omni_gps_longitude"
+            ],
+            "comment": "adafruit gps coordinates",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "evelogger_vectornav_time": {
+            "id": 500,
+            "length": 8,
+            "signals": [
+                "evelogger_vectornav_time"
+            ],
+            "comment": "vectornav breakout realtime",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger"
+            ]
+        },
+        "evelogger_vectornav_gyro": {
+            "id": 501,
+            "length": 6,
+            "signals": [
+                "evelogger_vectornav_yaw",
+                "evelogger_vectornav_roll",
+                "evelogger_vectornav_pitch"
+            ],
+            "comment": "vectornav attitude readings",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger"
+            ]
+        },
+        "evelogger_vectornav_attitude": {
+            "id": 502,
+            "length": 6,
+            "signals": [
+                "evelogger_vectornav_W_x",
+                "evelogger_vectornav_W_y",
+                "evelogger_vectornav_W_z"
+            ],
+            "comment": "vectornav gyro readings",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger"
+            ]
+        },
+        "evelogger_vectornav_position": {
+            "id": 503,
+            "length": 8,
+            "signals": [
+                "evelogger_vectornav_latitude",
+                "evelogger_vectornav_longitude"
+            ],
+            "comment": "vectornav position",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger"
+            ]
+        },
+        "evelogger_vectornav_velocity": {
+            "id": 504,
+            "length": 6,
+            "signals": [
+                "evelogger_vectornav_v_n",
+                "evelogger_vectornav_v_e",
+                "evelogger_vectornav_v_d"
+            ],
+            "comment": "vectornav velocity readings",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger"
+            ]
+        },
+        "evelogger_vectornav_acceleration": {
+            "id": 505,
+            "length": 6,
+            "signals": [
+                "evelogger_vectornav_accelX",
+                "evelogger_vectornav_accelY",
+                "evelogger_vectornav_accelZ"
+            ],
+            "comment": "vectornav accelerometer readings",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger"
+            ]
+        },
+        "cornernode_fl_shockpot": {
+            "id": 900,
+            "length": 2,
+            "signals": [
+                "cornernode_fl_shockpot"
+            ],
+            "comment": "front left corner node shockpot data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_fl"
+            ]
+        },
+        "cornernode_fr_shockpot": {
+            "id": 901,
+            "length": 2,
+            "signals": [
+                "cornernode_fr_shockpot"
+            ],
+            "comment": "front right corner node shockpot data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_fr"
+            ]
+        },
+        "cornernode_rl_shockpot": {
+            "id": 902,
+            "length": 2,
+            "signals": [
+                "cornernode_rl_shockpot"
+            ],
+            "comment": "rear left corner node shockpot data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_rl"
+            ]
+        },
+        "cornernode_rr_shockpot": {
+            "id": 903,
+            "length": 2,
+            "signals": [
+                "cornernode_rr_shockpot"
+            ],
+            "comment": "rear right corner node shockpot data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_rr"
+            ]
+        },
+        "cornernode_fl_wheelspeed": {
+            "id": 904,
+            "length": 2,
+            "signals": [
+                "cornernode_fl_wheelspeed"
+            ],
+            "comment": "front left corner node wheelspeed data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_fl"
+            ]
+        },
+        "cornernode_fr_wheelspeed": {
+            "id": 905,
+            "length": 2,
+            "signals": [
+                "cornernode_fr_wheelspeed"
+            ],
+            "comment": "front right corner node wheelspeed data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_fr"
+            ]
+        },
+        "cornernode_rl_wheelspeed": {
+            "id": 906,
+            "length": 2,
+            "signals": [
+                "cornernode_rl_wheelspeed"
+            ],
+            "comment": "rear left corner node wheelspeed data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_rl"
+            ]
+        },
+        "cornernode_rr_wheelspeed": {
+            "id": 907,
+            "length": 2,
+            "signals": [
+                "cornernode_rr_wheelspeed"
+            ],
+            "comment": "rear right corner node wheelspeed data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_rr"
+            ]
+        },
+        "cornernode_fl_tiretemp": {
+            "id": 908,
+            "length": 8,
+            "signals": [
+                "cornernode_fl_tiretemp"
+            ],
+            "comment": "front left corner node tiretemp data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_fl"
+            ]
+        },
+        "cornernode_fr_tiretemp": {
+            "id": 909,
+            "length": 8,
+            "signals": [
+                "cornernode_fr_tiretemp"
+            ],
+            "comment": "front right corner node tiretemp data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_fr"
+            ]
+        },
+        "cornernode_rl_tiretemp": {
+            "id": 910,
+            "length": 8,
+            "signals": [
+                "cornernode_rl_tiretemp"
+            ],
+            "comment": "rear left corner node tiretemp data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_rl"
+            ]
+        },
+        "cornernode_rr_tiretemp": {
+            "id": 911,
+            "length": 8,
+            "signals": [
+                "cornernode_rr_tiretemp"
+            ],
+            "comment": "rear right corner node tiretemp data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_rr"
+            ]
+        },
+        "cornernode_front_brakepressure": {
+            "id": 912,
+            "length": 2,
+            "signals": [
+                "cornernode_front_brakepressure"
+            ],
+            "comment": "front brakepressure data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_fl"
+            ]
+        },
+        "cornernode_rear_brakepressure": {
+            "id": 913,
+            "length": 2,
+            "signals": [
+                "cornernode_rear_brakepressure"
+            ],
+            "comment": "front right corner node brakepressure data",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_fr"
+            ]
         }
     },
     "signals": [
@@ -572,7 +1032,56 @@
             "max": 65535
         },
         {
-            "name": "RPM_FL",
+            "name": "vcu_launchcontrol_elapsed_time",
+            "start": 0,
+            "length": 32,
+            "byte_order": "little_endian",
+            "comment": "time that the launch controller has been executing, in miliiseconds"
+        },
+        {
+            "name": "vcu_launchcontrol_outputtorquecommand",
+            "start": 32,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": true,
+            "comment": "launch controller torque output"
+        },
+        {
+            "name": "vcu_launchcontrol_state",
+            "start": 48,
+            "length": 8,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "choices": {
+                    "0": "IDLE",
+                    "1": "WAITING_TO_LAUNCH",
+                    "2": "LAUNCHING",
+                    "3": "FINISHED"
+                }
+            },
+            "min": 0,
+            "max": 3
+        },
+        {
+            "name": "vcu_launchcontrol_type",
+            "start": 56,
+            "length": 8,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "choices": {
+                    "0": "LC_DRIVERCONTROL",
+                    "1": "LC_LOOKUP",
+                    "2": "LC_LINEAR",
+                    "3": "LC_NUM_CONTROLLERS"
+                }
+            },
+            "min": 0,
+            "max": 3
+        },
+        {
+            "name": "vcu_rpm_front_left",
             "start": 0,
             "length": 16,
             "byte_order": "little_endian",
@@ -588,7 +1097,7 @@
             "max": 32767
         },
         {
-            "name": "RPM_FR",
+            "name": "vcu_rpm_front_right",
             "start": 16,
             "length": 16,
             "byte_order": "little_endian",
@@ -783,7 +1292,7 @@
             "start": 40,
             "length": 16,
             "byte_order": "little_endian",
-            "units":"meters",
+            "units": "meters",
             "comment": "distance travelled in current driving session",
             "min": 0,
             "max": 65535
@@ -845,12 +1354,12 @@
         {
             "name": "cell1temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -859,13 +1368,13 @@
         },
         {
             "name": "cell2temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -874,13 +1383,13 @@
         },
         {
             "name": "cell3temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -889,13 +1398,13 @@
         },
         {
             "name": "cell4temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -904,13 +1413,13 @@
         },
         {
             "name": "cell5temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -919,43 +1428,13 @@
         },
         {
             "name": "cell6temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp1to6",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp1to6",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -965,12 +1444,12 @@
         {
             "name": "cell7temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -979,13 +1458,13 @@
         },
         {
             "name": "cell8temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -994,13 +1473,13 @@
         },
         {
             "name": "cell9temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1009,13 +1488,13 @@
         },
         {
             "name": "cell10temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1024,13 +1503,13 @@
         },
         {
             "name": "cell11temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1039,43 +1518,13 @@
         },
         {
             "name": "cell12temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp7to12",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp7to12",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1085,12 +1534,12 @@
         {
             "name": "cell13temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1099,13 +1548,13 @@
         },
         {
             "name": "cell14temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1114,13 +1563,13 @@
         },
         {
             "name": "cell15temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1129,13 +1578,13 @@
         },
         {
             "name": "cell16temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1144,13 +1593,13 @@
         },
         {
             "name": "cell17temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1159,43 +1608,13 @@
         },
         {
             "name": "cell18temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp13to18",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp13to18",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1205,12 +1624,12 @@
         {
             "name": "cell19temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1219,13 +1638,13 @@
         },
         {
             "name": "cell20temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1234,13 +1653,13 @@
         },
         {
             "name": "cell21temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1249,13 +1668,13 @@
         },
         {
             "name": "cell22temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1264,13 +1683,13 @@
         },
         {
             "name": "cell23temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1279,43 +1698,13 @@
         },
         {
             "name": "cell24temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp19to24",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp19to24",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1325,12 +1714,12 @@
         {
             "name": "cell25temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1339,13 +1728,13 @@
         },
         {
             "name": "cell26temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1354,13 +1743,13 @@
         },
         {
             "name": "cell27temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1369,13 +1758,13 @@
         },
         {
             "name": "cell28temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1384,13 +1773,13 @@
         },
         {
             "name": "cell29temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length":10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1399,43 +1788,13 @@
         },
         {
             "name": "cell30temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp25to30",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp25to30",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1445,12 +1804,12 @@
         {
             "name": "cell31temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1459,13 +1818,13 @@
         },
         {
             "name": "cell32temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1474,13 +1833,13 @@
         },
         {
             "name": "cell33temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1489,13 +1848,13 @@
         },
         {
             "name": "cell34temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1504,13 +1863,13 @@
         },
         {
             "name": "cell35temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1519,43 +1878,13 @@
         },
         {
             "name": "cell36temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp31to36",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp31to36",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1565,12 +1894,12 @@
         {
             "name": "cell37temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1579,13 +1908,13 @@
         },
         {
             "name": "cell38temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1594,13 +1923,13 @@
         },
         {
             "name": "cell39temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1609,13 +1938,13 @@
         },
         {
             "name": "cell40temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1624,13 +1953,13 @@
         },
         {
             "name": "cell41temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1639,43 +1968,13 @@
         },
         {
             "name": "cell42temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp37to42",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp37to42",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1685,12 +1984,12 @@
         {
             "name": "cell43temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1699,13 +1998,13 @@
         },
         {
             "name": "cell44temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1714,13 +2013,13 @@
         },
         {
             "name": "cell45temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1729,13 +2028,13 @@
         },
         {
             "name": "cell46temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1744,13 +2043,13 @@
         },
         {
             "name": "cell47temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1759,43 +2058,13 @@
         },
         {
             "name": "cell48temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp43to48",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp43to48",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1805,12 +2074,12 @@
         {
             "name": "cell49temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1819,13 +2088,13 @@
         },
         {
             "name": "cell50temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1834,13 +2103,13 @@
         },
         {
             "name": "cell51temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1849,13 +2118,13 @@
         },
         {
             "name": "cell52temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1864,13 +2133,13 @@
         },
         {
             "name": "cell53temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1879,43 +2148,13 @@
         },
         {
             "name": "cell54temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp49to54",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp49to54",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1925,12 +2164,12 @@
         {
             "name": "cell55temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1939,13 +2178,13 @@
         },
         {
             "name": "cell56temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1954,13 +2193,13 @@
         },
         {
             "name": "cell57temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1969,13 +2208,13 @@
         },
         {
             "name": "cell58temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1984,13 +2223,13 @@
         },
         {
             "name": "cell59temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -1999,43 +2238,13 @@
         },
         {
             "name": "cell60temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp55to60",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp55to60",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2045,12 +2254,12 @@
         {
             "name": "cell61temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2059,13 +2268,13 @@
         },
         {
             "name": "cell62temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2074,13 +2283,13 @@
         },
         {
             "name": "cell63temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2089,13 +2298,13 @@
         },
         {
             "name": "cell64temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2104,13 +2313,13 @@
         },
         {
             "name": "cell65temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2119,43 +2328,13 @@
         },
         {
             "name": "cell66temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp61to66",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp61to66",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2165,12 +2344,12 @@
         {
             "name": "cell67temp",
             "start": 0,
-            "length": 8,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2179,13 +2358,13 @@
         },
         {
             "name": "cell68temp",
-            "start": 8,
-            "length": 8,
+            "start": 10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2194,13 +2373,13 @@
         },
         {
             "name": "cell69temp",
-            "start": 16,
-            "length": 8,
+            "start": 20,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2209,13 +2388,13 @@
         },
         {
             "name": "cell70temp",
-            "start": 24,
-            "length": 8,
+            "start": 30,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2224,13 +2403,13 @@
         },
         {
             "name": "cell71temp",
-            "start": 32,
-            "length": 8,
+            "start": 40,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2239,43 +2418,13 @@
         },
         {
             "name": "cell72temp",
-            "start": 40,
-            "length": 8,
+            "start": 50,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
             "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "mintemp67to72",
-            "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "maxtemp67to72",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.019607,
+                "scale": 0.0048828125,
                 "offset": 0,
                 "is_float": false
             },
@@ -2455,6 +2604,702 @@
             "start": 56,
             "length": 1,
             "comment": "if the compiled acu fw had uncommitted changes (1) or not (0)"
+        },
+        {
+            "name": "acu_imd_relay_state",
+            "start": 8,
+            "length": 1,
+            "comment": "Status of the IMD relay as sensed by the ACU: 1 is closed, 0 is open"
+        },
+        {
+            "name": "acu_bms_relay_state",
+            "start": 16,
+            "length": 1,
+            "comment": "Status of the BMS relay as sensed by the ACU: 1 is closed, 0 is open"
+        },
+        {
+            "name": "acu_imd_gpio_state",
+            "start": 24,
+            "length": 1,
+            "comment": "Status of the IMD OKHS output: 1 is OK, 0 is FAULTED"
+        },
+        {
+            "name": "acu_bms_gpio_state",
+            "start": 32,
+            "length": 1,
+            "comment": "Status of the BMS ENABLE output: 1 is OK, 0 is FAULTED"
+        },
+        {
+            "name": "acu_imd_pwm_frequency",
+            "start": 40,
+            "length": 8,
+            "comment": "PWM frequency of the IMD: 10hz on normal operation"
+        },
+        {
+            "name": "acu_imd_pwm_duty",
+            "start": 48,
+            "length": 8,
+            "comment": "duty cycle of IMD: ~5% on normal conditions"
+        },
+        {
+            "name": "acu_glv_voltage",
+            "start": 0,
+            "length": 8,
+            "comment": "ACU GLV system voltage reading",
+            "conversion": {
+                "scale": 0.01294,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "acu_sdc_voltage",
+            "start": 8,
+            "length": 8,
+            "comment": "ACU shutdown circuit voltage reading",
+            "conversion": {
+                "scale": 0.01294,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "acu_5v_voltage",
+            "start": 16,
+            "length": 8,
+            "comment": "ACU voltage reading",
+            "conversion": {
+                "scale": 0.01294,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "precharge_state",
+            "start": 0,
+            "length": 8,
+            "comment": "0 - standby, 1 - precharging, 2 - running, 3 - error"
+        },
+        {
+            "name": "precharge_accVoltageMod100",
+            "start": 8,
+            "length": 8
+        },
+        {
+            "name": "precharge_accVoltageDiv100",
+            "start": 16,
+            "length": 8
+        },
+        {
+            "name": "precharge_tsVoltageMod100",
+            "start": 24,
+            "length": 8
+        },
+        {
+            "name": "precharge_tsVoltageDiv100",
+            "start": 32,
+            "length": 8
+        },
+        {
+            "name": "precharge_errorCode",
+            "start": 40,
+            "length": 8
+        },
+        {
+            "name": "vcu_apps1_travel",
+            "start": 0,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "0 to 100% - a negative value = implaus"
+        },
+        {
+            "name": "vcu_apps2_travel",
+            "start": 16,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "0 to 100% - a negative value = implaus"
+        },
+        {
+            "name": "vcu_bse1_travel",
+            "start": 32,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "0 to 100% - a negative value = implaus"
+        },
+        {
+            "name": "omni_accel_x",
+            "start": 0,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "omni_accel_y",
+            "start": 16,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "omni_accel_z",
+            "start": 32,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "omni_gyro_x",
+            "start": 0,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "omni_gyro_y",
+            "start": 16,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "omni_gyro_z",
+            "start": 32,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "omni_heading",
+            "start": 0,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "omni_pitch",
+            "start": 16,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "omni_roll",
+            "start": 32,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "omni_fw_version",
+            "start": 0,
+            "length": 32,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "short hash of the firmware on omni "
+        },
+        {
+            "name": "omni_on_time_seconds",
+            "start": 32,
+            "length": 16,
+            "byte_order": "little_endian",
+            "comment": "time in seconds which the omni has been powered on and running",
+            "units": "seconds"
+        },
+        {
+            "name": "omni_project_on_main",
+            "start": 48,
+            "length": 1,
+            "comment": "if the compiled omni fw was from main branch (1), testing (2) or neither (0)"
+        },
+        {
+            "name": "omni_project_is_dirty",
+            "start": 56,
+            "length": 1,
+            "comment": "if the compiled omni fw had uncommitted changes (1) or not (0)"
+        },
+        {
+            "name": "omni_shockpot_fl",
+            "start": 0,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "omni fl shockpot reading, adc bits"
+        },
+        {
+            "name": "omni_shockpot_fr",
+            "start": 16,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "omni fr shockpot reading, adc bits"
+        },
+        {
+            "name": "omni_shockpot_rl",
+            "start": 32,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "omni rl shockpot reading, adc bits"
+        },
+        {
+            "name": "omni_shockpot_rr",
+            "start": 48,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "omni rr shockpot reading, adc bits"
+        },
+        {
+            "name": "omni_steering",
+            "start": 0,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "omni steering angle sensor reading, adc bits"
+        },
+        {
+            "name": "evelogger_vectornav_time",
+            "start": 0,
+            "length": 64,
+            "byte_order": "little_endian"
+        },
+        {
+            "name": "evelogger_vectornav_yaw",
+            "start": 0,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_roll",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_pitch",
+            "start": 32,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_W_x",
+            "start": 0,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_W_y",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_W_z",
+            "start": 32,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_latitude",
+            "start": 0,
+            "length": 32,
+            "conversion": {
+                "scale": 0.0000001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_longitude",
+            "start": 32,
+            "length": 32,
+            "conversion": {
+                "scale": 0.0000001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "omni_gps_latitude",
+            "start": 0,
+            "length": 32,
+            "conversion": {
+                "scale": 0.0000001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "omni_gps_longitude",
+            "start": 32,
+            "length": 32,
+            "conversion": {
+                "scale": 0.0000001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_v_n",
+            "start": 0,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_v_e",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_v_d",
+            "start": 32,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_accelX",
+            "start": 0,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_accelY",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "evelogger_vectornav_accelZ",
+            "start": 32,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "cornernode_fl_shockpot",
+            "start": 0,
+            "length": 16
+        },
+        {
+            "name": "cornernode_fr_shockpot",
+            "start": 0,
+            "length": 16
+        },
+        {
+            "name": "cornernode_rl_shockpot",
+            "start": 0,
+            "length": 16
+        },
+        {
+            "name": "cornernode_rr_shockpot",
+            "start": 0,
+            "length": 16
+        },
+        {
+            "name": "cornernode_fl_wheelspeed",
+            "start": 0,
+            "length": 16
+        },
+        {
+            "name": "cornernode_fr_wheelspeed",
+            "start": 0,
+            "length": 16
+        },
+        {
+            "name": "cornernode_rl_wheelspeed",
+            "start": 0,
+            "length": 16
+        },
+        {
+            "name": "cornernode_rr_wheelspeed",
+            "start": 0,
+            "length": 16
+        },
+        {
+            "name": "cornernode_fl_tiretemp",
+            "start": 0,
+            "length": 64
+        },
+        {
+            "name": "cornernode_fr_tiretemp",
+            "start": 0,
+            "length": 64
+        },
+        {
+            "name": "cornernode_rl_tiretemp",
+            "start": 0,
+            "length": 64
+        },
+        {
+            "name": "cornernode_rr_tiretemp",
+            "start": 0,
+            "length": 64
+        },
+        {
+            "name": "cornernode_front_brakepressure",
+            "start": 0,
+            "length": 16
+        },
+        {
+            "name": "cornernode_rear_brakepressure",
+            "start": 0,
+            "length": 16
+        },
+        {
+            "name": "segment1_temperature",
+            "start": 0,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "segment1_humidity",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "segment2_temperature",
+            "start": 0,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "segment2_humidity",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "segment3_temperature",
+            "start": 0,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "segment3_humidity",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "segment4_temperature",
+            "start": 0,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "segment4_humidity",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "segment5_temperature",
+            "start": 0,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "segment5_humidity",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "segment6_temperature",
+            "start": 0,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "segment6_humidity",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
         }
     ]
 }
