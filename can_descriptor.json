@@ -74,6 +74,77 @@
                 "vcu"
             ]
         },
+        "vcu_launchcontrol_countdown": {
+            "id": 205,
+            "length": 8,
+            "signals": [
+                "vcu_launchcontrol_release_countdown",
+                "vcu_release_delay"
+            ],
+            "comment": "Countdown until the VCU will start launch when in launch mode",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_distance_tracker_motor": {
+            "id": 206,
+            "length": 8,
+            "signals": [
+                "vcu_motor_energy_wh",
+                "vcu_motor_efficiency_instantaneous",
+                "vcu_motor_distance_meters",
+                "vcu_motor_efficiency_kmkwh"
+            ],
+            "comment": "distance tracking data using motor as speed",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_distance_tracker_wheelspeed": {
+            "id": 207,
+            "length": 8,
+            "signals": [
+                "vcu_wheelspeed_energy_wh",
+                "vcu_wheelspeed_efficiency_instantaneous",
+                "vcu_wheelspeed_distance_meters",
+                "vcu_wheelspeed_efficiency_kmkwh"
+            ],
+            "comment": "distance tracking data using wheelspeed as speed",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_lifetime_distance_and_ontime": {
+            "id": 208,
+            "length": 8,
+            "signals": [
+                "vcu_lifetime_ontime",
+                "vcu_lifetime_distance"
+            ],
+            "comment": "The total ontime of the vcu and distance",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_tractioncontrol_diagdata": {
+            "id": 209,
+            "length": 8,
+            "signals": [
+                "vcu_tractioncontrol_elapsed_time",
+                "vcu_tractioncontrol_outputtorquecommand",
+                "vcu_tractioncontrol_state",
+                "vcu_tractioncontrol_type"
+            ],
+            "comment": "vcu tractionController system status",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
         "VCU_WHEELSPEED_READINGS": {
             "id": 198,
             "length": 8,
@@ -1065,6 +1136,55 @@
         },
         {
             "name": "vcu_launchcontrol_type",
+            "start": 56,
+            "length": 8,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "choices": {
+                    "0": "LC_DRIVERCONTROL",
+                    "1": "LC_LOOKUP",
+                    "2": "LC_LINEAR",
+                    "3": "LC_NUM_CONTROLLERS"
+                }
+            },
+            "min": 0,
+            "max": 3
+        },
+        {
+            "name": "vcu_tractioncontrol_elapsed_time",
+            "start": 0,
+            "length": 32,
+            "byte_order": "little_endian",
+            "comment": "time that the traction controller has been executing, in miliiseconds"
+        },
+        {
+            "name": "vcu_tractioncontrol_outputtorquecommand",
+            "start": 32,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": true,
+            "comment": "traction controller torque output"
+        },
+        {
+            "name": "vcu_tractioncontrol_state",
+            "start": 48,
+            "length": 8,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "choices": {
+                    "0": "IDLE",
+                    "1": "WAITING_TO_traction",
+                    "2": "tractionING",
+                    "3": "FINISHED"
+                }
+            },
+            "min": 0,
+            "max": 3
+        },
+        {
+            "name": "vcu_tractioncontrol_type",
             "start": 56,
             "length": 8,
             "conversion": {
@@ -3300,6 +3420,73 @@
                 "is_float": true
             },
             "is_signed": false
+        },
+        {
+            "name": "vcu_launchcontrol_release_countdown",
+            "start": 0,
+            "length": 32,
+            "units":"milliseconds"
+        },
+        {
+            "name": "vcu_release_delay",
+            "start": 32,
+            "length": 32,
+            "units":"milliseconds"
+
+        },
+        {
+            "name": "vcu_lifetime_ontime",
+            "start": 0,
+            "length": 32,
+            "units":"seconds"
+        },
+        {
+            "name": "vcu_lifetime_distance",
+            "start": 32,
+            "length": 32,
+            "units":"meters"
+        },
+        {
+            "name": "vcu_wheelspeed_energy_wh",
+            "start": 0,
+            "length": 16,
+            "units":"watt-hours"
+        },
+        {
+            "name": "vcu_wheelspeed_efficiency_instantaneous",
+            "start": 16,
+            "length": 16
+        },
+        {
+            "name": "vcu_wheelspeed_distance_meters",
+            "start": 32,
+            "length": 16
+        },
+        {
+            "name": "vcu_wheelspeed_efficiency_kmkwh",
+            "start": 48,
+            "length": 16
+        },
+        {
+            "name": "vcu_motor_energy_wh",
+            "start": 0,
+            "length": 16,
+            "units":"watt-hours"
+        },
+        {
+            "name": "vcu_motor_efficiency_instantaneous",
+            "start": 16,
+            "length": 16
+        },
+        {
+            "name": "vcu_motor_distance_meters",
+            "start": 32,
+            "length": 16
+        },
+        {
+            "name": "vcu_motor_efficiency_kmkwh",
+            "start": 48,
+            "length": 16
         }
     ]
 }
