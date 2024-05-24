@@ -39,8 +39,8 @@ jobs:
           git status 
           rm -rf ./dbc-output
           mkdir dbc-output
-          python json_to_dbc.py can_descriptor.json ./dbc-output/ksu_ev_dbc Orion RMS_PM
-          python json_to_dbc.py can_descriptor.json ./dbc-output/ksu_dbc Orion RMS_PM Megasquirt
+          python json_to_dbc.py can_descriptor.json ./dbc-output/ksu_ev_dbc ${{ github.sha }} Orion RMS_PM
+          python json_to_dbc.py can_descriptor.json ./dbc-output/ksu_dbc ${{ github.sha }} Orion RMS_PM Megasquirt
 
       - name: Get current date and time
         id: date
@@ -50,9 +50,7 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}-${{ steps.date.outputs.date }} 
           files: | 
-            # ./dbc-files/*.dbc
             ./dbc-output/*.dbc
-            # *.json
       - name: Publish artifacts
         uses: actions/upload-artifact@v2
         with:
