@@ -3450,12 +3450,24 @@
             "name": "vcu_wheelspeed_energy_wh",
             "start": 0,
             "length": 16,
-            "units":"watt-hours"
+            "units":"watt-hours",
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
         },
         {
             "name": "vcu_wheelspeed_efficiency_instantaneous",
             "start": 16,
-            "length": 16
+            "length": 16,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
         },
         {
             "name": "vcu_wheelspeed_distance_meters",
@@ -3465,18 +3477,36 @@
         {
             "name": "vcu_wheelspeed_efficiency_kmkwh",
             "start": 48,
-            "length": 16
+            "length": 16,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
         },
         {
             "name": "vcu_motor_energy_wh",
             "start": 0,
             "length": 16,
-            "units":"watt-hours"
+            "units":"watt-hours",
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
         },
         {
             "name": "vcu_motor_efficiency_instantaneous",
             "start": 16,
-            "length": 16
+            "length": 16,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
         },
         {
             "name": "vcu_motor_distance_meters",
@@ -3486,7 +3516,13 @@
         {
             "name": "vcu_motor_efficiency_kmkwh",
             "start": 48,
-            "length": 16
+            "length": 16,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
         }
     ]
 }
