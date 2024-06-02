@@ -117,6 +117,21 @@
                 "vcu"
             ]
         },
+        "vcu_distance_tracker_vectornav": {
+            "id": 210,
+            "length": 8,
+            "signals": [
+                "vcu_vectornav_energy_wh",
+                "vcu_vectornav_efficiency_instantaneous",
+                "vcu_vectornav_distance_meters",
+                "vcu_vectornav_efficiency_kmkwh"
+            ],
+            "comment": "distance tracking data using vectornav velocity measurement as speed",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
         "vcu_lifetime_distance_and_ontime": {
             "id": 208,
             "length": 8,
@@ -140,6 +155,20 @@
                 "vcu_tractioncontrol_type"
             ],
             "comment": "vcu tractionController system status",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_coulomb_counters": {
+            "id": 211,
+            "length": 8,
+            "signals": [
+                "vcu_wsfl_ah",
+                "vcu_motor_ah",
+                "vcu_vnav_ah"
+            ],
+            "comment": "vcu amp-hour counters",
             "bus_name": "inverter",
             "senders": [
                 "vcu"
@@ -1145,7 +1174,8 @@
                     "0": "LC_DRIVERCONTROL",
                     "1": "LC_LOOKUP",
                     "2": "LC_LINEAR",
-                    "3": "LC_NUM_CONTROLLERS"
+                    "3": "LC_PID",
+                    "4": "LC_NUM_CONTROLLERS"
                 }
             },
             "min": 0,
@@ -1191,10 +1221,10 @@
                 "scale": 1,
                 "offset": 0,
                 "choices": {
-                    "0": "LC_DRIVERCONTROL",
-                    "1": "LC_LOOKUP",
-                    "2": "LC_LINEAR",
-                    "3": "LC_NUM_CONTROLLERS"
+                    "0": "TC_DRIVERCONTROL",
+                    "1": "TC_PID",
+                    "2": "TC_SLIPTIME",
+                    "3": "TC_NUM_CONTROLLERS"
                 }
             },
             "min": 0,
@@ -1894,7 +1924,7 @@
         {
             "name": "cell29temp",
             "start": 40,
-            "length":10,
+            "length": 10,
             "byte_order": "little_endian",
             "is_signed": false,
             "comment": null,
@@ -3425,32 +3455,31 @@
             "name": "vcu_launchcontrol_release_countdown",
             "start": 0,
             "length": 32,
-            "units":"milliseconds"
+            "units": "milliseconds"
         },
         {
             "name": "vcu_release_delay",
             "start": 32,
             "length": 32,
-            "units":"milliseconds"
-
+            "units": "milliseconds"
         },
         {
             "name": "vcu_lifetime_ontime",
             "start": 0,
             "length": 32,
-            "units":"seconds"
+            "units": "seconds"
         },
         {
             "name": "vcu_lifetime_distance",
             "start": 32,
             "length": 32,
-            "units":"meters"
+            "units": "meters"
         },
         {
             "name": "vcu_wheelspeed_energy_wh",
             "start": 0,
             "length": 16,
-            "units":"watt-hours",
+            "units": "watt-hours",
             "conversion": {
                 "scale": 0.1,
                 "offset": 0,
@@ -3489,7 +3518,7 @@
             "name": "vcu_motor_energy_wh",
             "start": 0,
             "length": 16,
-            "units":"watt-hours",
+            "units": "watt-hours",
             "conversion": {
                 "scale": 0.1,
                 "offset": 0,
@@ -3519,6 +3548,78 @@
             "length": 16,
             "conversion": {
                 "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "vcu_vectornav_energy_wh",
+            "start": 0,
+            "length": 16,
+            "units": "watt-hours",
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "vcu_vectornav_efficiency_instantaneous",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "vcu_vectornav_distance_meters",
+            "start": 32,
+            "length": 16
+        },
+        {
+            "name": "vcu_vectornav_efficiency_kmkwh",
+            "start": 48,
+            "length": 16,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name":"vcu_wsfl_ah",
+            "start":0,
+            "length":16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name":"vcu_motor_ah",
+            "start":16,
+            "length":16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name":"vcu_vnav_ah",
+            "start":32,
+            "length":16,
+            "conversion": {
+                "scale": 0.01,
                 "offset": 0,
                 "is_float": true
             },
