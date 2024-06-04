@@ -188,6 +188,18 @@
                 "vcu"
             ]
         },
+        "vcu_power_limit_update": {
+            "id": 213,
+            "length": 4,
+            "signals": [
+                "vcu_power_limit"
+            ],
+            "comment": "Send to VCU to set the max power limit",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
         "VCU_WHEELSPEED_READINGS": {
             "id": 198,
             "length": 8,
@@ -3671,6 +3683,14 @@
                 "is_float": true
             },
             "is_signed": false
+        },
+        {
+            "name":"vcu_power_limit",
+            "start":0,
+            "length":32,
+            "is_signed": false,
+            "units": "watts",
+            "comment":"Send to VCU to set the max power limit"
         }
     ]
 }
