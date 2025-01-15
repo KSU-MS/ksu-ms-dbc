@@ -18,12 +18,9 @@
         can_pkg = final.callPackage ./default.nix { };
       };
 
-      # Unused bc flakes are stupid sometimes, here so I don't forget the command lol
-      fella = "./json_to_dbc.py ./can_descriptor.json ./dbc-output/ksu_dbc Orion RMS_PM Megasquirt";
-
     in {
-      # We export this overlay so that we can refrence this flake in the ksu_daq repo
-      overlays.default = nixpkgs.lib.composeManyExtensions can_dbc_overlay;
+      # We export this package so that we can refrence this flake in the ksu_daq repo
+      pkgs = pkgs // can_dbc_overlay;
 
       # This is so that the github build action can just use the nix script to ensure reproducablility and making my life easier lol
       defaultApp = {
