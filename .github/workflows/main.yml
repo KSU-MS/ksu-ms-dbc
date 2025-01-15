@@ -9,13 +9,14 @@ jobs:
     runs-on: ubuntu-latest  
     steps:
       - name: Pull code and set up shell
-      - uses: actions/checkout@v4  # This action checks out your repository's code
-      - uses: cachix/install-nix-action@v27 # Then we get nix
+        uses: |
+          actions/checkout@v4
+          cachix/install-nix-action@v27
         with: 
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run the nix app
-      - run: |
+        run: |
           git status 
           rm -rf ./dbc-output
           mkdir dbc-output
