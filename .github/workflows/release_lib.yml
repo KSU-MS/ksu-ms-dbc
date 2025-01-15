@@ -18,7 +18,7 @@ jobs:
         git status 
         rm -rf ./dbc-output
         mkdir dbc-output
-        nix run . -- ./json_to_dbc.py ./can_descriptor.json ./dbc-output/ksu_dbc Orion RMS_PM Megasquirt
+        nix run . -- ./json_to_dbc.py ./can_descriptor.json ./dbc-output/ksu_can Orion RMS_PM Megasquirt
         
     - name: Publish the DBC file
       uses: actions/upload-artifact@v4
@@ -38,7 +38,8 @@ jobs:
       with:
         name: dbc-file
         path: /dbc
-    - name: generate code
+
+    - name: Generate code
       run: |
         mkdir -p /can_lib
         cd /app
@@ -67,12 +68,13 @@ jobs:
         asset_path: /output/can_lib.tar.gz
         asset_name: can_lib.tar.gz
         asset_content_type: application/zip
+
     - name: Upload dbc
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /dbc/*.dbc
+        asset_path: /dbc/ksu_can.dbc
         asset_name: ksu_can.dbc
         asset_content_type: text/plain
