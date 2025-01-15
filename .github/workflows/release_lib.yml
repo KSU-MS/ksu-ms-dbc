@@ -11,7 +11,8 @@ jobs:
       - name: Pull code and set up shell
         uses: actions/checkout@v4  # This action checks out your repository's code
         uses: cachix/install-nix-action@v27 # Then we get nix
-        with: github_access_token: ${{ secrets.GITHUB_TOKEN }}
+        with: 
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run the nix app
         run: |
@@ -20,7 +21,7 @@ jobs:
           mkdir dbc-output
           nix run . -- ./json_to_dbc.py ./can_descriptor.json ./dbc-output/ksu_dbc Orion RMS_PM Megasquirt
           
-      - name: Publish EV DBC file
+      - name: Publish the DBC file
         uses: actions/upload-artifact@v2
         with:
           name: ev-dbc-file
