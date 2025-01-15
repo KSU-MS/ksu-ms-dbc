@@ -1,6 +1,6 @@
 { pkgs }:
 
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation {
   name = "can_pkg";
   
   # Some deps needed to generate the output DBC
