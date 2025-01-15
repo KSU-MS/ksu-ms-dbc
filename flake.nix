@@ -8,7 +8,11 @@
 
   outputs = { self, nixpkgs, flake-utils, ... }: flake-utils.lib.eachDefaultSystem (system: 
     let
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs.legacyPackages.${system}{
+        overlays = [self.overlays.default];
+      };
+
+      # For the app version
       pythonEnv = pkgs.python312.withPackages(ps: [
         ps.cantools
       ]);
@@ -20,7 +24,7 @@
 
     in {
       # We export this package so that we can refrence this flake in the ksu_daq repo
-      pkgs = pkgs // can_dbc_overlay;
+      overlays.default = nixpkgs.lib.composeManyExtensions can_dbc_overlay;
 
       # This is so that the github build action can just use the nix script to ensure reproducablility and making my life easier lol
       defaultApp = {
