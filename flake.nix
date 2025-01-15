@@ -33,5 +33,9 @@
         pkgs.python312Packages.cantools
       ];
     };
+
+    overlays.default = self: super: {
+      default = super.callPackage ./default.nix {};
+    };
   });
 }
