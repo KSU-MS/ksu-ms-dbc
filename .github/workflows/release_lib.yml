@@ -8,73 +8,71 @@ jobs:
   build:
     runs-on: ubuntu-latest  
     steps:
-      - name: Pull code and set up shell
-        uses: |
-          actions/checkout@v4
-          cachix/install-nix-action@v27
-        with: 
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v4
+    - uses: cachix/install-nix-action@v27
+      with:
+        github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run the nix app
-        run: |
-          git status 
-          rm -rf ./dbc-output
-          mkdir dbc-output
-          nix run . -- ./json_to_dbc.py ./can_descriptor.json ./dbc-output/ksu_dbc Orion RMS_PM Megasquirt
+    - name: Run the nix app
+      run: |
+        git status 
+        rm -rf ./dbc-output
+        mkdir dbc-output
+        nix run . -- ./json_to_dbc.py ./can_descriptor.json ./dbc-output/ksu_dbc Orion RMS_PM Megasquirt
+        
+    - name: Publish the DBC file
+      uses: actions/upload-artifact@v2
+      with:
+        name: ev-dbc-file
+        path: ./dbc-output/*.dbc
+
           
-      - name: Publish the DBC file
-        uses: actions/upload-artifact@v2
-        with:
-          name: ev-dbc-file
-          path: ./dbc-output/*.dbc
-
-            
   generate-and-release:
     needs: build
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/mathbrook/ccoderdbc:main
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: dbc-file
-          path: /dbc
-      - name: generate code
-        run: |
-          mkdir -p /can_lib
-          cd /app
-          ./dbcc -s -o /can_lib /dbc/*.dbc
-          mkdir -p /output
-          echo "{\n\"name\": \"can_lib\",\n\"version\": \"1.0.1\",\n\"build\": {\n\t\"flags\": [\n\t\t\"-Iinc\",\n\t\t\"-Ilib\",\n\t\t\"-Iconf\"\n\t]\n}\n}" >> /can_lib/library.json
-          tar -czvf /output/can_lib.tar.gz /can_lib
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: dbc-file
+        path: /dbc
+    - name: generate code
+      run: |
+        mkdir -p /can_lib
+        cd /app
+        ./dbcc -s -o /can_lib /dbc/*.dbc
+        mkdir -p /output
+        echo "{\n\"name\": \"can_lib\",\n\"version\": \"1.0.1\",\n\"build\": {\n\t\"flags\": [\n\t\t\"-Iinc\",\n\t\t\"-Ilib\",\n\t\t\"-Iconf\"\n\t]\n}\n}" >> /can_lib/library.json
+        tar -czvf /output/can_lib.tar.gz /can_lib
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.run_number }}
-          release_name: Release ${{ github.run_number }}
-          draft: false
-          prerelease: false
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.run_number }}
+        release_name: Release ${{ github.run_number }}
+        draft: false
+        prerelease: false
 
-      - name: Upload release asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /output/can_lib.tar.gz
-          asset_name: can_lib.tar.gz
-          asset_content_type: application/zip
-      - name: Upload dbc
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /dbc/*.dbc
-          asset_name: ksu_can.dbc
-          asset_content_type: text/plain
+    - name: Upload release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: /output/can_lib.tar.gz
+        asset_name: can_lib.tar.gz
+        asset_content_type: application/zip
+    - name: Upload dbc
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: /dbc/*.dbc
+        asset_name: ksu_can.dbc
+        asset_content_type: text/plain

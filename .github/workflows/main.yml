@@ -8,34 +8,32 @@ jobs:
   build:
     runs-on: ubuntu-latest  
     steps:
-      - name: Pull code and set up shell
-        uses: |
-          actions/checkout@v4
-          cachix/install-nix-action@v27
-        with: 
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v4
+    - uses: cachix/install-nix-action@v27
+      with:
+        github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run the nix app
-        run: |
-          git status 
-          rm -rf ./dbc-output
-          mkdir dbc-output
-          nix run . -- ./json_to_dbc.py ./can_descriptor.json ./dbc-output/ksu_dbc Orion RMS_PM Megasquirt
+    - name: Run the nix app
+      run: |
+        git status 
+        rm -rf ./dbc-output
+        mkdir dbc-output
+        nix run . -- ./json_to_dbc.py ./can_descriptor.json ./dbc-output/ksu_dbc Orion RMS_PM Megasquirt
 
-      - name: Get current date and time
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
+    - name: Get current date and time
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref_name }}-${{ steps.date.outputs.date }} 
-          files: | 
-            ./dbc-output/*.dbc
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ github.ref_name }}-${{ steps.date.outputs.date }} 
+        files: | 
+          ./dbc-output/*.dbc
 
-      - name: Publish artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: dbc-files
-          path: |
-            ./dbc-output/*.dbc
+    - name: Publish artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: dbc-files
+        path: |
+          ./dbc-output/*.dbc
