@@ -23,7 +23,7 @@ jobs:
     - name: Publish the DBC file
       uses: actions/upload-artifact@v4
       with:
-        name: ev-dbc-file
+        name: dbc-file
         path: ./dbc-output/*.dbc
 
           
