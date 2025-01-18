@@ -2197,36 +2197,48 @@
             "start": 0,
             "length": 8,
             "byte_order": "little_endian",
-            "min": 0.0,
-            "max": 5.0,
-            "is_signed": false
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
         },
         {
             "name": "module_voltage_2",
             "start": 8,
             "length": 8,
             "byte_order": "little_endian",
-            "min": 0.0,
-            "max": 5.0,
-            "is_signed": false
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
         },
         {
             "name": "module_voltage_3",
             "start": 16,
             "length": 8,
             "byte_order": "little_endian",
-            "min": 0.0,
-            "max": 5.0,
-            "is_signed": false
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
         },
         {
             "name": "module_voltage_4",
             "start": 24,
             "length": 8,
             "byte_order": "little_endian",
-            "min": 0.0,
-            "max": 5.0,
-            "is_signed": false
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
         },
         {
             "name": "module_voltage_5",
@@ -2234,11 +2246,10 @@
             "length": 8,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": null,
             "conversion": {
-                "scale": 0.01953125,
+                "scale": 0.01,
                 "offset": 0,
-                "is_float": false
+                "is_float": true
             }
         },
         {
@@ -2247,24 +2258,20 @@
             "length": 8,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": null,
             "conversion": {
-                "scale": 0.01953125,
+                "scale": 0.01,
                 "offset": 0,
                 "is_float": true
-            },
-            "min": 0.0,
-            "max": 5.0
+            }
         },
         {
             "name": "module_voltage_7",
-            "start": 55,
+            "start": 48,
             "length": 8,
-            "byte_order": "big_endian",
+            "byte_order": "little_endian",
             "is_signed": false,
-            "comment": null,
             "conversion": {
-                "scale": 0.01953125,
+                "scale": 0.01,
                 "offset": 0,
                 "is_float": true
             }
@@ -2275,15 +2282,12 @@
             "length": 8,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": null,
             "conversion": {
-                "scale": 0.01953125,
+                "scale": 0.01,
                 "offset": 0,
                 "is_float": true
             }
         },
-
-
 
         {
             "name": "module_firmware_is_dirty",
