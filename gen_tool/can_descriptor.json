@@ -371,252 +371,176 @@
                 "precharge_errorCode"
             ]
         },
-        "segment1_temps1": {
-            "id": 26,
+
+
+
+        "module1_temps": {
+            "id": 31,
             "length": 8,
             "signals": [
-                "cell1temp",
-                "cell2temp",
-                "cell3temp",
-                "cell4temp",
-                "cell5temp",
-                "cell6temp"
+                "module_voltage_1",
+                "module_voltage_2",
+                "module_voltage_3",
+                "module_voltage_4",
+                "module_voltage_5",
+                "module_voltage_6",
+                "module_voltage_7",
+                "module_voltage_8"
             ],
-            "comment": "raw ADC voltage reading of module1 cells 1-6",
+            "comment": "raw ADC voltage reading of module1 temp sensors, relative to the car",
             "bus_name": "accumulator",
-            "senders": []
+            "senders": [ "module1" ]
         },
-        "segment1_temps2": {
-            "id": 27,
+        "module1_status": {
+            "id": 41,
             "length": 8,
             "signals": [
-                "cell7temp",
-                "cell8temp",
-                "cell9temp",
-                "cell10temp",
-                "cell11temp",
-                "cell12temp"
+                "module_firmware_version",
+                "module_firmware_is_dirty",
+                "module_code_on_main",
+                "module_on_time_seconds",
+                "module_humidity",
+                "module_temperature"
             ],
-            "comment": "raw ADC voltage reading of module1 cells 6-12",
+            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
             "bus_name": "accumulator",
-            "senders": []
+            "senders": [ "module1" ]
         },
-        "segment1_sht": {
-            "id": 28,
-            "length": 4,
+
+        "module2_temps": {
+            "id": 32,
+            "length": 8,
             "signals": [
-                "segment1_temperature",
-                "segment1_humidity"
+                "module_voltage_1",
+                "module_voltage_2",
+                "module_voltage_3",
+                "module_voltage_4",
+                "module_voltage_5",
+                "module_voltage_6",
+                "module_voltage_7",
+                "module_voltage_8"
             ],
-            "comment": "temperature and humidity from sht sensor of segment 1",
+            "comment": "raw ADC voltage reading of module2 temp sensors, relative to the car",
             "bus_name": "accumulator",
-            "senders": []
+            "senders": [ "module2" ]
         },
-        "segment2_temps1": {
+        "module2_status": {
             "id": 42,
             "length": 8,
             "signals": [
-                "cell13temp",
-                "cell14temp",
-                "cell15temp",
-                "cell16temp",
-                "cell17temp",
-                "cell18temp"
+                "module_firmware_version",
+                "module_firmware_is_dirty",
+                "module_code_on_main",
+                "module_on_time_seconds",
+                "module_humidity",
+                "module_temperature"
             ],
-            "comment": "raw ADC voltage reading of module2 cells 1-6",
+            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
             "bus_name": "accumulator",
-            "senders": []
+            "senders": [ "module2" ]
         },
-        "segment2_temps2": {
+
+        "module3_temps": {
+            "id": 33,
+            "length": 8,
+            "signals": [
+                "module_voltage_1",
+                "module_voltage_2",
+                "module_voltage_3",
+                "module_voltage_4",
+                "module_voltage_5",
+                "module_voltage_6",
+                "module_voltage_7",
+                "module_voltage_8"
+            ],
+            "comment": "raw ADC voltage reading of module3 temp sensors, relative to the car",
+            "bus_name": "accumulator",
+            "senders": [ "module3" ]
+        },
+        "module3_status": {
             "id": 43,
             "length": 8,
             "signals": [
-                "cell19temp",
-                "cell20temp",
-                "cell21temp",
-                "cell22temp",
-                "cell23temp",
-                "cell24temp"
+                "module_firmware_version",
+                "module_firmware_is_dirty",
+                "module_code_on_main",
+                "module_on_time_seconds",
+                "module_humidity",
+                "module_temperature"
             ],
-            "comment": "raw ADC voltage reading of module2 cells 6-12",
+            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
             "bus_name": "accumulator",
-            "senders": []
+            "senders": [ "module3" ]
         },
-        "segment2_sht": {
+
+        "module4_temps": {
+            "id": 34,
+            "length": 8,
+            "signals": [
+                "module_voltage_1",
+                "module_voltage_2",
+                "module_voltage_3",
+                "module_voltage_4",
+                "module_voltage_5",
+                "module_voltage_6",
+                "module_voltage_7",
+                "module_voltage_8"
+            ],
+            "comment": "raw ADC voltage reading of module4 temp sensors, relative to the car",
+            "bus_name": "accumulator",
+            "senders": [ "module4" ]
+        },
+        "module4_status": {
             "id": 44,
-            "length": 4,
-            "signals": [
-                "segment2_temperature",
-                "segment2_humidity"
-            ],
-            "comment": "temperature and humidity from sht sensor of segment 2",
-            "bus_name": "accumulator",
-            "senders": []
-        },
-        "segment3_temps1": {
-            "id": 58,
             "length": 8,
             "signals": [
-                "cell25temp",
-                "cell26temp",
-                "cell27temp",
-                "cell28temp",
-                "cell29temp",
-                "cell30temp"
+                "module_firmware_version",
+                "module_firmware_is_dirty",
+                "module_code_on_main",
+                "module_on_time_seconds",
+                "module_humidity",
+                "module_temperature"
             ],
-            "comment": "raw ADC voltage reading of module3 cells 1-6",
+            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
             "bus_name": "accumulator",
-            "senders": []
+            "senders": [ "module4" ]
         },
-        "segment3_temps2": {
-            "id": 59,
+
+        "module5_temps": {
+            "id": 35,
             "length": 8,
             "signals": [
-                "cell31temp",
-                "cell32temp",
-                "cell33temp",
-                "cell34temp",
-                "cell35temp",
-                "cell36temp"
+                "module_voltage_1",
+                "module_voltage_2",
+                "module_voltage_3",
+                "module_voltage_4",
+                "module_voltage_5",
+                "module_voltage_6",
+                "module_voltage_7",
+                "module_voltage_8"
             ],
-            "comment": "raw ADC voltage reading of module3 cells 6-12",
+            "comment": "raw ADC voltage reading of module5 temp sensors, relative to the car",
             "bus_name": "accumulator",
-            "senders": []
+            "senders": [ "module5" ]
         },
-        "segment3_sht": {
-            "id": 60,
-            "length": 4,
-            "signals": [
-                "segment3_temperature",
-                "segment3_humidity"
-            ],
-            "comment": "temperature and humidity from sht sensor of segment 3",
-            "bus_name": "accumulator",
-            "senders": []
-        },
-        "segment4_temps1": {
-            "id": 74,
+        "module5_status": {
+            "id": 45,
             "length": 8,
             "signals": [
-                "cell37temp",
-                "cell38temp",
-                "cell39temp",
-                "cell40temp",
-                "cell41temp",
-                "cell42temp"
+                "module_firmware_version",
+                "module_firmware_is_dirty",
+                "module_code_on_main",
+                "module_on_time_seconds",
+                "module_humidity",
+                "module_temperature"
             ],
-            "comment": "raw ADC voltage reading of module4 cells 1-6",
+            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
             "bus_name": "accumulator",
-            "senders": []
+            "senders": [ "module5" ]
         },
-        "segment4_temps2": {
-            "id": 75,
-            "length": 8,
-            "signals": [
-                "cell43temp",
-                "cell44temp",
-                "cell45temp",
-                "cell46temp",
-                "cell47temp",
-                "cell48temp"
-            ],
-            "comment": "raw ADC voltage reading of module4 cells 6-12",
-            "bus_name": "accumulator",
-            "senders": []
-        },
-        "segment4_sht": {
-            "id": 76,
-            "length": 4,
-            "signals": [
-                "segment4_temperature",
-                "segment4_humidity"
-            ],
-            "comment": "temperature and humidity from sht sensor of segment 4",
-            "bus_name": "accumulator",
-            "senders": []
-        },
-        "segment5_temps1": {
-            "id": 90,
-            "length": 8,
-            "signals": [
-                "cell49temp",
-                "cell50temp",
-                "cell51temp",
-                "cell52temp",
-                "cell53temp",
-                "cell54temp"
-            ],
-            "comment": "raw ADC voltage reading of module5 cells 1-6",
-            "bus_name": "accumulator",
-            "senders": []
-        },
-        "segment5_temps2": {
-            "id": 91,
-            "length": 8,
-            "signals": [
-                "cell55temp",
-                "cell56temp",
-                "cell57temp",
-                "cell58temp",
-                "cell59temp",
-                "cell60temp"
-            ],
-            "comment": "raw ADC voltage reading of module5 cells 6-12",
-            "bus_name": "accumulator",
-            "senders": []
-        },
-        "segment5_sht": {
-            "id": 92,
-            "length": 4,
-            "signals": [
-                "segment5_temperature",
-                "segment5_humidity"
-            ],
-            "comment": "temperature and humidity from sht sensor of segment 5",
-            "bus_name": "accumulator",
-            "senders": []
-        },
-        "segment6_temps1": {
-            "id": 106,
-            "length": 8,
-            "signals": [
-                "cell61temp",
-                "cell62temp",
-                "cell63temp",
-                "cell64temp",
-                "cell65temp",
-                "cell66temp"
-            ],
-            "comment": "raw ADC voltage reading of module6 cells 1-6",
-            "bus_name": "accumulator",
-            "senders": []
-        },
-        "segment6_temps2": {
-            "id": 107,
-            "length": 8,
-            "signals": [
-                "cell67temp",
-                "cell68temp",
-                "cell69temp",
-                "cell70temp",
-                "cell71temp",
-                "cell72temp"
-            ],
-            "comment": "raw ADC voltage reading of module6 cells 6-12",
-            "bus_name": "accumulator",
-            "senders": []
-        },
-        "segment6_sht": {
-            "id": 108,
-            "length": 4,
-            "signals": [
-                "segment6_temperature",
-                "segment6_humidity"
-            ],
-            "comment": "temperature and humidity from sht sensor of segment 6",
-            "bus_name": "accumulator",
-            "senders": []
-        },
+
+
+
         "omni_status": {
             "id": 1100,
             "length": 8,
@@ -1528,1086 +1452,6 @@
             "comment": "status of button6 on dash (1 = pressed)"
         },
         {
-            "name": "cell1temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell2temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell3temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell4temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell5temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell6temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell7temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell8temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell9temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell10temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell11temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell12temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell13temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell14temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell15temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell16temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell17temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell18temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell19temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell20temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell21temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell22temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell23temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell24temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell25temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell26temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell27temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell28temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell29temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell30temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell31temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell32temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell33temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell34temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell35temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell36temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell37temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell38temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell39temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell40temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell41temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell42temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell43temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell44temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell45temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell46temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell47temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell48temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell49temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell50temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell51temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell52temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell53temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell54temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell55temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell56temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell57temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell58temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell59temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell60temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell61temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell62temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell63temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell64temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell65temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell66temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell67temp",
-            "start": 0,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell68temp",
-            "start": 10,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell69temp",
-            "start": 20,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell70temp",
-            "start": 30,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell71temp",
-            "start": 40,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
-            "name": "cell72temp",
-            "start": 50,
-            "length": 10,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": null,
-            "conversion": {
-                "scale": 0.0048828125,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0.0,
-            "max": 5.0
-        },
-        {
             "name": "vcu_pedals_settings_MUX",
             "start": 0,
             "length": 8,
@@ -3345,138 +2189,156 @@
             "start": 0,
             "length": 16
         },
+
+
+
         {
-            "name": "segment1_temperature",
+            "name": "module_voltage_1",
             "start": 0,
-            "length": 16,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
             "conversion": {
                 "scale": 0.01,
                 "offset": 0,
                 "is_float": true
-            },
-            "is_signed": false
+            }
         },
         {
-            "name": "segment1_humidity",
+            "name": "module_voltage_2",
+            "start": 8,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "module_voltage_3",
+            "start": 16,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "module_voltage_4",
+            "start": 24,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "module_voltage_5",
+            "start": 32,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "module_voltage_6",
+            "start": 40,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "module_voltage_7",
+            "start": 48,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+        {
+            "name": "module_voltage_8",
+            "start": 56,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+
+        {
+            "name": "module_firmware_is_dirty",
+            "start": 0,
+            "length": 1,
+            "comment": "if the compiled module firmware has uncommitted changes (1) or not (0)"
+        },
+        {
+            "name": "module_temperature",
+            "start": 7,
+            "length": 7,
+            "byte_order": "big_endian",
+            "is_signed": false,
+            "comment": "time in seconds which the acu has been powered on and running",
+            "units": "celcius"
+        },
+        {
+            "name": "module_code_on_main",
+            "start": 8,
+            "length": 1,
+            "comment": "if the compiled module firmware was from main branch (1) or not (0)"
+        },
+        {
+            "name": "module_humidity",
+            "start": 15,
+            "length": 7,
+            "byte_order": "big_endian",
+            "is_signed": false,
+            "comment": "time in seconds which the acu has been powered on and running",
+            "units": "relative_humidity"
+        },
+        {
+            "name": "module_on_time_seconds",
             "start": 16,
             "length": 16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "time in seconds which the acu has been powered on and running",
+            "units": "seconds"
         },
         {
-            "name": "segment2_temperature",
-            "start": 0,
-            "length": 16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
+            "name": "module_firmware_version",
+            "start": 32,
+            "length": 32,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "short hash of the firmware on the given module" 
         },
-        {
-            "name": "segment2_humidity",
-            "start": 16,
-            "length": 16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "segment3_temperature",
-            "start": 0,
-            "length": 16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "segment3_humidity",
-            "start": 16,
-            "length": 16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "segment4_temperature",
-            "start": 0,
-            "length": 16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "segment4_humidity",
-            "start": 16,
-            "length": 16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "segment5_temperature",
-            "start": 0,
-            "length": 16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "segment5_humidity",
-            "start": 16,
-            "length": 16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "segment6_temperature",
-            "start": 0,
-            "length": 16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "segment6_humidity",
-            "start": 16,
-            "length": 16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
+
+
+
         {
             "name": "vcu_launchcontrol_release_countdown",
             "start": 0,
