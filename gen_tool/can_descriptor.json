@@ -262,9 +262,12 @@
                 "vcu"
             ]
         },
+
+
+
         "acu_shutdown_status": {
             "id": 600,
-            "length": 7,
+            "length": 6,
             "signals": [
                 "acu_imd_relay_state",
                 "acu_bms_relay_state",
@@ -275,39 +278,43 @@
             ],
             "comment": "information on IMD and BMS shutdown circuit relays, as well as IMD diagnostic info",
             "bus_name": "accumulator",
-            "senders": [
-                "acu"
-            ]
+            "senders": [ "acu" ]
         },
+
         "acu_board_voltage_readings": {
             "id": 601,
-            "length": 3,
+            "length": 6,
             "signals": [
-                "acu_glv_voltage",
                 "acu_sdc_voltage",
-                "acu_5v_voltage"
+                "acu_sdc_current",
+                "acu_glv_voltage",
+                "acu_glv_current",
+                "acu_5v_voltage",
+                "acu_3v_voltage"
             ],
-            "comment": "ACU voltage measurements",
+            "comment": "ACU voltage and current measurements",
             "bus_name": "accumulator",
-            "senders": [
-                "acu"
-            ]
+            "senders": [ "acu" ]
         },
+
         "acu_firmware_version": {
             "id": 602,
             "length": 8,
             "signals": [
-                "acu_fw_version",
+                "acu_firmware_is_dirty",
+                "acu_temperature",
+                "acu_code_on_main",
+                "acu_humidity",
                 "acu_on_time_seconds",
-                "acu_project_on_main",
-                "acu_project_is_dirty"
+                "acu_firmware_version"
             ],
             "comment": "information on the running acu firmware and system on-timer",
-            "bus_name": "inverter",
-            "senders": [
-                "acu"
-            ]
+            "bus_name": "accumulator",
+            "senders": [ "acu" ]
         },
+
+
+
         "vcu_pedal_threshold_settings": {
             "id": 199,
             "length": 7,
@@ -1597,72 +1604,97 @@
             "length": 1,
             "comment": "if the compiled dash fw had uncommitted changes (1) or not (0)"
         },
+
+
+
         {
-            "name": "acu_fw_version",
+            "name": "acu_firmware_is_dirty",
             "start": 0,
-            "length": 32,
-            "byte_order": "little_endian",
+            "length": 1,
+            "comment": "if the compiled acu firmware has uncommitted changes (1) or not (0)"
+        },
+        {
+            "name": "acu_temperature",
+            "start": 7,
+            "length": 7,
+            "byte_order": "big_endian",
             "is_signed": false,
-            "comment": "short hash of the firmware on ACU"
+            "comment": "the ambient temperature at the acu",
+            "units": "celcius"
+        },
+        {
+            "name": "acu_code_on_main",
+            "start": 8,
+            "length": 1,
+            "comment": "if the compiled acu firmware was from main branch (1) or not (0)"
+        },
+        {
+            "name": "acu_humidity",
+            "start": 15,
+            "length": 7,
+            "byte_order": "big_endian",
+            "is_signed": false,
+            "comment": "the relative humidity at the acu",
+            "units": "relative_humidity"
         },
         {
             "name": "acu_on_time_seconds",
-            "start": 32,
+            "start": 16,
             "length": 16,
             "byte_order": "little_endian",
+            "is_signed": false,
             "comment": "time in seconds which the acu has been powered on and running",
             "units": "seconds"
         },
         {
-            "name": "acu_project_on_main",
-            "start": 48,
-            "length": 1,
-            "comment": "if the compiled acu fw was from main branch (1) or not (0)"
+            "name": "acu_firmware_version",
+            "start": 32,
+            "length": 32,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "short hash of the firmware on the accumulator control unit" 
         },
-        {
-            "name": "acu_project_is_dirty",
-            "start": 56,
-            "length": 1,
-            "comment": "if the compiled acu fw had uncommitted changes (1) or not (0)"
-        },
+
         {
             "name": "acu_imd_relay_state",
-            "start": 8,
+            "start": 7,
             "length": 1,
             "comment": "Status of the IMD relay as sensed by the ACU: 1 is closed, 0 is open"
         },
         {
             "name": "acu_bms_relay_state",
-            "start": 16,
+            "start": 15,
             "length": 1,
             "comment": "Status of the BMS relay as sensed by the ACU: 1 is closed, 0 is open"
         },
         {
             "name": "acu_imd_gpio_state",
-            "start": 24,
+            "start": 23,
             "length": 1,
             "comment": "Status of the IMD OKHS output: 1 is OK, 0 is FAULTED"
         },
         {
             "name": "acu_bms_gpio_state",
-            "start": 32,
+            "start": 31,
             "length": 1,
             "comment": "Status of the BMS ENABLE output: 1 is OK, 0 is FAULTED"
         },
         {
             "name": "acu_imd_pwm_frequency",
-            "start": 40,
+            "start": 32,
             "length": 8,
             "comment": "PWM frequency of the IMD: 10hz on normal operation"
         },
         {
             "name": "acu_imd_pwm_duty",
-            "start": 48,
+            "start": 40,
             "length": 8,
-            "comment": "duty cycle of IMD: ~5% on normal conditions"
+            "comment": "duty cycle of IMD: ~5% on normal conditions",
+            "units": "seconds"
         },
+
         {
-            "name": "acu_glv_voltage",
+            "name": "acu_sdc_voltage",
             "start": 0,
             "length": 8,
             "comment": "ACU GLV system voltage reading",
@@ -1673,10 +1705,22 @@
             }
         },
         {
-            "name": "acu_sdc_voltage",
+            "name": "acu_sdc_current",
             "start": 8,
             "length": 8,
-            "comment": "ACU shutdown circuit voltage reading",
+            "comment": "ACU shutdown circuit current reading thru the ACU",
+            "conversion": {
+                "scale": 0.03235,
+                "offset": -6.25,
+                "is_float": true
+            },
+            "units": "amps"
+        },
+        {
+            "name": "acu_glv_voltage",
+            "start": 16,
+            "length": 8,
+            "comment": "ACU GLV system voltage reading",
             "conversion": {
                 "scale": 0.01294,
                 "offset": 0,
@@ -1684,16 +1728,42 @@
             }
         },
         {
-            "name": "acu_5v_voltage",
-            "start": 16,
+            "name": "acu_glv_current",
+            "start": 24,
             "length": 8,
-            "comment": "ACU voltage reading",
+            "comment": "ACU GLV current reading from the ACU",
+            "conversion": {
+                "scale": 0.03235,
+                "offset": -6.25,
+                "is_float": true
+            },
+            "units": "amps"
+        },
+        {
+            "name": "acu_5v_voltage",
+            "start": 32,
+            "length": 8,
+            "comment": "ACU 5v rail reading",
             "conversion": {
                 "scale": 0.01294,
                 "offset": 0,
                 "is_float": true
             }
         },
+        {
+            "name": "acu_3v_voltage",
+            "start": 40,
+            "length": 8,
+            "comment": "ACU 3v rail reading",
+            "conversion": {
+                "scale": 0.01294,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+
+
+
         {
             "name": "precharge_state",
             "start": 0,
@@ -2301,7 +2371,7 @@
             "length": 7,
             "byte_order": "big_endian",
             "is_signed": false,
-            "comment": "time in seconds which the acu has been powered on and running",
+            "comment": "the ambient temperature at the given module",
             "units": "celcius"
         },
         {
@@ -2316,7 +2386,7 @@
             "length": 7,
             "byte_order": "big_endian",
             "is_signed": false,
-            "comment": "time in seconds which the acu has been powered on and running",
+            "comment": "the relative humidity at the given module",
             "units": "relative_humidity"
         },
         {
