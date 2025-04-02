@@ -1,379 +1,5 @@
 {
     "messages": {
-        "VCU_PEDAL_READINGS": {
-            "id": 196,
-            "length": 8,
-            "signals": [
-                "APPS1",
-                "APPS2",
-                "BSE1",
-                "STEERING"
-            ],
-            "comment": "VCU analog pedal readings",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "VCU_BOARD_READINGS_ONE": {
-            "id": 201,
-            "length": 8,
-            "signals": [
-                "VCU_GLV_CURRENT",
-                "VCU_GLV_VOLTAGE",
-                "VCU_BSPD_VOLTAGE",
-                "VCU_5V_VOLTAGE"
-            ],
-            "comment": "VCU PCB health readings",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "VCU_BOARD_READINGS_TWO": {
-            "id": 202,
-            "length": 8,
-            "signals": [
-                "VCU_SDC_VOLTAGE",
-                "VCU_SDC_CURRENT",
-                "VCU_AIN9_VOLTAGE",
-                "VCU_AIN10_VOLTAGE"
-            ],
-            "comment": "VCU PCB health readings",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_launchcontrol_diagdata": {
-            "id": 203,
-            "length": 8,
-            "signals": [
-                "vcu_launchcontrol_elapsed_time",
-                "vcu_launchcontrol_outputtorquecommand",
-                "vcu_launchcontrol_state",
-                "vcu_launchcontrol_type"
-            ],
-            "comment": "vcu launchController system status",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_pedals_travel": {
-            "id": 204,
-            "length": 6,
-            "signals": [
-                "vcu_apps1_travel",
-                "vcu_apps2_travel",
-                "vcu_bse1_travel"
-            ],
-            "comment": "the calculated pedal travels",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_launchcontrol_countdown": {
-            "id": 205,
-            "length": 8,
-            "signals": [
-                "vcu_launchcontrol_release_countdown",
-                "vcu_release_delay"
-            ],
-            "comment": "Countdown until the VCU will start launch when in launch mode",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_distance_tracker_motor": {
-            "id": 206,
-            "length": 8,
-            "signals": [
-                "vcu_motor_energy_wh",
-                "vcu_motor_efficiency_instantaneous",
-                "vcu_motor_distance_meters",
-                "vcu_motor_efficiency_kmkwh"
-            ],
-            "comment": "distance tracking data using motor as speed",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_distance_tracker_wheelspeed": {
-            "id": 207,
-            "length": 8,
-            "signals": [
-                "vcu_wheelspeed_energy_wh",
-                "vcu_wheelspeed_efficiency_instantaneous",
-                "vcu_wheelspeed_distance_meters",
-                "vcu_wheelspeed_efficiency_kmkwh"
-            ],
-            "comment": "distance tracking data using wheelspeed as speed",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_distance_tracker_vectornav": {
-            "id": 210,
-            "length": 8,
-            "signals": [
-                "vcu_vectornav_energy_wh",
-                "vcu_vectornav_efficiency_instantaneous",
-                "vcu_vectornav_distance_meters",
-                "vcu_vectornav_efficiency_kmkwh"
-            ],
-            "comment": "distance tracking data using vectornav velocity measurement as speed",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_lifetime_distance_and_ontime": {
-            "id": 208,
-            "length": 8,
-            "signals": [
-                "vcu_lifetime_ontime",
-                "vcu_lifetime_distance"
-            ],
-            "comment": "The total ontime of the vcu and distance",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_tractioncontrol_diagdata": {
-            "id": 209,
-            "length": 8,
-            "signals": [
-                "vcu_tractioncontrol_elapsed_time",
-                "vcu_tractioncontrol_outputtorquecommand",
-                "vcu_tractioncontrol_state",
-                "vcu_tractioncontrol_type"
-            ],
-            "comment": "vcu tractionController system status",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_coulomb_counters": {
-            "id": 211,
-            "length": 8,
-            "signals": [
-                "vcu_wsfl_ah",
-                "vcu_motor_ah",
-                "vcu_vnav_ah"
-            ],
-            "comment": "vcu amp-hour counters",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_calculated_slip": {
-            "id": 212,
-            "length": 6,
-            "signals": [
-                "vcu_front_rpm_avg",
-                "vcu_rear_rpm_avg",
-                "vcu_calculated_slip"
-            ],
-            "comment": "vcu wheel speed and slip info for tc and lc",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_power_limit_update": {
-            "id": 213,
-            "length": 4,
-            "signals": [
-                "vcu_power_limit"
-            ],
-            "comment": "Send to VCU to set the max power limit",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "VCU_WHEELSPEED_READINGS": {
-            "id": 198,
-            "length": 8,
-            "signals": [
-                "vcu_rpm_front_left",
-                "vcu_rpm_front_right"
-            ],
-            "comment": "VCU wheel speed sensor readings",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "VCU_STATUS": {
-            "id": 195,
-            "length": 7,
-            "signals": [
-                "VCU_IMD_OK_HIGH",
-                "VCU_SHUTDOWN_B_OK_HIGH",
-                "VCU_BMS_OK_HIGH",
-                "VCU_SHUTDOWN_C_OK_HIGH",
-                "VCU_BSPD_OK_HIGH",
-                "VCU_SHUTDOWN_D_OK_HIGH",
-                "VCU_SOFTWARE_OK_HIGH",
-                "VCU_SHUTDOWN_E_OK_HIGH",
-                "VCU_ACCEL_IMPLAUSIBLE",
-                "VCU_BRAKE_IMPLAUSIBLE",
-                "VCU_BRAKE_ACTIVE",
-                "VCU_BSPD_CURRENT_HIGH",
-                "VCU_BSPD_BRAKE_HIGH",
-                "VCU_ACCEL_BRAKE_IMPLAUSIBLE",
-                "VCU_STATEMACHINE_STATE",
-                "VCU_INVERTER_POWERED",
-                "VCU_ENERGY_METER_PRESENT",
-                "VCU_ACTIVATE_BUZZER",
-                "VCU_SOFTWARE_OK",
-                "VCU_LAUNCH_CONTROL_ACTIVE",
-                "VCU_MAX_TORQUE",
-                "VCU_TORQUE_MODE",
-                "VCU_DISTANCE_TRAVELLED"
-            ],
-            "comment": "Vehicle Control Unit Status message",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_firmware_version": {
-            "id": 200,
-            "length": 8,
-            "signals": [
-                "vcu_fw_version",
-                "vcu_on_time_seconds",
-                "vcu_project_on_main",
-                "vcu_project_is_dirty"
-            ],
-            "comment": "information on the running vcu firmware and system on-timer",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "acu_shutdown_status": {
-            "id": 600,
-            "length": 7,
-            "signals": [
-                "acu_imd_relay_state",
-                "acu_bms_relay_state",
-                "acu_imd_gpio_state",
-                "acu_bms_gpio_state",
-                "acu_imd_pwm_frequency",
-                "acu_imd_pwm_duty"
-            ],
-            "comment": "information on IMD and BMS shutdown circuit relays, as well as IMD diagnostic info",
-            "bus_name": "accumulator",
-            "senders": [
-                "acu"
-            ]
-        },
-        "acu_board_voltage_readings": {
-            "id": 601,
-            "length": 3,
-            "signals": [
-                "acu_glv_voltage",
-                "acu_sdc_voltage",
-                "acu_5v_voltage"
-            ],
-            "comment": "ACU voltage measurements",
-            "bus_name": "accumulator",
-            "senders": [
-                "acu"
-            ]
-        },
-        "acu_firmware_version": {
-            "id": 602,
-            "length": 8,
-            "signals": [
-                "acu_fw_version",
-                "acu_on_time_seconds",
-                "acu_project_on_main",
-                "acu_project_is_dirty"
-            ],
-            "comment": "information on the running acu firmware and system on-timer",
-            "bus_name": "inverter",
-            "senders": [
-                "acu"
-            ]
-        },
-        "vcu_pedal_threshold_settings": {
-            "id": 199,
-            "length": 7,
-            "signals": [
-                "vcu_pedals_settings_MUX",
-                "vcu_brake_active_threshold",
-                "vcu_apps1_uv_threshold",
-                "vcu_apps1_start_threshold",
-                "vcu_apps1_end_threshold",
-                "vcu_apps1_ov_threshold",
-                "vcu_apps2_uv_threshold",
-                "vcu_apps2_start_threshold",
-                "vcu_apps2_end_threshold",
-                "vcu_apps2_ov_threshold"
-            ],
-            "senders": [
-                "vcu"
-            ]
-        },
-        "dash_buttons": {
-            "id": 235,
-            "length": 1,
-            "signals": [
-                "dash_button1status",
-                "dash_button2status",
-                "dash_button3status",
-                "dash_button4status",
-                "dash_button5status",
-                "dash_button6status"
-            ],
-            "comment": "status of buttons on the dash",
-            "bus_name": "inverter",
-            "senders": [
-                "dash"
-            ]
-        },
-        "dash_firmware_version": {
-            "id": 236,
-            "length": 8,
-            "signals": [
-                "dash_fw_version",
-                "dash_on_time_seconds",
-                "dash_project_on_main",
-                "dash_project_is_dirty"
-            ],
-            "comment": "information on the running dash firmware and system on-timer",
-            "bus_name": "inverter",
-            "senders": [
-                "dash"
-            ]
-        },
-        "precharge_status": {
-            "id": 105,
-            "length": 8,
-            "signals": [
-                "precharge_state",
-                "precharge_accVoltageMod100",
-                "precharge_accVoltageDiv100",
-                "precharge_tsVoltageMod100",
-                "precharge_tsVoltageDiv100",
-                "precharge_errorCode"
-            ]
-        },
-
-
-
         "module1_temps": {
             "id": 31,
             "length": 8,
@@ -541,103 +167,340 @@
 
 
 
-        "omni_status": {
-            "id": 1100,
+        "precharge_status": {
+            "id": 105,
             "length": 8,
             "signals": [
-                "omni_fw_version",
-                "omni_on_time_seconds",
-                "omni_project_on_main",
-                "omni_project_is_dirty"
-            ],
-            "comment": "information on the running omni firmware and system on-timer",
-            "bus_name": "daq",
-            "senders": [
-                "omni"
+                "precharge_state",
+                "precharge_accVoltageMod100",
+                "precharge_accVoltageDiv100",
+                "precharge_tsVoltageMod100",
+                "precharge_tsVoltageDiv100",
+                "precharge_errorCode"
             ]
         },
-        "omni_accel_data": {
-            "id": 1101,
-            "length": 6,
+
+
+
+        "VCU_STATUS": {
+            "id": 195,
+            "length": 7,
             "signals": [
-                "omni_accel_x",
-                "omni_accel_y",
-                "omni_accel_z"
+                "VCU_IMD_OK_HIGH",
+                "VCU_SHUTDOWN_B_OK_HIGH",
+                "VCU_BMS_OK_HIGH",
+                "VCU_SHUTDOWN_C_OK_HIGH",
+                "VCU_BSPD_OK_HIGH",
+                "VCU_SHUTDOWN_D_OK_HIGH",
+                "VCU_SOFTWARE_OK_HIGH",
+                "VCU_SHUTDOWN_E_OK_HIGH",
+                "VCU_ACCEL_IMPLAUSIBLE",
+                "VCU_BRAKE_IMPLAUSIBLE",
+                "VCU_BRAKE_ACTIVE",
+                "VCU_BSPD_CURRENT_HIGH",
+                "VCU_BSPD_BRAKE_HIGH",
+                "VCU_ACCEL_BRAKE_IMPLAUSIBLE",
+                "VCU_STATEMACHINE_STATE",
+                "VCU_INVERTER_POWERED",
+                "VCU_ENERGY_METER_PRESENT",
+                "VCU_ACTIVATE_BUZZER",
+                "VCU_SOFTWARE_OK",
+                "VCU_LAUNCH_CONTROL_ACTIVE",
+                "VCU_MAX_TORQUE",
+                "VCU_TORQUE_MODE",
+                "VCU_DISTANCE_TRAVELLED"
             ],
-            "comment": "LSM9DS1 accelerometer readings",
-            "bus_name": "daq",
+            "comment": "Vehicle Control Unit Status message",
+            "bus_name": "inverter",
             "senders": [
-                "omni"
+                "vcu"
             ]
         },
-        "omni_gyro_data": {
-            "id": 1102,
-            "length": 6,
-            "signals": [
-                "omni_gyro_x",
-                "omni_gyro_y",
-                "omni_gyro_z"
-            ],
-            "comment": "LSM9DS1 gyro readings",
-            "bus_name": "daq",
-            "senders": [
-                "omni"
-            ]
-        },
-        "omni_heading_data": {
-            "id": 1103,
-            "length": 6,
-            "signals": [
-                "omni_heading",
-                "omni_pitch",
-                "omni_roll"
-            ],
-            "comment": "LSM9DS1 heading readings, calculated with magnetometer and accel",
-            "bus_name": "daq",
-            "senders": [
-                "omni"
-            ]
-        },
-        "omni_shockpot_data": {
-            "id": 1104,
+        "VCU_PEDAL_READINGS": {
+            "id": 196,
             "length": 8,
             "signals": [
-                "omni_shockpot_fl",
-                "omni_shockpot_fr",
-                "omni_shockpot_rl",
-                "omni_shockpot_rr"
+                "APPS1",
+                "APPS2",
+                "BSE1",
+                "STEERING"
             ],
-            "comment": "raw shock pot readings with teensy 12bit adc, assume 3v3 ref",
-            "bus_name": "daq",
+            "comment": "VCU analog pedal readings",
+            "bus_name": "inverter",
             "senders": [
-                "omni"
+                "vcu"
             ]
         },
-        "omni_steering_data": {
-            "id": 1105,
-            "length": 2,
-            "signals": [
-                "omni_steering"
-            ],
-            "comment": "raw steering angle sensor reading with teensy 12bit adc, assume 3v3 ref",
-            "bus_name": "daq",
-            "senders": [
-                "omni"
-            ]
-        },
-        "omni_gps_position": {
-            "id": 1106,
+        "VCU_WHEELSPEED_READINGS": {
+            "id": 198,
             "length": 8,
             "signals": [
-                "omni_gps_latitude",
-                "omni_gps_longitude"
+                "vcu_rpm_front_left",
+                "vcu_rpm_front_right"
             ],
-            "comment": "adafruit gps coordinates",
-            "bus_name": "daq",
+            "comment": "VCU wheel speed sensor readings",
+            "bus_name": "inverter",
             "senders": [
-                "omni"
+                "vcu"
             ]
         },
+        "vcu_pedal_threshold_settings": {
+            "id": 199,
+            "length": 7,
+            "signals": [
+                "vcu_pedals_settings_MUX",
+                "vcu_brake_active_threshold",
+                "vcu_apps1_uv_threshold",
+                "vcu_apps1_start_threshold",
+                "vcu_apps1_end_threshold",
+                "vcu_apps1_ov_threshold",
+                "vcu_apps2_uv_threshold",
+                "vcu_apps2_start_threshold",
+                "vcu_apps2_end_threshold",
+                "vcu_apps2_ov_threshold"
+            ],
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_firmware_version": {
+            "id": 200,
+            "length": 8,
+            "signals": [
+                "vcu_fw_version",
+                "vcu_on_time_seconds",
+                "vcu_project_on_main",
+                "vcu_project_is_dirty"
+            ],
+            "comment": "information on the running vcu firmware and system on-timer",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "VCU_BOARD_READINGS_ONE": {
+            "id": 201,
+            "length": 8,
+            "signals": [
+                "VCU_GLV_CURRENT",
+                "VCU_GLV_VOLTAGE",
+                "VCU_BSPD_VOLTAGE",
+                "VCU_5V_VOLTAGE"
+            ],
+            "comment": "VCU PCB health readings",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "VCU_BOARD_READINGS_TWO": {
+            "id": 202,
+            "length": 8,
+            "signals": [
+                "VCU_SDC_VOLTAGE",
+                "VCU_SDC_CURRENT",
+                "VCU_AIN9_VOLTAGE",
+                "VCU_AIN10_VOLTAGE"
+            ],
+            "comment": "VCU PCB health readings",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_launchcontrol_diagdata": {
+            "id": 203,
+            "length": 8,
+            "signals": [
+                "vcu_launchcontrol_elapsed_time",
+                "vcu_launchcontrol_outputtorquecommand",
+                "vcu_launchcontrol_state",
+                "vcu_launchcontrol_type"
+            ],
+            "comment": "vcu launchController system status",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_pedals_travel": {
+            "id": 204,
+            "length": 6,
+            "signals": [
+                "vcu_apps1_travel",
+                "vcu_apps2_travel",
+                "vcu_bse1_travel"
+            ],
+            "comment": "the calculated pedal travels",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_launchcontrol_countdown": {
+            "id": 205,
+            "length": 8,
+            "signals": [
+                "vcu_launchcontrol_release_countdown",
+                "vcu_release_delay"
+            ],
+            "comment": "Countdown until the VCU will start launch when in launch mode",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_distance_tracker_motor": {
+            "id": 206,
+            "length": 8,
+            "signals": [
+                "vcu_motor_energy_wh",
+                "vcu_motor_efficiency_instantaneous",
+                "vcu_motor_distance_meters",
+                "vcu_motor_efficiency_kmkwh"
+            ],
+            "comment": "distance tracking data using motor as speed",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_distance_tracker_wheelspeed": {
+            "id": 207,
+            "length": 8,
+            "signals": [
+                "vcu_wheelspeed_energy_wh",
+                "vcu_wheelspeed_efficiency_instantaneous",
+                "vcu_wheelspeed_distance_meters",
+                "vcu_wheelspeed_efficiency_kmkwh"
+            ],
+            "comment": "distance tracking data using wheelspeed as speed",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_lifetime_distance_and_ontime": {
+            "id": 208,
+            "length": 8,
+            "signals": [
+                "vcu_lifetime_ontime",
+                "vcu_lifetime_distance"
+            ],
+            "comment": "The total ontime of the vcu and distance",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_tractioncontrol_diagdata": {
+            "id": 209,
+            "length": 8,
+            "signals": [
+                "vcu_tractioncontrol_elapsed_time",
+                "vcu_tractioncontrol_outputtorquecommand",
+                "vcu_tractioncontrol_state",
+                "vcu_tractioncontrol_type"
+            ],
+            "comment": "vcu tractionController system status",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_distance_tracker_vectornav": {
+            "id": 210,
+            "length": 8,
+            "signals": [
+                "vcu_vectornav_energy_wh",
+                "vcu_vectornav_efficiency_instantaneous",
+                "vcu_vectornav_distance_meters",
+                "vcu_vectornav_efficiency_kmkwh"
+            ],
+            "comment": "distance tracking data using vectornav velocity measurement as speed",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_coulomb_counters": {
+            "id": 211,
+            "length": 8,
+            "signals": [
+                "vcu_wsfl_ah",
+                "vcu_motor_ah",
+                "vcu_vnav_ah"
+            ],
+            "comment": "vcu amp-hour counters",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_calculated_slip": {
+            "id": 212,
+            "length": 6,
+            "signals": [
+                "vcu_front_rpm_avg",
+                "vcu_rear_rpm_avg",
+                "vcu_calculated_slip"
+            ],
+            "comment": "vcu wheel speed and slip info for tc and lc",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+        "vcu_power_limit_update": {
+            "id": 213,
+            "length": 4,
+            "signals": [
+                "vcu_power_limit"
+            ],
+            "comment": "Send to VCU to set the max power limit",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+
+
+
+        "dash_buttons": {
+            "id": 235,
+            "length": 1,
+            "signals": [
+                "dash_button1status",
+                "dash_button2status",
+                "dash_button3status",
+                "dash_button4status",
+                "dash_button5status",
+                "dash_button6status"
+            ],
+            "comment": "status of buttons on the dash",
+            "bus_name": "inverter",
+            "senders": [
+                "dash"
+            ]
+        },
+        "dash_firmware_version": {
+            "id": 236,
+            "length": 8,
+            "signals": [
+                "dash_fw_version",
+                "dash_on_time_seconds",
+                "dash_project_on_main",
+                "dash_project_is_dirty"
+            ],
+            "comment": "information on the running dash firmware and system on-timer",
+            "bus_name": "inverter",
+            "senders": [
+                "dash"
+            ]
+        },
+
+
+
         "evelogger_vectornav_time": {
             "id": 500,
             "length": 8,
@@ -719,6 +582,59 @@
                 "evelogger"
             ]
         },
+
+
+
+        "acu_shutdown_status": {
+            "id": 600,
+            "length": 6,
+            "signals": [
+                "acu_imd_relay_state",
+                "acu_bms_relay_state",
+                "acu_imd_gpio_state",
+                "acu_bms_gpio_state",
+                "acu_imd_pwm_frequency",
+                "acu_imd_pwm_duty"
+            ],
+            "comment": "information on IMD and BMS shutdown circuit relays, as well as IMD diagnostic info",
+            "bus_name": "accumulator",
+            "senders": [ "acu" ]
+        },
+
+        "acu_board_voltage_readings": {
+            "id": 601,
+            "length": 6,
+            "signals": [
+                "acu_sdc_voltage",
+                "acu_sdc_current",
+                "acu_glv_voltage",
+                "acu_glv_current",
+                "acu_5v_voltage",
+                "acu_3v_voltage"
+            ],
+            "comment": "ACU voltage and current measurements",
+            "bus_name": "accumulator",
+            "senders": [ "acu" ]
+        },
+
+        "acu_firmware_version": {
+            "id": 602,
+            "length": 8,
+            "signals": [
+                "acu_firmware_is_dirty",
+                "acu_temperature",
+                "acu_code_on_main",
+                "acu_humidity",
+                "acu_on_time_seconds",
+                "acu_firmware_version"
+            ],
+            "comment": "information on the running acu firmware and system on-timer",
+            "bus_name": "accumulator",
+            "senders": [ "acu" ]
+        },
+
+
+
         "cornernode_fl_shockpot": {
             "id": 900,
             "length": 2,
@@ -886,8 +802,112 @@
             "senders": [
                 "cornernode_fr"
             ]
+        },
+
+
+
+        "omni_status": {
+            "id": 1100,
+            "length": 8,
+            "signals": [
+                "omni_fw_version",
+                "omni_on_time_seconds",
+                "omni_project_on_main",
+                "omni_project_is_dirty"
+            ],
+            "comment": "information on the running omni firmware and system on-timer",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_accel_data": {
+            "id": 1101,
+            "length": 6,
+            "signals": [
+                "omni_accel_x",
+                "omni_accel_y",
+                "omni_accel_z"
+            ],
+            "comment": "LSM9DS1 accelerometer readings",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_gyro_data": {
+            "id": 1102,
+            "length": 6,
+            "signals": [
+                "omni_gyro_x",
+                "omni_gyro_y",
+                "omni_gyro_z"
+            ],
+            "comment": "LSM9DS1 gyro readings",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_heading_data": {
+            "id": 1103,
+            "length": 6,
+            "signals": [
+                "omni_heading",
+                "omni_pitch",
+                "omni_roll"
+            ],
+            "comment": "LSM9DS1 heading readings, calculated with magnetometer and accel",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_shockpot_data": {
+            "id": 1104,
+            "length": 8,
+            "signals": [
+                "omni_shockpot_fl",
+                "omni_shockpot_fr",
+                "omni_shockpot_rl",
+                "omni_shockpot_rr"
+            ],
+            "comment": "raw shock pot readings with teensy 12bit adc, assume 3v3 ref",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_steering_data": {
+            "id": 1105,
+            "length": 2,
+            "signals": [
+                "omni_steering"
+            ],
+            "comment": "raw steering angle sensor reading with teensy 12bit adc, assume 3v3 ref",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
+        },
+        "omni_gps_position": {
+            "id": 1106,
+            "length": 8,
+            "signals": [
+                "omni_gps_latitude",
+                "omni_gps_longitude"
+            ],
+            "comment": "adafruit gps coordinates",
+            "bus_name": "daq",
+            "senders": [
+                "omni"
+            ]
         }
+
     },
+
+
+
     "signals": [
         {
             "name": "APPS1",
@@ -1597,72 +1617,97 @@
             "length": 1,
             "comment": "if the compiled dash fw had uncommitted changes (1) or not (0)"
         },
+
+
+
         {
-            "name": "acu_fw_version",
+            "name": "acu_firmware_is_dirty",
             "start": 0,
-            "length": 32,
-            "byte_order": "little_endian",
+            "length": 1,
+            "comment": "if the compiled acu firmware has uncommitted changes (1) or not (0)"
+        },
+        {
+            "name": "acu_temperature",
+            "start": 7,
+            "length": 7,
+            "byte_order": "big_endian",
             "is_signed": false,
-            "comment": "short hash of the firmware on ACU"
+            "comment": "the ambient temperature at the acu",
+            "units": "celcius"
+        },
+        {
+            "name": "acu_code_on_main",
+            "start": 8,
+            "length": 1,
+            "comment": "if the compiled acu firmware was from main branch (1) or not (0)"
+        },
+        {
+            "name": "acu_humidity",
+            "start": 15,
+            "length": 7,
+            "byte_order": "big_endian",
+            "is_signed": false,
+            "comment": "the relative humidity at the acu",
+            "units": "relative_humidity"
         },
         {
             "name": "acu_on_time_seconds",
-            "start": 32,
+            "start": 16,
             "length": 16,
             "byte_order": "little_endian",
+            "is_signed": false,
             "comment": "time in seconds which the acu has been powered on and running",
             "units": "seconds"
         },
         {
-            "name": "acu_project_on_main",
-            "start": 48,
-            "length": 1,
-            "comment": "if the compiled acu fw was from main branch (1) or not (0)"
+            "name": "acu_firmware_version",
+            "start": 32,
+            "length": 32,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "short hash of the firmware on the accumulator control unit" 
         },
-        {
-            "name": "acu_project_is_dirty",
-            "start": 56,
-            "length": 1,
-            "comment": "if the compiled acu fw had uncommitted changes (1) or not (0)"
-        },
+
         {
             "name": "acu_imd_relay_state",
-            "start": 8,
+            "start": 7,
             "length": 1,
             "comment": "Status of the IMD relay as sensed by the ACU: 1 is closed, 0 is open"
         },
         {
             "name": "acu_bms_relay_state",
-            "start": 16,
+            "start": 15,
             "length": 1,
             "comment": "Status of the BMS relay as sensed by the ACU: 1 is closed, 0 is open"
         },
         {
             "name": "acu_imd_gpio_state",
-            "start": 24,
+            "start": 23,
             "length": 1,
             "comment": "Status of the IMD OKHS output: 1 is OK, 0 is FAULTED"
         },
         {
             "name": "acu_bms_gpio_state",
-            "start": 32,
+            "start": 31,
             "length": 1,
             "comment": "Status of the BMS ENABLE output: 1 is OK, 0 is FAULTED"
         },
         {
             "name": "acu_imd_pwm_frequency",
-            "start": 40,
+            "start": 32,
             "length": 8,
             "comment": "PWM frequency of the IMD: 10hz on normal operation"
         },
         {
             "name": "acu_imd_pwm_duty",
-            "start": 48,
+            "start": 40,
             "length": 8,
-            "comment": "duty cycle of IMD: ~5% on normal conditions"
+            "comment": "duty cycle of IMD: ~5% on normal conditions",
+            "units": "seconds"
         },
+
         {
-            "name": "acu_glv_voltage",
+            "name": "acu_sdc_voltage",
             "start": 0,
             "length": 8,
             "comment": "ACU GLV system voltage reading",
@@ -1673,10 +1718,22 @@
             }
         },
         {
-            "name": "acu_sdc_voltage",
+            "name": "acu_sdc_current",
             "start": 8,
             "length": 8,
-            "comment": "ACU shutdown circuit voltage reading",
+            "comment": "ACU shutdown circuit current reading thru the ACU",
+            "conversion": {
+                "scale": 0.03235,
+                "offset": -6.25,
+                "is_float": true
+            },
+            "units": "amps"
+        },
+        {
+            "name": "acu_glv_voltage",
+            "start": 16,
+            "length": 8,
+            "comment": "ACU GLV system voltage reading",
             "conversion": {
                 "scale": 0.01294,
                 "offset": 0,
@@ -1684,16 +1741,42 @@
             }
         },
         {
-            "name": "acu_5v_voltage",
-            "start": 16,
+            "name": "acu_glv_current",
+            "start": 24,
             "length": 8,
-            "comment": "ACU voltage reading",
+            "comment": "ACU GLV current reading from the ACU",
+            "conversion": {
+                "scale": 0.03235,
+                "offset": -6.25,
+                "is_float": true
+            },
+            "units": "amps"
+        },
+        {
+            "name": "acu_5v_voltage",
+            "start": 32,
+            "length": 8,
+            "comment": "ACU 5v rail reading",
             "conversion": {
                 "scale": 0.01294,
                 "offset": 0,
                 "is_float": true
             }
         },
+        {
+            "name": "acu_3v_voltage",
+            "start": 40,
+            "length": 8,
+            "comment": "ACU 3v rail reading",
+            "conversion": {
+                "scale": 0.01294,
+                "offset": 0,
+                "is_float": true
+            }
+        },
+
+
+
         {
             "name": "precharge_state",
             "start": 0,
@@ -2301,7 +2384,7 @@
             "length": 7,
             "byte_order": "big_endian",
             "is_signed": false,
-            "comment": "time in seconds which the acu has been powered on and running",
+            "comment": "the ambient temperature at the given module",
             "units": "celcius"
         },
         {
@@ -2316,7 +2399,7 @@
             "length": 7,
             "byte_order": "big_endian",
             "is_signed": false,
-            "comment": "time in seconds which the acu has been powered on and running",
+            "comment": "the relative humidity at the given module",
             "units": "relative_humidity"
         },
         {
