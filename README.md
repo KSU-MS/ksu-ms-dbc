@@ -4,7 +4,7 @@ this repository contains all of the the files which define the CAN bus traffic o
 
 contact @mathbrook with any issues
 
-```dbc-files``` contains the EV motor controller DBC file, the IC ECU DBC file, and the EV BMS DBC file.
+```dbc-files``` contains the EV motor controller DBC file, the IC ECU DBC file, and the EV BMS DBC file, if you add to this update the default.nix file to reflect it.
 
 ```can_descriptor.json``` currently defines all of the custom messages on the EV platform. "custom" messages are any that we own the definition of.
 

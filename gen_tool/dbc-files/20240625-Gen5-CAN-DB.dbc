@@ -33,7 +33,7 @@ NS_ :
 
 BS_:
 
-BU_: INV BMS VCU
+BU_: INV
 
 
 BO_ 173 M173_Modulation_And_Flux_Info: 8 INV
@@ -52,12 +52,12 @@ BO_ 194 M194_Read_Write_Param_Response: 8 INV
  SG_ INV_Parameter_Response_Data : 32|16@1- (1,0) [-32768|32767] "" Vector__XXX
  SG_ INV_Parameter_Response_Addr : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
 
-BO_ 193 M193_Read_Write_Param_Command: 8 VCU
+BO_ 193 M193_Read_Write_Param_Command: 8 Vector__XXX
  SG_ VCU_INV_Parameter_Data : 32|16@1- (1,0) [-32768|32767] "" Vector__XXX
  SG_ VCU_INV_Parameter_RW_Command : 16|1@1+ (1,0) [0|1] "" Vector__XXX
  SG_ VCU_INV_Parameter_Address : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
 
-BO_ 192 M192_Command_Message: 8 VCU
+BO_ 192 M192_Command_Message: 8 Vector__XXX
  SG_ VCU_INV_Inverter_Enable : 40|1@1+ (1,0) [0|1] "" Vector__XXX
  SG_ VCU_INV_Direction_Command : 32|1@1+ (1,0) [0|1] "" Vector__XXX
  SG_ VCU_INV_Speed_Command : 16|16@1- (1,0) [-32768|32767] "angular_speed:rpm" Vector__XXX
@@ -196,7 +196,7 @@ BO_ 175 M175_Diag_Data_Message: 8 INV
  SG_ INV_Diag_Run_Faults_Lo m5 : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
  SG_ INV_Diag_Run_Faults_Hi m5 : 48|16@1+ (1,0) [0|65535] "" Vector__XXX
 
-BO_ 514 BMS_Current_Limit: 8 BMS
+BO_ 514 BMS_Current_Limit: 8 Vector__XXX
  SG_ BMS_Max_Discharge_Current : 0|16@1+ (1,0) [0|1000] "current:A" Vector__XXX
  SG_ BMS_Max_Charge_Current : 16|16@1+ (1,0) [0|1000] "current:A" Vector__XXX
 
