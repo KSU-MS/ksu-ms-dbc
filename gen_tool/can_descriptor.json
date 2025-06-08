@@ -463,6 +463,17 @@
                 "vcu"
             ]
         },
+        "vcu_set_parameter": {
+            "id": 214,
+            "length": 5,
+            "signals": [
+                "vcu_target_parameter",
+                "vcu_parameter_value"
+            ],
+            "comment": "The first byte is the target, the last 4 are the value to set",
+            "bus_name": "inverter",
+            "senders": [ "vcu" ]
+        },
 
 
 
@@ -1588,6 +1599,18 @@
             "start": 56,
             "length": 1,
             "comment": "if the compiled fw had uncommitted changes (1) or not (0)"
+        },
+        {
+            "name": "vcu_target_parameter",
+            "start": 0,
+            "length": 8,
+            "comment": "look in the vcu.hpp file in the VCU repo for the enum of targets"
+        },
+        {
+            "name": "vcu_parameter_value",
+            "start": 8,
+            "length": 32,
+            "comment": "The actual value that you want to set the parameter to"
         },
         {
             "name": "dash_fw_version",
