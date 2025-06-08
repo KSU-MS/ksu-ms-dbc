@@ -130,7 +130,7 @@ def cantools_json_to_dbc(input_json: str, outfilename: str, dbs=[]):
     # print(f"Generated DBC hash: {new_db.version}")
 
     cantools.db.dump_file(new_db, outfilename + ".dbc")
-    cantools.db.dump_file(new_db, outfilename + ".sym", database_format="sym")
+    # cantools.db.dump_file(new_db, outfilename + ".sym", database_format="sym")
 
 
 def json_gen(outfile, infile, dbs):
