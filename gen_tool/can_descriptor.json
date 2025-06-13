@@ -308,21 +308,6 @@
                 "vcu"
             ]
         },
-        "vcu_launchcontrol_diagdata": {
-            "id": 203,
-            "length": 8,
-            "signals": [
-                "vcu_launchcontrol_elapsed_time",
-                "vcu_launchcontrol_outputtorquecommand",
-                "vcu_launchcontrol_state",
-                "vcu_launchcontrol_type"
-            ],
-            "comment": "vcu launchController system status",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
         "vcu_pedals_travel": {
             "id": 204,
             "length": 6,
@@ -393,21 +378,6 @@
                 "vcu"
             ]
         },
-        "vcu_tractioncontrol_diagdata": {
-            "id": 209,
-            "length": 8,
-            "signals": [
-                "vcu_tractioncontrol_elapsed_time",
-                "vcu_tractioncontrol_outputtorquecommand",
-                "vcu_tractioncontrol_state",
-                "vcu_tractioncontrol_type"
-            ],
-            "comment": "vcu tractionController system status",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
         "vcu_distance_tracker_vectornav": {
             "id": 210,
             "length": 8,
@@ -446,18 +416,6 @@
                 "vcu_calculated_slip"
             ],
             "comment": "vcu wheel speed and slip info for tc and lc",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_power_limit_update": {
-            "id": 213,
-            "length": 4,
-            "signals": [
-                "vcu_power_limit"
-            ],
-            "comment": "Send to VCU to set the max power limit",
             "bus_name": "inverter",
             "senders": [
                 "vcu"
@@ -813,108 +771,7 @@
             "senders": [
                 "cornernode_fr"
             ]
-        },
-
-
-
-        "omni_status": {
-            "id": 1100,
-            "length": 8,
-            "signals": [
-                "omni_fw_version",
-                "omni_on_time_seconds",
-                "omni_project_on_main",
-                "omni_project_is_dirty"
-            ],
-            "comment": "information on the running omni firmware and system on-timer",
-            "bus_name": "daq",
-            "senders": [
-                "omni"
-            ]
-        },
-        "omni_accel_data": {
-            "id": 1101,
-            "length": 6,
-            "signals": [
-                "omni_accel_x",
-                "omni_accel_y",
-                "omni_accel_z"
-            ],
-            "comment": "LSM9DS1 accelerometer readings",
-            "bus_name": "daq",
-            "senders": [
-                "omni"
-            ]
-        },
-        "omni_gyro_data": {
-            "id": 1102,
-            "length": 6,
-            "signals": [
-                "omni_gyro_x",
-                "omni_gyro_y",
-                "omni_gyro_z"
-            ],
-            "comment": "LSM9DS1 gyro readings",
-            "bus_name": "daq",
-            "senders": [
-                "omni"
-            ]
-        },
-        "omni_heading_data": {
-            "id": 1103,
-            "length": 6,
-            "signals": [
-                "omni_heading",
-                "omni_pitch",
-                "omni_roll"
-            ],
-            "comment": "LSM9DS1 heading readings, calculated with magnetometer and accel",
-            "bus_name": "daq",
-            "senders": [
-                "omni"
-            ]
-        },
-        "omni_shockpot_data": {
-            "id": 1104,
-            "length": 8,
-            "signals": [
-                "omni_shockpot_fl",
-                "omni_shockpot_fr",
-                "omni_shockpot_rl",
-                "omni_shockpot_rr"
-            ],
-            "comment": "raw shock pot readings with teensy 12bit adc, assume 3v3 ref",
-            "bus_name": "daq",
-            "senders": [
-                "omni"
-            ]
-        },
-        "omni_steering_data": {
-            "id": 1105,
-            "length": 2,
-            "signals": [
-                "omni_steering"
-            ],
-            "comment": "raw steering angle sensor reading with teensy 12bit adc, assume 3v3 ref",
-            "bus_name": "daq",
-            "senders": [
-                "omni"
-            ]
-        },
-        "omni_gps_position": {
-            "id": 1106,
-            "length": 8,
-            "signals": [
-                "omni_gps_latitude",
-                "omni_gps_longitude"
-            ],
-            "comment": "adafruit gps coordinates",
-            "bus_name": "daq",
-            "senders": [
-                "omni"
-            ]
         }
-
     },
 
 
@@ -926,15 +783,15 @@
             "length": 16,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": "accelerator pedal sensor 1 voltage reading",
-            "units": "volts",
+            "comment": "accelerator pedal sensor 1 ADC reading",
+            "units": "raw",
             "conversion": {
-                "scale": 0.001220703125,
+                "scale": 1,
                 "offset": 0,
                 "is_float": false
             },
             "min": 0,
-            "max": 12
+            "max": 65535
         },
         {
             "name": "APPS2",
@@ -942,15 +799,15 @@
             "length": 16,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": "accelerator pedal sensor 2 voltage reading",
-            "units": "volts",
+            "comment": "accelerator pedal sensor 2 ADC reading",
+            "units": "raw",
             "conversion": {
-                "scale": 0.001220703125,
+                "scale": 1,
                 "offset": 0,
                 "is_float": false
             },
             "min": 0,
-            "max": 12
+            "max": 65535
         },
         {
             "name": "BSE1",
@@ -958,15 +815,15 @@
             "length": 16,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": "brake pedal travel sensor voltage",
-            "units": "volts",
+            "comment": "brake pedal travel sensor ADC reading",
+            "units": "raw",
             "conversion": {
-                "scale": 0.001220703125,
+                "scale": 1,
                 "offset": 0,
                 "is_float": false
             },
             "min": 0,
-            "max": 12
+            "max": 65535
         },
         {
             "name": "STEERING",
@@ -974,16 +831,54 @@
             "length": 16,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": "steering angle sensor voltage",
-            "units": "volts",
+            "comment": "steering angle sensor ADC reading",
+            "units": "raw",
             "conversion": {
-                "scale": 0.001220703125,
+                "scale": 1,
                 "offset": 0,
                 "is_float": false
             },
             "min": 0,
-            "max": 12
+            "max": 65535
         },
+
+        {
+            "name": "vcu_apps1_travel",
+            "start": 0,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "0 to 100% - a negative value = implaus"
+        },
+        {
+            "name": "vcu_apps2_travel",
+            "start": 16,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "0 to 100% - a negative value = implaus"
+        },
+        {
+            "name": "vcu_bse1_travel",
+            "start": 32,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "0 to 100% - a negative value = implaus"
+        },
+
         {
             "name": "VCU_GLV_CURRENT",
             "start": 0,
@@ -1120,14 +1015,6 @@
             "comment": "time that the launch controller has been executing, in miliiseconds"
         },
         {
-            "name": "vcu_launchcontrol_outputtorquecommand",
-            "start": 32,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "comment": "launch controller torque output"
-        },
-        {
             "name": "vcu_launchcontrol_state",
             "start": 48,
             "length": 8,
@@ -1168,14 +1055,6 @@
             "length": 32,
             "byte_order": "little_endian",
             "comment": "time that the traction controller has been executing, in miliiseconds"
-        },
-        {
-            "name": "vcu_tractioncontrol_outputtorquecommand",
-            "start": 32,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "comment": "traction controller torque output"
         },
         {
             "name": "vcu_tractioncontrol_state",
@@ -1831,218 +1710,9 @@
             "start": 40,
             "length": 8
         },
-        {
-            "name": "vcu_apps1_travel",
-            "start": 0,
-            "length": 16,
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.1,
-                "offset": 0,
-                "is_float": true
-            },
-            "comment": "0 to 100% - a negative value = implaus"
-        },
-        {
-            "name": "vcu_apps2_travel",
-            "start": 16,
-            "length": 16,
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.1,
-                "offset": 0,
-                "is_float": true
-            },
-            "comment": "0 to 100% - a negative value = implaus"
-        },
-        {
-            "name": "vcu_bse1_travel",
-            "start": 32,
-            "length": 16,
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.1,
-                "offset": 0,
-                "is_float": true
-            },
-            "comment": "0 to 100% - a negative value = implaus"
-        },
-        {
-            "name": "omni_accel_x",
-            "start": 0,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.001,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "omni_accel_y",
-            "start": 16,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.001,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "omni_accel_z",
-            "start": 32,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.001,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "omni_gyro_x",
-            "start": 0,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.1,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "omni_gyro_y",
-            "start": 16,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.1,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "omni_gyro_z",
-            "start": 32,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.1,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "omni_heading",
-            "start": 0,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "omni_pitch",
-            "start": 16,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "omni_roll",
-            "start": 32,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "omni_fw_version",
-            "start": 0,
-            "length": 32,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "short hash of the firmware on omni "
-        },
-        {
-            "name": "omni_on_time_seconds",
-            "start": 32,
-            "length": 16,
-            "byte_order": "little_endian",
-            "comment": "time in seconds which the omni has been powered on and running",
-            "units": "seconds"
-        },
-        {
-            "name": "omni_project_on_main",
-            "start": 48,
-            "length": 1,
-            "comment": "if the compiled omni fw was from main branch (1), testing (2) or neither (0)"
-        },
-        {
-            "name": "omni_project_is_dirty",
-            "start": 56,
-            "length": 1,
-            "comment": "if the compiled omni fw had uncommitted changes (1) or not (0)"
-        },
-        {
-            "name": "omni_shockpot_fl",
-            "start": 0,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "omni fl shockpot reading, adc bits"
-        },
-        {
-            "name": "omni_shockpot_fr",
-            "start": 16,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "omni fr shockpot reading, adc bits"
-        },
-        {
-            "name": "omni_shockpot_rl",
-            "start": 32,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "omni rl shockpot reading, adc bits"
-        },
-        {
-            "name": "omni_shockpot_rr",
-            "start": 48,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "omni rr shockpot reading, adc bits"
-        },
-        {
-            "name": "omni_steering",
-            "start": 0,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "omni steering angle sensor reading, adc bits"
-        },
+
+
+
         {
             "name": "evelogger_vectornav_time",
             "start": 0,
@@ -2225,6 +1895,9 @@
             },
             "is_signed": true
         },
+
+
+
         {
             "name": "cornernode_fl_shockpot",
             "start": 0,
@@ -2651,14 +2324,6 @@
                 "is_float": true
             },
             "is_signed": false
-        },
-        {
-            "name":"vcu_power_limit",
-            "start":0,
-            "length":32,
-            "is_signed": false,
-            "units": "watts",
-            "comment":"Send to VCU to set the max power limit"
         }
     ]
 }
