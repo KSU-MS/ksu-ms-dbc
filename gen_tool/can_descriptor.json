@@ -1911,6 +1911,11 @@
 
 
         {
+            "name": "cornernode_steeringpot",
+            "start": 0,
+            "length": 16
+        },
+        {
             "name": "cornernode_fl_shockpot",
             "start": 0,
             "length": 16
