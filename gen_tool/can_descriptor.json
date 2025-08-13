@@ -604,6 +604,18 @@
 
 
 
+        "cornernode_steeringpot": {
+            "id": 899,
+            "length": 2,
+            "signals": [
+                "cornernode_steeringpot"
+            ],
+            "comment": "mrow",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_fl"
+            ]
+        },
         "cornernode_fl_shockpot": {
             "id": 900,
             "length": 2,
