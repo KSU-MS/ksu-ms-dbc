@@ -783,6 +783,18 @@
             "senders": [
                 "cornernode_fr"
             ]
+        },
+        "cornernode_motor_temp": {
+            "id": 914,
+            "length": 2,
+            "signals": [
+                "cornernode_motor_temp"
+            ],
+            "comment": "The motor thermistor fella",
+            "bus_name": "daq",
+            "senders": [
+                "cornernode_rr"
+            ]
         }
     },
 
@@ -1984,6 +1996,18 @@
             "name": "cornernode_rear_brakepressure",
             "start": 0,
             "length": 16
+        },
+        {
+            "name": "cornernode_motor_temp",
+            "start": 0,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "Motor temp in degrees celcius"
         },
 
 
