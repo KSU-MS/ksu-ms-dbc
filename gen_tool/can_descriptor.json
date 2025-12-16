@@ -235,7 +235,7 @@
             "id": 198,
             "length": 8,
             "signals": [
-                "vcu_rpm_front_left",
+                "vcu_rpm_rear_left",
                 "vcu_rpm_front_right"
             ],
             "comment": "VCU wheel speed sensor readings",
@@ -1127,7 +1127,7 @@
             "max": 3
         },
         {
-            "name": "vcu_rpm_front_left",
+            "name": "vcu_rpm_rear_left",
             "start": 0,
             "length": 16,
             "byte_order": "little_endian",
