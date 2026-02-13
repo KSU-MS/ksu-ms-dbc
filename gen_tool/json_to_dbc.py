@@ -11,6 +11,7 @@ def cantools_json_to_dbc(input_json: str, outfilename: str, dbs=[]):
         can_json_input = json.load(file)
 
     new_signal_dict = {}
+    nodes = []
 
     for signal in can_json_input["signals"]:
         print(f"processing signal: {signal['name']}")
@@ -82,6 +83,15 @@ def cantools_json_to_dbc(input_json: str, outfilename: str, dbs=[]):
         for signal in message_info["signals"]:
             signals.append(new_signal_dict[signal])
 
+        senders = message_info.get("senders", [])
+
+        if isinstance(senders, str):
+            senders = [senders]
+
+        for sender in senders:
+            if sender not in nodes:
+                nodes.append(sender)
+
         new_message = cantools.db.Message(
             frame_id=message_info["id"],
             name=message,
@@ -112,16 +122,16 @@ def cantools_json_to_dbc(input_json: str, outfilename: str, dbs=[]):
         for message in db.messages:
             list_of_cantools_msgs.append(message)
 
-    nodes = [
-        cantools.db.Node("vcu", "the vehicle control unit"),
-        cantools.db.Node("bms"),
-        cantools.db.Node("inverter"),
-        cantools.db.Node("dash"),
-    ]
+        for node in db.nodes:
+            name = node.name
+            if name not in nodes:
+                nodes.append(name)
 
-    buses = [cantools.db.Bus("ks7", "can bus of KSU motorsports vehicles", 500000)]
+    buses = [cantools.db.Bus("KSX", "can bus of KSU motorsports vehicles", 500000)]
 
-    new_db = cantools.db.Database(list_of_cantools_msgs, nodes=nodes, buses=buses)
+    node_objs = [cantools.db.Node(name) for name in nodes]
+
+    new_db = cantools.db.Database(list_of_cantools_msgs, nodes=node_objs, buses=buses)
     # build_version = subprocess.run(
     #     ["cd ..", "&&", "git", "rev-parse", "--short", "HEAD"], stdout=subprocess.PIPE
     # ).stdout.decode("utf-8")
