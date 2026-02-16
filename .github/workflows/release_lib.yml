@@ -89,7 +89,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: dbc-file
-        path: /dbc
+        path: ~/dbc
         
     - name: compile rust lib
       run: |
@@ -97,7 +97,7 @@ jobs:
         cargo new --lib ksu-rs-dbc
         rm ~/ksu-rs-dbc/src/lib.rs
         echo "#![no_std]\n\npub mod messages;\n" >> ~/ksu-rs-dbc/src/lib.rs
-        ~/.cargo/bin/dbc-codegen /dbc/*.dbc ~/ksu-rs-dbc/src/
+        ~/.cargo/bin/dbc-codegen ~/dbc/*.dbc ~/ksu-rs-dbc/src/
         tar -czvf ~/ksu-rs-dbc ~/rust-out
 
     - name: Rust release
