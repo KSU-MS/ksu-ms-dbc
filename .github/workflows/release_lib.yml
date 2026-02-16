@@ -98,13 +98,14 @@ jobs:
         rm ~/ksu-rs-dbc/src/lib.rs
         echo "#![no_std]\n\npub mod messages;\n" >> ~/ksu-rs-dbc/src/lib.rs
         ~/.cargo/bin/dbc-codegen ~/dbc/*.dbc ~/ksu-rs-dbc/src/
-        tar -czvf ~/ksu-rs-dbc ~/rust-out
+        tar -czvf ~/rust-out ~/ksu-rs-dbc
 
     - name: Rust release
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
+        tag_name: rust
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ~/rust-out
         asset_name: ksu-rs-dbc.tar.gz
