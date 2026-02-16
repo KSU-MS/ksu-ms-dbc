@@ -1,7 +1,6 @@
-name: generate DBC files and platformio library
+name: generate platformio library
 
 on:
-  pull_request:
   push:
 
 jobs:
@@ -18,14 +17,14 @@ jobs:
         git status 
         nix build .\#default
         
-    - name: Publish the DBC file
+    - name: Upload the DBC file
       uses: actions/upload-artifact@v4
       with:
         name: dbc-file
         path: ./result/*.dbc
 
           
-  generate-and-release:
+  generate-and-release-pio-lib:
     needs: build
     runs-on: ubuntu-latest
     container:
@@ -57,7 +56,7 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload release asset
+    - name: PIO release
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -67,7 +66,7 @@ jobs:
         asset_name: can_lib.tar.gz
         asset_content_type: application/zip
 
-    - name: Upload dbc
+    - name: DBC release
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -75,4 +74,38 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: /dbc/car.dbc
         asset_name: ksu_can.dbc
+        asset_content_type: text/plain
+
+
+  generate-and-release-rust-lib:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install dbc-codegen-cli
+      run: cargo install dbc-codegen-cli
+
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: dbc-file
+        path: /dbc
+        
+    - name: compile rust lib
+      run: |
+        cd ~
+        cargo new --lib ksu-rs-dbc
+        rm ~/ksu-rs-dbc/src/lib.rs
+        echo "#![no_std]\n\npub mod messages;\n" >> ~/ksu-rs-dbc/src/lib.rs
+        ~/.cargo/bin/dbc-codegen /dbc/*.dbc ~/ksu-rs-dbc/src/
+        tar -czvf ~/ksu-rs-dbc ~/rust-out
+
+    - name: Rust release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ~/rust-out
+        asset_name: ksu-rs-dbc.tar.gz
         asset_content_type: text/plain
