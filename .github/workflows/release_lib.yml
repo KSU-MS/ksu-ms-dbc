@@ -98,7 +98,7 @@ jobs:
         rm ~/ksu-rs-dbc/src/lib.rs
         echo "#![no_std]\n\npub mod messages;\n" >> ~/ksu-rs-dbc/src/lib.rs
         ~/.cargo/bin/dbc-codegen ~/dbc/*.dbc ~/ksu-rs-dbc/src/
-        tar -czvf ~/rust-out ~/ksu-rs-dbc
+        tar -czvf ~/rust-out.tar.gz ~/ksu-rs-dbc
 
     - name: Create release
       id: create_release
