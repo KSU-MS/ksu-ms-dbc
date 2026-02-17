@@ -91,7 +91,7 @@ jobs:
         name: dbc-file
         path: ~/dbc
         
-    - name: compile rust lib
+    - name: Compile rust lib
       run: |
         cd ~
         cargo new --lib ksu-rs-dbc
@@ -100,7 +100,18 @@ jobs:
         ~/.cargo/bin/dbc-codegen ~/dbc/*.dbc ~/ksu-rs-dbc/src/
         tar -czvf ~/rust-out ~/ksu-rs-dbc
 
-    - name: Rust release
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: rust_lib
+        release_name: Rust Release ${{ github.run_number }}
+        draft: false
+        prerelease: false
+
+    - name: Publish rust release
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
