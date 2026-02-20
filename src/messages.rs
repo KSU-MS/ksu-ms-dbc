@@ -19,26 +19,26 @@ use arbitrary::{Arbitrary, Unstructured};
 pub enum Messages {
     /// module1_temps
     Module1Temps(Module1Temps),
-    /// module1_status
-    Module1Status(Module1Status),
     /// module2_temps
     Module2Temps(Module2Temps),
-    /// module2_status
-    Module2Status(Module2Status),
     /// module3_temps
     Module3Temps(Module3Temps),
-    /// module3_status
-    Module3Status(Module3Status),
     /// module4_temps
     Module4Temps(Module4Temps),
-    /// module4_status
-    Module4Status(Module4Status),
     /// module5_temps
     Module5Temps(Module5Temps),
-    /// module5_status
-    Module5Status(Module5Status),
     /// precharge_status
     PrechargeStatus(PrechargeStatus),
+    /// module1_status
+    Module1Status(Module1Status),
+    /// module2_status
+    Module2Status(Module2Status),
+    /// module3_status
+    Module3Status(Module3Status),
+    /// module4_status
+    Module4Status(Module4Status),
+    /// module5_status
+    Module5Status(Module5Status),
     /// VCU_STATUS
     VcuStatus(VcuStatus),
     /// VCU_PEDAL_READINGS
@@ -47,11 +47,11 @@ pub enum Messages {
     VcuWheelspeedReadings(VcuWheelspeedReadings),
     /// vcu_pedal_threshold_settings
     VcuPedalThresholdSettings(VcuPedalThresholdSettings),
-    /// vcu_firmware_version
-    VcuFirmwareVersion(VcuFirmwareVersion),
-    /// VCU_BOARD_READINGS_ONE
+    /// vcu_board_data
+    VcuBoardData(VcuBoardData),
+    /// vcu_board_readings_one
     VcuBoardReadingsOne(VcuBoardReadingsOne),
-    /// VCU_BOARD_READINGS_TWO
+    /// vcu_board_readings_two
     VcuBoardReadingsTwo(VcuBoardReadingsTwo),
     /// vcu_pedals_travel
     VcuPedalsTravel(VcuPedalsTravel),
@@ -67,16 +67,14 @@ pub enum Messages {
     VcuDistanceTrackerVectornav(VcuDistanceTrackerVectornav),
     /// vcu_coulomb_counters
     VcuCoulombCounters(VcuCoulombCounters),
-    /// vcu_calculated_slip
-    VcuCalculatedSlip(VcuCalculatedSlip),
+    /// vcu_slip_info
+    VcuSlipInfo(VcuSlipInfo),
     /// vcu_set_parameter
     VcuSetParameter(VcuSetParameter),
     /// dash_buttons
     DashButtons(DashButtons),
-    /// dash_firmware_version
-    DashFirmwareVersion(DashFirmwareVersion),
-    /// evelogger_vectornav_time
-    EveloggerVectornavTime(EveloggerVectornavTime),
+    /// dash_board_data
+    DashBoardData(DashBoardData),
     /// evelogger_vectornav_attitude
     EveloggerVectornavAttitude(EveloggerVectornavAttitude),
     /// evelogger_vectornav_gyro
@@ -87,12 +85,14 @@ pub enum Messages {
     EveloggerVectornavVelocity(EveloggerVectornavVelocity),
     /// evelogger_vectornav_acceleration
     EveloggerVectornavAcceleration(EveloggerVectornavAcceleration),
+    /// evelogger_vectornav_time
+    EveloggerVectornavTime(EveloggerVectornavTime),
     /// acu_shutdown_status
     AcuShutdownStatus(AcuShutdownStatus),
     /// acu_board_voltage_readings
     AcuBoardVoltageReadings(AcuBoardVoltageReadings),
-    /// acu_firmware_version
-    AcuFirmwareVersion(AcuFirmwareVersion),
+    /// acu_board_data
+    AcuBoardData(AcuBoardData),
     /// cornernode_steeringpot
     CornernodeSteeringpot(CornernodeSteeringpot),
     /// cornernode_fl_shockpot
@@ -196,21 +196,21 @@ impl Messages {
         
         let res = match id {
             31 => Messages::Module1Temps(Module1Temps::try_from(payload)?),
-            41 => Messages::Module1Status(Module1Status::try_from(payload)?),
             32 => Messages::Module2Temps(Module2Temps::try_from(payload)?),
-            42 => Messages::Module2Status(Module2Status::try_from(payload)?),
             33 => Messages::Module3Temps(Module3Temps::try_from(payload)?),
-            43 => Messages::Module3Status(Module3Status::try_from(payload)?),
             34 => Messages::Module4Temps(Module4Temps::try_from(payload)?),
-            44 => Messages::Module4Status(Module4Status::try_from(payload)?),
             35 => Messages::Module5Temps(Module5Temps::try_from(payload)?),
-            45 => Messages::Module5Status(Module5Status::try_from(payload)?),
             105 => Messages::PrechargeStatus(PrechargeStatus::try_from(payload)?),
+            131 => Messages::Module1Status(Module1Status::try_from(payload)?),
+            132 => Messages::Module2Status(Module2Status::try_from(payload)?),
+            133 => Messages::Module3Status(Module3Status::try_from(payload)?),
+            134 => Messages::Module4Status(Module4Status::try_from(payload)?),
+            135 => Messages::Module5Status(Module5Status::try_from(payload)?),
             195 => Messages::VcuStatus(VcuStatus::try_from(payload)?),
             196 => Messages::VcuPedalReadings(VcuPedalReadings::try_from(payload)?),
             198 => Messages::VcuWheelspeedReadings(VcuWheelspeedReadings::try_from(payload)?),
             199 => Messages::VcuPedalThresholdSettings(VcuPedalThresholdSettings::try_from(payload)?),
-            200 => Messages::VcuFirmwareVersion(VcuFirmwareVersion::try_from(payload)?),
+            200 => Messages::VcuBoardData(VcuBoardData::try_from(payload)?),
             201 => Messages::VcuBoardReadingsOne(VcuBoardReadingsOne::try_from(payload)?),
             202 => Messages::VcuBoardReadingsTwo(VcuBoardReadingsTwo::try_from(payload)?),
             204 => Messages::VcuPedalsTravel(VcuPedalsTravel::try_from(payload)?),
@@ -220,19 +220,19 @@ impl Messages {
             208 => Messages::VcuLifetimeDistanceAndOntime(VcuLifetimeDistanceAndOntime::try_from(payload)?),
             210 => Messages::VcuDistanceTrackerVectornav(VcuDistanceTrackerVectornav::try_from(payload)?),
             211 => Messages::VcuCoulombCounters(VcuCoulombCounters::try_from(payload)?),
-            212 => Messages::VcuCalculatedSlip(VcuCalculatedSlip::try_from(payload)?),
+            212 => Messages::VcuSlipInfo(VcuSlipInfo::try_from(payload)?),
             214 => Messages::VcuSetParameter(VcuSetParameter::try_from(payload)?),
             235 => Messages::DashButtons(DashButtons::try_from(payload)?),
-            236 => Messages::DashFirmwareVersion(DashFirmwareVersion::try_from(payload)?),
-            500 => Messages::EveloggerVectornavTime(EveloggerVectornavTime::try_from(payload)?),
-            501 => Messages::EveloggerVectornavAttitude(EveloggerVectornavAttitude::try_from(payload)?),
-            502 => Messages::EveloggerVectornavGyro(EveloggerVectornavGyro::try_from(payload)?),
-            503 => Messages::EveloggerVectornavPosition(EveloggerVectornavPosition::try_from(payload)?),
-            504 => Messages::EveloggerVectornavVelocity(EveloggerVectornavVelocity::try_from(payload)?),
-            505 => Messages::EveloggerVectornavAcceleration(EveloggerVectornavAcceleration::try_from(payload)?),
+            236 => Messages::DashBoardData(DashBoardData::try_from(payload)?),
+            500 => Messages::EveloggerVectornavAttitude(EveloggerVectornavAttitude::try_from(payload)?),
+            501 => Messages::EveloggerVectornavGyro(EveloggerVectornavGyro::try_from(payload)?),
+            502 => Messages::EveloggerVectornavPosition(EveloggerVectornavPosition::try_from(payload)?),
+            503 => Messages::EveloggerVectornavVelocity(EveloggerVectornavVelocity::try_from(payload)?),
+            504 => Messages::EveloggerVectornavAcceleration(EveloggerVectornavAcceleration::try_from(payload)?),
+            505 => Messages::EveloggerVectornavTime(EveloggerVectornavTime::try_from(payload)?),
             600 => Messages::AcuShutdownStatus(AcuShutdownStatus::try_from(payload)?),
             601 => Messages::AcuBoardVoltageReadings(AcuBoardVoltageReadings::try_from(payload)?),
-            602 => Messages::AcuFirmwareVersion(AcuFirmwareVersion::try_from(payload)?),
+            602 => Messages::AcuBoardData(AcuBoardData::try_from(payload)?),
             899 => Messages::CornernodeSteeringpot(CornernodeSteeringpot::try_from(payload)?),
             900 => Messages::CornernodeFlShockpot(CornernodeFlShockpot::try_from(payload)?),
             901 => Messages::CornernodeFrShockpot(CornernodeFrShockpot::try_from(payload)?),
@@ -730,320 +730,6 @@ impl<'a> Arbitrary<'a> for Module1Temps {
     }
 }
 
-/// module1_status
-///
-/// - ID: 41 (0x29)
-/// - Size: 8 bytes
-/// - Transmitter: module1
-///
-/// Git info for the firmware, on timer, along with temperature and humidity
-#[derive(Clone, Copy)]
-pub struct Module1Status {
-    raw: [u8; 8],
-}
-
-impl Module1Status {
-    pub const MESSAGE_ID: u32 = 41;
-    
-    pub const MODULE_FIRMWARE_VERSION_MIN: u32 = 0_u32;
-    pub const MODULE_FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    pub const MODULE_ON_TIME_SECONDS_MIN: u16 = 0_u16;
-    pub const MODULE_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
-    pub const MODULE_HUMIDITY_MIN: u8 = 0_u8;
-    pub const MODULE_HUMIDITY_MAX: u8 = 127_u8;
-    pub const MODULE_TEMPERATURE_MIN: u8 = 0_u8;
-    pub const MODULE_TEMPERATURE_MAX: u8 = 127_u8;
-    
-    /// Construct new module1_status from values
-    pub fn new(module_firmware_version: u32, module_on_time_seconds: u16, module_humidity: u8, module_code_on_main: bool, module_temperature: u8, module_firmware_is_dirty: bool) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
-        res.set_module_firmware_version(module_firmware_version)?;
-        res.set_module_on_time_seconds(module_on_time_seconds)?;
-        res.set_module_humidity(module_humidity)?;
-        res.set_module_code_on_main(module_code_on_main)?;
-        res.set_module_temperature(module_temperature)?;
-        res.set_module_firmware_is_dirty(module_firmware_is_dirty)?;
-        Ok(res)
-    }
-    
-    /// Access message payload raw value
-    pub fn raw(&self) -> &[u8; 8] {
-        &self.raw
-    }
-    
-    /// module_firmware_version
-    ///
-    /// short hash of the firmware on the given module
-    ///
-    /// - Min: 0
-    /// - Max: 4294967295
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_firmware_version(&self) -> u32 {
-        self.module_firmware_version_raw()
-    }
-    
-    /// Get raw value of module_firmware_version
-    ///
-    /// - Start bit: 32
-    /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_firmware_version_raw(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
-        
-        signal
-    }
-    
-    /// Set value of module_firmware_version
-    #[inline(always)]
-    pub fn set_module_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u32 || 4294967295_u32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 41 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
-        Ok(())
-    }
-    
-    /// module_on_time_seconds
-    ///
-    /// time in seconds which the acu has been powered on and running
-    ///
-    /// - Min: 0
-    /// - Max: 65535
-    /// - Unit: "seconds"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_on_time_seconds(&self) -> u16 {
-        self.module_on_time_seconds_raw()
-    }
-    
-    /// Get raw value of module_on_time_seconds
-    ///
-    /// - Start bit: 16
-    /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_on_time_seconds_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        
-        signal
-    }
-    
-    /// Set value of module_on_time_seconds
-    #[inline(always)]
-    pub fn set_module_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u16 || 65535_u16 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 41 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
-        Ok(())
-    }
-    
-    /// module_humidity
-    ///
-    /// the relative humidity at the given module
-    ///
-    /// - Min: 0
-    /// - Max: 127
-    /// - Unit: "relative_humidity"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_humidity(&self) -> u8 {
-        self.module_humidity_raw()
-    }
-    
-    /// Get raw value of module_humidity
-    ///
-    /// - Start bit: 15
-    /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_humidity_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[8..15].load_be::<u8>();
-        
-        signal
-    }
-    
-    /// Set value of module_humidity
-    #[inline(always)]
-    pub fn set_module_humidity(&mut self, value: u8) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u8 || 127_u8 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 41 });
-        }
-        self.raw.view_bits_mut::<Msb0>()[8..15].store_be(value);
-        Ok(())
-    }
-    
-    /// module_code_on_main
-    ///
-    /// if the compiled module firmware was from main branch (1) or not (0)
-    ///
-    /// - Min: 0
-    /// - Max: 1
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_code_on_main(&self) -> bool {
-        self.module_code_on_main_raw()
-    }
-    
-    /// Get raw value of module_code_on_main
-    ///
-    /// - Start bit: 8
-    /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_code_on_main_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[8..9].load_le::<u8>();
-        
-        signal == 1
-    }
-    
-    /// Set value of module_code_on_main
-    #[inline(always)]
-    pub fn set_module_code_on_main(&mut self, value: bool) -> Result<(), CanError> {
-        let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[8..9].store_le(value);
-        Ok(())
-    }
-    
-    /// module_temperature
-    ///
-    /// the ambient temperature at the given module
-    ///
-    /// - Min: 0
-    /// - Max: 127
-    /// - Unit: "celcius"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_temperature(&self) -> u8 {
-        self.module_temperature_raw()
-    }
-    
-    /// Get raw value of module_temperature
-    ///
-    /// - Start bit: 7
-    /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_temperature_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[0..7].load_be::<u8>();
-        
-        signal
-    }
-    
-    /// Set value of module_temperature
-    #[inline(always)]
-    pub fn set_module_temperature(&mut self, value: u8) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u8 || 127_u8 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 41 });
-        }
-        self.raw.view_bits_mut::<Msb0>()[0..7].store_be(value);
-        Ok(())
-    }
-    
-    /// module_firmware_is_dirty
-    ///
-    /// if the compiled module firmware has uncommitted changes (1) or not (0)
-    ///
-    /// - Min: 0
-    /// - Max: 1
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_firmware_is_dirty(&self) -> bool {
-        self.module_firmware_is_dirty_raw()
-    }
-    
-    /// Get raw value of module_firmware_is_dirty
-    ///
-    /// - Start bit: 0
-    /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_firmware_is_dirty_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        
-        signal == 1
-    }
-    
-    /// Set value of module_firmware_is_dirty
-    #[inline(always)]
-    pub fn set_module_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
-        let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
-        Ok(())
-    }
-    
-}
-
-impl core::convert::TryFrom<&[u8]> for Module1Status {
-    type Error = CanError;
-    
-    #[inline(always)]
-    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
-        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
-        let mut raw = [0u8; 8];
-        raw.copy_from_slice(&payload[..8]);
-        Ok(Self { raw })
-    }
-}
-
-#[cfg(feature = "debug")]
-impl core::fmt::Debug for Module1Status {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        if f.alternate() {
-            f.debug_struct("Module1Status")
-                .field("module_firmware_version", &self.module_firmware_version())
-                .field("module_on_time_seconds", &self.module_on_time_seconds())
-                .field("module_humidity", &self.module_humidity())
-                .field("module_code_on_main", &self.module_code_on_main())
-                .field("module_temperature", &self.module_temperature())
-                .field("module_firmware_is_dirty", &self.module_firmware_is_dirty())
-            .finish()
-        } else {
-            f.debug_tuple("Module1Status").field(&self.raw).finish()
-        }
-    }
-}
-
-#[cfg(feature = "arb")]
-impl<'a> Arbitrary<'a> for Module1Status {
-    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let module_firmware_version = u.int_in_range(0..=4294967295)?;
-        let module_on_time_seconds = u.int_in_range(0..=65535)?;
-        let module_humidity = u.int_in_range(0..=127)?;
-        let module_code_on_main = u.int_in_range(0..=1)? == 1;
-        let module_temperature = u.int_in_range(0..=127)?;
-        let module_firmware_is_dirty = u.int_in_range(0..=1)? == 1;
-        Module1Status::new(module_firmware_version,module_on_time_seconds,module_humidity,module_code_on_main,module_temperature,module_firmware_is_dirty).map_err(|_| arbitrary::Error::IncorrectFormat)
-    }
-}
-
 /// module2_temps
 ///
 /// - ID: 32 (0x20)
@@ -1485,320 +1171,6 @@ impl<'a> Arbitrary<'a> for Module2Temps {
         let module_voltage_2 = u.float_in_range(0_f32..=255_f32)?;
         let module_voltage_1 = u.float_in_range(0_f32..=255_f32)?;
         Module2Temps::new(module_voltage_8,module_voltage_7,module_voltage_6,module_voltage_5,module_voltage_4,module_voltage_3,module_voltage_2,module_voltage_1).map_err(|_| arbitrary::Error::IncorrectFormat)
-    }
-}
-
-/// module2_status
-///
-/// - ID: 42 (0x2a)
-/// - Size: 8 bytes
-/// - Transmitter: module2
-///
-/// Git info for the firmware, on timer, along with temperature and humidity
-#[derive(Clone, Copy)]
-pub struct Module2Status {
-    raw: [u8; 8],
-}
-
-impl Module2Status {
-    pub const MESSAGE_ID: u32 = 42;
-    
-    pub const MODULE_FIRMWARE_VERSION_MIN: u32 = 0_u32;
-    pub const MODULE_FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    pub const MODULE_ON_TIME_SECONDS_MIN: u16 = 0_u16;
-    pub const MODULE_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
-    pub const MODULE_HUMIDITY_MIN: u8 = 0_u8;
-    pub const MODULE_HUMIDITY_MAX: u8 = 127_u8;
-    pub const MODULE_TEMPERATURE_MIN: u8 = 0_u8;
-    pub const MODULE_TEMPERATURE_MAX: u8 = 127_u8;
-    
-    /// Construct new module2_status from values
-    pub fn new(module_firmware_version: u32, module_on_time_seconds: u16, module_humidity: u8, module_code_on_main: bool, module_temperature: u8, module_firmware_is_dirty: bool) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
-        res.set_module_firmware_version(module_firmware_version)?;
-        res.set_module_on_time_seconds(module_on_time_seconds)?;
-        res.set_module_humidity(module_humidity)?;
-        res.set_module_code_on_main(module_code_on_main)?;
-        res.set_module_temperature(module_temperature)?;
-        res.set_module_firmware_is_dirty(module_firmware_is_dirty)?;
-        Ok(res)
-    }
-    
-    /// Access message payload raw value
-    pub fn raw(&self) -> &[u8; 8] {
-        &self.raw
-    }
-    
-    /// module_firmware_version
-    ///
-    /// short hash of the firmware on the given module
-    ///
-    /// - Min: 0
-    /// - Max: 4294967295
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_firmware_version(&self) -> u32 {
-        self.module_firmware_version_raw()
-    }
-    
-    /// Get raw value of module_firmware_version
-    ///
-    /// - Start bit: 32
-    /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_firmware_version_raw(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
-        
-        signal
-    }
-    
-    /// Set value of module_firmware_version
-    #[inline(always)]
-    pub fn set_module_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u32 || 4294967295_u32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 42 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
-        Ok(())
-    }
-    
-    /// module_on_time_seconds
-    ///
-    /// time in seconds which the acu has been powered on and running
-    ///
-    /// - Min: 0
-    /// - Max: 65535
-    /// - Unit: "seconds"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_on_time_seconds(&self) -> u16 {
-        self.module_on_time_seconds_raw()
-    }
-    
-    /// Get raw value of module_on_time_seconds
-    ///
-    /// - Start bit: 16
-    /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_on_time_seconds_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        
-        signal
-    }
-    
-    /// Set value of module_on_time_seconds
-    #[inline(always)]
-    pub fn set_module_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u16 || 65535_u16 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 42 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
-        Ok(())
-    }
-    
-    /// module_humidity
-    ///
-    /// the relative humidity at the given module
-    ///
-    /// - Min: 0
-    /// - Max: 127
-    /// - Unit: "relative_humidity"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_humidity(&self) -> u8 {
-        self.module_humidity_raw()
-    }
-    
-    /// Get raw value of module_humidity
-    ///
-    /// - Start bit: 15
-    /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_humidity_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[8..15].load_be::<u8>();
-        
-        signal
-    }
-    
-    /// Set value of module_humidity
-    #[inline(always)]
-    pub fn set_module_humidity(&mut self, value: u8) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u8 || 127_u8 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 42 });
-        }
-        self.raw.view_bits_mut::<Msb0>()[8..15].store_be(value);
-        Ok(())
-    }
-    
-    /// module_code_on_main
-    ///
-    /// if the compiled module firmware was from main branch (1) or not (0)
-    ///
-    /// - Min: 0
-    /// - Max: 1
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_code_on_main(&self) -> bool {
-        self.module_code_on_main_raw()
-    }
-    
-    /// Get raw value of module_code_on_main
-    ///
-    /// - Start bit: 8
-    /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_code_on_main_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[8..9].load_le::<u8>();
-        
-        signal == 1
-    }
-    
-    /// Set value of module_code_on_main
-    #[inline(always)]
-    pub fn set_module_code_on_main(&mut self, value: bool) -> Result<(), CanError> {
-        let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[8..9].store_le(value);
-        Ok(())
-    }
-    
-    /// module_temperature
-    ///
-    /// the ambient temperature at the given module
-    ///
-    /// - Min: 0
-    /// - Max: 127
-    /// - Unit: "celcius"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_temperature(&self) -> u8 {
-        self.module_temperature_raw()
-    }
-    
-    /// Get raw value of module_temperature
-    ///
-    /// - Start bit: 7
-    /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_temperature_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[0..7].load_be::<u8>();
-        
-        signal
-    }
-    
-    /// Set value of module_temperature
-    #[inline(always)]
-    pub fn set_module_temperature(&mut self, value: u8) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u8 || 127_u8 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 42 });
-        }
-        self.raw.view_bits_mut::<Msb0>()[0..7].store_be(value);
-        Ok(())
-    }
-    
-    /// module_firmware_is_dirty
-    ///
-    /// if the compiled module firmware has uncommitted changes (1) or not (0)
-    ///
-    /// - Min: 0
-    /// - Max: 1
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_firmware_is_dirty(&self) -> bool {
-        self.module_firmware_is_dirty_raw()
-    }
-    
-    /// Get raw value of module_firmware_is_dirty
-    ///
-    /// - Start bit: 0
-    /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_firmware_is_dirty_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        
-        signal == 1
-    }
-    
-    /// Set value of module_firmware_is_dirty
-    #[inline(always)]
-    pub fn set_module_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
-        let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
-        Ok(())
-    }
-    
-}
-
-impl core::convert::TryFrom<&[u8]> for Module2Status {
-    type Error = CanError;
-    
-    #[inline(always)]
-    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
-        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
-        let mut raw = [0u8; 8];
-        raw.copy_from_slice(&payload[..8]);
-        Ok(Self { raw })
-    }
-}
-
-#[cfg(feature = "debug")]
-impl core::fmt::Debug for Module2Status {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        if f.alternate() {
-            f.debug_struct("Module2Status")
-                .field("module_firmware_version", &self.module_firmware_version())
-                .field("module_on_time_seconds", &self.module_on_time_seconds())
-                .field("module_humidity", &self.module_humidity())
-                .field("module_code_on_main", &self.module_code_on_main())
-                .field("module_temperature", &self.module_temperature())
-                .field("module_firmware_is_dirty", &self.module_firmware_is_dirty())
-            .finish()
-        } else {
-            f.debug_tuple("Module2Status").field(&self.raw).finish()
-        }
-    }
-}
-
-#[cfg(feature = "arb")]
-impl<'a> Arbitrary<'a> for Module2Status {
-    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let module_firmware_version = u.int_in_range(0..=4294967295)?;
-        let module_on_time_seconds = u.int_in_range(0..=65535)?;
-        let module_humidity = u.int_in_range(0..=127)?;
-        let module_code_on_main = u.int_in_range(0..=1)? == 1;
-        let module_temperature = u.int_in_range(0..=127)?;
-        let module_firmware_is_dirty = u.int_in_range(0..=1)? == 1;
-        Module2Status::new(module_firmware_version,module_on_time_seconds,module_humidity,module_code_on_main,module_temperature,module_firmware_is_dirty).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -2246,320 +1618,6 @@ impl<'a> Arbitrary<'a> for Module3Temps {
     }
 }
 
-/// module3_status
-///
-/// - ID: 43 (0x2b)
-/// - Size: 8 bytes
-/// - Transmitter: module3
-///
-/// Git info for the firmware, on timer, along with temperature and humidity
-#[derive(Clone, Copy)]
-pub struct Module3Status {
-    raw: [u8; 8],
-}
-
-impl Module3Status {
-    pub const MESSAGE_ID: u32 = 43;
-    
-    pub const MODULE_FIRMWARE_VERSION_MIN: u32 = 0_u32;
-    pub const MODULE_FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    pub const MODULE_ON_TIME_SECONDS_MIN: u16 = 0_u16;
-    pub const MODULE_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
-    pub const MODULE_HUMIDITY_MIN: u8 = 0_u8;
-    pub const MODULE_HUMIDITY_MAX: u8 = 127_u8;
-    pub const MODULE_TEMPERATURE_MIN: u8 = 0_u8;
-    pub const MODULE_TEMPERATURE_MAX: u8 = 127_u8;
-    
-    /// Construct new module3_status from values
-    pub fn new(module_firmware_version: u32, module_on_time_seconds: u16, module_humidity: u8, module_code_on_main: bool, module_temperature: u8, module_firmware_is_dirty: bool) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
-        res.set_module_firmware_version(module_firmware_version)?;
-        res.set_module_on_time_seconds(module_on_time_seconds)?;
-        res.set_module_humidity(module_humidity)?;
-        res.set_module_code_on_main(module_code_on_main)?;
-        res.set_module_temperature(module_temperature)?;
-        res.set_module_firmware_is_dirty(module_firmware_is_dirty)?;
-        Ok(res)
-    }
-    
-    /// Access message payload raw value
-    pub fn raw(&self) -> &[u8; 8] {
-        &self.raw
-    }
-    
-    /// module_firmware_version
-    ///
-    /// short hash of the firmware on the given module
-    ///
-    /// - Min: 0
-    /// - Max: 4294967295
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_firmware_version(&self) -> u32 {
-        self.module_firmware_version_raw()
-    }
-    
-    /// Get raw value of module_firmware_version
-    ///
-    /// - Start bit: 32
-    /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_firmware_version_raw(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
-        
-        signal
-    }
-    
-    /// Set value of module_firmware_version
-    #[inline(always)]
-    pub fn set_module_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u32 || 4294967295_u32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 43 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
-        Ok(())
-    }
-    
-    /// module_on_time_seconds
-    ///
-    /// time in seconds which the acu has been powered on and running
-    ///
-    /// - Min: 0
-    /// - Max: 65535
-    /// - Unit: "seconds"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_on_time_seconds(&self) -> u16 {
-        self.module_on_time_seconds_raw()
-    }
-    
-    /// Get raw value of module_on_time_seconds
-    ///
-    /// - Start bit: 16
-    /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_on_time_seconds_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        
-        signal
-    }
-    
-    /// Set value of module_on_time_seconds
-    #[inline(always)]
-    pub fn set_module_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u16 || 65535_u16 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 43 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
-        Ok(())
-    }
-    
-    /// module_humidity
-    ///
-    /// the relative humidity at the given module
-    ///
-    /// - Min: 0
-    /// - Max: 127
-    /// - Unit: "relative_humidity"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_humidity(&self) -> u8 {
-        self.module_humidity_raw()
-    }
-    
-    /// Get raw value of module_humidity
-    ///
-    /// - Start bit: 15
-    /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_humidity_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[8..15].load_be::<u8>();
-        
-        signal
-    }
-    
-    /// Set value of module_humidity
-    #[inline(always)]
-    pub fn set_module_humidity(&mut self, value: u8) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u8 || 127_u8 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 43 });
-        }
-        self.raw.view_bits_mut::<Msb0>()[8..15].store_be(value);
-        Ok(())
-    }
-    
-    /// module_code_on_main
-    ///
-    /// if the compiled module firmware was from main branch (1) or not (0)
-    ///
-    /// - Min: 0
-    /// - Max: 1
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_code_on_main(&self) -> bool {
-        self.module_code_on_main_raw()
-    }
-    
-    /// Get raw value of module_code_on_main
-    ///
-    /// - Start bit: 8
-    /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_code_on_main_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[8..9].load_le::<u8>();
-        
-        signal == 1
-    }
-    
-    /// Set value of module_code_on_main
-    #[inline(always)]
-    pub fn set_module_code_on_main(&mut self, value: bool) -> Result<(), CanError> {
-        let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[8..9].store_le(value);
-        Ok(())
-    }
-    
-    /// module_temperature
-    ///
-    /// the ambient temperature at the given module
-    ///
-    /// - Min: 0
-    /// - Max: 127
-    /// - Unit: "celcius"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_temperature(&self) -> u8 {
-        self.module_temperature_raw()
-    }
-    
-    /// Get raw value of module_temperature
-    ///
-    /// - Start bit: 7
-    /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_temperature_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[0..7].load_be::<u8>();
-        
-        signal
-    }
-    
-    /// Set value of module_temperature
-    #[inline(always)]
-    pub fn set_module_temperature(&mut self, value: u8) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u8 || 127_u8 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 43 });
-        }
-        self.raw.view_bits_mut::<Msb0>()[0..7].store_be(value);
-        Ok(())
-    }
-    
-    /// module_firmware_is_dirty
-    ///
-    /// if the compiled module firmware has uncommitted changes (1) or not (0)
-    ///
-    /// - Min: 0
-    /// - Max: 1
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_firmware_is_dirty(&self) -> bool {
-        self.module_firmware_is_dirty_raw()
-    }
-    
-    /// Get raw value of module_firmware_is_dirty
-    ///
-    /// - Start bit: 0
-    /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_firmware_is_dirty_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        
-        signal == 1
-    }
-    
-    /// Set value of module_firmware_is_dirty
-    #[inline(always)]
-    pub fn set_module_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
-        let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
-        Ok(())
-    }
-    
-}
-
-impl core::convert::TryFrom<&[u8]> for Module3Status {
-    type Error = CanError;
-    
-    #[inline(always)]
-    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
-        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
-        let mut raw = [0u8; 8];
-        raw.copy_from_slice(&payload[..8]);
-        Ok(Self { raw })
-    }
-}
-
-#[cfg(feature = "debug")]
-impl core::fmt::Debug for Module3Status {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        if f.alternate() {
-            f.debug_struct("Module3Status")
-                .field("module_firmware_version", &self.module_firmware_version())
-                .field("module_on_time_seconds", &self.module_on_time_seconds())
-                .field("module_humidity", &self.module_humidity())
-                .field("module_code_on_main", &self.module_code_on_main())
-                .field("module_temperature", &self.module_temperature())
-                .field("module_firmware_is_dirty", &self.module_firmware_is_dirty())
-            .finish()
-        } else {
-            f.debug_tuple("Module3Status").field(&self.raw).finish()
-        }
-    }
-}
-
-#[cfg(feature = "arb")]
-impl<'a> Arbitrary<'a> for Module3Status {
-    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let module_firmware_version = u.int_in_range(0..=4294967295)?;
-        let module_on_time_seconds = u.int_in_range(0..=65535)?;
-        let module_humidity = u.int_in_range(0..=127)?;
-        let module_code_on_main = u.int_in_range(0..=1)? == 1;
-        let module_temperature = u.int_in_range(0..=127)?;
-        let module_firmware_is_dirty = u.int_in_range(0..=1)? == 1;
-        Module3Status::new(module_firmware_version,module_on_time_seconds,module_humidity,module_code_on_main,module_temperature,module_firmware_is_dirty).map_err(|_| arbitrary::Error::IncorrectFormat)
-    }
-}
-
 /// module4_temps
 ///
 /// - ID: 34 (0x22)
@@ -3001,320 +2059,6 @@ impl<'a> Arbitrary<'a> for Module4Temps {
         let module_voltage_2 = u.float_in_range(0_f32..=255_f32)?;
         let module_voltage_1 = u.float_in_range(0_f32..=255_f32)?;
         Module4Temps::new(module_voltage_8,module_voltage_7,module_voltage_6,module_voltage_5,module_voltage_4,module_voltage_3,module_voltage_2,module_voltage_1).map_err(|_| arbitrary::Error::IncorrectFormat)
-    }
-}
-
-/// module4_status
-///
-/// - ID: 44 (0x2c)
-/// - Size: 8 bytes
-/// - Transmitter: module4
-///
-/// Git info for the firmware, on timer, along with temperature and humidity
-#[derive(Clone, Copy)]
-pub struct Module4Status {
-    raw: [u8; 8],
-}
-
-impl Module4Status {
-    pub const MESSAGE_ID: u32 = 44;
-    
-    pub const MODULE_FIRMWARE_VERSION_MIN: u32 = 0_u32;
-    pub const MODULE_FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    pub const MODULE_ON_TIME_SECONDS_MIN: u16 = 0_u16;
-    pub const MODULE_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
-    pub const MODULE_HUMIDITY_MIN: u8 = 0_u8;
-    pub const MODULE_HUMIDITY_MAX: u8 = 127_u8;
-    pub const MODULE_TEMPERATURE_MIN: u8 = 0_u8;
-    pub const MODULE_TEMPERATURE_MAX: u8 = 127_u8;
-    
-    /// Construct new module4_status from values
-    pub fn new(module_firmware_version: u32, module_on_time_seconds: u16, module_humidity: u8, module_code_on_main: bool, module_temperature: u8, module_firmware_is_dirty: bool) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
-        res.set_module_firmware_version(module_firmware_version)?;
-        res.set_module_on_time_seconds(module_on_time_seconds)?;
-        res.set_module_humidity(module_humidity)?;
-        res.set_module_code_on_main(module_code_on_main)?;
-        res.set_module_temperature(module_temperature)?;
-        res.set_module_firmware_is_dirty(module_firmware_is_dirty)?;
-        Ok(res)
-    }
-    
-    /// Access message payload raw value
-    pub fn raw(&self) -> &[u8; 8] {
-        &self.raw
-    }
-    
-    /// module_firmware_version
-    ///
-    /// short hash of the firmware on the given module
-    ///
-    /// - Min: 0
-    /// - Max: 4294967295
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_firmware_version(&self) -> u32 {
-        self.module_firmware_version_raw()
-    }
-    
-    /// Get raw value of module_firmware_version
-    ///
-    /// - Start bit: 32
-    /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_firmware_version_raw(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
-        
-        signal
-    }
-    
-    /// Set value of module_firmware_version
-    #[inline(always)]
-    pub fn set_module_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u32 || 4294967295_u32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 44 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
-        Ok(())
-    }
-    
-    /// module_on_time_seconds
-    ///
-    /// time in seconds which the acu has been powered on and running
-    ///
-    /// - Min: 0
-    /// - Max: 65535
-    /// - Unit: "seconds"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_on_time_seconds(&self) -> u16 {
-        self.module_on_time_seconds_raw()
-    }
-    
-    /// Get raw value of module_on_time_seconds
-    ///
-    /// - Start bit: 16
-    /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_on_time_seconds_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        
-        signal
-    }
-    
-    /// Set value of module_on_time_seconds
-    #[inline(always)]
-    pub fn set_module_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u16 || 65535_u16 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 44 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
-        Ok(())
-    }
-    
-    /// module_humidity
-    ///
-    /// the relative humidity at the given module
-    ///
-    /// - Min: 0
-    /// - Max: 127
-    /// - Unit: "relative_humidity"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_humidity(&self) -> u8 {
-        self.module_humidity_raw()
-    }
-    
-    /// Get raw value of module_humidity
-    ///
-    /// - Start bit: 15
-    /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_humidity_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[8..15].load_be::<u8>();
-        
-        signal
-    }
-    
-    /// Set value of module_humidity
-    #[inline(always)]
-    pub fn set_module_humidity(&mut self, value: u8) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u8 || 127_u8 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 44 });
-        }
-        self.raw.view_bits_mut::<Msb0>()[8..15].store_be(value);
-        Ok(())
-    }
-    
-    /// module_code_on_main
-    ///
-    /// if the compiled module firmware was from main branch (1) or not (0)
-    ///
-    /// - Min: 0
-    /// - Max: 1
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_code_on_main(&self) -> bool {
-        self.module_code_on_main_raw()
-    }
-    
-    /// Get raw value of module_code_on_main
-    ///
-    /// - Start bit: 8
-    /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_code_on_main_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[8..9].load_le::<u8>();
-        
-        signal == 1
-    }
-    
-    /// Set value of module_code_on_main
-    #[inline(always)]
-    pub fn set_module_code_on_main(&mut self, value: bool) -> Result<(), CanError> {
-        let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[8..9].store_le(value);
-        Ok(())
-    }
-    
-    /// module_temperature
-    ///
-    /// the ambient temperature at the given module
-    ///
-    /// - Min: 0
-    /// - Max: 127
-    /// - Unit: "celcius"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_temperature(&self) -> u8 {
-        self.module_temperature_raw()
-    }
-    
-    /// Get raw value of module_temperature
-    ///
-    /// - Start bit: 7
-    /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_temperature_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[0..7].load_be::<u8>();
-        
-        signal
-    }
-    
-    /// Set value of module_temperature
-    #[inline(always)]
-    pub fn set_module_temperature(&mut self, value: u8) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u8 || 127_u8 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 44 });
-        }
-        self.raw.view_bits_mut::<Msb0>()[0..7].store_be(value);
-        Ok(())
-    }
-    
-    /// module_firmware_is_dirty
-    ///
-    /// if the compiled module firmware has uncommitted changes (1) or not (0)
-    ///
-    /// - Min: 0
-    /// - Max: 1
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_firmware_is_dirty(&self) -> bool {
-        self.module_firmware_is_dirty_raw()
-    }
-    
-    /// Get raw value of module_firmware_is_dirty
-    ///
-    /// - Start bit: 0
-    /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_firmware_is_dirty_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        
-        signal == 1
-    }
-    
-    /// Set value of module_firmware_is_dirty
-    #[inline(always)]
-    pub fn set_module_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
-        let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
-        Ok(())
-    }
-    
-}
-
-impl core::convert::TryFrom<&[u8]> for Module4Status {
-    type Error = CanError;
-    
-    #[inline(always)]
-    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
-        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
-        let mut raw = [0u8; 8];
-        raw.copy_from_slice(&payload[..8]);
-        Ok(Self { raw })
-    }
-}
-
-#[cfg(feature = "debug")]
-impl core::fmt::Debug for Module4Status {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        if f.alternate() {
-            f.debug_struct("Module4Status")
-                .field("module_firmware_version", &self.module_firmware_version())
-                .field("module_on_time_seconds", &self.module_on_time_seconds())
-                .field("module_humidity", &self.module_humidity())
-                .field("module_code_on_main", &self.module_code_on_main())
-                .field("module_temperature", &self.module_temperature())
-                .field("module_firmware_is_dirty", &self.module_firmware_is_dirty())
-            .finish()
-        } else {
-            f.debug_tuple("Module4Status").field(&self.raw).finish()
-        }
-    }
-}
-
-#[cfg(feature = "arb")]
-impl<'a> Arbitrary<'a> for Module4Status {
-    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let module_firmware_version = u.int_in_range(0..=4294967295)?;
-        let module_on_time_seconds = u.int_in_range(0..=65535)?;
-        let module_humidity = u.int_in_range(0..=127)?;
-        let module_code_on_main = u.int_in_range(0..=1)? == 1;
-        let module_temperature = u.int_in_range(0..=127)?;
-        let module_firmware_is_dirty = u.int_in_range(0..=1)? == 1;
-        Module4Status::new(module_firmware_version,module_on_time_seconds,module_humidity,module_code_on_main,module_temperature,module_firmware_is_dirty).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -3762,320 +2506,6 @@ impl<'a> Arbitrary<'a> for Module5Temps {
     }
 }
 
-/// module5_status
-///
-/// - ID: 45 (0x2d)
-/// - Size: 8 bytes
-/// - Transmitter: module5
-///
-/// Git info for the firmware, on timer, along with temperature and humidity
-#[derive(Clone, Copy)]
-pub struct Module5Status {
-    raw: [u8; 8],
-}
-
-impl Module5Status {
-    pub const MESSAGE_ID: u32 = 45;
-    
-    pub const MODULE_FIRMWARE_VERSION_MIN: u32 = 0_u32;
-    pub const MODULE_FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    pub const MODULE_ON_TIME_SECONDS_MIN: u16 = 0_u16;
-    pub const MODULE_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
-    pub const MODULE_HUMIDITY_MIN: u8 = 0_u8;
-    pub const MODULE_HUMIDITY_MAX: u8 = 127_u8;
-    pub const MODULE_TEMPERATURE_MIN: u8 = 0_u8;
-    pub const MODULE_TEMPERATURE_MAX: u8 = 127_u8;
-    
-    /// Construct new module5_status from values
-    pub fn new(module_firmware_version: u32, module_on_time_seconds: u16, module_humidity: u8, module_code_on_main: bool, module_temperature: u8, module_firmware_is_dirty: bool) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
-        res.set_module_firmware_version(module_firmware_version)?;
-        res.set_module_on_time_seconds(module_on_time_seconds)?;
-        res.set_module_humidity(module_humidity)?;
-        res.set_module_code_on_main(module_code_on_main)?;
-        res.set_module_temperature(module_temperature)?;
-        res.set_module_firmware_is_dirty(module_firmware_is_dirty)?;
-        Ok(res)
-    }
-    
-    /// Access message payload raw value
-    pub fn raw(&self) -> &[u8; 8] {
-        &self.raw
-    }
-    
-    /// module_firmware_version
-    ///
-    /// short hash of the firmware on the given module
-    ///
-    /// - Min: 0
-    /// - Max: 4294967295
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_firmware_version(&self) -> u32 {
-        self.module_firmware_version_raw()
-    }
-    
-    /// Get raw value of module_firmware_version
-    ///
-    /// - Start bit: 32
-    /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_firmware_version_raw(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
-        
-        signal
-    }
-    
-    /// Set value of module_firmware_version
-    #[inline(always)]
-    pub fn set_module_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u32 || 4294967295_u32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 45 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
-        Ok(())
-    }
-    
-    /// module_on_time_seconds
-    ///
-    /// time in seconds which the acu has been powered on and running
-    ///
-    /// - Min: 0
-    /// - Max: 65535
-    /// - Unit: "seconds"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_on_time_seconds(&self) -> u16 {
-        self.module_on_time_seconds_raw()
-    }
-    
-    /// Get raw value of module_on_time_seconds
-    ///
-    /// - Start bit: 16
-    /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_on_time_seconds_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        
-        signal
-    }
-    
-    /// Set value of module_on_time_seconds
-    #[inline(always)]
-    pub fn set_module_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u16 || 65535_u16 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 45 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
-        Ok(())
-    }
-    
-    /// module_humidity
-    ///
-    /// the relative humidity at the given module
-    ///
-    /// - Min: 0
-    /// - Max: 127
-    /// - Unit: "relative_humidity"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_humidity(&self) -> u8 {
-        self.module_humidity_raw()
-    }
-    
-    /// Get raw value of module_humidity
-    ///
-    /// - Start bit: 15
-    /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_humidity_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[8..15].load_be::<u8>();
-        
-        signal
-    }
-    
-    /// Set value of module_humidity
-    #[inline(always)]
-    pub fn set_module_humidity(&mut self, value: u8) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u8 || 127_u8 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 45 });
-        }
-        self.raw.view_bits_mut::<Msb0>()[8..15].store_be(value);
-        Ok(())
-    }
-    
-    /// module_code_on_main
-    ///
-    /// if the compiled module firmware was from main branch (1) or not (0)
-    ///
-    /// - Min: 0
-    /// - Max: 1
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_code_on_main(&self) -> bool {
-        self.module_code_on_main_raw()
-    }
-    
-    /// Get raw value of module_code_on_main
-    ///
-    /// - Start bit: 8
-    /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_code_on_main_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[8..9].load_le::<u8>();
-        
-        signal == 1
-    }
-    
-    /// Set value of module_code_on_main
-    #[inline(always)]
-    pub fn set_module_code_on_main(&mut self, value: bool) -> Result<(), CanError> {
-        let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[8..9].store_le(value);
-        Ok(())
-    }
-    
-    /// module_temperature
-    ///
-    /// the ambient temperature at the given module
-    ///
-    /// - Min: 0
-    /// - Max: 127
-    /// - Unit: "celcius"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_temperature(&self) -> u8 {
-        self.module_temperature_raw()
-    }
-    
-    /// Get raw value of module_temperature
-    ///
-    /// - Start bit: 7
-    /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_temperature_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[0..7].load_be::<u8>();
-        
-        signal
-    }
-    
-    /// Set value of module_temperature
-    #[inline(always)]
-    pub fn set_module_temperature(&mut self, value: u8) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u8 || 127_u8 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 45 });
-        }
-        self.raw.view_bits_mut::<Msb0>()[0..7].store_be(value);
-        Ok(())
-    }
-    
-    /// module_firmware_is_dirty
-    ///
-    /// if the compiled module firmware has uncommitted changes (1) or not (0)
-    ///
-    /// - Min: 0
-    /// - Max: 1
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn module_firmware_is_dirty(&self) -> bool {
-        self.module_firmware_is_dirty_raw()
-    }
-    
-    /// Get raw value of module_firmware_is_dirty
-    ///
-    /// - Start bit: 0
-    /// - Signal size: 1 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn module_firmware_is_dirty_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
-        
-        signal == 1
-    }
-    
-    /// Set value of module_firmware_is_dirty
-    #[inline(always)]
-    pub fn set_module_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
-        let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
-        Ok(())
-    }
-    
-}
-
-impl core::convert::TryFrom<&[u8]> for Module5Status {
-    type Error = CanError;
-    
-    #[inline(always)]
-    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
-        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
-        let mut raw = [0u8; 8];
-        raw.copy_from_slice(&payload[..8]);
-        Ok(Self { raw })
-    }
-}
-
-#[cfg(feature = "debug")]
-impl core::fmt::Debug for Module5Status {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        if f.alternate() {
-            f.debug_struct("Module5Status")
-                .field("module_firmware_version", &self.module_firmware_version())
-                .field("module_on_time_seconds", &self.module_on_time_seconds())
-                .field("module_humidity", &self.module_humidity())
-                .field("module_code_on_main", &self.module_code_on_main())
-                .field("module_temperature", &self.module_temperature())
-                .field("module_firmware_is_dirty", &self.module_firmware_is_dirty())
-            .finish()
-        } else {
-            f.debug_tuple("Module5Status").field(&self.raw).finish()
-        }
-    }
-}
-
-#[cfg(feature = "arb")]
-impl<'a> Arbitrary<'a> for Module5Status {
-    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let module_firmware_version = u.int_in_range(0..=4294967295)?;
-        let module_on_time_seconds = u.int_in_range(0..=65535)?;
-        let module_humidity = u.int_in_range(0..=127)?;
-        let module_code_on_main = u.int_in_range(0..=1)? == 1;
-        let module_temperature = u.int_in_range(0..=127)?;
-        let module_firmware_is_dirty = u.int_in_range(0..=1)? == 1;
-        Module5Status::new(module_firmware_version,module_on_time_seconds,module_humidity,module_code_on_main,module_temperature,module_firmware_is_dirty).map_err(|_| arbitrary::Error::IncorrectFormat)
-    }
-}
-
 /// precharge_status
 ///
 /// - ID: 105 (0x69)
@@ -4384,6 +2814,1576 @@ impl<'a> Arbitrary<'a> for PrechargeStatus {
         let precharge_acc_voltage_mod100 = u.int_in_range(0..=255)?;
         let precharge_state = u.int_in_range(0..=255)?;
         PrechargeStatus::new(precharge_error_code,precharge_ts_voltage_div100,precharge_ts_voltage_mod100,precharge_acc_voltage_div100,precharge_acc_voltage_mod100,precharge_state).map_err(|_| arbitrary::Error::IncorrectFormat)
+    }
+}
+
+/// module1_status
+///
+/// - ID: 131 (0x83)
+/// - Size: 8 bytes
+/// - Transmitter: module1
+///
+/// Git info for the firmware, on timer, along with temperature and humidity
+#[derive(Clone, Copy)]
+pub struct Module1Status {
+    raw: [u8; 8],
+}
+
+impl Module1Status {
+    pub const MESSAGE_ID: u32 = 131;
+    
+    pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
+    pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
+    pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
+    pub const BOARD_TEMPERATURE_MAX: u8 = 127_u8;
+    pub const BOARD_ON_TIME_SECONDS_MIN: u16 = 0_u16;
+    pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
+    pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
+    pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
+    
+    /// Construct new module1_status from values
+    pub fn new(board_humidity: u8, board_temperature: u8, firmware_is_dirty: bool, firmware_on_main: bool, board_on_time_seconds: u16, firmware_version: u32) -> Result<Self, CanError> {
+        let mut res = Self { raw: [0u8; 8] };
+        res.set_board_humidity(board_humidity)?;
+        res.set_board_temperature(board_temperature)?;
+        res.set_firmware_is_dirty(firmware_is_dirty)?;
+        res.set_firmware_on_main(firmware_on_main)?;
+        res.set_board_on_time_seconds(board_on_time_seconds)?;
+        res.set_firmware_version(firmware_version)?;
+        Ok(res)
+    }
+    
+    /// Access message payload raw value
+    pub fn raw(&self) -> &[u8; 8] {
+        &self.raw
+    }
+    
+    /// board_humidity
+    ///
+    /// the relative humidity at the acu
+    ///
+    /// - Min: 0
+    /// - Max: 127
+    /// - Unit: "relative_humidity"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_humidity(&self) -> u8 {
+        self.board_humidity_raw()
+    }
+    
+    /// Get raw value of board_humidity
+    ///
+    /// - Start bit: 57
+    /// - Signal size: 7 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_humidity_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[57..64].load_le::<u8>();
+        
+        signal
+    }
+    
+    /// Set value of board_humidity
+    #[inline(always)]
+    pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u8 || 127_u8 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 131 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
+        Ok(())
+    }
+    
+    /// board_temperature
+    ///
+    /// The ambient temperature at the PCB
+    ///
+    /// - Min: 0
+    /// - Max: 127
+    /// - Unit: "celcius"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_temperature(&self) -> u8 {
+        self.board_temperature_raw()
+    }
+    
+    /// Get raw value of board_temperature
+    ///
+    /// - Start bit: 50
+    /// - Signal size: 7 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_temperature_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[50..57].load_le::<u8>();
+        
+        signal
+    }
+    
+    /// Set value of board_temperature
+    #[inline(always)]
+    pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u8 || 127_u8 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 131 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_is_dirty
+    ///
+    /// if the compiled firmware had uncommitted changes (1) or not (0)
+    ///
+    /// - Min: 0
+    /// - Max: 1
+    /// - Unit: "bool"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_is_dirty(&self) -> bool {
+        self.firmware_is_dirty_raw()
+    }
+    
+    /// Get raw value of firmware_is_dirty
+    ///
+    /// - Start bit: 49
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_is_dirty_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
+        
+        signal == 1
+    }
+    
+    /// Set value of firmware_is_dirty
+    #[inline(always)]
+    pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_on_main
+    ///
+    /// if the compiled firmware was from main branch (1) or not (0)
+    ///
+    /// - Min: 0
+    /// - Max: 1
+    /// - Unit: "bool"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_on_main(&self) -> bool {
+        self.firmware_on_main_raw()
+    }
+    
+    /// Get raw value of firmware_on_main
+    ///
+    /// - Start bit: 48
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_on_main_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
+        
+        signal == 1
+    }
+    
+    /// Set value of firmware_on_main
+    #[inline(always)]
+    pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
+        Ok(())
+    }
+    
+    /// board_on_time_seconds
+    ///
+    /// time in seconds which the board has been powered on and running
+    ///
+    /// - Min: 0
+    /// - Max: 65535
+    /// - Unit: "seconds"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_on_time_seconds(&self) -> u16 {
+        self.board_on_time_seconds_raw()
+    }
+    
+    /// Get raw value of board_on_time_seconds
+    ///
+    /// - Start bit: 32
+    /// - Signal size: 16 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_on_time_seconds_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
+        
+        signal
+    }
+    
+    /// Set value of board_on_time_seconds
+    #[inline(always)]
+    pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u16 || 65535_u16 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 131 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_version
+    ///
+    /// short hash of the firmware
+    ///
+    /// - Min: 0
+    /// - Max: 4294967295
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_version(&self) -> u32 {
+        self.firmware_version_raw()
+    }
+    
+    /// Get raw value of firmware_version
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 32 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_version_raw(&self) -> u32 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
+        
+        signal
+    }
+    
+    /// Set value of firmware_version
+    #[inline(always)]
+    pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u32 || 4294967295_u32 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 131 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
+        Ok(())
+    }
+    
+}
+
+impl core::convert::TryFrom<&[u8]> for Module1Status {
+    type Error = CanError;
+    
+    #[inline(always)]
+    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
+        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
+        let mut raw = [0u8; 8];
+        raw.copy_from_slice(&payload[..8]);
+        Ok(Self { raw })
+    }
+}
+
+#[cfg(feature = "debug")]
+impl core::fmt::Debug for Module1Status {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        if f.alternate() {
+            f.debug_struct("Module1Status")
+                .field("board_humidity", &self.board_humidity())
+                .field("board_temperature", &self.board_temperature())
+                .field("firmware_is_dirty", &self.firmware_is_dirty())
+                .field("firmware_on_main", &self.firmware_on_main())
+                .field("board_on_time_seconds", &self.board_on_time_seconds())
+                .field("firmware_version", &self.firmware_version())
+            .finish()
+        } else {
+            f.debug_tuple("Module1Status").field(&self.raw).finish()
+        }
+    }
+}
+
+#[cfg(feature = "arb")]
+impl<'a> Arbitrary<'a> for Module1Status {
+    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
+        let board_humidity = u.int_in_range(0..=127)?;
+        let board_temperature = u.int_in_range(0..=127)?;
+        let firmware_is_dirty = u.int_in_range(0..=1)? == 1;
+        let firmware_on_main = u.int_in_range(0..=1)? == 1;
+        let board_on_time_seconds = u.int_in_range(0..=65535)?;
+        let firmware_version = u.int_in_range(0..=4294967295)?;
+        Module1Status::new(board_humidity,board_temperature,firmware_is_dirty,firmware_on_main,board_on_time_seconds,firmware_version).map_err(|_| arbitrary::Error::IncorrectFormat)
+    }
+}
+
+/// module2_status
+///
+/// - ID: 132 (0x84)
+/// - Size: 8 bytes
+/// - Transmitter: module2
+///
+/// Git info for the firmware, on timer, along with temperature and humidity
+#[derive(Clone, Copy)]
+pub struct Module2Status {
+    raw: [u8; 8],
+}
+
+impl Module2Status {
+    pub const MESSAGE_ID: u32 = 132;
+    
+    pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
+    pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
+    pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
+    pub const BOARD_TEMPERATURE_MAX: u8 = 127_u8;
+    pub const BOARD_ON_TIME_SECONDS_MIN: u16 = 0_u16;
+    pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
+    pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
+    pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
+    
+    /// Construct new module2_status from values
+    pub fn new(board_humidity: u8, board_temperature: u8, firmware_is_dirty: bool, firmware_on_main: bool, board_on_time_seconds: u16, firmware_version: u32) -> Result<Self, CanError> {
+        let mut res = Self { raw: [0u8; 8] };
+        res.set_board_humidity(board_humidity)?;
+        res.set_board_temperature(board_temperature)?;
+        res.set_firmware_is_dirty(firmware_is_dirty)?;
+        res.set_firmware_on_main(firmware_on_main)?;
+        res.set_board_on_time_seconds(board_on_time_seconds)?;
+        res.set_firmware_version(firmware_version)?;
+        Ok(res)
+    }
+    
+    /// Access message payload raw value
+    pub fn raw(&self) -> &[u8; 8] {
+        &self.raw
+    }
+    
+    /// board_humidity
+    ///
+    /// the relative humidity at the acu
+    ///
+    /// - Min: 0
+    /// - Max: 127
+    /// - Unit: "relative_humidity"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_humidity(&self) -> u8 {
+        self.board_humidity_raw()
+    }
+    
+    /// Get raw value of board_humidity
+    ///
+    /// - Start bit: 57
+    /// - Signal size: 7 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_humidity_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[57..64].load_le::<u8>();
+        
+        signal
+    }
+    
+    /// Set value of board_humidity
+    #[inline(always)]
+    pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u8 || 127_u8 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 132 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
+        Ok(())
+    }
+    
+    /// board_temperature
+    ///
+    /// The ambient temperature at the PCB
+    ///
+    /// - Min: 0
+    /// - Max: 127
+    /// - Unit: "celcius"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_temperature(&self) -> u8 {
+        self.board_temperature_raw()
+    }
+    
+    /// Get raw value of board_temperature
+    ///
+    /// - Start bit: 50
+    /// - Signal size: 7 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_temperature_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[50..57].load_le::<u8>();
+        
+        signal
+    }
+    
+    /// Set value of board_temperature
+    #[inline(always)]
+    pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u8 || 127_u8 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 132 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_is_dirty
+    ///
+    /// if the compiled firmware had uncommitted changes (1) or not (0)
+    ///
+    /// - Min: 0
+    /// - Max: 1
+    /// - Unit: "bool"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_is_dirty(&self) -> bool {
+        self.firmware_is_dirty_raw()
+    }
+    
+    /// Get raw value of firmware_is_dirty
+    ///
+    /// - Start bit: 49
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_is_dirty_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
+        
+        signal == 1
+    }
+    
+    /// Set value of firmware_is_dirty
+    #[inline(always)]
+    pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_on_main
+    ///
+    /// if the compiled firmware was from main branch (1) or not (0)
+    ///
+    /// - Min: 0
+    /// - Max: 1
+    /// - Unit: "bool"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_on_main(&self) -> bool {
+        self.firmware_on_main_raw()
+    }
+    
+    /// Get raw value of firmware_on_main
+    ///
+    /// - Start bit: 48
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_on_main_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
+        
+        signal == 1
+    }
+    
+    /// Set value of firmware_on_main
+    #[inline(always)]
+    pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
+        Ok(())
+    }
+    
+    /// board_on_time_seconds
+    ///
+    /// time in seconds which the board has been powered on and running
+    ///
+    /// - Min: 0
+    /// - Max: 65535
+    /// - Unit: "seconds"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_on_time_seconds(&self) -> u16 {
+        self.board_on_time_seconds_raw()
+    }
+    
+    /// Get raw value of board_on_time_seconds
+    ///
+    /// - Start bit: 32
+    /// - Signal size: 16 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_on_time_seconds_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
+        
+        signal
+    }
+    
+    /// Set value of board_on_time_seconds
+    #[inline(always)]
+    pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u16 || 65535_u16 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 132 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_version
+    ///
+    /// short hash of the firmware
+    ///
+    /// - Min: 0
+    /// - Max: 4294967295
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_version(&self) -> u32 {
+        self.firmware_version_raw()
+    }
+    
+    /// Get raw value of firmware_version
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 32 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_version_raw(&self) -> u32 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
+        
+        signal
+    }
+    
+    /// Set value of firmware_version
+    #[inline(always)]
+    pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u32 || 4294967295_u32 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 132 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
+        Ok(())
+    }
+    
+}
+
+impl core::convert::TryFrom<&[u8]> for Module2Status {
+    type Error = CanError;
+    
+    #[inline(always)]
+    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
+        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
+        let mut raw = [0u8; 8];
+        raw.copy_from_slice(&payload[..8]);
+        Ok(Self { raw })
+    }
+}
+
+#[cfg(feature = "debug")]
+impl core::fmt::Debug for Module2Status {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        if f.alternate() {
+            f.debug_struct("Module2Status")
+                .field("board_humidity", &self.board_humidity())
+                .field("board_temperature", &self.board_temperature())
+                .field("firmware_is_dirty", &self.firmware_is_dirty())
+                .field("firmware_on_main", &self.firmware_on_main())
+                .field("board_on_time_seconds", &self.board_on_time_seconds())
+                .field("firmware_version", &self.firmware_version())
+            .finish()
+        } else {
+            f.debug_tuple("Module2Status").field(&self.raw).finish()
+        }
+    }
+}
+
+#[cfg(feature = "arb")]
+impl<'a> Arbitrary<'a> for Module2Status {
+    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
+        let board_humidity = u.int_in_range(0..=127)?;
+        let board_temperature = u.int_in_range(0..=127)?;
+        let firmware_is_dirty = u.int_in_range(0..=1)? == 1;
+        let firmware_on_main = u.int_in_range(0..=1)? == 1;
+        let board_on_time_seconds = u.int_in_range(0..=65535)?;
+        let firmware_version = u.int_in_range(0..=4294967295)?;
+        Module2Status::new(board_humidity,board_temperature,firmware_is_dirty,firmware_on_main,board_on_time_seconds,firmware_version).map_err(|_| arbitrary::Error::IncorrectFormat)
+    }
+}
+
+/// module3_status
+///
+/// - ID: 133 (0x85)
+/// - Size: 8 bytes
+/// - Transmitter: module3
+///
+/// Git info for the firmware, on timer, along with temperature and humidity
+#[derive(Clone, Copy)]
+pub struct Module3Status {
+    raw: [u8; 8],
+}
+
+impl Module3Status {
+    pub const MESSAGE_ID: u32 = 133;
+    
+    pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
+    pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
+    pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
+    pub const BOARD_TEMPERATURE_MAX: u8 = 127_u8;
+    pub const BOARD_ON_TIME_SECONDS_MIN: u16 = 0_u16;
+    pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
+    pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
+    pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
+    
+    /// Construct new module3_status from values
+    pub fn new(board_humidity: u8, board_temperature: u8, firmware_is_dirty: bool, firmware_on_main: bool, board_on_time_seconds: u16, firmware_version: u32) -> Result<Self, CanError> {
+        let mut res = Self { raw: [0u8; 8] };
+        res.set_board_humidity(board_humidity)?;
+        res.set_board_temperature(board_temperature)?;
+        res.set_firmware_is_dirty(firmware_is_dirty)?;
+        res.set_firmware_on_main(firmware_on_main)?;
+        res.set_board_on_time_seconds(board_on_time_seconds)?;
+        res.set_firmware_version(firmware_version)?;
+        Ok(res)
+    }
+    
+    /// Access message payload raw value
+    pub fn raw(&self) -> &[u8; 8] {
+        &self.raw
+    }
+    
+    /// board_humidity
+    ///
+    /// the relative humidity at the acu
+    ///
+    /// - Min: 0
+    /// - Max: 127
+    /// - Unit: "relative_humidity"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_humidity(&self) -> u8 {
+        self.board_humidity_raw()
+    }
+    
+    /// Get raw value of board_humidity
+    ///
+    /// - Start bit: 57
+    /// - Signal size: 7 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_humidity_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[57..64].load_le::<u8>();
+        
+        signal
+    }
+    
+    /// Set value of board_humidity
+    #[inline(always)]
+    pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u8 || 127_u8 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 133 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
+        Ok(())
+    }
+    
+    /// board_temperature
+    ///
+    /// The ambient temperature at the PCB
+    ///
+    /// - Min: 0
+    /// - Max: 127
+    /// - Unit: "celcius"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_temperature(&self) -> u8 {
+        self.board_temperature_raw()
+    }
+    
+    /// Get raw value of board_temperature
+    ///
+    /// - Start bit: 50
+    /// - Signal size: 7 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_temperature_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[50..57].load_le::<u8>();
+        
+        signal
+    }
+    
+    /// Set value of board_temperature
+    #[inline(always)]
+    pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u8 || 127_u8 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 133 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_is_dirty
+    ///
+    /// if the compiled firmware had uncommitted changes (1) or not (0)
+    ///
+    /// - Min: 0
+    /// - Max: 1
+    /// - Unit: "bool"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_is_dirty(&self) -> bool {
+        self.firmware_is_dirty_raw()
+    }
+    
+    /// Get raw value of firmware_is_dirty
+    ///
+    /// - Start bit: 49
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_is_dirty_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
+        
+        signal == 1
+    }
+    
+    /// Set value of firmware_is_dirty
+    #[inline(always)]
+    pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_on_main
+    ///
+    /// if the compiled firmware was from main branch (1) or not (0)
+    ///
+    /// - Min: 0
+    /// - Max: 1
+    /// - Unit: "bool"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_on_main(&self) -> bool {
+        self.firmware_on_main_raw()
+    }
+    
+    /// Get raw value of firmware_on_main
+    ///
+    /// - Start bit: 48
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_on_main_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
+        
+        signal == 1
+    }
+    
+    /// Set value of firmware_on_main
+    #[inline(always)]
+    pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
+        Ok(())
+    }
+    
+    /// board_on_time_seconds
+    ///
+    /// time in seconds which the board has been powered on and running
+    ///
+    /// - Min: 0
+    /// - Max: 65535
+    /// - Unit: "seconds"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_on_time_seconds(&self) -> u16 {
+        self.board_on_time_seconds_raw()
+    }
+    
+    /// Get raw value of board_on_time_seconds
+    ///
+    /// - Start bit: 32
+    /// - Signal size: 16 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_on_time_seconds_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
+        
+        signal
+    }
+    
+    /// Set value of board_on_time_seconds
+    #[inline(always)]
+    pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u16 || 65535_u16 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 133 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_version
+    ///
+    /// short hash of the firmware
+    ///
+    /// - Min: 0
+    /// - Max: 4294967295
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_version(&self) -> u32 {
+        self.firmware_version_raw()
+    }
+    
+    /// Get raw value of firmware_version
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 32 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_version_raw(&self) -> u32 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
+        
+        signal
+    }
+    
+    /// Set value of firmware_version
+    #[inline(always)]
+    pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u32 || 4294967295_u32 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 133 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
+        Ok(())
+    }
+    
+}
+
+impl core::convert::TryFrom<&[u8]> for Module3Status {
+    type Error = CanError;
+    
+    #[inline(always)]
+    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
+        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
+        let mut raw = [0u8; 8];
+        raw.copy_from_slice(&payload[..8]);
+        Ok(Self { raw })
+    }
+}
+
+#[cfg(feature = "debug")]
+impl core::fmt::Debug for Module3Status {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        if f.alternate() {
+            f.debug_struct("Module3Status")
+                .field("board_humidity", &self.board_humidity())
+                .field("board_temperature", &self.board_temperature())
+                .field("firmware_is_dirty", &self.firmware_is_dirty())
+                .field("firmware_on_main", &self.firmware_on_main())
+                .field("board_on_time_seconds", &self.board_on_time_seconds())
+                .field("firmware_version", &self.firmware_version())
+            .finish()
+        } else {
+            f.debug_tuple("Module3Status").field(&self.raw).finish()
+        }
+    }
+}
+
+#[cfg(feature = "arb")]
+impl<'a> Arbitrary<'a> for Module3Status {
+    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
+        let board_humidity = u.int_in_range(0..=127)?;
+        let board_temperature = u.int_in_range(0..=127)?;
+        let firmware_is_dirty = u.int_in_range(0..=1)? == 1;
+        let firmware_on_main = u.int_in_range(0..=1)? == 1;
+        let board_on_time_seconds = u.int_in_range(0..=65535)?;
+        let firmware_version = u.int_in_range(0..=4294967295)?;
+        Module3Status::new(board_humidity,board_temperature,firmware_is_dirty,firmware_on_main,board_on_time_seconds,firmware_version).map_err(|_| arbitrary::Error::IncorrectFormat)
+    }
+}
+
+/// module4_status
+///
+/// - ID: 134 (0x86)
+/// - Size: 8 bytes
+/// - Transmitter: module4
+///
+/// Git info for the firmware, on timer, along with temperature and humidity
+#[derive(Clone, Copy)]
+pub struct Module4Status {
+    raw: [u8; 8],
+}
+
+impl Module4Status {
+    pub const MESSAGE_ID: u32 = 134;
+    
+    pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
+    pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
+    pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
+    pub const BOARD_TEMPERATURE_MAX: u8 = 127_u8;
+    pub const BOARD_ON_TIME_SECONDS_MIN: u16 = 0_u16;
+    pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
+    pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
+    pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
+    
+    /// Construct new module4_status from values
+    pub fn new(board_humidity: u8, board_temperature: u8, firmware_is_dirty: bool, firmware_on_main: bool, board_on_time_seconds: u16, firmware_version: u32) -> Result<Self, CanError> {
+        let mut res = Self { raw: [0u8; 8] };
+        res.set_board_humidity(board_humidity)?;
+        res.set_board_temperature(board_temperature)?;
+        res.set_firmware_is_dirty(firmware_is_dirty)?;
+        res.set_firmware_on_main(firmware_on_main)?;
+        res.set_board_on_time_seconds(board_on_time_seconds)?;
+        res.set_firmware_version(firmware_version)?;
+        Ok(res)
+    }
+    
+    /// Access message payload raw value
+    pub fn raw(&self) -> &[u8; 8] {
+        &self.raw
+    }
+    
+    /// board_humidity
+    ///
+    /// the relative humidity at the acu
+    ///
+    /// - Min: 0
+    /// - Max: 127
+    /// - Unit: "relative_humidity"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_humidity(&self) -> u8 {
+        self.board_humidity_raw()
+    }
+    
+    /// Get raw value of board_humidity
+    ///
+    /// - Start bit: 57
+    /// - Signal size: 7 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_humidity_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[57..64].load_le::<u8>();
+        
+        signal
+    }
+    
+    /// Set value of board_humidity
+    #[inline(always)]
+    pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u8 || 127_u8 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 134 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
+        Ok(())
+    }
+    
+    /// board_temperature
+    ///
+    /// The ambient temperature at the PCB
+    ///
+    /// - Min: 0
+    /// - Max: 127
+    /// - Unit: "celcius"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_temperature(&self) -> u8 {
+        self.board_temperature_raw()
+    }
+    
+    /// Get raw value of board_temperature
+    ///
+    /// - Start bit: 50
+    /// - Signal size: 7 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_temperature_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[50..57].load_le::<u8>();
+        
+        signal
+    }
+    
+    /// Set value of board_temperature
+    #[inline(always)]
+    pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u8 || 127_u8 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 134 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_is_dirty
+    ///
+    /// if the compiled firmware had uncommitted changes (1) or not (0)
+    ///
+    /// - Min: 0
+    /// - Max: 1
+    /// - Unit: "bool"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_is_dirty(&self) -> bool {
+        self.firmware_is_dirty_raw()
+    }
+    
+    /// Get raw value of firmware_is_dirty
+    ///
+    /// - Start bit: 49
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_is_dirty_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
+        
+        signal == 1
+    }
+    
+    /// Set value of firmware_is_dirty
+    #[inline(always)]
+    pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_on_main
+    ///
+    /// if the compiled firmware was from main branch (1) or not (0)
+    ///
+    /// - Min: 0
+    /// - Max: 1
+    /// - Unit: "bool"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_on_main(&self) -> bool {
+        self.firmware_on_main_raw()
+    }
+    
+    /// Get raw value of firmware_on_main
+    ///
+    /// - Start bit: 48
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_on_main_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
+        
+        signal == 1
+    }
+    
+    /// Set value of firmware_on_main
+    #[inline(always)]
+    pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
+        Ok(())
+    }
+    
+    /// board_on_time_seconds
+    ///
+    /// time in seconds which the board has been powered on and running
+    ///
+    /// - Min: 0
+    /// - Max: 65535
+    /// - Unit: "seconds"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_on_time_seconds(&self) -> u16 {
+        self.board_on_time_seconds_raw()
+    }
+    
+    /// Get raw value of board_on_time_seconds
+    ///
+    /// - Start bit: 32
+    /// - Signal size: 16 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_on_time_seconds_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
+        
+        signal
+    }
+    
+    /// Set value of board_on_time_seconds
+    #[inline(always)]
+    pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u16 || 65535_u16 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 134 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_version
+    ///
+    /// short hash of the firmware
+    ///
+    /// - Min: 0
+    /// - Max: 4294967295
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_version(&self) -> u32 {
+        self.firmware_version_raw()
+    }
+    
+    /// Get raw value of firmware_version
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 32 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_version_raw(&self) -> u32 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
+        
+        signal
+    }
+    
+    /// Set value of firmware_version
+    #[inline(always)]
+    pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u32 || 4294967295_u32 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 134 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
+        Ok(())
+    }
+    
+}
+
+impl core::convert::TryFrom<&[u8]> for Module4Status {
+    type Error = CanError;
+    
+    #[inline(always)]
+    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
+        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
+        let mut raw = [0u8; 8];
+        raw.copy_from_slice(&payload[..8]);
+        Ok(Self { raw })
+    }
+}
+
+#[cfg(feature = "debug")]
+impl core::fmt::Debug for Module4Status {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        if f.alternate() {
+            f.debug_struct("Module4Status")
+                .field("board_humidity", &self.board_humidity())
+                .field("board_temperature", &self.board_temperature())
+                .field("firmware_is_dirty", &self.firmware_is_dirty())
+                .field("firmware_on_main", &self.firmware_on_main())
+                .field("board_on_time_seconds", &self.board_on_time_seconds())
+                .field("firmware_version", &self.firmware_version())
+            .finish()
+        } else {
+            f.debug_tuple("Module4Status").field(&self.raw).finish()
+        }
+    }
+}
+
+#[cfg(feature = "arb")]
+impl<'a> Arbitrary<'a> for Module4Status {
+    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
+        let board_humidity = u.int_in_range(0..=127)?;
+        let board_temperature = u.int_in_range(0..=127)?;
+        let firmware_is_dirty = u.int_in_range(0..=1)? == 1;
+        let firmware_on_main = u.int_in_range(0..=1)? == 1;
+        let board_on_time_seconds = u.int_in_range(0..=65535)?;
+        let firmware_version = u.int_in_range(0..=4294967295)?;
+        Module4Status::new(board_humidity,board_temperature,firmware_is_dirty,firmware_on_main,board_on_time_seconds,firmware_version).map_err(|_| arbitrary::Error::IncorrectFormat)
+    }
+}
+
+/// module5_status
+///
+/// - ID: 135 (0x87)
+/// - Size: 8 bytes
+/// - Transmitter: module5
+///
+/// Git info for the firmware, on timer, along with temperature and humidity
+#[derive(Clone, Copy)]
+pub struct Module5Status {
+    raw: [u8; 8],
+}
+
+impl Module5Status {
+    pub const MESSAGE_ID: u32 = 135;
+    
+    pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
+    pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
+    pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
+    pub const BOARD_TEMPERATURE_MAX: u8 = 127_u8;
+    pub const BOARD_ON_TIME_SECONDS_MIN: u16 = 0_u16;
+    pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
+    pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
+    pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
+    
+    /// Construct new module5_status from values
+    pub fn new(board_humidity: u8, board_temperature: u8, firmware_is_dirty: bool, firmware_on_main: bool, board_on_time_seconds: u16, firmware_version: u32) -> Result<Self, CanError> {
+        let mut res = Self { raw: [0u8; 8] };
+        res.set_board_humidity(board_humidity)?;
+        res.set_board_temperature(board_temperature)?;
+        res.set_firmware_is_dirty(firmware_is_dirty)?;
+        res.set_firmware_on_main(firmware_on_main)?;
+        res.set_board_on_time_seconds(board_on_time_seconds)?;
+        res.set_firmware_version(firmware_version)?;
+        Ok(res)
+    }
+    
+    /// Access message payload raw value
+    pub fn raw(&self) -> &[u8; 8] {
+        &self.raw
+    }
+    
+    /// board_humidity
+    ///
+    /// the relative humidity at the acu
+    ///
+    /// - Min: 0
+    /// - Max: 127
+    /// - Unit: "relative_humidity"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_humidity(&self) -> u8 {
+        self.board_humidity_raw()
+    }
+    
+    /// Get raw value of board_humidity
+    ///
+    /// - Start bit: 57
+    /// - Signal size: 7 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_humidity_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[57..64].load_le::<u8>();
+        
+        signal
+    }
+    
+    /// Set value of board_humidity
+    #[inline(always)]
+    pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u8 || 127_u8 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 135 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
+        Ok(())
+    }
+    
+    /// board_temperature
+    ///
+    /// The ambient temperature at the PCB
+    ///
+    /// - Min: 0
+    /// - Max: 127
+    /// - Unit: "celcius"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_temperature(&self) -> u8 {
+        self.board_temperature_raw()
+    }
+    
+    /// Get raw value of board_temperature
+    ///
+    /// - Start bit: 50
+    /// - Signal size: 7 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_temperature_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[50..57].load_le::<u8>();
+        
+        signal
+    }
+    
+    /// Set value of board_temperature
+    #[inline(always)]
+    pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u8 || 127_u8 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 135 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_is_dirty
+    ///
+    /// if the compiled firmware had uncommitted changes (1) or not (0)
+    ///
+    /// - Min: 0
+    /// - Max: 1
+    /// - Unit: "bool"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_is_dirty(&self) -> bool {
+        self.firmware_is_dirty_raw()
+    }
+    
+    /// Get raw value of firmware_is_dirty
+    ///
+    /// - Start bit: 49
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_is_dirty_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
+        
+        signal == 1
+    }
+    
+    /// Set value of firmware_is_dirty
+    #[inline(always)]
+    pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_on_main
+    ///
+    /// if the compiled firmware was from main branch (1) or not (0)
+    ///
+    /// - Min: 0
+    /// - Max: 1
+    /// - Unit: "bool"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_on_main(&self) -> bool {
+        self.firmware_on_main_raw()
+    }
+    
+    /// Get raw value of firmware_on_main
+    ///
+    /// - Start bit: 48
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_on_main_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
+        
+        signal == 1
+    }
+    
+    /// Set value of firmware_on_main
+    #[inline(always)]
+    pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
+        Ok(())
+    }
+    
+    /// board_on_time_seconds
+    ///
+    /// time in seconds which the board has been powered on and running
+    ///
+    /// - Min: 0
+    /// - Max: 65535
+    /// - Unit: "seconds"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_on_time_seconds(&self) -> u16 {
+        self.board_on_time_seconds_raw()
+    }
+    
+    /// Get raw value of board_on_time_seconds
+    ///
+    /// - Start bit: 32
+    /// - Signal size: 16 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_on_time_seconds_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
+        
+        signal
+    }
+    
+    /// Set value of board_on_time_seconds
+    #[inline(always)]
+    pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u16 || 65535_u16 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 135 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_version
+    ///
+    /// short hash of the firmware
+    ///
+    /// - Min: 0
+    /// - Max: 4294967295
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_version(&self) -> u32 {
+        self.firmware_version_raw()
+    }
+    
+    /// Get raw value of firmware_version
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 32 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_version_raw(&self) -> u32 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
+        
+        signal
+    }
+    
+    /// Set value of firmware_version
+    #[inline(always)]
+    pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u32 || 4294967295_u32 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 135 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
+        Ok(())
+    }
+    
+}
+
+impl core::convert::TryFrom<&[u8]> for Module5Status {
+    type Error = CanError;
+    
+    #[inline(always)]
+    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
+        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
+        let mut raw = [0u8; 8];
+        raw.copy_from_slice(&payload[..8]);
+        Ok(Self { raw })
+    }
+}
+
+#[cfg(feature = "debug")]
+impl core::fmt::Debug for Module5Status {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        if f.alternate() {
+            f.debug_struct("Module5Status")
+                .field("board_humidity", &self.board_humidity())
+                .field("board_temperature", &self.board_temperature())
+                .field("firmware_is_dirty", &self.firmware_is_dirty())
+                .field("firmware_on_main", &self.firmware_on_main())
+                .field("board_on_time_seconds", &self.board_on_time_seconds())
+                .field("firmware_version", &self.firmware_version())
+            .finish()
+        } else {
+            f.debug_tuple("Module5Status").field(&self.raw).finish()
+        }
+    }
+}
+
+#[cfg(feature = "arb")]
+impl<'a> Arbitrary<'a> for Module5Status {
+    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
+        let board_humidity = u.int_in_range(0..=127)?;
+        let board_temperature = u.int_in_range(0..=127)?;
+        let firmware_is_dirty = u.int_in_range(0..=1)? == 1;
+        let firmware_on_main = u.int_in_range(0..=1)? == 1;
+        let board_on_time_seconds = u.int_in_range(0..=65535)?;
+        let firmware_version = u.int_in_range(0..=4294967295)?;
+        Module5Status::new(board_humidity,board_temperature,firmware_is_dirty,firmware_on_main,board_on_time_seconds,firmware_version).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -6261,7 +6261,7 @@ pub fn set_vcu_apps2_start_threshold(&mut self, value: u16) -> Result<(), CanErr
 }
 
 
-/// vcu_firmware_version
+/// vcu_board_data
 ///
 /// - ID: 200 (0xc8)
 /// - Size: 8 bytes
@@ -6269,25 +6269,25 @@ pub fn set_vcu_apps2_start_threshold(&mut self, value: u16) -> Result<(), CanErr
 ///
 /// information on the running vcu firmware and system on-timer
 #[derive(Clone, Copy)]
-pub struct VcuFirmwareVersion {
+pub struct VcuBoardData {
     raw: [u8; 8],
 }
 
-impl VcuFirmwareVersion {
+impl VcuBoardData {
     pub const MESSAGE_ID: u32 = 200;
     
-    pub const VCU_ON_TIME_SECONDS_MIN: u16 = 0_u16;
-    pub const VCU_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
-    pub const VCU_FW_VERSION_MIN: u32 = 0_u32;
-    pub const VCU_FW_VERSION_MAX: u32 = 4294967295_u32;
+    pub const BOARD_ON_TIME_SECONDS_MIN: u16 = 0_u16;
+    pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
+    pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
+    pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
     
-    /// Construct new vcu_firmware_version from values
-    pub fn new(vcu_project_is_dirty: bool, vcu_project_on_main: bool, vcu_on_time_seconds: u16, vcu_fw_version: u32) -> Result<Self, CanError> {
+    /// Construct new vcu_board_data from values
+    pub fn new(firmware_is_dirty: bool, firmware_on_main: bool, board_on_time_seconds: u16, firmware_version: u32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 8] };
-        res.set_vcu_project_is_dirty(vcu_project_is_dirty)?;
-        res.set_vcu_project_on_main(vcu_project_on_main)?;
-        res.set_vcu_on_time_seconds(vcu_on_time_seconds)?;
-        res.set_vcu_fw_version(vcu_fw_version)?;
+        res.set_firmware_is_dirty(firmware_is_dirty)?;
+        res.set_firmware_on_main(firmware_on_main)?;
+        res.set_board_on_time_seconds(board_on_time_seconds)?;
+        res.set_firmware_version(firmware_version)?;
         Ok(res)
     }
     
@@ -6296,56 +6296,56 @@ impl VcuFirmwareVersion {
         &self.raw
     }
     
-    /// vcu_project_is_dirty
+    /// firmware_is_dirty
     ///
-    /// if the compiled fw had uncommitted changes (1) or not (0)
+    /// if the compiled firmware had uncommitted changes (1) or not (0)
     ///
     /// - Min: 0
     /// - Max: 1
-    /// - Unit: ""
+    /// - Unit: "bool"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn vcu_project_is_dirty(&self) -> bool {
-        self.vcu_project_is_dirty_raw()
+    pub fn firmware_is_dirty(&self) -> bool {
+        self.firmware_is_dirty_raw()
     }
     
-    /// Get raw value of vcu_project_is_dirty
+    /// Get raw value of firmware_is_dirty
     ///
-    /// - Start bit: 56
+    /// - Start bit: 49
     /// - Signal size: 1 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn vcu_project_is_dirty_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[56..57].load_le::<u8>();
+    pub fn firmware_is_dirty_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         
         signal == 1
     }
     
-    /// Set value of vcu_project_is_dirty
+    /// Set value of firmware_is_dirty
     #[inline(always)]
-    pub fn set_vcu_project_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[56..57].store_le(value);
+        self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
         Ok(())
     }
     
-    /// vcu_project_on_main
+    /// firmware_on_main
     ///
-    /// if the compiled fw was from main branch (1) or not (0)
+    /// if the compiled firmware was from main branch (1) or not (0)
     ///
     /// - Min: 0
     /// - Max: 1
-    /// - Unit: ""
+    /// - Unit: "bool"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn vcu_project_on_main(&self) -> bool {
-        self.vcu_project_on_main_raw()
+    pub fn firmware_on_main(&self) -> bool {
+        self.firmware_on_main_raw()
     }
     
-    /// Get raw value of vcu_project_on_main
+    /// Get raw value of firmware_on_main
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -6354,34 +6354,34 @@ impl VcuFirmwareVersion {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn vcu_project_on_main_raw(&self) -> bool {
+    pub fn firmware_on_main_raw(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         
         signal == 1
     }
     
-    /// Set value of vcu_project_on_main
+    /// Set value of firmware_on_main
     #[inline(always)]
-    pub fn set_vcu_project_on_main(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
     
-    /// vcu_on_time_seconds
+    /// board_on_time_seconds
     ///
-    /// time in seconds which the VCU has been powered on and running
+    /// time in seconds which the board has been powered on and running
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: "seconds"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn vcu_on_time_seconds(&self) -> u16 {
-        self.vcu_on_time_seconds_raw()
+    pub fn board_on_time_seconds(&self) -> u16 {
+        self.board_on_time_seconds_raw()
     }
     
-    /// Get raw value of vcu_on_time_seconds
+    /// Get raw value of board_on_time_seconds
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -6390,15 +6390,15 @@ impl VcuFirmwareVersion {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn vcu_on_time_seconds_raw(&self) -> u16 {
+    pub fn board_on_time_seconds_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of vcu_on_time_seconds
+    /// Set value of board_on_time_seconds
     #[inline(always)]
-    pub fn set_vcu_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 200 });
@@ -6407,20 +6407,20 @@ impl VcuFirmwareVersion {
         Ok(())
     }
     
-    /// vcu_fw_version
+    /// firmware_version
     ///
-    /// short hash of the firmware on VCU
+    /// short hash of the firmware
     ///
     /// - Min: 0
     /// - Max: 4294967295
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn vcu_fw_version(&self) -> u32 {
-        self.vcu_fw_version_raw()
+    pub fn firmware_version(&self) -> u32 {
+        self.firmware_version_raw()
     }
     
-    /// Get raw value of vcu_fw_version
+    /// Get raw value of firmware_version
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -6429,15 +6429,15 @@ impl VcuFirmwareVersion {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn vcu_fw_version_raw(&self) -> u32 {
+    pub fn firmware_version_raw(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
         
         signal
     }
     
-    /// Set value of vcu_fw_version
+    /// Set value of firmware_version
     #[inline(always)]
-    pub fn set_vcu_fw_version(&mut self, value: u32) -> Result<(), CanError> {
+    pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u32 || 4294967295_u32 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 200 });
@@ -6448,7 +6448,7 @@ impl VcuFirmwareVersion {
     
 }
 
-impl core::convert::TryFrom<&[u8]> for VcuFirmwareVersion {
+impl core::convert::TryFrom<&[u8]> for VcuBoardData {
     type Error = CanError;
     
     #[inline(always)]
@@ -6461,33 +6461,33 @@ impl core::convert::TryFrom<&[u8]> for VcuFirmwareVersion {
 }
 
 #[cfg(feature = "debug")]
-impl core::fmt::Debug for VcuFirmwareVersion {
+impl core::fmt::Debug for VcuBoardData {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
-            f.debug_struct("VcuFirmwareVersion")
-                .field("vcu_project_is_dirty", &self.vcu_project_is_dirty())
-                .field("vcu_project_on_main", &self.vcu_project_on_main())
-                .field("vcu_on_time_seconds", &self.vcu_on_time_seconds())
-                .field("vcu_fw_version", &self.vcu_fw_version())
+            f.debug_struct("VcuBoardData")
+                .field("firmware_is_dirty", &self.firmware_is_dirty())
+                .field("firmware_on_main", &self.firmware_on_main())
+                .field("board_on_time_seconds", &self.board_on_time_seconds())
+                .field("firmware_version", &self.firmware_version())
             .finish()
         } else {
-            f.debug_tuple("VcuFirmwareVersion").field(&self.raw).finish()
+            f.debug_tuple("VcuBoardData").field(&self.raw).finish()
         }
     }
 }
 
 #[cfg(feature = "arb")]
-impl<'a> Arbitrary<'a> for VcuFirmwareVersion {
+impl<'a> Arbitrary<'a> for VcuBoardData {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let vcu_project_is_dirty = u.int_in_range(0..=1)? == 1;
-        let vcu_project_on_main = u.int_in_range(0..=1)? == 1;
-        let vcu_on_time_seconds = u.int_in_range(0..=65535)?;
-        let vcu_fw_version = u.int_in_range(0..=4294967295)?;
-        VcuFirmwareVersion::new(vcu_project_is_dirty,vcu_project_on_main,vcu_on_time_seconds,vcu_fw_version).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let firmware_is_dirty = u.int_in_range(0..=1)? == 1;
+        let firmware_on_main = u.int_in_range(0..=1)? == 1;
+        let board_on_time_seconds = u.int_in_range(0..=65535)?;
+        let firmware_version = u.int_in_range(0..=4294967295)?;
+        VcuBoardData::new(firmware_is_dirty,firmware_on_main,board_on_time_seconds,firmware_version).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
-/// VCU_BOARD_READINGS_ONE
+/// vcu_board_readings_one
 ///
 /// - ID: 201 (0xc9)
 /// - Size: 8 bytes
@@ -6511,7 +6511,7 @@ impl VcuBoardReadingsOne {
     pub const VCU_GLV_CURRENT_MIN: u16 = 0_u16;
     pub const VCU_GLV_CURRENT_MAX: u16 = 65535_u16;
     
-    /// Construct new VCU_BOARD_READINGS_ONE from values
+    /// Construct new vcu_board_readings_one from values
     pub fn new(vcu_5v_voltage: u16, vcu_bspd_voltage: u16, vcu_glv_voltage: u16, vcu_glv_current: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 8] };
         res.set_vcu_5v_voltage(vcu_5v_voltage)?;
@@ -6723,7 +6723,7 @@ impl<'a> Arbitrary<'a> for VcuBoardReadingsOne {
     }
 }
 
-/// VCU_BOARD_READINGS_TWO
+/// vcu_board_readings_two
 ///
 /// - ID: 202 (0xca)
 /// - Size: 8 bytes
@@ -6747,7 +6747,7 @@ impl VcuBoardReadingsTwo {
     pub const VCU_SDC_VOLTAGE_MIN: u16 = 0_u16;
     pub const VCU_SDC_VOLTAGE_MAX: u16 = 65535_u16;
     
-    /// Construct new VCU_BOARD_READINGS_TWO from values
+    /// Construct new vcu_board_readings_two from values
     pub fn new(vcu_ain10_voltage: u16, vcu_ain9_voltage: u16, vcu_sdc_current: u16, vcu_sdc_voltage: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 8] };
         res.set_vcu_ain10_voltage(vcu_ain10_voltage)?;
@@ -8405,19 +8405,19 @@ impl<'a> Arbitrary<'a> for VcuCoulombCounters {
     }
 }
 
-/// vcu_calculated_slip
+/// vcu_slip_info
 ///
 /// - ID: 212 (0xd4)
 /// - Size: 6 bytes
 /// - Transmitter: vcu
 ///
-/// vcu wheel speed and slip info for tc and lc
+/// vcu wheel speed and slip info for traction control and launch control
 #[derive(Clone, Copy)]
-pub struct VcuCalculatedSlip {
+pub struct VcuSlipInfo {
     raw: [u8; 6],
 }
 
-impl VcuCalculatedSlip {
+impl VcuSlipInfo {
     pub const MESSAGE_ID: u32 = 212;
     
     pub const VCU_CALCULATED_SLIP_MIN: f32 = 0_f32;
@@ -8427,7 +8427,7 @@ impl VcuCalculatedSlip {
     pub const VCU_FRONT_RPM_AVG_MIN: f32 = 0_f32;
     pub const VCU_FRONT_RPM_AVG_MAX: f32 = 65535_f32;
     
-    /// Construct new vcu_calculated_slip from values
+    /// Construct new vcu_slip_info from values
     pub fn new(vcu_calculated_slip: f32, vcu_rear_rpm_avg: f32, vcu_front_rpm_avg: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 6] };
         res.set_vcu_calculated_slip(vcu_calculated_slip)?;
@@ -8572,7 +8572,7 @@ impl VcuCalculatedSlip {
     
 }
 
-impl core::convert::TryFrom<&[u8]> for VcuCalculatedSlip {
+impl core::convert::TryFrom<&[u8]> for VcuSlipInfo {
     type Error = CanError;
     
     #[inline(always)]
@@ -8585,27 +8585,27 @@ impl core::convert::TryFrom<&[u8]> for VcuCalculatedSlip {
 }
 
 #[cfg(feature = "debug")]
-impl core::fmt::Debug for VcuCalculatedSlip {
+impl core::fmt::Debug for VcuSlipInfo {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
-            f.debug_struct("VcuCalculatedSlip")
+            f.debug_struct("VcuSlipInfo")
                 .field("vcu_calculated_slip", &self.vcu_calculated_slip())
                 .field("vcu_rear_rpm_avg", &self.vcu_rear_rpm_avg())
                 .field("vcu_front_rpm_avg", &self.vcu_front_rpm_avg())
             .finish()
         } else {
-            f.debug_tuple("VcuCalculatedSlip").field(&self.raw).finish()
+            f.debug_tuple("VcuSlipInfo").field(&self.raw).finish()
         }
     }
 }
 
 #[cfg(feature = "arb")]
-impl<'a> Arbitrary<'a> for VcuCalculatedSlip {
+impl<'a> Arbitrary<'a> for VcuSlipInfo {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
         let vcu_calculated_slip = u.float_in_range(0_f32..=65535_f32)?;
         let vcu_rear_rpm_avg = u.float_in_range(0_f32..=65535_f32)?;
         let vcu_front_rpm_avg = u.float_in_range(0_f32..=65535_f32)?;
-        VcuCalculatedSlip::new(vcu_calculated_slip,vcu_rear_rpm_avg,vcu_front_rpm_avg).map_err(|_| arbitrary::Error::IncorrectFormat)
+        VcuSlipInfo::new(vcu_calculated_slip,vcu_rear_rpm_avg,vcu_front_rpm_avg).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -9051,7 +9051,7 @@ impl<'a> Arbitrary<'a> for DashButtons {
     }
 }
 
-/// dash_firmware_version
+/// dash_board_data
 ///
 /// - ID: 236 (0xec)
 /// - Size: 8 bytes
@@ -9059,25 +9059,25 @@ impl<'a> Arbitrary<'a> for DashButtons {
 ///
 /// information on the running dash firmware and system on-timer
 #[derive(Clone, Copy)]
-pub struct DashFirmwareVersion {
+pub struct DashBoardData {
     raw: [u8; 8],
 }
 
-impl DashFirmwareVersion {
+impl DashBoardData {
     pub const MESSAGE_ID: u32 = 236;
     
-    pub const DASH_ON_TIME_SECONDS_MIN: u16 = 0_u16;
-    pub const DASH_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
-    pub const DASH_FW_VERSION_MIN: u32 = 0_u32;
-    pub const DASH_FW_VERSION_MAX: u32 = 4294967295_u32;
+    pub const BOARD_ON_TIME_SECONDS_MIN: u16 = 0_u16;
+    pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
+    pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
+    pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
     
-    /// Construct new dash_firmware_version from values
-    pub fn new(dash_project_is_dirty: bool, dash_project_on_main: bool, dash_on_time_seconds: u16, dash_fw_version: u32) -> Result<Self, CanError> {
+    /// Construct new dash_board_data from values
+    pub fn new(firmware_is_dirty: bool, firmware_on_main: bool, board_on_time_seconds: u16, firmware_version: u32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 8] };
-        res.set_dash_project_is_dirty(dash_project_is_dirty)?;
-        res.set_dash_project_on_main(dash_project_on_main)?;
-        res.set_dash_on_time_seconds(dash_on_time_seconds)?;
-        res.set_dash_fw_version(dash_fw_version)?;
+        res.set_firmware_is_dirty(firmware_is_dirty)?;
+        res.set_firmware_on_main(firmware_on_main)?;
+        res.set_board_on_time_seconds(board_on_time_seconds)?;
+        res.set_firmware_version(firmware_version)?;
         Ok(res)
     }
     
@@ -9086,56 +9086,56 @@ impl DashFirmwareVersion {
         &self.raw
     }
     
-    /// dash_project_is_dirty
+    /// firmware_is_dirty
     ///
-    /// if the compiled dash fw had uncommitted changes (1) or not (0)
+    /// if the compiled firmware had uncommitted changes (1) or not (0)
     ///
     /// - Min: 0
     /// - Max: 1
-    /// - Unit: ""
+    /// - Unit: "bool"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn dash_project_is_dirty(&self) -> bool {
-        self.dash_project_is_dirty_raw()
+    pub fn firmware_is_dirty(&self) -> bool {
+        self.firmware_is_dirty_raw()
     }
     
-    /// Get raw value of dash_project_is_dirty
+    /// Get raw value of firmware_is_dirty
     ///
-    /// - Start bit: 56
+    /// - Start bit: 49
     /// - Signal size: 1 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn dash_project_is_dirty_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[56..57].load_le::<u8>();
+    pub fn firmware_is_dirty_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         
         signal == 1
     }
     
-    /// Set value of dash_project_is_dirty
+    /// Set value of firmware_is_dirty
     #[inline(always)]
-    pub fn set_dash_project_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[56..57].store_le(value);
+        self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
         Ok(())
     }
     
-    /// dash_project_on_main
+    /// firmware_on_main
     ///
-    /// if the compiled dash fw was from main branch (1) or not (0)
+    /// if the compiled firmware was from main branch (1) or not (0)
     ///
     /// - Min: 0
     /// - Max: 1
-    /// - Unit: ""
+    /// - Unit: "bool"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn dash_project_on_main(&self) -> bool {
-        self.dash_project_on_main_raw()
+    pub fn firmware_on_main(&self) -> bool {
+        self.firmware_on_main_raw()
     }
     
-    /// Get raw value of dash_project_on_main
+    /// Get raw value of firmware_on_main
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -9144,34 +9144,34 @@ impl DashFirmwareVersion {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn dash_project_on_main_raw(&self) -> bool {
+    pub fn firmware_on_main_raw(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         
         signal == 1
     }
     
-    /// Set value of dash_project_on_main
+    /// Set value of firmware_on_main
     #[inline(always)]
-    pub fn set_dash_project_on_main(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
     
-    /// dash_on_time_seconds
+    /// board_on_time_seconds
     ///
-    /// time in seconds which the dash has been powered on and running
+    /// time in seconds which the board has been powered on and running
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: "seconds"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn dash_on_time_seconds(&self) -> u16 {
-        self.dash_on_time_seconds_raw()
+    pub fn board_on_time_seconds(&self) -> u16 {
+        self.board_on_time_seconds_raw()
     }
     
-    /// Get raw value of dash_on_time_seconds
+    /// Get raw value of board_on_time_seconds
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -9180,15 +9180,15 @@ impl DashFirmwareVersion {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn dash_on_time_seconds_raw(&self) -> u16 {
+    pub fn board_on_time_seconds_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of dash_on_time_seconds
+    /// Set value of board_on_time_seconds
     #[inline(always)]
-    pub fn set_dash_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 236 });
@@ -9197,20 +9197,20 @@ impl DashFirmwareVersion {
         Ok(())
     }
     
-    /// dash_fw_version
+    /// firmware_version
     ///
-    /// short hash of the firmware on dash
+    /// short hash of the firmware
     ///
     /// - Min: 0
     /// - Max: 4294967295
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn dash_fw_version(&self) -> u32 {
-        self.dash_fw_version_raw()
+    pub fn firmware_version(&self) -> u32 {
+        self.firmware_version_raw()
     }
     
-    /// Get raw value of dash_fw_version
+    /// Get raw value of firmware_version
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -9219,15 +9219,15 @@ impl DashFirmwareVersion {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn dash_fw_version_raw(&self) -> u32 {
+    pub fn firmware_version_raw(&self) -> u32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
         
         signal
     }
     
-    /// Set value of dash_fw_version
+    /// Set value of firmware_version
     #[inline(always)]
-    pub fn set_dash_fw_version(&mut self, value: u32) -> Result<(), CanError> {
+    pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u32 || 4294967295_u32 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 236 });
@@ -9238,7 +9238,7 @@ impl DashFirmwareVersion {
     
 }
 
-impl core::convert::TryFrom<&[u8]> for DashFirmwareVersion {
+impl core::convert::TryFrom<&[u8]> for DashBoardData {
     type Error = CanError;
     
     #[inline(always)]
@@ -9251,137 +9251,35 @@ impl core::convert::TryFrom<&[u8]> for DashFirmwareVersion {
 }
 
 #[cfg(feature = "debug")]
-impl core::fmt::Debug for DashFirmwareVersion {
+impl core::fmt::Debug for DashBoardData {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
-            f.debug_struct("DashFirmwareVersion")
-                .field("dash_project_is_dirty", &self.dash_project_is_dirty())
-                .field("dash_project_on_main", &self.dash_project_on_main())
-                .field("dash_on_time_seconds", &self.dash_on_time_seconds())
-                .field("dash_fw_version", &self.dash_fw_version())
+            f.debug_struct("DashBoardData")
+                .field("firmware_is_dirty", &self.firmware_is_dirty())
+                .field("firmware_on_main", &self.firmware_on_main())
+                .field("board_on_time_seconds", &self.board_on_time_seconds())
+                .field("firmware_version", &self.firmware_version())
             .finish()
         } else {
-            f.debug_tuple("DashFirmwareVersion").field(&self.raw).finish()
+            f.debug_tuple("DashBoardData").field(&self.raw).finish()
         }
     }
 }
 
 #[cfg(feature = "arb")]
-impl<'a> Arbitrary<'a> for DashFirmwareVersion {
+impl<'a> Arbitrary<'a> for DashBoardData {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let dash_project_is_dirty = u.int_in_range(0..=1)? == 1;
-        let dash_project_on_main = u.int_in_range(0..=1)? == 1;
-        let dash_on_time_seconds = u.int_in_range(0..=65535)?;
-        let dash_fw_version = u.int_in_range(0..=4294967295)?;
-        DashFirmwareVersion::new(dash_project_is_dirty,dash_project_on_main,dash_on_time_seconds,dash_fw_version).map_err(|_| arbitrary::Error::IncorrectFormat)
-    }
-}
-
-/// evelogger_vectornav_time
-///
-/// - ID: 500 (0x1f4)
-/// - Size: 8 bytes
-/// - Transmitter: evelogger
-///
-/// vectornav breakout realtime
-#[derive(Clone, Copy)]
-pub struct EveloggerVectornavTime {
-    raw: [u8; 8],
-}
-
-impl EveloggerVectornavTime {
-    pub const MESSAGE_ID: u32 = 500;
-    
-    pub const EVELOGGER_VECTORNAV_TIME_MIN: u64 = 0_u64;
-    pub const EVELOGGER_VECTORNAV_TIME_MAX: u64 = 18446744073709552000_u64;
-    
-    /// Construct new evelogger_vectornav_time from values
-    pub fn new(evelogger_vectornav_time: u64) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
-        res.set_evelogger_vectornav_time(evelogger_vectornav_time)?;
-        Ok(res)
-    }
-    
-    /// Access message payload raw value
-    pub fn raw(&self) -> &[u8; 8] {
-        &self.raw
-    }
-    
-    /// evelogger_vectornav_time
-    ///
-    /// - Min: 0
-    /// - Max: 18446744073709552000
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn evelogger_vectornav_time(&self) -> u64 {
-        self.evelogger_vectornav_time_raw()
-    }
-    
-    /// Get raw value of evelogger_vectornav_time
-    ///
-    /// - Start bit: 0
-    /// - Signal size: 64 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn evelogger_vectornav_time_raw(&self) -> u64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
-        
-        signal
-    }
-    
-    /// Set value of evelogger_vectornav_time
-    #[inline(always)]
-    pub fn set_evelogger_vectornav_time(&mut self, value: u64) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u64 || 18446744073709552000_u64 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 500 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
-        Ok(())
-    }
-    
-}
-
-impl core::convert::TryFrom<&[u8]> for EveloggerVectornavTime {
-    type Error = CanError;
-    
-    #[inline(always)]
-    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
-        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
-        let mut raw = [0u8; 8];
-        raw.copy_from_slice(&payload[..8]);
-        Ok(Self { raw })
-    }
-}
-
-#[cfg(feature = "debug")]
-impl core::fmt::Debug for EveloggerVectornavTime {
-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        if f.alternate() {
-            f.debug_struct("EveloggerVectornavTime")
-                .field("evelogger_vectornav_time", &self.evelogger_vectornav_time())
-            .finish()
-        } else {
-            f.debug_tuple("EveloggerVectornavTime").field(&self.raw).finish()
-        }
-    }
-}
-
-#[cfg(feature = "arb")]
-impl<'a> Arbitrary<'a> for EveloggerVectornavTime {
-    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let evelogger_vectornav_time = u.int_in_range(0..=18446744073709552000)?;
-        EveloggerVectornavTime::new(evelogger_vectornav_time).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let firmware_is_dirty = u.int_in_range(0..=1)? == 1;
+        let firmware_on_main = u.int_in_range(0..=1)? == 1;
+        let board_on_time_seconds = u.int_in_range(0..=65535)?;
+        let firmware_version = u.int_in_range(0..=4294967295)?;
+        DashBoardData::new(firmware_is_dirty,firmware_on_main,board_on_time_seconds,firmware_version).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
 /// evelogger_vectornav_attitude
 ///
-/// - ID: 501 (0x1f5)
+/// - ID: 500 (0x1f4)
 /// - Size: 6 bytes
 /// - Transmitter: evelogger
 ///
@@ -9392,7 +9290,7 @@ pub struct EveloggerVectornavAttitude {
 }
 
 impl EveloggerVectornavAttitude {
-    pub const MESSAGE_ID: u32 = 501;
+    pub const MESSAGE_ID: u32 = 500;
     
     pub const EVELOGGER_VECTORNAV_PITCH_MIN: f32 = 0_f32;
     pub const EVELOGGER_VECTORNAV_PITCH_MAX: f32 = 65535_f32;
@@ -9449,7 +9347,7 @@ impl EveloggerVectornavAttitude {
     pub fn set_evelogger_vectornav_pitch(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 501 });
+            return Err(CanError::ParameterOutOfRange { message_id: 500 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -9494,7 +9392,7 @@ impl EveloggerVectornavAttitude {
     pub fn set_evelogger_vectornav_roll(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 501 });
+            return Err(CanError::ParameterOutOfRange { message_id: 500 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -9539,7 +9437,7 @@ impl EveloggerVectornavAttitude {
     pub fn set_evelogger_vectornav_yaw(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 501 });
+            return Err(CanError::ParameterOutOfRange { message_id: 500 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -9591,7 +9489,7 @@ impl<'a> Arbitrary<'a> for EveloggerVectornavAttitude {
 
 /// evelogger_vectornav_gyro
 ///
-/// - ID: 502 (0x1f6)
+/// - ID: 501 (0x1f5)
 /// - Size: 6 bytes
 /// - Transmitter: evelogger
 ///
@@ -9602,7 +9500,7 @@ pub struct EveloggerVectornavGyro {
 }
 
 impl EveloggerVectornavGyro {
-    pub const MESSAGE_ID: u32 = 502;
+    pub const MESSAGE_ID: u32 = 501;
     
     pub const EVELOGGER_VECTORNAV_W_Z_MIN: f32 = 0_f32;
     pub const EVELOGGER_VECTORNAV_W_Z_MAX: f32 = 65535_f32;
@@ -9659,7 +9557,7 @@ impl EveloggerVectornavGyro {
     pub fn set_evelogger_vectornav_w_z(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 502 });
+            return Err(CanError::ParameterOutOfRange { message_id: 501 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -9704,7 +9602,7 @@ impl EveloggerVectornavGyro {
     pub fn set_evelogger_vectornav_w_y(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 502 });
+            return Err(CanError::ParameterOutOfRange { message_id: 501 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -9749,7 +9647,7 @@ impl EveloggerVectornavGyro {
     pub fn set_evelogger_vectornav_w_x(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 502 });
+            return Err(CanError::ParameterOutOfRange { message_id: 501 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -9801,7 +9699,7 @@ impl<'a> Arbitrary<'a> for EveloggerVectornavGyro {
 
 /// evelogger_vectornav_position
 ///
-/// - ID: 503 (0x1f7)
+/// - ID: 502 (0x1f6)
 /// - Size: 8 bytes
 /// - Transmitter: evelogger
 ///
@@ -9812,7 +9710,7 @@ pub struct EveloggerVectornavPosition {
 }
 
 impl EveloggerVectornavPosition {
-    pub const MESSAGE_ID: u32 = 503;
+    pub const MESSAGE_ID: u32 = 502;
     
     pub const EVELOGGER_VECTORNAV_LONGITUDE_MIN: f32 = 0_f32;
     pub const EVELOGGER_VECTORNAV_LONGITUDE_MAX: f32 = 4294967295_f32;
@@ -9866,7 +9764,7 @@ impl EveloggerVectornavPosition {
     pub fn set_evelogger_vectornav_longitude(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 4294967295_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 503 });
+            return Err(CanError::ParameterOutOfRange { message_id: 502 });
         }
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -9911,7 +9809,7 @@ impl EveloggerVectornavPosition {
     pub fn set_evelogger_vectornav_latitude(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 4294967295_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 503 });
+            return Err(CanError::ParameterOutOfRange { message_id: 502 });
         }
         let factor = 0.0000001_f32;
         let offset = 0_f32;
@@ -9961,7 +9859,7 @@ impl<'a> Arbitrary<'a> for EveloggerVectornavPosition {
 
 /// evelogger_vectornav_velocity
 ///
-/// - ID: 504 (0x1f8)
+/// - ID: 503 (0x1f7)
 /// - Size: 6 bytes
 /// - Transmitter: evelogger
 ///
@@ -9972,7 +9870,7 @@ pub struct EveloggerVectornavVelocity {
 }
 
 impl EveloggerVectornavVelocity {
-    pub const MESSAGE_ID: u32 = 504;
+    pub const MESSAGE_ID: u32 = 503;
     
     pub const EVELOGGER_VECTORNAV_V_D_MIN: f32 = 0_f32;
     pub const EVELOGGER_VECTORNAV_V_D_MAX: f32 = 65535_f32;
@@ -10029,7 +9927,7 @@ impl EveloggerVectornavVelocity {
     pub fn set_evelogger_vectornav_v_d(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 504 });
+            return Err(CanError::ParameterOutOfRange { message_id: 503 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -10074,7 +9972,7 @@ impl EveloggerVectornavVelocity {
     pub fn set_evelogger_vectornav_v_e(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 504 });
+            return Err(CanError::ParameterOutOfRange { message_id: 503 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -10119,7 +10017,7 @@ impl EveloggerVectornavVelocity {
     pub fn set_evelogger_vectornav_v_n(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 504 });
+            return Err(CanError::ParameterOutOfRange { message_id: 503 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -10171,7 +10069,7 @@ impl<'a> Arbitrary<'a> for EveloggerVectornavVelocity {
 
 /// evelogger_vectornav_acceleration
 ///
-/// - ID: 505 (0x1f9)
+/// - ID: 504 (0x1f8)
 /// - Size: 6 bytes
 /// - Transmitter: evelogger
 ///
@@ -10182,7 +10080,7 @@ pub struct EveloggerVectornavAcceleration {
 }
 
 impl EveloggerVectornavAcceleration {
-    pub const MESSAGE_ID: u32 = 505;
+    pub const MESSAGE_ID: u32 = 504;
     
     pub const EVELOGGER_VECTORNAV_ACCEL_Z_MIN: f32 = 0_f32;
     pub const EVELOGGER_VECTORNAV_ACCEL_Z_MAX: f32 = 65535_f32;
@@ -10239,7 +10137,7 @@ impl EveloggerVectornavAcceleration {
     pub fn set_evelogger_vectornav_accel_z(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 505 });
+            return Err(CanError::ParameterOutOfRange { message_id: 504 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -10284,7 +10182,7 @@ impl EveloggerVectornavAcceleration {
     pub fn set_evelogger_vectornav_accel_y(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 505 });
+            return Err(CanError::ParameterOutOfRange { message_id: 504 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -10329,7 +10227,7 @@ impl EveloggerVectornavAcceleration {
     pub fn set_evelogger_vectornav_accel_x(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 505 });
+            return Err(CanError::ParameterOutOfRange { message_id: 504 });
         }
         let factor = 0.01_f32;
         let offset = 0_f32;
@@ -10376,6 +10274,110 @@ impl<'a> Arbitrary<'a> for EveloggerVectornavAcceleration {
         let evelogger_vectornav_accel_y = u.float_in_range(0_f32..=65535_f32)?;
         let evelogger_vectornav_accel_x = u.float_in_range(0_f32..=65535_f32)?;
         EveloggerVectornavAcceleration::new(evelogger_vectornav_accel_z,evelogger_vectornav_accel_y,evelogger_vectornav_accel_x).map_err(|_| arbitrary::Error::IncorrectFormat)
+    }
+}
+
+/// evelogger_vectornav_time
+///
+/// - ID: 505 (0x1f9)
+/// - Size: 8 bytes
+/// - Transmitter: evelogger
+///
+/// vectornav breakout realtime
+#[derive(Clone, Copy)]
+pub struct EveloggerVectornavTime {
+    raw: [u8; 8],
+}
+
+impl EveloggerVectornavTime {
+    pub const MESSAGE_ID: u32 = 505;
+    
+    pub const UNIX_TIME_NS_MIN: u64 = 0_u64;
+    pub const UNIX_TIME_NS_MAX: u64 = 18446744073709552000_u64;
+    
+    /// Construct new evelogger_vectornav_time from values
+    pub fn new(unix_time_ns: u64) -> Result<Self, CanError> {
+        let mut res = Self { raw: [0u8; 8] };
+        res.set_unix_time_ns(unix_time_ns)?;
+        Ok(res)
+    }
+    
+    /// Access message payload raw value
+    pub fn raw(&self) -> &[u8; 8] {
+        &self.raw
+    }
+    
+    /// unix_time_ns
+    ///
+    /// Time in nanoseconds since January 1st 1970
+    ///
+    /// - Min: 0
+    /// - Max: 18446744073709552000
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn unix_time_ns(&self) -> u64 {
+        self.unix_time_ns_raw()
+    }
+    
+    /// Get raw value of unix_time_ns
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 64 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn unix_time_ns_raw(&self) -> u64 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
+        
+        signal
+    }
+    
+    /// Set value of unix_time_ns
+    #[inline(always)]
+    pub fn set_unix_time_ns(&mut self, value: u64) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u64 || 18446744073709552000_u64 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 505 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
+        Ok(())
+    }
+    
+}
+
+impl core::convert::TryFrom<&[u8]> for EveloggerVectornavTime {
+    type Error = CanError;
+    
+    #[inline(always)]
+    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
+        if payload.len() != 8 { return Err(CanError::InvalidPayloadSize); }
+        let mut raw = [0u8; 8];
+        raw.copy_from_slice(&payload[..8]);
+        Ok(Self { raw })
+    }
+}
+
+#[cfg(feature = "debug")]
+impl core::fmt::Debug for EveloggerVectornavTime {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        if f.alternate() {
+            f.debug_struct("EveloggerVectornavTime")
+                .field("unix_time_ns", &self.unix_time_ns())
+            .finish()
+        } else {
+            f.debug_tuple("EveloggerVectornavTime").field(&self.raw).finish()
+        }
+    }
+}
+
+#[cfg(feature = "arb")]
+impl<'a> Arbitrary<'a> for EveloggerVectornavTime {
+    fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
+        let unix_time_ns = u.int_in_range(0..=18446744073709552000)?;
+        EveloggerVectornavTime::new(unix_time_ns).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -11043,7 +11045,7 @@ impl<'a> Arbitrary<'a> for AcuBoardVoltageReadings {
     }
 }
 
-/// acu_firmware_version
+/// acu_board_data
 ///
 /// - ID: 602 (0x25a)
 /// - Size: 8 bytes
@@ -11051,31 +11053,31 @@ impl<'a> Arbitrary<'a> for AcuBoardVoltageReadings {
 ///
 /// information on the running acu firmware and system on-timer
 #[derive(Clone, Copy)]
-pub struct AcuFirmwareVersion {
+pub struct AcuBoardData {
     raw: [u8; 8],
 }
 
-impl AcuFirmwareVersion {
+impl AcuBoardData {
     pub const MESSAGE_ID: u32 = 602;
     
-    pub const ACU_FIRMWARE_VERSION_MIN: u32 = 0_u32;
-    pub const ACU_FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    pub const ACU_ON_TIME_SECONDS_MIN: u16 = 0_u16;
-    pub const ACU_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
-    pub const ACU_HUMIDITY_MIN: u8 = 0_u8;
-    pub const ACU_HUMIDITY_MAX: u8 = 127_u8;
-    pub const ACU_TEMPERATURE_MIN: u8 = 0_u8;
-    pub const ACU_TEMPERATURE_MAX: u8 = 127_u8;
+    pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
+    pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
+    pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
+    pub const BOARD_TEMPERATURE_MAX: u8 = 127_u8;
+    pub const BOARD_ON_TIME_SECONDS_MIN: u16 = 0_u16;
+    pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
+    pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
+    pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
     
-    /// Construct new acu_firmware_version from values
-    pub fn new(acu_firmware_version: u32, acu_on_time_seconds: u16, acu_humidity: u8, acu_code_on_main: bool, acu_temperature: u8, acu_firmware_is_dirty: bool) -> Result<Self, CanError> {
+    /// Construct new acu_board_data from values
+    pub fn new(board_humidity: u8, board_temperature: u8, firmware_is_dirty: bool, firmware_on_main: bool, board_on_time_seconds: u16, firmware_version: u32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 8] };
-        res.set_acu_firmware_version(acu_firmware_version)?;
-        res.set_acu_on_time_seconds(acu_on_time_seconds)?;
-        res.set_acu_humidity(acu_humidity)?;
-        res.set_acu_code_on_main(acu_code_on_main)?;
-        res.set_acu_temperature(acu_temperature)?;
-        res.set_acu_firmware_is_dirty(acu_firmware_is_dirty)?;
+        res.set_board_humidity(board_humidity)?;
+        res.set_board_temperature(board_temperature)?;
+        res.set_firmware_is_dirty(firmware_is_dirty)?;
+        res.set_firmware_on_main(firmware_on_main)?;
+        res.set_board_on_time_seconds(board_on_time_seconds)?;
+        res.set_firmware_version(firmware_version)?;
         Ok(res)
     }
     
@@ -11084,85 +11086,7 @@ impl AcuFirmwareVersion {
         &self.raw
     }
     
-    /// acu_firmware_version
-    ///
-    /// short hash of the firmware on the accumulator control unit
-    ///
-    /// - Min: 0
-    /// - Max: 4294967295
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn acu_firmware_version(&self) -> u32 {
-        self.acu_firmware_version_raw()
-    }
-    
-    /// Get raw value of acu_firmware_version
-    ///
-    /// - Start bit: 32
-    /// - Signal size: 32 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn acu_firmware_version_raw(&self) -> u32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<u32>();
-        
-        signal
-    }
-    
-    /// Set value of acu_firmware_version
-    #[inline(always)]
-    pub fn set_acu_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u32 || 4294967295_u32 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 602 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
-        Ok(())
-    }
-    
-    /// acu_on_time_seconds
-    ///
-    /// time in seconds which the acu has been powered on and running
-    ///
-    /// - Min: 0
-    /// - Max: 65535
-    /// - Unit: "seconds"
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn acu_on_time_seconds(&self) -> u16 {
-        self.acu_on_time_seconds_raw()
-    }
-    
-    /// Get raw value of acu_on_time_seconds
-    ///
-    /// - Start bit: 16
-    /// - Signal size: 16 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn acu_on_time_seconds_raw(&self) -> u16 {
-        let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<u16>();
-        
-        signal
-    }
-    
-    /// Set value of acu_on_time_seconds
-    #[inline(always)]
-    pub fn set_acu_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u16 || 65535_u16 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 602 });
-        }
-        self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
-        Ok(())
-    }
-    
-    /// acu_humidity
+    /// board_humidity
     ///
     /// the relative humidity at the acu
     ///
@@ -11171,150 +11095,228 @@ impl AcuFirmwareVersion {
     /// - Unit: "relative_humidity"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn acu_humidity(&self) -> u8 {
-        self.acu_humidity_raw()
+    pub fn board_humidity(&self) -> u8 {
+        self.board_humidity_raw()
     }
     
-    /// Get raw value of acu_humidity
+    /// Get raw value of board_humidity
     ///
-    /// - Start bit: 15
+    /// - Start bit: 57
     /// - Signal size: 7 bits
-    /// - Factor: 1
-    /// - Offset: 0
-    /// - Byte order: BigEndian
-    /// - Value type: Unsigned
-    #[inline(always)]
-    pub fn acu_humidity_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[8..15].load_be::<u8>();
-        
-        signal
-    }
-    
-    /// Set value of acu_humidity
-    #[inline(always)]
-    pub fn set_acu_humidity(&mut self, value: u8) -> Result<(), CanError> {
-        #[cfg(feature = "range_checked")]
-        if value < 0_u8 || 127_u8 < value {
-            return Err(CanError::ParameterOutOfRange { message_id: 602 });
-        }
-        self.raw.view_bits_mut::<Msb0>()[8..15].store_be(value);
-        Ok(())
-    }
-    
-    /// acu_code_on_main
-    ///
-    /// if the compiled acu firmware was from main branch (1) or not (0)
-    ///
-    /// - Min: 0
-    /// - Max: 1
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn acu_code_on_main(&self) -> bool {
-        self.acu_code_on_main_raw()
-    }
-    
-    /// Get raw value of acu_code_on_main
-    ///
-    /// - Start bit: 8
-    /// - Signal size: 1 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn acu_code_on_main_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[8..9].load_le::<u8>();
+    pub fn board_humidity_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[57..64].load_le::<u8>();
         
-        signal == 1
+        signal
     }
     
-    /// Set value of acu_code_on_main
+    /// Set value of board_humidity
     #[inline(always)]
-    pub fn set_acu_code_on_main(&mut self, value: bool) -> Result<(), CanError> {
-        let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[8..9].store_le(value);
+    pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u8 || 127_u8 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 602 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
         Ok(())
     }
     
-    /// acu_temperature
+    /// board_temperature
     ///
-    /// the ambient temperature at the acu
+    /// The ambient temperature at the PCB
     ///
     /// - Min: 0
     /// - Max: 127
     /// - Unit: "celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn acu_temperature(&self) -> u8 {
-        self.acu_temperature_raw()
+    pub fn board_temperature(&self) -> u8 {
+        self.board_temperature_raw()
     }
     
-    /// Get raw value of acu_temperature
+    /// Get raw value of board_temperature
     ///
-    /// - Start bit: 7
+    /// - Start bit: 50
     /// - Signal size: 7 bits
     /// - Factor: 1
     /// - Offset: 0
-    /// - Byte order: BigEndian
+    /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn acu_temperature_raw(&self) -> u8 {
-        let signal = self.raw.view_bits::<Msb0>()[0..7].load_be::<u8>();
+    pub fn board_temperature_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[50..57].load_le::<u8>();
         
         signal
     }
     
-    /// Set value of acu_temperature
+    /// Set value of board_temperature
     #[inline(always)]
-    pub fn set_acu_temperature(&mut self, value: u8) -> Result<(), CanError> {
+    pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u8 || 127_u8 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 602 });
         }
-        self.raw.view_bits_mut::<Msb0>()[0..7].store_be(value);
+        self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
         Ok(())
     }
     
-    /// acu_firmware_is_dirty
+    /// firmware_is_dirty
     ///
-    /// if the compiled acu firmware has uncommitted changes (1) or not (0)
+    /// if the compiled firmware had uncommitted changes (1) or not (0)
     ///
     /// - Min: 0
     /// - Max: 1
-    /// - Unit: ""
+    /// - Unit: "bool"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn acu_firmware_is_dirty(&self) -> bool {
-        self.acu_firmware_is_dirty_raw()
+    pub fn firmware_is_dirty(&self) -> bool {
+        self.firmware_is_dirty_raw()
     }
     
-    /// Get raw value of acu_firmware_is_dirty
+    /// Get raw value of firmware_is_dirty
     ///
-    /// - Start bit: 0
+    /// - Start bit: 49
     /// - Signal size: 1 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn acu_firmware_is_dirty_raw(&self) -> bool {
-        let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
+    pub fn firmware_is_dirty_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         
         signal == 1
     }
     
-    /// Set value of acu_firmware_is_dirty
+    /// Set value of firmware_is_dirty
     #[inline(always)]
-    pub fn set_acu_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
-        self.raw.view_bits_mut::<Lsb0>()[0..1].store_le(value);
+        self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_on_main
+    ///
+    /// if the compiled firmware was from main branch (1) or not (0)
+    ///
+    /// - Min: 0
+    /// - Max: 1
+    /// - Unit: "bool"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_on_main(&self) -> bool {
+        self.firmware_on_main_raw()
+    }
+    
+    /// Get raw value of firmware_on_main
+    ///
+    /// - Start bit: 48
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_on_main_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
+        
+        signal == 1
+    }
+    
+    /// Set value of firmware_on_main
+    #[inline(always)]
+    pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
+        Ok(())
+    }
+    
+    /// board_on_time_seconds
+    ///
+    /// time in seconds which the board has been powered on and running
+    ///
+    /// - Min: 0
+    /// - Max: 65535
+    /// - Unit: "seconds"
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn board_on_time_seconds(&self) -> u16 {
+        self.board_on_time_seconds_raw()
+    }
+    
+    /// Get raw value of board_on_time_seconds
+    ///
+    /// - Start bit: 32
+    /// - Signal size: 16 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn board_on_time_seconds_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..48].load_le::<u16>();
+        
+        signal
+    }
+    
+    /// Set value of board_on_time_seconds
+    #[inline(always)]
+    pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u16 || 65535_u16 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 602 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
+        Ok(())
+    }
+    
+    /// firmware_version
+    ///
+    /// short hash of the firmware
+    ///
+    /// - Min: 0
+    /// - Max: 4294967295
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn firmware_version(&self) -> u32 {
+        self.firmware_version_raw()
+    }
+    
+    /// Get raw value of firmware_version
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 32 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn firmware_version_raw(&self) -> u32 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<u32>();
+        
+        signal
+    }
+    
+    /// Set value of firmware_version
+    #[inline(always)]
+    pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
+        #[cfg(feature = "range_checked")]
+        if value < 0_u32 || 4294967295_u32 < value {
+            return Err(CanError::ParameterOutOfRange { message_id: 602 });
+        }
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
         Ok(())
     }
     
 }
 
-impl core::convert::TryFrom<&[u8]> for AcuFirmwareVersion {
+impl core::convert::TryFrom<&[u8]> for AcuBoardData {
     type Error = CanError;
     
     #[inline(always)]
@@ -11327,33 +11329,33 @@ impl core::convert::TryFrom<&[u8]> for AcuFirmwareVersion {
 }
 
 #[cfg(feature = "debug")]
-impl core::fmt::Debug for AcuFirmwareVersion {
+impl core::fmt::Debug for AcuBoardData {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
-            f.debug_struct("AcuFirmwareVersion")
-                .field("acu_firmware_version", &self.acu_firmware_version())
-                .field("acu_on_time_seconds", &self.acu_on_time_seconds())
-                .field("acu_humidity", &self.acu_humidity())
-                .field("acu_code_on_main", &self.acu_code_on_main())
-                .field("acu_temperature", &self.acu_temperature())
-                .field("acu_firmware_is_dirty", &self.acu_firmware_is_dirty())
+            f.debug_struct("AcuBoardData")
+                .field("board_humidity", &self.board_humidity())
+                .field("board_temperature", &self.board_temperature())
+                .field("firmware_is_dirty", &self.firmware_is_dirty())
+                .field("firmware_on_main", &self.firmware_on_main())
+                .field("board_on_time_seconds", &self.board_on_time_seconds())
+                .field("firmware_version", &self.firmware_version())
             .finish()
         } else {
-            f.debug_tuple("AcuFirmwareVersion").field(&self.raw).finish()
+            f.debug_tuple("AcuBoardData").field(&self.raw).finish()
         }
     }
 }
 
 #[cfg(feature = "arb")]
-impl<'a> Arbitrary<'a> for AcuFirmwareVersion {
+impl<'a> Arbitrary<'a> for AcuBoardData {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let acu_firmware_version = u.int_in_range(0..=4294967295)?;
-        let acu_on_time_seconds = u.int_in_range(0..=65535)?;
-        let acu_humidity = u.int_in_range(0..=127)?;
-        let acu_code_on_main = u.int_in_range(0..=1)? == 1;
-        let acu_temperature = u.int_in_range(0..=127)?;
-        let acu_firmware_is_dirty = u.int_in_range(0..=1)? == 1;
-        AcuFirmwareVersion::new(acu_firmware_version,acu_on_time_seconds,acu_humidity,acu_code_on_main,acu_temperature,acu_firmware_is_dirty).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let board_humidity = u.int_in_range(0..=127)?;
+        let board_temperature = u.int_in_range(0..=127)?;
+        let firmware_is_dirty = u.int_in_range(0..=1)? == 1;
+        let firmware_on_main = u.int_in_range(0..=1)? == 1;
+        let board_on_time_seconds = u.int_in_range(0..=65535)?;
+        let firmware_version = u.int_in_range(0..=4294967295)?;
+        AcuBoardData::new(board_humidity,board_temperature,firmware_is_dirty,firmware_on_main,board_on_time_seconds,firmware_version).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -11372,13 +11374,13 @@ pub struct CornernodeSteeringpot {
 impl CornernodeSteeringpot {
     pub const MESSAGE_ID: u32 = 899;
     
-    pub const CORNERNODE_STEERINGPOT_MIN: u16 = 0_u16;
-    pub const CORNERNODE_STEERINGPOT_MAX: u16 = 65535_u16;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_steeringpot from values
-    pub fn new(cornernode_steeringpot: u16) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_steeringpot(cornernode_steeringpot)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -11387,18 +11389,20 @@ impl CornernodeSteeringpot {
         &self.raw
     }
     
-    /// cornernode_steeringpot
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_steeringpot(&self) -> u16 {
-        self.cornernode_steeringpot_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_steeringpot
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -11407,15 +11411,15 @@ impl CornernodeSteeringpot {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_steeringpot_raw(&self) -> u16 {
+    pub fn uint16_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_steeringpot
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_steeringpot(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 899 });
@@ -11443,7 +11447,7 @@ impl core::fmt::Debug for CornernodeSteeringpot {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeSteeringpot")
-                .field("cornernode_steeringpot", &self.cornernode_steeringpot())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeSteeringpot").field(&self.raw).finish()
@@ -11454,8 +11458,8 @@ impl core::fmt::Debug for CornernodeSteeringpot {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeSteeringpot {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_steeringpot = u.int_in_range(0..=65535)?;
-        CornernodeSteeringpot::new(cornernode_steeringpot).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeSteeringpot::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -11474,13 +11478,13 @@ pub struct CornernodeFlShockpot {
 impl CornernodeFlShockpot {
     pub const MESSAGE_ID: u32 = 900;
     
-    pub const CORNERNODE_FL_SHOCKPOT_MIN: u16 = 0_u16;
-    pub const CORNERNODE_FL_SHOCKPOT_MAX: u16 = 65535_u16;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_fl_shockpot from values
-    pub fn new(cornernode_fl_shockpot: u16) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_fl_shockpot(cornernode_fl_shockpot)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -11489,18 +11493,20 @@ impl CornernodeFlShockpot {
         &self.raw
     }
     
-    /// cornernode_fl_shockpot
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_fl_shockpot(&self) -> u16 {
-        self.cornernode_fl_shockpot_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_fl_shockpot
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -11509,15 +11515,15 @@ impl CornernodeFlShockpot {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_fl_shockpot_raw(&self) -> u16 {
+    pub fn uint16_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_fl_shockpot
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_fl_shockpot(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 900 });
@@ -11545,7 +11551,7 @@ impl core::fmt::Debug for CornernodeFlShockpot {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeFlShockpot")
-                .field("cornernode_fl_shockpot", &self.cornernode_fl_shockpot())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeFlShockpot").field(&self.raw).finish()
@@ -11556,8 +11562,8 @@ impl core::fmt::Debug for CornernodeFlShockpot {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeFlShockpot {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_fl_shockpot = u.int_in_range(0..=65535)?;
-        CornernodeFlShockpot::new(cornernode_fl_shockpot).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeFlShockpot::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -11576,13 +11582,13 @@ pub struct CornernodeFrShockpot {
 impl CornernodeFrShockpot {
     pub const MESSAGE_ID: u32 = 901;
     
-    pub const CORNERNODE_FR_SHOCKPOT_MIN: u16 = 0_u16;
-    pub const CORNERNODE_FR_SHOCKPOT_MAX: u16 = 65535_u16;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_fr_shockpot from values
-    pub fn new(cornernode_fr_shockpot: u16) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_fr_shockpot(cornernode_fr_shockpot)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -11591,18 +11597,20 @@ impl CornernodeFrShockpot {
         &self.raw
     }
     
-    /// cornernode_fr_shockpot
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_fr_shockpot(&self) -> u16 {
-        self.cornernode_fr_shockpot_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_fr_shockpot
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -11611,15 +11619,15 @@ impl CornernodeFrShockpot {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_fr_shockpot_raw(&self) -> u16 {
+    pub fn uint16_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_fr_shockpot
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_fr_shockpot(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 901 });
@@ -11647,7 +11655,7 @@ impl core::fmt::Debug for CornernodeFrShockpot {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeFrShockpot")
-                .field("cornernode_fr_shockpot", &self.cornernode_fr_shockpot())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeFrShockpot").field(&self.raw).finish()
@@ -11658,8 +11666,8 @@ impl core::fmt::Debug for CornernodeFrShockpot {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeFrShockpot {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_fr_shockpot = u.int_in_range(0..=65535)?;
-        CornernodeFrShockpot::new(cornernode_fr_shockpot).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeFrShockpot::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -11678,13 +11686,13 @@ pub struct CornernodeRlShockpot {
 impl CornernodeRlShockpot {
     pub const MESSAGE_ID: u32 = 902;
     
-    pub const CORNERNODE_RL_SHOCKPOT_MIN: u16 = 0_u16;
-    pub const CORNERNODE_RL_SHOCKPOT_MAX: u16 = 65535_u16;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_rl_shockpot from values
-    pub fn new(cornernode_rl_shockpot: u16) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_rl_shockpot(cornernode_rl_shockpot)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -11693,18 +11701,20 @@ impl CornernodeRlShockpot {
         &self.raw
     }
     
-    /// cornernode_rl_shockpot
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_rl_shockpot(&self) -> u16 {
-        self.cornernode_rl_shockpot_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_rl_shockpot
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -11713,15 +11723,15 @@ impl CornernodeRlShockpot {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_rl_shockpot_raw(&self) -> u16 {
+    pub fn uint16_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_rl_shockpot
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_rl_shockpot(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 902 });
@@ -11749,7 +11759,7 @@ impl core::fmt::Debug for CornernodeRlShockpot {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeRlShockpot")
-                .field("cornernode_rl_shockpot", &self.cornernode_rl_shockpot())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeRlShockpot").field(&self.raw).finish()
@@ -11760,8 +11770,8 @@ impl core::fmt::Debug for CornernodeRlShockpot {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeRlShockpot {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_rl_shockpot = u.int_in_range(0..=65535)?;
-        CornernodeRlShockpot::new(cornernode_rl_shockpot).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeRlShockpot::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -11780,13 +11790,13 @@ pub struct CornernodeRrShockpot {
 impl CornernodeRrShockpot {
     pub const MESSAGE_ID: u32 = 903;
     
-    pub const CORNERNODE_RR_SHOCKPOT_MIN: u16 = 0_u16;
-    pub const CORNERNODE_RR_SHOCKPOT_MAX: u16 = 65535_u16;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_rr_shockpot from values
-    pub fn new(cornernode_rr_shockpot: u16) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_rr_shockpot(cornernode_rr_shockpot)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -11795,18 +11805,20 @@ impl CornernodeRrShockpot {
         &self.raw
     }
     
-    /// cornernode_rr_shockpot
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_rr_shockpot(&self) -> u16 {
-        self.cornernode_rr_shockpot_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_rr_shockpot
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -11815,15 +11827,15 @@ impl CornernodeRrShockpot {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_rr_shockpot_raw(&self) -> u16 {
+    pub fn uint16_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_rr_shockpot
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_rr_shockpot(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 903 });
@@ -11851,7 +11863,7 @@ impl core::fmt::Debug for CornernodeRrShockpot {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeRrShockpot")
-                .field("cornernode_rr_shockpot", &self.cornernode_rr_shockpot())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeRrShockpot").field(&self.raw).finish()
@@ -11862,8 +11874,8 @@ impl core::fmt::Debug for CornernodeRrShockpot {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeRrShockpot {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_rr_shockpot = u.int_in_range(0..=65535)?;
-        CornernodeRrShockpot::new(cornernode_rr_shockpot).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeRrShockpot::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -11882,13 +11894,13 @@ pub struct CornernodeFlWheelspeed {
 impl CornernodeFlWheelspeed {
     pub const MESSAGE_ID: u32 = 904;
     
-    pub const CORNERNODE_FL_WHEELSPEED_MIN: u16 = 0_u16;
-    pub const CORNERNODE_FL_WHEELSPEED_MAX: u16 = 65535_u16;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_fl_wheelspeed from values
-    pub fn new(cornernode_fl_wheelspeed: u16) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_fl_wheelspeed(cornernode_fl_wheelspeed)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -11897,18 +11909,20 @@ impl CornernodeFlWheelspeed {
         &self.raw
     }
     
-    /// cornernode_fl_wheelspeed
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_fl_wheelspeed(&self) -> u16 {
-        self.cornernode_fl_wheelspeed_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_fl_wheelspeed
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -11917,15 +11931,15 @@ impl CornernodeFlWheelspeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_fl_wheelspeed_raw(&self) -> u16 {
+    pub fn uint16_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_fl_wheelspeed
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_fl_wheelspeed(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 904 });
@@ -11953,7 +11967,7 @@ impl core::fmt::Debug for CornernodeFlWheelspeed {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeFlWheelspeed")
-                .field("cornernode_fl_wheelspeed", &self.cornernode_fl_wheelspeed())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeFlWheelspeed").field(&self.raw).finish()
@@ -11964,8 +11978,8 @@ impl core::fmt::Debug for CornernodeFlWheelspeed {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeFlWheelspeed {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_fl_wheelspeed = u.int_in_range(0..=65535)?;
-        CornernodeFlWheelspeed::new(cornernode_fl_wheelspeed).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeFlWheelspeed::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -11984,13 +11998,13 @@ pub struct CornernodeFrWheelspeed {
 impl CornernodeFrWheelspeed {
     pub const MESSAGE_ID: u32 = 905;
     
-    pub const CORNERNODE_FR_WHEELSPEED_MIN: u16 = 0_u16;
-    pub const CORNERNODE_FR_WHEELSPEED_MAX: u16 = 65535_u16;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_fr_wheelspeed from values
-    pub fn new(cornernode_fr_wheelspeed: u16) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_fr_wheelspeed(cornernode_fr_wheelspeed)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -11999,18 +12013,20 @@ impl CornernodeFrWheelspeed {
         &self.raw
     }
     
-    /// cornernode_fr_wheelspeed
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_fr_wheelspeed(&self) -> u16 {
-        self.cornernode_fr_wheelspeed_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_fr_wheelspeed
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -12019,15 +12035,15 @@ impl CornernodeFrWheelspeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_fr_wheelspeed_raw(&self) -> u16 {
+    pub fn uint16_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_fr_wheelspeed
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_fr_wheelspeed(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 905 });
@@ -12055,7 +12071,7 @@ impl core::fmt::Debug for CornernodeFrWheelspeed {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeFrWheelspeed")
-                .field("cornernode_fr_wheelspeed", &self.cornernode_fr_wheelspeed())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeFrWheelspeed").field(&self.raw).finish()
@@ -12066,8 +12082,8 @@ impl core::fmt::Debug for CornernodeFrWheelspeed {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeFrWheelspeed {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_fr_wheelspeed = u.int_in_range(0..=65535)?;
-        CornernodeFrWheelspeed::new(cornernode_fr_wheelspeed).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeFrWheelspeed::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -12086,13 +12102,13 @@ pub struct CornernodeRlWheelspeed {
 impl CornernodeRlWheelspeed {
     pub const MESSAGE_ID: u32 = 906;
     
-    pub const CORNERNODE_RL_WHEELSPEED_MIN: u16 = 0_u16;
-    pub const CORNERNODE_RL_WHEELSPEED_MAX: u16 = 65535_u16;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_rl_wheelspeed from values
-    pub fn new(cornernode_rl_wheelspeed: u16) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_rl_wheelspeed(cornernode_rl_wheelspeed)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -12101,18 +12117,20 @@ impl CornernodeRlWheelspeed {
         &self.raw
     }
     
-    /// cornernode_rl_wheelspeed
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_rl_wheelspeed(&self) -> u16 {
-        self.cornernode_rl_wheelspeed_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_rl_wheelspeed
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -12121,15 +12139,15 @@ impl CornernodeRlWheelspeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_rl_wheelspeed_raw(&self) -> u16 {
+    pub fn uint16_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_rl_wheelspeed
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_rl_wheelspeed(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 906 });
@@ -12157,7 +12175,7 @@ impl core::fmt::Debug for CornernodeRlWheelspeed {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeRlWheelspeed")
-                .field("cornernode_rl_wheelspeed", &self.cornernode_rl_wheelspeed())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeRlWheelspeed").field(&self.raw).finish()
@@ -12168,8 +12186,8 @@ impl core::fmt::Debug for CornernodeRlWheelspeed {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeRlWheelspeed {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_rl_wheelspeed = u.int_in_range(0..=65535)?;
-        CornernodeRlWheelspeed::new(cornernode_rl_wheelspeed).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeRlWheelspeed::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -12188,13 +12206,13 @@ pub struct CornernodeRrWheelspeed {
 impl CornernodeRrWheelspeed {
     pub const MESSAGE_ID: u32 = 907;
     
-    pub const CORNERNODE_RR_WHEELSPEED_MIN: u16 = 0_u16;
-    pub const CORNERNODE_RR_WHEELSPEED_MAX: u16 = 65535_u16;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_rr_wheelspeed from values
-    pub fn new(cornernode_rr_wheelspeed: u16) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_rr_wheelspeed(cornernode_rr_wheelspeed)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -12203,18 +12221,20 @@ impl CornernodeRrWheelspeed {
         &self.raw
     }
     
-    /// cornernode_rr_wheelspeed
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_rr_wheelspeed(&self) -> u16 {
-        self.cornernode_rr_wheelspeed_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_rr_wheelspeed
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -12223,15 +12243,15 @@ impl CornernodeRrWheelspeed {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_rr_wheelspeed_raw(&self) -> u16 {
+    pub fn uint16_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_rr_wheelspeed
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_rr_wheelspeed(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 907 });
@@ -12259,7 +12279,7 @@ impl core::fmt::Debug for CornernodeRrWheelspeed {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeRrWheelspeed")
-                .field("cornernode_rr_wheelspeed", &self.cornernode_rr_wheelspeed())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeRrWheelspeed").field(&self.raw).finish()
@@ -12270,8 +12290,8 @@ impl core::fmt::Debug for CornernodeRrWheelspeed {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeRrWheelspeed {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_rr_wheelspeed = u.int_in_range(0..=65535)?;
-        CornernodeRrWheelspeed::new(cornernode_rr_wheelspeed).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeRrWheelspeed::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -12290,13 +12310,13 @@ pub struct CornernodeFlTiretemp {
 impl CornernodeFlTiretemp {
     pub const MESSAGE_ID: u32 = 908;
     
-    pub const CORNERNODE_FL_TIRETEMP_MIN: u64 = 0_u64;
-    pub const CORNERNODE_FL_TIRETEMP_MAX: u64 = 18446744073709552000_u64;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_fl_tiretemp from values
-    pub fn new(cornernode_fl_tiretemp: u64) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 8] };
-        res.set_cornernode_fl_tiretemp(cornernode_fl_tiretemp)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -12305,40 +12325,42 @@ impl CornernodeFlTiretemp {
         &self.raw
     }
     
-    /// cornernode_fl_tiretemp
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
-    /// - Max: 18446744073709552000
+    /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_fl_tiretemp(&self) -> u64 {
-        self.cornernode_fl_tiretemp_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_fl_tiretemp
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
-    /// - Signal size: 64 bits
+    /// - Signal size: 16 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_fl_tiretemp_raw(&self) -> u64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
+    pub fn uint16_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_fl_tiretemp
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_fl_tiretemp(&mut self, value: u64) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
-        if value < 0_u64 || 18446744073709552000_u64 < value {
+        if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 908 });
         }
-        self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
     
@@ -12361,7 +12383,7 @@ impl core::fmt::Debug for CornernodeFlTiretemp {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeFlTiretemp")
-                .field("cornernode_fl_tiretemp", &self.cornernode_fl_tiretemp())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeFlTiretemp").field(&self.raw).finish()
@@ -12372,8 +12394,8 @@ impl core::fmt::Debug for CornernodeFlTiretemp {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeFlTiretemp {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_fl_tiretemp = u.int_in_range(0..=18446744073709552000)?;
-        CornernodeFlTiretemp::new(cornernode_fl_tiretemp).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeFlTiretemp::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -12392,13 +12414,13 @@ pub struct CornernodeFrTiretemp {
 impl CornernodeFrTiretemp {
     pub const MESSAGE_ID: u32 = 909;
     
-    pub const CORNERNODE_FR_TIRETEMP_MIN: u64 = 0_u64;
-    pub const CORNERNODE_FR_TIRETEMP_MAX: u64 = 18446744073709552000_u64;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_fr_tiretemp from values
-    pub fn new(cornernode_fr_tiretemp: u64) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 8] };
-        res.set_cornernode_fr_tiretemp(cornernode_fr_tiretemp)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -12407,40 +12429,42 @@ impl CornernodeFrTiretemp {
         &self.raw
     }
     
-    /// cornernode_fr_tiretemp
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
-    /// - Max: 18446744073709552000
+    /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_fr_tiretemp(&self) -> u64 {
-        self.cornernode_fr_tiretemp_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_fr_tiretemp
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
-    /// - Signal size: 64 bits
+    /// - Signal size: 16 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_fr_tiretemp_raw(&self) -> u64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
+    pub fn uint16_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_fr_tiretemp
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_fr_tiretemp(&mut self, value: u64) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
-        if value < 0_u64 || 18446744073709552000_u64 < value {
+        if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 909 });
         }
-        self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
     
@@ -12463,7 +12487,7 @@ impl core::fmt::Debug for CornernodeFrTiretemp {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeFrTiretemp")
-                .field("cornernode_fr_tiretemp", &self.cornernode_fr_tiretemp())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeFrTiretemp").field(&self.raw).finish()
@@ -12474,8 +12498,8 @@ impl core::fmt::Debug for CornernodeFrTiretemp {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeFrTiretemp {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_fr_tiretemp = u.int_in_range(0..=18446744073709552000)?;
-        CornernodeFrTiretemp::new(cornernode_fr_tiretemp).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeFrTiretemp::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -12494,13 +12518,13 @@ pub struct CornernodeRlTiretemp {
 impl CornernodeRlTiretemp {
     pub const MESSAGE_ID: u32 = 910;
     
-    pub const CORNERNODE_RL_TIRETEMP_MIN: u64 = 0_u64;
-    pub const CORNERNODE_RL_TIRETEMP_MAX: u64 = 18446744073709552000_u64;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_rl_tiretemp from values
-    pub fn new(cornernode_rl_tiretemp: u64) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 8] };
-        res.set_cornernode_rl_tiretemp(cornernode_rl_tiretemp)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -12509,40 +12533,42 @@ impl CornernodeRlTiretemp {
         &self.raw
     }
     
-    /// cornernode_rl_tiretemp
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
-    /// - Max: 18446744073709552000
+    /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_rl_tiretemp(&self) -> u64 {
-        self.cornernode_rl_tiretemp_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_rl_tiretemp
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
-    /// - Signal size: 64 bits
+    /// - Signal size: 16 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_rl_tiretemp_raw(&self) -> u64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
+    pub fn uint16_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_rl_tiretemp
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_rl_tiretemp(&mut self, value: u64) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
-        if value < 0_u64 || 18446744073709552000_u64 < value {
+        if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 910 });
         }
-        self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
     
@@ -12565,7 +12591,7 @@ impl core::fmt::Debug for CornernodeRlTiretemp {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeRlTiretemp")
-                .field("cornernode_rl_tiretemp", &self.cornernode_rl_tiretemp())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeRlTiretemp").field(&self.raw).finish()
@@ -12576,8 +12602,8 @@ impl core::fmt::Debug for CornernodeRlTiretemp {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeRlTiretemp {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_rl_tiretemp = u.int_in_range(0..=18446744073709552000)?;
-        CornernodeRlTiretemp::new(cornernode_rl_tiretemp).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeRlTiretemp::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -12596,13 +12622,13 @@ pub struct CornernodeRrTiretemp {
 impl CornernodeRrTiretemp {
     pub const MESSAGE_ID: u32 = 911;
     
-    pub const CORNERNODE_RR_TIRETEMP_MIN: u64 = 0_u64;
-    pub const CORNERNODE_RR_TIRETEMP_MAX: u64 = 18446744073709552000_u64;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_rr_tiretemp from values
-    pub fn new(cornernode_rr_tiretemp: u64) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 8] };
-        res.set_cornernode_rr_tiretemp(cornernode_rr_tiretemp)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -12611,40 +12637,42 @@ impl CornernodeRrTiretemp {
         &self.raw
     }
     
-    /// cornernode_rr_tiretemp
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
-    /// - Max: 18446744073709552000
+    /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_rr_tiretemp(&self) -> u64 {
-        self.cornernode_rr_tiretemp_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_rr_tiretemp
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
-    /// - Signal size: 64 bits
+    /// - Signal size: 16 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_rr_tiretemp_raw(&self) -> u64 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..64].load_le::<u64>();
+    pub fn uint16_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_rr_tiretemp
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_rr_tiretemp(&mut self, value: u64) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
-        if value < 0_u64 || 18446744073709552000_u64 < value {
+        if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 911 });
         }
-        self.raw.view_bits_mut::<Lsb0>()[0..64].store_le(value);
+        self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
     
@@ -12667,7 +12695,7 @@ impl core::fmt::Debug for CornernodeRrTiretemp {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeRrTiretemp")
-                .field("cornernode_rr_tiretemp", &self.cornernode_rr_tiretemp())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeRrTiretemp").field(&self.raw).finish()
@@ -12678,8 +12706,8 @@ impl core::fmt::Debug for CornernodeRrTiretemp {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeRrTiretemp {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_rr_tiretemp = u.int_in_range(0..=18446744073709552000)?;
-        CornernodeRrTiretemp::new(cornernode_rr_tiretemp).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeRrTiretemp::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -12698,13 +12726,13 @@ pub struct CornernodeFrontBrakepressure {
 impl CornernodeFrontBrakepressure {
     pub const MESSAGE_ID: u32 = 912;
     
-    pub const CORNERNODE_FRONT_BRAKEPRESSURE_MIN: u16 = 0_u16;
-    pub const CORNERNODE_FRONT_BRAKEPRESSURE_MAX: u16 = 65535_u16;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_front_brakepressure from values
-    pub fn new(cornernode_front_brakepressure: u16) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_front_brakepressure(cornernode_front_brakepressure)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -12713,18 +12741,20 @@ impl CornernodeFrontBrakepressure {
         &self.raw
     }
     
-    /// cornernode_front_brakepressure
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_front_brakepressure(&self) -> u16 {
-        self.cornernode_front_brakepressure_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_front_brakepressure
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -12733,15 +12763,15 @@ impl CornernodeFrontBrakepressure {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_front_brakepressure_raw(&self) -> u16 {
+    pub fn uint16_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_front_brakepressure
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_front_brakepressure(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 912 });
@@ -12769,7 +12799,7 @@ impl core::fmt::Debug for CornernodeFrontBrakepressure {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeFrontBrakepressure")
-                .field("cornernode_front_brakepressure", &self.cornernode_front_brakepressure())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeFrontBrakepressure").field(&self.raw).finish()
@@ -12780,8 +12810,8 @@ impl core::fmt::Debug for CornernodeFrontBrakepressure {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeFrontBrakepressure {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_front_brakepressure = u.int_in_range(0..=65535)?;
-        CornernodeFrontBrakepressure::new(cornernode_front_brakepressure).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeFrontBrakepressure::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -12800,13 +12830,13 @@ pub struct CornernodeRearBrakepressure {
 impl CornernodeRearBrakepressure {
     pub const MESSAGE_ID: u32 = 913;
     
-    pub const CORNERNODE_REAR_BRAKEPRESSURE_MIN: u16 = 0_u16;
-    pub const CORNERNODE_REAR_BRAKEPRESSURE_MAX: u16 = 65535_u16;
+    pub const UINT16_MIN: u16 = 0_u16;
+    pub const UINT16_MAX: u16 = 65535_u16;
     
     /// Construct new cornernode_rear_brakepressure from values
-    pub fn new(cornernode_rear_brakepressure: u16) -> Result<Self, CanError> {
+    pub fn new(uint16: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_rear_brakepressure(cornernode_rear_brakepressure)?;
+        res.set_uint16(uint16)?;
         Ok(res)
     }
     
@@ -12815,18 +12845,20 @@ impl CornernodeRearBrakepressure {
         &self.raw
     }
     
-    /// cornernode_rear_brakepressure
+    /// uint16
+    ///
+    /// Raw unsigned integer with 16 bits
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_rear_brakepressure(&self) -> u16 {
-        self.cornernode_rear_brakepressure_raw()
+    pub fn uint16(&self) -> u16 {
+        self.uint16_raw()
     }
     
-    /// Get raw value of cornernode_rear_brakepressure
+    /// Get raw value of uint16
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -12835,15 +12867,15 @@ impl CornernodeRearBrakepressure {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn cornernode_rear_brakepressure_raw(&self) -> u16 {
+    pub fn uint16_raw(&self) -> u16 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         signal
     }
     
-    /// Set value of cornernode_rear_brakepressure
+    /// Set value of uint16
     #[inline(always)]
-    pub fn set_cornernode_rear_brakepressure(&mut self, value: u16) -> Result<(), CanError> {
+    pub fn set_uint16(&mut self, value: u16) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 913 });
@@ -12871,7 +12903,7 @@ impl core::fmt::Debug for CornernodeRearBrakepressure {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeRearBrakepressure")
-                .field("cornernode_rear_brakepressure", &self.cornernode_rear_brakepressure())
+                .field("uint16", &self.uint16())
             .finish()
         } else {
             f.debug_tuple("CornernodeRearBrakepressure").field(&self.raw).finish()
@@ -12882,8 +12914,8 @@ impl core::fmt::Debug for CornernodeRearBrakepressure {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeRearBrakepressure {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_rear_brakepressure = u.int_in_range(0..=65535)?;
-        CornernodeRearBrakepressure::new(cornernode_rear_brakepressure).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let uint16 = u.int_in_range(0..=65535)?;
+        CornernodeRearBrakepressure::new(uint16).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -12902,13 +12934,13 @@ pub struct CornernodeMotorTemp {
 impl CornernodeMotorTemp {
     pub const MESSAGE_ID: u32 = 914;
     
-    pub const CORNERNODE_MOTOR_TEMP_MIN: f32 = 0_f32;
-    pub const CORNERNODE_MOTOR_TEMP_MAX: f32 = 65535_f32;
+    pub const TEMP_C_MIN: f32 = 0_f32;
+    pub const TEMP_C_MAX: f32 = 65535_f32;
     
     /// Construct new cornernode_motor_temp from values
-    pub fn new(cornernode_motor_temp: f32) -> Result<Self, CanError> {
+    pub fn new(temp_c: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_motor_temp(cornernode_motor_temp)?;
+        res.set_temp_c(temp_c)?;
         Ok(res)
     }
     
@@ -12917,20 +12949,20 @@ impl CornernodeMotorTemp {
         &self.raw
     }
     
-    /// cornernode_motor_temp
+    /// temp_C
     ///
-    /// Motor temp in degrees celcius
+    /// Temperature in degrees celcius
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_motor_temp(&self) -> f32 {
-        self.cornernode_motor_temp_raw()
+    pub fn temp_c(&self) -> f32 {
+        self.temp_c_raw()
     }
     
-    /// Get raw value of cornernode_motor_temp
+    /// Get raw value of temp_C
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -12939,7 +12971,7 @@ impl CornernodeMotorTemp {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn cornernode_motor_temp_raw(&self) -> f32 {
+    pub fn temp_c_raw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         let signal  = i16::from_ne_bytes(signal.to_ne_bytes());
@@ -12948,9 +12980,9 @@ impl CornernodeMotorTemp {
         (signal as f32) * factor + offset
     }
     
-    /// Set value of cornernode_motor_temp
+    /// Set value of temp_C
     #[inline(always)]
-    pub fn set_cornernode_motor_temp(&mut self, value: f32) -> Result<(), CanError> {
+    pub fn set_temp_c(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 914 });
@@ -12983,7 +13015,7 @@ impl core::fmt::Debug for CornernodeMotorTemp {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeMotorTemp")
-                .field("cornernode_motor_temp", &self.cornernode_motor_temp())
+                .field("temp_c", &self.temp_c())
             .finish()
         } else {
             f.debug_tuple("CornernodeMotorTemp").field(&self.raw).finish()
@@ -12994,8 +13026,8 @@ impl core::fmt::Debug for CornernodeMotorTemp {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeMotorTemp {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_motor_temp = u.float_in_range(0_f32..=65535_f32)?;
-        CornernodeMotorTemp::new(cornernode_motor_temp).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let temp_c = u.float_in_range(0_f32..=65535_f32)?;
+        CornernodeMotorTemp::new(temp_c).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
@@ -13014,13 +13046,13 @@ pub struct CornernodeCoolantTemp {
 impl CornernodeCoolantTemp {
     pub const MESSAGE_ID: u32 = 915;
     
-    pub const CORNERNODE_COOLANT_TEMP_MIN: f32 = 0_f32;
-    pub const CORNERNODE_COOLANT_TEMP_MAX: f32 = 65535_f32;
+    pub const TEMP_C_MIN: f32 = 0_f32;
+    pub const TEMP_C_MAX: f32 = 65535_f32;
     
     /// Construct new cornernode_coolant_temp from values
-    pub fn new(cornernode_coolant_temp: f32) -> Result<Self, CanError> {
+    pub fn new(temp_c: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 2] };
-        res.set_cornernode_coolant_temp(cornernode_coolant_temp)?;
+        res.set_temp_c(temp_c)?;
         Ok(res)
     }
     
@@ -13029,45 +13061,45 @@ impl CornernodeCoolantTemp {
         &self.raw
     }
     
-    /// cornernode_coolant_temp
+    /// temp_C
     ///
-    /// Coolant temp in degrees celcius
+    /// Temperature in degrees celcius
     ///
     /// - Min: 0
     /// - Max: 65535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn cornernode_coolant_temp(&self) -> f32 {
-        self.cornernode_coolant_temp_raw()
+    pub fn temp_c(&self) -> f32 {
+        self.temp_c_raw()
     }
     
-    /// Get raw value of cornernode_coolant_temp
+    /// Get raw value of temp_C
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
-    /// - Factor: 0.01
+    /// - Factor: 0.1
     /// - Offset: 0
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn cornernode_coolant_temp_raw(&self) -> f32 {
+    pub fn temp_c_raw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         
         let signal  = i16::from_ne_bytes(signal.to_ne_bytes());
-        let factor = 0.01_f32;
+        let factor = 0.1_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
     
-    /// Set value of cornernode_coolant_temp
+    /// Set value of temp_C
     #[inline(always)]
-    pub fn set_cornernode_coolant_temp(&mut self, value: f32) -> Result<(), CanError> {
+    pub fn set_temp_c(&mut self, value: f32) -> Result<(), CanError> {
         #[cfg(feature = "range_checked")]
         if value < 0_f32 || 65535_f32 < value {
             return Err(CanError::ParameterOutOfRange { message_id: 915 });
         }
-        let factor = 0.01_f32;
+        let factor = 0.1_f32;
         let offset = 0_f32;
         let value = ((value - offset) / factor) as i16;
         
@@ -13095,7 +13127,7 @@ impl core::fmt::Debug for CornernodeCoolantTemp {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         if f.alternate() {
             f.debug_struct("CornernodeCoolantTemp")
-                .field("cornernode_coolant_temp", &self.cornernode_coolant_temp())
+                .field("temp_c", &self.temp_c())
             .finish()
         } else {
             f.debug_tuple("CornernodeCoolantTemp").field(&self.raw).finish()
@@ -13106,8 +13138,8 @@ impl core::fmt::Debug for CornernodeCoolantTemp {
 #[cfg(feature = "arb")]
 impl<'a> Arbitrary<'a> for CornernodeCoolantTemp {
     fn arbitrary(u: &mut Unstructured<'a>) -> Result<Self, arbitrary::Error> {
-        let cornernode_coolant_temp = u.float_in_range(0_f32..=65535_f32)?;
-        CornernodeCoolantTemp::new(cornernode_coolant_temp).map_err(|_| arbitrary::Error::IncorrectFormat)
+        let temp_c = u.float_in_range(0_f32..=65535_f32)?;
+        CornernodeCoolantTemp::new(temp_c).map_err(|_| arbitrary::Error::IncorrectFormat)
     }
 }
 
