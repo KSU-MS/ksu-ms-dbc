@@ -99,7 +99,7 @@ jobs:
       with:
         ref: 'rust'
     - run: |
-        ~/.cargo/bin/dbc-codegen ~/dbc/*.dbc {{ $GITHUB_WORKSPACE }}/src/
+        ~/.cargo/bin/dbc-codegen ~/dbc/*.dbc $GITHUB_WORKSPACE/src/
 
         # Note: the following account information will not work on GHES
         git config user.name "github-actions[bot]"
