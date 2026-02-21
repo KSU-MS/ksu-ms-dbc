@@ -17,10 +17,9 @@
       pkg_overlay = final: prev: {
         can_pkg = final.callPackage ./default.nix { };
       };
-      custom_overlays = [ pkg_overlay ];
     in
     {
-      overlays.default = custom_overlays;
+      overlays.default = pkg_overlay;
     }
 
     # Add a package export for each system
