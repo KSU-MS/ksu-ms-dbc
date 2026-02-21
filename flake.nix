@@ -3,26 +3,37 @@
   description = "A very basic flake that generates the DBCs by running a python script";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
-  outputs = { self, nixpkgs }: let
-    pkg_overlay = final: prev: {
-      can_pkg = final.callPackage ./default.nix { };
-    };
-    custom_overlays = [ pkg_overlay ];
+  outputs =
+    {
+      flake-utils,
+      self,
+      nixpkgs,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkg_overlay = final: prev: {
+          can_pkg = final.callPackage ./default.nix { };
+        };
+        custom_overlays = [ pkg_overlay ];
 
-    pkgs = import nixpkgs {
-      system = "x86_64-linux";
-      overlays = [ self.overlays.default ];
-    };
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ pkg_overlay ];
+        };
 
-  in {
-    overlays.default = nixpkgs.lib.composeManyExtensions custom_overlays;
+      in
+      {
+        overlays.default = nixpkgs.lib.composeManyExtensions custom_overlays;
 
-    packages.x86_64-linux = rec {
-      can_pkg = pkgs.can_pkg;
-      default = can_pkg;
-    };
-  };
+        packages = {
+          default = pkgs.can_pkg;
+          can_pkg = pkgs.can_pkg;
+        };
+      }
+    );
 }

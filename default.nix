@@ -4,11 +4,10 @@ pkgs.stdenv.mkDerivation {
   name = "can_pkg";
 
   src = ./gen_tool;
-  
+
   # Some deps needed to generate the output DBC
   buildInputs = [
-    pkgs.python311
-    pkgs.python311Packages.cantools
+    pkgs.python313Packages.cantools
   ];
 
   # Specify the output of the build process
