@@ -3,7 +3,7 @@
 pkgs.stdenv.mkDerivation {
   name = "can_pkg";
 
-  src = ./gen_tool;
+  src = ./.;
 
   # Some deps needed to generate the output DBC
   buildInputs = [
