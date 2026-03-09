@@ -86,7 +86,7 @@ jobs:
 
     steps:
     - name: Install dbc-codegen-cli
-      run: cargo install dbc-codegen-cli
+      run: cargo install dbc-codegen-cli --git https://github.com/oxibus/dbc-codegen --branch release-plz-2026-01-20T18-31-05Z
 
     - name: Download artifact
       uses: actions/download-artifact@v4
