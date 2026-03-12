@@ -7425,13 +7425,13 @@ impl embedded_can::Frame for VcuBoardReadingsTwo {
 /// vcu_pedals_travel
 ///
 /// - Standard ID: 204 (0xcc)
-/// - Size: 6 bytes
+/// - Size: 8 bytes
 /// - Transmitter: vcu
 ///
-/// the calculated pedal travels
+/// the calculated pedal & steering travels, 0.0-1.0
 #[derive(Clone, Copy)]
 pub struct VcuPedalsTravel {
-    raw: [u8; 6],
+    raw: [u8; 8],
 }
 #[allow(
     clippy::absurd_extreme_comparisons,
@@ -7446,6 +7446,8 @@ impl VcuPedalsTravel {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xcc)
     });
+    pub const CORNERNODE_STEERING_TRAVEL_MIN: f32 = 0_f32;
+    pub const CORNERNODE_STEERING_TRAVEL_MAX: f32 = 65535_f32;
     pub const VCU_BSE1_TRAVEL_MIN: f32 = 0_f32;
     pub const VCU_BSE1_TRAVEL_MAX: f32 = 65535_f32;
     pub const VCU_APPS2_TRAVEL_MIN: f32 = 0_f32;
@@ -7454,19 +7456,66 @@ impl VcuPedalsTravel {
     pub const VCU_APPS1_TRAVEL_MAX: f32 = 65535_f32;
     /// Construct new vcu_pedals_travel from values
     pub fn new(
+        cornernode_steering_travel: f32,
         vcu_bse1_travel: f32,
         vcu_apps2_travel: f32,
         vcu_apps1_travel: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0u8; 8] };
+        res.set_cornernode_steering_travel(cornernode_steering_travel)?;
         res.set_vcu_bse1_travel(vcu_bse1_travel)?;
         res.set_vcu_apps2_travel(vcu_apps2_travel)?;
         res.set_vcu_apps1_travel(vcu_apps1_travel)?;
         Ok(res)
     }
     /// Access message payload raw value
-    pub fn raw(&self) -> &[u8; 6] {
+    pub fn raw(&self) -> &[u8; 8] {
         &self.raw
+    }
+    /// cornernode_steering_travel
+    ///
+    /// -1.0 to 1.0 - negative is left, positive is right
+    ///
+    /// - Min: 0
+    /// - Max: 65535
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn cornernode_steering_travel(&self) -> f32 {
+        self.cornernode_steering_travel_raw()
+    }
+    /// Get raw value of cornernode_steering_travel
+    ///
+    /// - Start bit: 48
+    /// - Signal size: 16 bits
+    /// - Factor: 0.1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Signed
+    #[inline(always)]
+    pub fn cornernode_steering_travel_raw(&self) -> f32 {
+        let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
+        let factor = 0.1_f32;
+        let offset = 0_f32;
+        (signal as f32) * factor + offset
+    }
+    /// Set value of cornernode_steering_travel
+    #[inline(always)]
+    pub fn set_cornernode_steering_travel(
+        &mut self,
+        value: f32,
+    ) -> Result<(), CanError> {
+        if value < 0_f32 || 65535_f32 < value {
+            return Err(CanError::ParameterOutOfRange {
+                message_id: VcuPedalsTravel::MESSAGE_ID,
+            });
+        }
+        let factor = 0.1_f32;
+        let offset = 0_f32;
+        let value = ((value - offset) / factor) as i16;
+        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
+        Ok(())
     }
     /// vcu_bse1_travel
     ///
@@ -7599,11 +7648,11 @@ impl core::convert::TryFrom<&[u8]> for VcuPedalsTravel {
     type Error = CanError;
     #[inline(always)]
     fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
-        if payload.len() != 6 {
+        if payload.len() != 8 {
             return Err(CanError::InvalidPayloadSize);
         }
-        let mut raw = [0u8; 6];
-        raw.copy_from_slice(&payload[..6]);
+        let mut raw = [0u8; 8];
+        raw.copy_from_slice(&payload[..8]);
         Ok(Self { raw })
     }
 }
