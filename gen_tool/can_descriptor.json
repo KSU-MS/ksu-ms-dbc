@@ -309,13 +309,14 @@
         },
         "vcu_pedals_travel": {
             "id": 204,
-            "length": 6,
+            "length": 8,
             "signals": [
                 "vcu_apps1_travel",
                 "vcu_apps2_travel",
-                "vcu_bse1_travel"
+                "vcu_bse1_travel",
+                "cornernode_steering_travel"
             ],
-            "comment": "the calculated pedal travels",
+            "comment": "the calculated pedal & steering travels, 0.0-1.0",
             "bus_name": "inverter",
             "senders": [
                 "vcu"
@@ -963,6 +964,18 @@
                 "is_float": true
             },
             "comment": "0 to 100% - a negative value = implaus"
+        },
+        {
+            "name": "cornernode_steering_travel",
+            "start": 48,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "-1.0 to 1.0 - negative is left, positive is right"
         },
 
         {
