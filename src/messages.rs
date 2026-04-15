@@ -10891,7 +10891,7 @@ impl EveloggerVectornavTime {
         StandardId::new_unchecked(0x1f9)
     });
     pub const UNIX_TIME_NS_MIN: u64 = 0_u64;
-    pub const UNIX_TIME_NS_MAX: u64 = 18446744073709552000_u64;
+    pub const UNIX_TIME_NS_MAX: u64 = u64::MAX;
     /// Construct new evelogger_vectornav_time from values
     pub fn new(unix_time_ns: u64) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 8] };
@@ -10931,7 +10931,7 @@ impl EveloggerVectornavTime {
     /// Set value of unix_time_ns
     #[inline(always)]
     pub fn set_unix_time_ns(&mut self, value: u64) -> Result<(), CanError> {
-        if value < 0_u64 || 18446744073709552000_u64 < value {
+        if value < 0_u64 || u64::MAX < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: EveloggerVectornavTime::MESSAGE_ID,
             });
