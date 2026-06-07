@@ -93,121 +93,61 @@
             "length": 8,
             "signals": [
                 "precharge_state",
-                "precharge_accVoltageMod100",
-                "precharge_accVoltageDiv100",
-                "precharge_tsVoltageMod100",
-                "precharge_tsVoltageDiv100",
                 "precharge_errorCode"
             ]
         },
 
 
 
-        "module1_status": {
-            "id": 131,
-            "length": 8,
+        "acu_shutdown_status": {
+            "id": 160,
+            "length": 6,
             "signals": [
-                "firmware_version",
-                "board_on_time_seconds",
-                "firmware_on_main",
-                "firmware_is_dirty",
-                "board_temperature",
-                "board_humidity"
+                "acu_imd_relay_state",
+                "acu_bms_relay_state",
+                "acu_imd_gpio_state",
+                "acu_bms_gpio_state",
+                "acu_imd_pwm_frequency",
+                "acu_imd_pwm_duty"
             ],
-            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
+            "comment": "Information on IMD and BMS shutdown circuit relays, as well as IMD diagnostic info",
             "bus_name": "accumulator",
-            "senders": [ "module1" ]
+            "senders": [ "acu" ]
         },
-        "module2_status": {
-            "id": 132,
-            "length": 8,
+
+        "acu_board_voltage_readings": {
+            "id": 161,
+            "length": 6,
             "signals": [
-                "firmware_version",
-                "board_on_time_seconds",
-                "firmware_on_main",
-                "firmware_is_dirty",
-                "board_temperature",
-                "board_humidity"
+                "acu_sdc_voltage",
+                "acu_sdc_current",
+                "acu_glv_voltage",
+                "acu_glv_current",
+                "acu_5v_voltage",
+                "acu_3v_voltage"
             ],
-            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
+            "comment": "ACU voltage and current measurements",
             "bus_name": "accumulator",
-            "senders": [ "module2" ]
-        },
-        "module3_status": {
-            "id": 133,
-            "length": 8,
-            "signals": [
-                "firmware_version",
-                "board_on_time_seconds",
-                "firmware_on_main",
-                "firmware_is_dirty",
-                "board_temperature",
-                "board_humidity"
-            ],
-            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
-            "bus_name": "accumulator",
-            "senders": [ "module3" ]
-        },
-        "module4_status": {
-            "id": 134,
-            "length": 8,
-            "signals": [
-                "firmware_version",
-                "board_on_time_seconds",
-                "firmware_on_main",
-                "firmware_is_dirty",
-                "board_temperature",
-                "board_humidity"
-            ],
-            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
-            "bus_name": "accumulator",
-            "senders": [ "module4" ]
-        },
-        "module5_status": {
-            "id": 135,
-            "length": 8,
-            "signals": [
-                "firmware_version",
-                "board_on_time_seconds",
-                "firmware_on_main",
-                "firmware_is_dirty",
-                "board_temperature",
-                "board_humidity"
-            ],
-            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
-            "bus_name": "accumulator",
-            "senders": [ "module5" ]
+            "senders": [ "acu" ]
         },
 
 
 
-        "VCU_STATUS": {
+        "vcu_status": {
             "id": 195,
             "length": 7,
             "signals": [
-                "VCU_IMD_OK_HIGH",
-                "VCU_SHUTDOWN_B_OK_HIGH",
-                "VCU_BMS_OK_HIGH",
-                "VCU_SHUTDOWN_C_OK_HIGH",
-                "VCU_BSPD_OK_HIGH",
-                "VCU_SHUTDOWN_D_OK_HIGH",
-                "VCU_SOFTWARE_OK_HIGH",
-                "VCU_SHUTDOWN_E_OK_HIGH",
-                "VCU_ACCEL_IMPLAUSIBLE",
-                "VCU_BRAKE_IMPLAUSIBLE",
-                "VCU_BRAKE_ACTIVE",
-                "VCU_BSPD_CURRENT_HIGH",
-                "VCU_BSPD_BRAKE_HIGH",
-                "VCU_ACCEL_BRAKE_IMPLAUSIBLE",
-                "VCU_STATEMACHINE_STATE",
-                "VCU_INVERTER_POWERED",
-                "VCU_ENERGY_METER_PRESENT",
-                "VCU_ACTIVATE_BUZZER",
-                "VCU_SOFTWARE_OK",
-                "VCU_LAUNCH_CONTROL_ACTIVE",
-                "VCU_MAX_TORQUE",
-                "VCU_TORQUE_MODE",
-                "VCU_DISTANCE_TRAVELLED"
+                "vcu_statemachine_state",
+                "vcu_brake_active",
+                "vcu_imd_ok_high",
+                "vcu_bms_ok_high",
+                "vcu_bspd_ok_high",
+                "vcu_accel_brake_implausible",
+                "vcu_accel_implausible",
+                "vcu_brake_implausible",
+                "vcu_bspd_current_high",
+                "vcu_bspd_brake_high",
+                "vcu_max_torque"
             ],
             "comment": "Vehicle Control Unit Status message",
             "bus_name": "inverter",
@@ -215,36 +155,100 @@
                 "vcu"
             ]
         },
-        "VCU_PEDAL_READINGS": {
+
+        "vcu_pedals_travel": {
             "id": 196,
-            "length": 8,
+            "length": 6,
             "signals": [
-                "APPS1",
-                "APPS2",
-                "BSE1",
-                "STEERING"
+                "vcu_apps1_travel",
+                "vcu_apps2_travel",
+                "vcu_bse_travel"
             ],
-            "comment": "VCU analog pedal readings",
+            "comment": "VCU calculated pedal travels",
             "bus_name": "inverter",
             "senders": [
                 "vcu"
             ]
         },
-        "VCU_WHEELSPEED_READINGS": {
+
+        "vcu_pedal_readings": {
+            "id": 197,
+            "length": 6,
+            "signals": [
+                "apps_1_raw",
+                "apps_2_raw",
+                "bse_raw"
+            ],
+            "comment": "VCU raw analog pedal readings",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+
+        "vcu_board_readings_one": {
             "id": 198,
             "length": 8,
             "signals": [
-                "vcu_rpm_rear_left",
-                "vcu_rpm_front_right"
+                "hall_OK",
+                "bse_OK",
+                "bspd_fault"
             ],
-            "comment": "VCU wheel speed sensor readings",
+            "comment": "VCU BSPD circuit readings",
             "bus_name": "inverter",
             "senders": [
                 "vcu"
             ]
         },
-        "vcu_pedal_threshold_settings": {
+
+        "vcu_board_readings_two": {
             "id": 199,
+            "length": 8,
+            "signals": [
+                "vcu_ain_10",
+                "vcu_ain_11",
+                "vcu_ain_14",
+                "vcu_ain_15",
+                "vcu_ain_16",
+                "vcu_ain_17"
+            ],
+            "comment": "VCU analog input readings",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+
+        "vcu_distance_tracker_motor": {
+            "id": 200,
+            "length": 8,
+            "signals": [
+                "vcu_motor_energy_wh",
+                "vcu_motor_efficiency_instantaneous",
+                "vcu_motor_distance_meters",
+                "vcu_motor_efficiency_kmkwh"
+            ],
+            "comment": "distance tracking data using motor as speed",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+
+        "vcu_set_parameter": {
+            "id": 201,
+            "length": 5,
+            "signals": [
+                "vcu_target_parameter",
+                "vcu_parameter_value"
+            ],
+            "comment": "The first byte is the target, the last 4 are the value to set",
+            "bus_name": "inverter",
+            "senders": [ "vcu" ]
+        },
+
+        "vcu_pedal_threshold_settings": {
+            "id": 202,
             "length": 7,
             "signals": [
                 "vcu_pedals_settings_MUX",
@@ -262,110 +266,9 @@
                 "vcu"
             ]
         },
-        "vcu_board_data": {
-            "id": 200,
-            "length": 8,
-            "signals": [
-                "firmware_version",
-                "board_on_time_seconds",
-                "firmware_on_main",
-                "firmware_is_dirty"
-            ],
-            "comment": "information on the running vcu firmware and system on-timer",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_board_readings_one": {
-            "id": 201,
-            "length": 8,
-            "signals": [
-                "VCU_GLV_CURRENT",
-                "VCU_GLV_VOLTAGE",
-                "VCU_BSPD_VOLTAGE",
-                "VCU_5V_VOLTAGE"
-            ],
-            "comment": "VCU PCB health readings",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_board_readings_two": {
-            "id": 202,
-            "length": 8,
-            "signals": [
-                "VCU_SDC_VOLTAGE",
-                "VCU_SDC_CURRENT",
-                "VCU_AIN9_VOLTAGE",
-                "VCU_AIN10_VOLTAGE"
-            ],
-            "comment": "VCU PCB health readings",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_pedals_travel": {
-            "id": 204,
-            "length": 6,
-            "signals": [
-                "vcu_apps1_travel",
-                "vcu_apps2_travel",
-                "vcu_bse1_travel"
-            ],
-            "comment": "the calculated pedal travels",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_launchcontrol_countdown": {
-            "id": 205,
-            "length": 8,
-            "signals": [
-                "vcu_launchcontrol_release_countdown",
-                "vcu_release_delay"
-            ],
-            "comment": "Countdown until the VCU will start launch when in launch mode",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_distance_tracker_motor": {
-            "id": 206,
-            "length": 8,
-            "signals": [
-                "vcu_motor_energy_wh",
-                "vcu_motor_efficiency_instantaneous",
-                "vcu_motor_distance_meters",
-                "vcu_motor_efficiency_kmkwh"
-            ],
-            "comment": "distance tracking data using motor as speed",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_distance_tracker_wheelspeed": {
-            "id": 207,
-            "length": 8,
-            "signals": [
-                "vcu_wheelspeed_energy_wh",
-                "vcu_wheelspeed_efficiency_instantaneous",
-                "vcu_wheelspeed_distance_meters",
-                "vcu_wheelspeed_efficiency_kmkwh"
-            ],
-            "comment": "distance tracking data using wheelspeed as speed",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
+
         "vcu_lifetime_distance_and_ontime": {
-            "id": 208,
+            "id": 203,
             "length": 8,
             "signals": [
                 "vcu_lifetime_ontime",
@@ -376,60 +279,6 @@
             "senders": [
                 "vcu"
             ]
-        },
-        "vcu_distance_tracker_vectornav": {
-            "id": 210,
-            "length": 8,
-            "signals": [
-                "vcu_vectornav_energy_wh",
-                "vcu_vectornav_efficiency_instantaneous",
-                "vcu_vectornav_distance_meters",
-                "vcu_vectornav_efficiency_kmkwh"
-            ],
-            "comment": "distance tracking data using vectornav velocity measurement as speed",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_coulomb_counters": {
-            "id": 211,
-            "length": 8,
-            "signals": [
-                "vcu_wsfl_ah",
-                "vcu_motor_ah",
-                "vcu_vnav_ah"
-            ],
-            "comment": "vcu amp-hour counters",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_slip_info": {
-            "id": 212,
-            "length": 6,
-            "signals": [
-                "vcu_front_rpm_avg",
-                "vcu_rear_rpm_avg",
-                "vcu_calculated_slip"
-            ],
-            "comment": "vcu wheel speed and slip info for traction control and launch control",
-            "bus_name": "inverter",
-            "senders": [
-                "vcu"
-            ]
-        },
-        "vcu_set_parameter": {
-            "id": 214,
-            "length": 5,
-            "signals": [
-                "vcu_target_parameter",
-                "vcu_parameter_value"
-            ],
-            "comment": "The first byte is the target, the last 4 are the value to set",
-            "bus_name": "inverter",
-            "senders": [ "vcu" ]
         },
 
 
@@ -448,11 +297,519 @@
             "comment": "status of buttons on the dash",
             "bus_name": "inverter",
             "senders": [
-                "dash"
+                "dash",
+                "an1_fm"
             ]
         },
+
+
+
+        "vectornav_attitude": {
+            "id": 500,
+            "length": 6,
+            "signals": [
+                "vn_yaw",
+                "vn_roll",
+                "vn_pitch"
+            ],
+            "comment": "vectornav attitude readings",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger",
+                "an1_mm"
+            ]
+        },
+
+        "vectornav_gyro": {
+            "id": 501,
+            "length": 6,
+            "signals": [
+                "vn_W_x",
+                "vn_W_y",
+                "vn_W_z"
+            ],
+            "comment": "vectornav gyro readings",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger",
+                "an1_mm"
+            ]
+        },
+
+        "vectornav_position": {
+            "id": 502,
+            "length": 8,
+            "signals": [
+                "vn_latitude",
+                "vn_longitude"
+            ],
+            "comment": "vectornav position",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger",
+                "an1_mm"
+            ]
+        },
+
+        "vectornav_velocity": {
+            "id": 503,
+            "length": 6,
+            "signals": [
+                "vn_v_n",
+                "vn_v_e",
+                "vn_v_d"
+            ],
+            "comment": "vectornav velocity readings",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger",
+                "an1_mm"
+            ]
+        },
+
+        "vectornav_acceleration": {
+            "id": 504,
+            "length": 6,
+            "signals": [
+                "vn_accel_x",
+                "vn_accel_y",
+                "vn_accel_z"
+            ],
+            "comment": "vectornav accelerometer readings",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger",
+                "an1_mm"
+            ]
+        },
+
+        "vectornav_time": {
+            "id": 505,
+            "length": 8,
+            "signals": [
+                "unix_time_ns"
+            ],
+            "comment": "Vectornav gps realtime",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger",
+                "an1_mm"
+            ]
+        },
+
+
+
+        "an1_steeringpot": {
+            "id": 899,
+            "length": 6,
+            "signals": [
+                "an1_uint12",
+                "angle",
+                "angle_delta"
+            ],
+            "comment": "Steering rack data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_fm"
+            ]
+        },
+
+        "an1_front_brakepressure": {
+            "id": 900,
+            "length": 6,
+            "signals": [
+                "an1_uint12",
+                "pressure_kPa",
+                "pressure_delta"
+            ],
+            "comment": "Front brake pressure data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_fm"
+            ]
+        },
+        "an1_rear_brakepressure": {
+            "id": 901,
+            "length": 6,
+            "signals": [
+                "an1_uint12",
+                "pressure_kPa",
+                "pressure_delta"
+            ],
+            "comment": "Rear brake pressure data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_fm"
+            ]
+        },
+
+        "an1_fl_shockpot": {
+            "id": 902,
+            "length": 6,
+            "signals": [
+                "an1_uint12",
+                "length_mm",
+                "length_delta"
+            ],
+            "comment": "Front left shockpot data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_fl"
+            ]
+        },
+        "an1_fr_shockpot": {
+            "id": 903,
+            "length": 6,
+            "signals": [
+                "an1_uint12",
+                "length_mm",
+                "length_delta"
+            ],
+            "comment": "Front right shockpot data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_fr"
+            ]
+        },
+        "an1_rl_shockpot": {
+            "id": 904,
+            "length": 6,
+            "signals": [
+                "an1_uint12",
+                "length_mm",
+                "length_delta"
+            ],
+            "comment": "Rear left shockpot data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_rl"
+            ]
+        },
+        "an1_rr_shockpot": {
+            "id": 905,
+            "length": 6,
+            "signals": [
+                "an1_uint12",
+                "length_mm",
+                "length_delta"
+            ],
+            "comment": "Rear right shockpot data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_rr"
+            ]
+        },
+
+        "an1_fl_loadcell": {
+            "id": 906,
+            "length": 6,
+            "signals": [
+                "an1_uint12",
+                "force_N",
+                "force_delta"
+            ],
+            "comment": "Front left pushrod loadcell data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_fl"
+            ]
+        },
+        "an1_fr_loadcell": {
+            "id": 907,
+            "length": 6,
+            "signals": [
+                "an1_uint12",
+                "force_N",
+                "force_delta"
+            ],
+            "comment": "Front right pushrod loadcell data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_fr"
+            ]
+        },
+        "an1_rl_loadcell": {
+            "id": 908,
+            "length": 6,
+            "signals": [
+                "an1_uint12",
+                "force_N",
+                "force_delta"
+            ],
+            "comment": "Rear left pushrod loadcell data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_rl"
+            ]
+        },
+        "an1_rr_loadcell": {
+            "id": 909,
+            "length": 6,
+            "signals": [
+                "an1_uint12",
+                "force_N",
+                "force_delta"
+            ],
+            "comment": "Rear right pushrod loadcell data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_rr"
+            ]
+        },
+
+        "an1_fl_wheelspeed": {
+            "id": 910,
+            "length": 4,
+            "signals": [
+                "rpm",
+                "rpm_delta"
+            ],
+            "comment": "Front left wheelspeed data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_fl"
+            ]
+        },
+        "an1_fr_wheelspeed": {
+            "id": 911,
+            "length": 4,
+            "signals": [
+                "rpm",
+                "rpm_delta"
+            ],
+            "comment": "Front right wheelspeed data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_fr"
+            ]
+        },
+        "an1_rl_wheelspeed": {
+            "id": 912,
+            "length": 4,
+            "signals": [
+                "rpm",
+                "rpm_delta"
+            ],
+            "comment": "Rear left wheelspeed data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_rl"
+            ]
+        },
+        "an1_rr_wheelspeed": {
+            "id": 913,
+            "length": 4,
+            "signals": [
+                "rpm",
+                "rpm_delta"
+            ],
+            "comment": "Rear right wheelspeed data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_rr"
+            ]
+        },
+
+        "an1_fl_tiretemp": {
+            "id": 914,
+            "length": 8,
+            "signals": [
+                "inner_C",
+                "middle_C",
+                "outer_C",
+                "average_C"
+            ],
+            "comment": "Front left tiretemp data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_fl"
+            ]
+        },
+        "an1_fr_tiretemp": {
+            "id": 915,
+            "length": 8,
+            "signals": [
+                "inner_C",
+                "middle_C",
+                "outer_C",
+                "average_C"
+            ],
+            "comment": "Front right tiretemp data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_fr"
+            ]
+        },
+        "an1_rl_tiretemp": {
+            "id": 916,
+            "length": 8,
+            "signals": [
+                "inner_C",
+                "middle_C",
+                "outer_C",
+                "average_C"
+            ],
+            "comment": "Rear left tiretemp data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_rl"
+            ]
+        },
+        "an1_rr_tiretemp": {
+            "id": 917,
+            "length": 8,
+            "signals": [
+                "inner_C",
+                "middle_C",
+                "outer_C",
+                "average_C"
+            ],
+            "comment": "Rear right tiretemp data",
+            "bus_name": "daq",
+            "senders": [
+                "an1_rr"
+            ]
+        },
+
+        "an1_motor_temp": {
+            "id": 918,
+            "length": 4,
+            "signals": [
+                "an1_uint12",
+                "temperature_C"
+            ],
+            "comment": "The motor thermistor fella",
+            "bus_name": "daq",
+            "senders": [
+                "an1_rm"
+            ]
+        },
+        "an1_coolant_temp": {
+            "id": 919,
+            "length": 4,
+            "signals": [
+                "an1_uint12",
+                "temperature_C"
+            ],
+            "comment": "The coolant thermistor fella",
+            "bus_name": "daq",
+            "senders": [
+                "an1_rm"
+            ]
+        },
+
+
+
+        "module1_status": {
+            "id": 950,
+            "length": 8,
+            "signals": [
+                "firmware_version",
+                "board_on_time_seconds",
+                "firmware_on_main",
+                "firmware_is_dirty",
+                "board_temperature",
+                "board_humidity"
+            ],
+            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
+            "bus_name": "accumulator",
+            "senders": [ "module1" ]
+        },
+        "module2_status": {
+            "id": 951,
+            "length": 8,
+            "signals": [
+                "firmware_version",
+                "board_on_time_seconds",
+                "firmware_on_main",
+                "firmware_is_dirty",
+                "board_temperature",
+                "board_humidity"
+            ],
+            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
+            "bus_name": "accumulator",
+            "senders": [ "module2" ]
+        },
+        "module3_status": {
+            "id": 952,
+            "length": 8,
+            "signals": [
+                "firmware_version",
+                "board_on_time_seconds",
+                "firmware_on_main",
+                "firmware_is_dirty",
+                "board_temperature",
+                "board_humidity"
+            ],
+            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
+            "bus_name": "accumulator",
+            "senders": [ "module3" ]
+        },
+        "module4_status": {
+            "id": 953,
+            "length": 8,
+            "signals": [
+                "firmware_version",
+                "board_on_time_seconds",
+                "firmware_on_main",
+                "firmware_is_dirty",
+                "board_temperature",
+                "board_humidity"
+            ],
+            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
+            "bus_name": "accumulator",
+            "senders": [ "module4" ]
+        },
+        "module5_status": {
+            "id": 954,
+            "length": 8,
+            "signals": [
+                "firmware_version",
+                "board_on_time_seconds",
+                "firmware_on_main",
+                "firmware_is_dirty",
+                "board_temperature",
+                "board_humidity"
+            ],
+            "comment": "Git info for the firmware, on timer, along with temperature and humidity",
+            "bus_name": "accumulator",
+            "senders": [ "module5" ]
+        },
+
+        "acu_board_data": {
+            "id": 955,
+            "length": 8,
+            "signals": [
+                "firmware_version",
+                "board_on_time_seconds",
+                "firmware_on_main",
+                "firmware_is_dirty",
+                "board_temperature",
+                "board_humidity"
+            ],
+            "comment": "Information on the running ACU firmware and system on-timer",
+            "bus_name": "accumulator",
+            "senders": [ "acu" ]
+        },
+
+        "vcu_board_data": {
+            "id": 956,
+            "length": 8,
+            "signals": [
+                "firmware_version",
+                "board_on_time_seconds",
+                "firmware_on_main",
+                "firmware_is_dirty"
+            ],
+            "comment": "information on the running vcu firmware and system on-timer",
+            "bus_name": "inverter",
+            "senders": [
+                "vcu"
+            ]
+        },
+
         "dash_board_data": {
-            "id": 236,
+            "id": 957,
             "length": 8,
             "signals": [
                 "firmware_version",
@@ -464,347 +821,6 @@
             "bus_name": "inverter",
             "senders": [
                 "dash"
-            ]
-        },
-
-
-
-        "evelogger_vectornav_attitude": {
-            "id": 500,
-            "length": 6,
-            "signals": [
-                "evelogger_vectornav_yaw",
-                "evelogger_vectornav_roll",
-                "evelogger_vectornav_pitch"
-            ],
-            "comment": "vectornav attitude readings",
-            "bus_name": "daq",
-            "senders": [
-                "evelogger"
-            ]
-        },
-        "evelogger_vectornav_gyro": {
-            "id": 501,
-            "length": 6,
-            "signals": [
-                "evelogger_vectornav_W_x",
-                "evelogger_vectornav_W_y",
-                "evelogger_vectornav_W_z"
-            ],
-            "comment": "vectornav gyro readings",
-            "bus_name": "daq",
-            "senders": [
-                "evelogger"
-            ]
-        },
-        "evelogger_vectornav_position": {
-            "id": 502,
-            "length": 8,
-            "signals": [
-                "evelogger_vectornav_latitude",
-                "evelogger_vectornav_longitude"
-            ],
-            "comment": "vectornav position",
-            "bus_name": "daq",
-            "senders": [
-                "evelogger"
-            ]
-        },
-        "evelogger_vectornav_velocity": {
-            "id": 503,
-            "length": 6,
-            "signals": [
-                "evelogger_vectornav_v_n",
-                "evelogger_vectornav_v_e",
-                "evelogger_vectornav_v_d"
-            ],
-            "comment": "vectornav velocity readings",
-            "bus_name": "daq",
-            "senders": [
-                "evelogger"
-            ]
-        },
-        "evelogger_vectornav_acceleration": {
-            "id": 504,
-            "length": 6,
-            "signals": [
-                "evelogger_vectornav_accelX",
-                "evelogger_vectornav_accelY",
-                "evelogger_vectornav_accelZ"
-            ],
-            "comment": "vectornav accelerometer readings",
-            "bus_name": "daq",
-            "senders": [
-                "evelogger"
-            ]
-        },
-        "evelogger_vectornav_time": {
-            "id": 505,
-            "length": 8,
-            "signals": [
-                "unix_time_ns"
-            ],
-            "comment": "vectornav breakout realtime",
-            "bus_name": "daq",
-            "senders": [
-                "evelogger"
-            ]
-        },
-
-
-
-        "acu_shutdown_status": {
-            "id": 600,
-            "length": 6,
-            "signals": [
-                "acu_imd_relay_state",
-                "acu_bms_relay_state",
-                "acu_imd_gpio_state",
-                "acu_bms_gpio_state",
-                "acu_imd_pwm_frequency",
-                "acu_imd_pwm_duty"
-            ],
-            "comment": "information on IMD and BMS shutdown circuit relays, as well as IMD diagnostic info",
-            "bus_name": "accumulator",
-            "senders": [ "acu" ]
-        },
-
-        "acu_board_voltage_readings": {
-            "id": 601,
-            "length": 6,
-            "signals": [
-                "acu_sdc_voltage",
-                "acu_sdc_current",
-                "acu_glv_voltage",
-                "acu_glv_current",
-                "acu_5v_voltage",
-                "acu_3v_voltage"
-            ],
-            "comment": "ACU voltage and current measurements",
-            "bus_name": "accumulator",
-            "senders": [ "acu" ]
-        },
-
-        "acu_board_data": {
-            "id": 602,
-            "length": 8,
-            "signals": [
-                "firmware_version",
-                "board_on_time_seconds",
-                "firmware_on_main",
-                "firmware_is_dirty",
-                "board_temperature",
-                "board_humidity"
-            ],
-            "comment": "information on the running acu firmware and system on-timer",
-            "bus_name": "accumulator",
-            "senders": [ "acu" ]
-        },
-
-
-
-        "cornernode_steeringpot": {
-            "id": 899,
-            "length": 2,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "mrow",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_fl"
-            ]
-        },
-        "cornernode_fl_shockpot": {
-            "id": 900,
-            "length": 2,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "front left corner node shockpot data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_fl"
-            ]
-        },
-        "cornernode_fr_shockpot": {
-            "id": 901,
-            "length": 2,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "front right corner node shockpot data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_fr"
-            ]
-        },
-        "cornernode_rl_shockpot": {
-            "id": 902,
-            "length": 2,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "rear left corner node shockpot data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_rl"
-            ]
-        },
-        "cornernode_rr_shockpot": {
-            "id": 903,
-            "length": 2,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "rear right corner node shockpot data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_rr"
-            ]
-        },
-        "cornernode_fl_wheelspeed": {
-            "id": 904,
-            "length": 2,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "front left corner node wheelspeed data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_fl"
-            ]
-        },
-        "cornernode_fr_wheelspeed": {
-            "id": 905,
-            "length": 2,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "front right corner node wheelspeed data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_fr"
-            ]
-        },
-        "cornernode_rl_wheelspeed": {
-            "id": 906,
-            "length": 2,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "rear left corner node wheelspeed data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_rl"
-            ]
-        },
-        "cornernode_rr_wheelspeed": {
-            "id": 907,
-            "length": 2,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "rear right corner node wheelspeed data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_rr"
-            ]
-        },
-        "cornernode_fl_tiretemp": {
-            "id": 908,
-            "length": 8,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "front left corner node tiretemp data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_fl"
-            ]
-        },
-        "cornernode_fr_tiretemp": {
-            "id": 909,
-            "length": 8,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "front right corner node tiretemp data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_fr"
-            ]
-        },
-        "cornernode_rl_tiretemp": {
-            "id": 910,
-            "length": 8,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "rear left corner node tiretemp data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_rl"
-            ]
-        },
-        "cornernode_rr_tiretemp": {
-            "id": 911,
-            "length": 8,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "rear right corner node tiretemp data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_rr"
-            ]
-        },
-        "cornernode_front_brakepressure": {
-            "id": 912,
-            "length": 2,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "front brakepressure data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_fl"
-            ]
-        },
-        "cornernode_rear_brakepressure": {
-            "id": 913,
-            "length": 2,
-            "signals": [
-                "uint16"
-            ],
-            "comment": "front right corner node brakepressure data",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_fr"
-            ]
-        },
-        "cornernode_motor_temp": {
-            "id": 914,
-            "length": 2,
-            "signals": [
-                "temp_C"
-            ],
-            "comment": "The motor thermistor fella",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_rr"
-            ]
-        },
-        "cornernode_coolant_temp": {
-            "id": 915,
-            "length": 2,
-            "signals": [
-                "temp_C"
-            ],
-            "comment": "The coolant thermistor fella",
-            "bus_name": "daq",
-            "senders": [
-                "cornernode_rr"
             ]
         }
     },
@@ -857,908 +873,121 @@
             "length": 7,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": "the relative humidity at the acu",
+            "comment": "the relative humidity at the PCB",
             "units": "relative_humidity"
         },
 
 
 
         {
-            "name": "APPS1",
+            "name": "module_voltage_1",
             "start": 0,
-            "length": 16,
+            "length": 8,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": "accelerator pedal sensor 1 ADC reading",
-            "units": "raw",
             "conversion": {
-                "scale": 1,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
-        },
-        {
-            "name": "APPS2",
-            "start": 16,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "accelerator pedal sensor 2 ADC reading",
-            "units": "raw",
-            "conversion": {
-                "scale": 1,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
-        },
-        {
-            "name": "BSE1",
-            "start": 32,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "brake pedal travel sensor ADC reading",
-            "units": "raw",
-            "conversion": {
-                "scale": 1,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
-        },
-        {
-            "name": "STEERING",
-            "start": 48,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "steering angle sensor ADC reading",
-            "units": "raw",
-            "conversion": {
-                "scale": 1,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
-        },
-
-        {
-            "name": "vcu_apps1_travel",
-            "start": 0,
-            "length": 16,
-            "is_signed": true,
-            "conversion": {
-                "scale": 0.1,
+                "scale": 0.01,
                 "offset": 0,
                 "is_float": true
-            },
-            "comment": "0 to 100% - a negative value = implaus"
+            }
         },
         {
-            "name": "vcu_apps2_travel",
-            "start": 16,
-            "length": 16,
-            "is_signed": true,
+            "name": "module_voltage_2",
+            "start": 8,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
             "conversion": {
-                "scale": 0.1,
+                "scale": 0.01,
                 "offset": 0,
                 "is_float": true
-            },
-            "comment": "0 to 100% - a negative value = implaus"
+            }
         },
         {
-            "name": "vcu_bse1_travel",
-            "start": 32,
-            "length": 16,
-            "is_signed": true,
+            "name": "module_voltage_3",
+            "start": 16,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
             "conversion": {
-                "scale": 0.1,
+                "scale": 0.01,
                 "offset": 0,
                 "is_float": true
-            },
-            "comment": "0 to 100% - a negative value = implaus"
+            }
         },
-
         {
-            "name": "VCU_GLV_CURRENT",
-            "start": 0,
-            "length": 16,
+            "name": "module_voltage_4",
+            "start": 24,
+            "length": 8,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": "VCU pcb current sense of the glv rail",
-            "units": "bits",
             "conversion": {
-                "scale": 1.0,
+                "scale": 0.01,
                 "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
+                "is_float": true
+            }
         },
         {
-            "name": "VCU_GLV_VOLTAGE",
-            "start": 16,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "VCU pcb voltage sense of glv rail",
-            "units": "bits",
-            "conversion": {
-                "scale": 1.0,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
-        },
-        {
-            "name": "VCU_BSPD_VOLTAGE",
+            "name": "module_voltage_5",
             "start": 32,
-            "length": 16,
+            "length": 8,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": "VCU pcb voltage sense of the BSPD signal to close relay",
-            "units": "bits",
             "conversion": {
-                "scale": 1.0,
+                "scale": 0.01,
                 "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
+                "is_float": true
+            }
         },
         {
-            "name": "VCU_5V_VOLTAGE",
-            "start": 48,
-            "length": 16,
+            "name": "module_voltage_6",
+            "start": 40,
+            "length": 8,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": "VCU pcb voltage sense of the 5v rail",
-            "units": "bits",
             "conversion": {
-                "scale": 1.0,
+                "scale": 0.01,
                 "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
+                "is_float": true
+            }
         },
         {
-            "name": "VCU_SDC_VOLTAGE",
-            "start": 0,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "VCU pcb voltage sense of the shutdown circuit input",
-            "units": "bits",
-            "conversion": {
-                "scale": 1.0,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
-        },
-        {
-            "name": "VCU_SDC_CURRENT",
-            "start": 16,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "VCU PCB current sense of shutdown circuit",
-            "units": "bits",
-            "conversion": {
-                "scale": 1.0,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
-        },
-        {
-            "name": "VCU_AIN9_VOLTAGE",
-            "start": 32,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "VCU pcb non specific analog channel",
-            "units": "bits",
-            "conversion": {
-                "scale": 1.0,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
-        },
-        {
-            "name": "VCU_AIN10_VOLTAGE",
-            "start": 48,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "VCU pcb non specific analog channel",
-            "units": "bits",
-            "conversion": {
-                "scale": 1.0,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": 0,
-            "max": 65535
-        },
-        {
-            "name": "vcu_launchcontrol_elapsed_time",
-            "start": 0,
-            "length": 32,
-            "byte_order": "little_endian",
-            "comment": "time that the launch controller has been executing, in miliiseconds"
-        },
-        {
-            "name": "vcu_launchcontrol_state",
+            "name": "module_voltage_7",
             "start": 48,
             "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
             "conversion": {
-                "scale": 1,
+                "scale": 0.01,
                 "offset": 0,
-                "choices": {
-                    "0": "IDLE",
-                    "1": "WAITING_TO_LAUNCH",
-                    "2": "LAUNCHING",
-                    "3": "FINISHED"
-                }
-            },
-            "min": 0,
-            "max": 3
+                "is_float": true
+            }
         },
         {
-            "name": "vcu_launchcontrol_type",
+            "name": "module_voltage_8",
             "start": 56,
             "length": 8,
-            "conversion": {
-                "scale": 1,
-                "offset": 0,
-                "choices": {
-                    "0": "LC_DRIVERCONTROL",
-                    "1": "LC_LOOKUP",
-                    "2": "LC_LINEAR",
-                    "3": "LC_PID",
-                    "4": "LC_NUM_CONTROLLERS"
-                }
-            },
-            "min": 0,
-            "max": 3
-        },
-        {
-            "name": "vcu_tractioncontrol_elapsed_time",
-            "start": 0,
-            "length": 32,
-            "byte_order": "little_endian",
-            "comment": "time that the traction controller has been executing, in miliiseconds"
-        },
-        {
-            "name": "vcu_tractioncontrol_state",
-            "start": 48,
-            "length": 8,
-            "conversion": {
-                "scale": 1,
-                "offset": 0,
-                "choices": {
-                    "0": "IDLE",
-                    "1": "WAITING_TO_traction",
-                    "2": "tractionING",
-                    "3": "FINISHED"
-                }
-            },
-            "min": 0,
-            "max": 3
-        },
-        {
-            "name": "vcu_tractioncontrol_type",
-            "start": 56,
-            "length": 8,
-            "conversion": {
-                "scale": 1,
-                "offset": 0,
-                "choices": {
-                    "0": "TC_DRIVERCONTROL",
-                    "1": "TC_PID",
-                    "2": "TC_SLIPTIME",
-                    "3": "TC_NUM_CONTROLLERS"
-                }
-            },
-            "min": 0,
-            "max": 3
-        },
-        {
-            "name": "vcu_rpm_rear_left",
-            "start": 0,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "comment": "front left wheel speed sensor",
-            "units": "rpm",
-            "conversion": {
-                "scale": 1.0,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": -32768,
-            "max": 32767
-        },
-        {
-            "name": "vcu_rpm_front_right",
-            "start": 16,
-            "length": 16,
-            "byte_order": "little_endian",
-            "is_signed": true,
-            "comment": "front right wheel speed sensor",
-            "units": "rpm",
-            "conversion": {
-                "scale": 1.0,
-                "offset": 0,
-                "is_float": false
-            },
-            "min": -32768,
-            "max": 32767
-        },
-        {
-            "name": "VCU_IMD_OK_HIGH",
-            "start": 0,
-            "length": 1,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": "IMD status, high = good"
-        },
-        {
-            "name": "VCU_SHUTDOWN_B_OK_HIGH",
-            "start": 1,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "(UNUSED) Shutdown loop voltage at point D, high = good"
-        },
-        {
-            "name": "VCU_BMS_OK_HIGH",
-            "start": 2,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "BMS status, high = good"
-        },
-        {
-            "name": "VCU_SHUTDOWN_C_OK_HIGH",
-            "start": 3,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "(UNUSED) Shutdown loop voltage at point C, high = good"
-        },
-        {
-            "name": "VCU_BSPD_OK_HIGH",
-            "start": 4,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "BSPD status, high = good (latched)"
-        },
-        {
-            "name": "VCU_SHUTDOWN_D_OK_HIGH",
-            "start": 5,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "(UNUSED) Shutdown loop voltage at point D, high = good"
-        },
-        {
-            "name": "VCU_SOFTWARE_OK_HIGH",
-            "start": 6,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "(UNUSED) VCU heartbeat status, high = good"
-        },
-        {
-            "name": "VCU_SHUTDOWN_E_OK_HIGH",
-            "start": 7,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "(UNUSED) Shutdown loop voltage at point E, high = good"
-        },
-        {
-            "name": "VCU_ACCEL_IMPLAUSIBLE",
-            "start": 10,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "1 if the accel pedal is implausible, 0 if not"
-        },
-        {
-            "name": "VCU_BRAKE_IMPLAUSIBLE",
-            "start": 11,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "1 if the brake is implausible, 0 if not"
-        },
-        {
-            "name": "VCU_BRAKE_ACTIVE",
-            "start": 12,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "1 if the brake is active (above 'vcu_brake_active_threshold')"
-        },
-        {
-            "name": "VCU_BSPD_CURRENT_HIGH",
-            "start": 13,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "1 if the acc current is above the bspd trip threshold"
-        },
-        {
-            "name": "VCU_BSPD_BRAKE_HIGH",
-            "start": 14,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "1 if the brake is above the bspd trip threshold"
-        },
-        {
-            "name": "VCU_ACCEL_BRAKE_IMPLAUSIBLE",
-            "start": 15,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "1 if the accel and brake plausibility is tripped"
-        },
-        {
-            "name": "VCU_STATEMACHINE_STATE",
-            "start": 16,
-            "length": 3,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "0 = STARTUP, 1 = TS NOT ACTIVE, 2 = TS ACTIVE, 3 = ENABLING INVERTER, 4 = WAIT RTD SOUND, 5=RTD"
-        },
-        {
-            "name": "VCU_INVERTER_POWERED",
-            "start": 19,
-            "length": 1,
-            "byte_order": "little_endian",
-            "comment": "1 if the inverter is powered, 0 if not"
-        },
-        {
-            "name": "VCU_ENERGY_METER_PRESENT",
-            "start": 20,
-            "length": 1,
-            "byte_order": "little_endian",
-            "comment": "1 if the energy meter is present, 0 if not"
-        },
-        {
-            "name": "VCU_ACTIVATE_BUZZER",
-            "start": 21,
-            "length": 1,
-            "byte_order": "little_endian",
-            "comment": "1 if the buzzer is activated, 0 if not"
-        },
-        {
-            "name": "VCU_SOFTWARE_OK",
-            "start": 22,
-            "length": 1,
-            "byte_order": "little_endian",
-            "comment": "currently unused"
-        },
-        {
-            "name": "VCU_LAUNCH_CONTROL_ACTIVE",
-            "start": 23,
-            "length": 1,
-            "byte_order": "little_endian",
-            "comment": "1 if launch control is active, 0 if not"
-        },
-        {
-            "name": "VCU_MAX_TORQUE",
-            "start": 24,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "max torque setting in Newton-meters",
-            "min": 0,
-            "max": 255
-        },
-        {
-            "name": "VCU_TORQUE_MODE",
-            "start": 32,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "VCU torque mode setting ",
-            "min": 0,
-            "max": 255
-        },
-        {
-            "name": "VCU_DISTANCE_TRAVELLED",
-            "start": 40,
-            "length": 16,
-            "byte_order": "little_endian",
-            "units": "meters",
-            "comment": "distance travelled in current driving session",
-            "min": 0,
-            "max": 65535
-        },
-        {
-            "name": "vcu_pedals_settings_MUX",
-            "start": 0,
-            "length": 8,
-            "byte_order": "little_endian",
-            "comment": "mux signal for VCU pedal threshold information message",
-            "is_multiplexer": true
-        },
-        {
-            "name": "vcu_brake_active_threshold",
-            "start": 8,
-            "length": 16,
-            "byte_order": "little_endian",
-            "multiplexer_ids": [
-                0
-            ],
-            "multiplexer_signal": "vcu_pedals_settings_MUX"
-        },
-        {
-            "name": "vcu_apps1_uv_threshold",
-            "start": 24,
-            "length": 16,
-            "byte_order": "little_endian",
-            "multiplexer_ids": [
-                0
-            ],
-            "multiplexer_signal": "vcu_pedals_settings_MUX"
-        },
-        {
-            "name": "vcu_apps1_start_threshold",
-            "start": 40,
-            "length": 16,
-            "byte_order": "little_endian",
-            "multiplexer_ids": [
-                0
-            ],
-            "multiplexer_signal": "vcu_pedals_settings_MUX"
-        },
-        {
-            "name": "vcu_apps1_end_threshold",
-            "start": 8,
-            "length": 16,
-            "byte_order": "little_endian",
-            "multiplexer_ids": [
-                1
-            ],
-            "multiplexer_signal": "vcu_pedals_settings_MUX"
-        },
-        {
-            "name": "vcu_apps1_ov_threshold",
-            "start": 24,
-            "length": 16,
-            "byte_order": "little_endian",
-            "multiplexer_ids": [
-                1
-            ],
-            "multiplexer_signal": "vcu_pedals_settings_MUX"
-        },
-        {
-            "name": "vcu_apps2_uv_threshold",
-            "start": 40,
-            "length": 16,
-            "byte_order": "little_endian",
-            "multiplexer_ids": [
-                1
-            ],
-            "multiplexer_signal": "vcu_pedals_settings_MUX"
-        },
-        {
-            "name": "vcu_apps2_start_threshold",
-            "start": 8,
-            "length": 16,
-            "byte_order": "little_endian",
-            "multiplexer_ids": [
-                2
-            ],
-            "multiplexer_signal": "vcu_pedals_settings_MUX"
-        },
-        {
-            "name": "vcu_apps2_end_threshold",
-            "start": 24,
-            "length": 16,
-            "byte_order": "little_endian",
-            "multiplexer_ids": [
-                2
-            ],
-            "multiplexer_signal": "vcu_pedals_settings_MUX"
-        },
-        {
-            "name": "vcu_apps2_ov_threshold",
-            "start": 40,
-            "length": 16,
-            "byte_order": "little_endian",
-            "multiplexer_ids": [
-                2
-            ],
-            "multiplexer_signal": "vcu_pedals_settings_MUX"
-        },
-        {
-            "name": "vcu_target_parameter",
-            "start": 0,
-            "length": 8,
-            "comment": "look in the vcu.hpp file in the VCU repo for the enum of targets"
-        },
-        {
-            "name": "vcu_parameter_value",
-            "start": 8,
-            "length": 32,
-            "comment": "The actual value that you want to set the parameter to"
-        },
-        {
-            "name": "vcu_launchcontrol_release_countdown",
-            "start": 0,
-            "length": 32,
-            "units": "milliseconds"
-        },
-        {
-            "name": "vcu_release_delay",
-            "start": 32,
-            "length": 32,
-            "units": "milliseconds"
-        },
-        {
-            "name": "vcu_lifetime_ontime",
-            "start": 0,
-            "length": 32,
-            "units": "seconds"
-        },
-        {
-            "name": "vcu_lifetime_distance",
-            "start": 32,
-            "length": 32,
-            "units": "meters"
-        },
-        {
-            "name": "vcu_wheelspeed_energy_wh",
-            "start": 0,
-            "length": 16,
-            "units": "watt-hours",
-            "conversion": {
-                "scale": 0.1,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "vcu_wheelspeed_efficiency_instantaneous",
-            "start": 16,
-            "length": 16,
-            "conversion": {
-                "scale": 0.001,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "vcu_wheelspeed_distance_meters",
-            "start": 32,
-            "length": 16
-        },
-        {
-            "name": "vcu_wheelspeed_efficiency_kmkwh",
-            "start": 48,
-            "length": 16,
-            "conversion": {
-                "scale": 0.001,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "vcu_motor_energy_wh",
-            "start": 0,
-            "length": 16,
-            "units": "watt-hours",
-            "conversion": {
-                "scale": 0.1,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "vcu_motor_efficiency_instantaneous",
-            "start": 16,
-            "length": 16,
-            "conversion": {
-                "scale": 0.001,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "vcu_motor_distance_meters",
-            "start": 32,
-            "length": 16
-        },
-        {
-            "name": "vcu_motor_efficiency_kmkwh",
-            "start": 48,
-            "length": 16,
-            "conversion": {
-                "scale": 0.001,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "vcu_vectornav_energy_wh",
-            "start": 0,
-            "length": 16,
-            "units": "watt-hours",
-            "conversion": {
-                "scale": 0.1,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "vcu_vectornav_efficiency_instantaneous",
-            "start": 16,
-            "length": 16,
-            "conversion": {
-                "scale": 0.001,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name": "vcu_vectornav_distance_meters",
-            "start": 32,
-            "length": 16
-        },
-        {
-            "name": "vcu_vectornav_efficiency_kmkwh",
-            "start": 48,
-            "length": 16,
-            "conversion": {
-                "scale": 0.001,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name":"vcu_wsfl_ah",
-            "start":0,
-            "length":16,
             "conversion": {
                 "scale": 0.01,
                 "offset": 0,
                 "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name":"vcu_motor_ah",
-            "start":16,
-            "length":16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name":"vcu_vnav_ah",
-            "start":32,
-            "length":16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name":"vcu_front_rpm_avg",
-            "start":0,
-            "length":16,
-            "conversion": {
-                "scale": 0.1,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name":"vcu_rear_rpm_avg",
-            "start":16,
-            "length":16,
-            "conversion": {
-                "scale": 0.1,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
-        },
-        {
-            "name":"vcu_calculated_slip",
-            "start":32,
-            "length":16,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": false
+            }
         },
 
 
 
         {
-            "name": "dash_button1status",
+            "name": "precharge_state",
             "start": 0,
-            "length": 1,
-            "byte_order": "little_endian",
-            "comment": "status of button1 on dash (1 = pressed)"
+            "length": 8,
+            "comment": "0 - standby, 1 - precharging, 2 - online, 3 - error"
         },
         {
-            "name": "dash_button2status",
-            "start": 1,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "status of button2 on dash (1 = pressed)"
-        },
-        {
-            "name": "dash_button3status",
-            "start": 2,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "status of button3 on dash (1 = pressed)"
-        },
-        {
-            "name": "dash_button4status",
-            "start": 3,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "status of button4 on dash (1 = pressed)"
-        },
-        {
-            "name": "dash_button5status",
-            "start": 4,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "status of button5 on dash (1 = pressed)"
-        },
-        {
-            "name": "dash_button6status",
-            "start": 5,
-            "length": 1,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "comment": "status of button6 on dash (1 = pressed)"
+            "name": "precharge_errorCode",
+            "start": 8,
+            "length": 8
         },
 
 
@@ -1873,41 +1102,508 @@
 
 
         {
-            "name": "precharge_state",
+            "name": "vcu_statemachine_state",
+            "start": 0,
+            "length": 3,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "choices": {
+                    "0": "STARTUP",
+                    "1": "TRACTIVE_SYSTEM_DISABLED",
+                    "2": "TRACTIVE_SYSTEM_ENERGIZED",
+                    "3": "TRACTIVE_SYSTEM_ENABLED",
+                    "4": "READY_TO_DRIVE",
+                    "5": "LAUNCH_WAIT",
+                    "6": "LAUNCH"
+                }
+            },
+            "min": 0,
+            "max": 7,
+            "comment": "Current VCU state"
+        },
+        {
+            "name": "vcu_brake_active",
+            "start": 3,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "1 if the brake is active (above 'vcu_brake_active_threshold')",
+            "units": "bool"
+        },
+        {
+            "name": "vcu_imd_ok_high",
+            "start": 4,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "IMD status, high = good",
+            "units": "bool"
+        },
+        {
+            "name": "vcu_bms_ok_high",
+            "start": 5,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "BMS status, high = good",
+            "units": "bool"
+        },
+        {
+            "name": "vcu_bspd_ok_high",
+            "start": 6,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "BSPD status, high = good",
+            "units": "bool"
+        },
+        {
+            "name": "vcu_accel_brake_implausible",
+            "start": 15,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "1 if the accel and brake plausibility is tripped",
+            "units": "bool"
+        },
+        {
+            "name": "vcu_accel_implausible",
+            "start": 10,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "1 if the accel pedal is implausible, 0 if not",
+            "units": "bool"
+        },
+        {
+            "name": "vcu_brake_implausible",
+            "start": 11,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "1 if the brake is implausible, 0 if not",
+            "units": "bool"
+        },
+        {
+            "name": "vcu_bspd_current_high",
+            "start": 13,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "1 if the acc current is above the bspd trip threshold",
+            "units": "bool"
+        },
+        {
+            "name": "vcu_bspd_brake_high",
+            "start": 14,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "1 if the brake is above the bspd trip threshold",
+            "units": "bool"
+        },
+        {
+            "name": "vcu_max_torque",
+            "start": 24,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "max torque setting in Newton-meters",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "apps_1_raw",
+            "start": 0,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "is_float": false
+            },
+            "comment": "Accelerator pedal sensor 1 ADC reading",
+            "units": "5v 2^12 ADC"
+        },
+        {
+            "name": "apps_2_raw",
+            "start": 16,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "is_float": false
+            },
+            "comment": "Accelerator pedal sensor 2 ADC reading",
+            "units": "5v 2^12 ADC"
+        },
+        {
+            "name": "bse_raw",
+            "start": 32,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "is_float": false
+            },
+            "comment": "brake system encoder sensor ADC reading",
+            "units": "5v 2^12 ADC"
+        },
+
+        {
+            "name": "vcu_apps1_travel",
+            "start": 0,
+            "length": 16,
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "0 to 100%",
+            "units": "Percentage"
+        },
+        {
+            "name": "vcu_apps2_travel",
+            "start": 16,
+            "length": 16,
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "0 to 100%",
+            "units": "Percentage"
+        },
+        {
+            "name": "vcu_bse_travel",
+            "start": 32,
+            "length": 16,
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "0 to 100%",
+            "units": "Percentage"
+        },
+
+        {
+            "name": "hall_OK",
+            "start": 0,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "VCU pcb current sense of the glv rail",
+            "units": "3.3v 2^10 ADC with 0.115375 input ratio voltage divider"
+        },
+        {
+            "name": "bse_OK",
+            "start": 16,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "VCU pcb voltage sense of glv rail",
+            "units": "3.3v 2^10 ADC with 0.115375 input ratio voltage divider"
+        },
+        {
+            "name": "bspd_fault",
+            "start": 32,
+            "length": 16,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "VCU pcb voltage sense of the BSPD signal to close relay",
+            "units": "3.3v 2^10 ADC with 0.115375 input ratio voltage divider"
+        },
+
+        {
+            "name": "vcu_ain_10",
+            "start": 0,
+            "length": 10,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "VCU pcb non specific analog channel",
+            "units": "3.3v 2^10 ADC with 0.6418 input ratio voltage divider"
+        },
+        {
+            "name": "vcu_ain_11",
+            "start": 10,
+            "length": 10,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "VCU pcb non specific analog channel",
+            "units": "3.3v 2^10 ADC with 0.6418 ratio voltage divider"
+        },
+        {
+            "name": "vcu_ain_14",
+            "start": 20,
+            "length": 10,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "VCU pcb non specific analog channel",
+            "units": "3.3v 2^10 ADC with 0.6418 ratio voltage divider"
+        },
+        {
+            "name": "vcu_ain_15",
+            "start": 30,
+            "length": 10,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "VCU pcb non specific analog channel",
+            "units": "3.3v 2^10 ADC with 0.6418 ratio voltage divider"
+        },
+        {
+            "name": "vcu_ain_16",
+            "start": 40,
+            "length": 10,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "VCU pcb non specific analog channel",
+            "units": "3.3v 2^10 ADC with 0.6418 ratio voltage divider"
+        },
+        {
+            "name": "vcu_ain_17",
+            "start": 50,
+            "length": 10,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "VCU pcb non specific analog channel",
+            "units": "3.3v 2^10 ADC with 0.6418 ratio voltage divider"
+        },
+
+        {
+            "name": "vcu_motor_energy_wh",
+            "start": 0,
+            "length": 16,
+            "units": "watt-hours",
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "vcu_motor_efficiency_instantaneous",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+        {
+            "name": "vcu_motor_distance_meters",
+            "start": 32,
+            "length": 16
+        },
+        {
+            "name": "vcu_motor_efficiency_kmkwh",
+            "start": 48,
+            "length": 16,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false
+        },
+
+        {
+            "name": "vcu_target_parameter",
             "start": 0,
             "length": 8,
-            "comment": "0 - standby, 1 - precharging, 2 - running, 3 - error"
+            "comment": "look in the vcu.hpp file in the VCU repo for the enum of targets"
         },
         {
-            "name": "precharge_accVoltageMod100",
+            "name": "vcu_parameter_value",
             "start": 8,
-            "length": 8
+            "length": 32,
+            "comment": "The actual value that you want to set the parameter to"
+        },
+
+        {
+            "name": "vcu_pedals_settings_MUX",
+            "start": 0,
+            "length": 8,
+            "byte_order": "little_endian",
+            "comment": "mux signal for VCU pedal threshold information message",
+            "is_multiplexer": true
         },
         {
-            "name": "precharge_accVoltageDiv100",
-            "start": 16,
-            "length": 8
+            "name": "vcu_brake_active_threshold",
+            "start": 8,
+            "length": 16,
+            "byte_order": "little_endian",
+            "multiplexer_ids": [
+                0
+            ],
+            "multiplexer_signal": "vcu_pedals_settings_MUX"
         },
         {
-            "name": "precharge_tsVoltageMod100",
+            "name": "vcu_apps1_uv_threshold",
             "start": 24,
-            "length": 8
+            "length": 16,
+            "byte_order": "little_endian",
+            "multiplexer_ids": [
+                0
+            ],
+            "multiplexer_signal": "vcu_pedals_settings_MUX"
         },
         {
-            "name": "precharge_tsVoltageDiv100",
-            "start": 32,
-            "length": 8
-        },
-        {
-            "name": "precharge_errorCode",
+            "name": "vcu_apps1_start_threshold",
             "start": 40,
-            "length": 8
+            "length": 16,
+            "byte_order": "little_endian",
+            "multiplexer_ids": [
+                0
+            ],
+            "multiplexer_signal": "vcu_pedals_settings_MUX"
+        },
+        {
+            "name": "vcu_apps1_end_threshold",
+            "start": 8,
+            "length": 16,
+            "byte_order": "little_endian",
+            "multiplexer_ids": [
+                1
+            ],
+            "multiplexer_signal": "vcu_pedals_settings_MUX"
+        },
+        {
+            "name": "vcu_apps1_ov_threshold",
+            "start": 24,
+            "length": 16,
+            "byte_order": "little_endian",
+            "multiplexer_ids": [
+                1
+            ],
+            "multiplexer_signal": "vcu_pedals_settings_MUX"
+        },
+        {
+            "name": "vcu_apps2_uv_threshold",
+            "start": 40,
+            "length": 16,
+            "byte_order": "little_endian",
+            "multiplexer_ids": [
+                1
+            ],
+            "multiplexer_signal": "vcu_pedals_settings_MUX"
+        },
+        {
+            "name": "vcu_apps2_start_threshold",
+            "start": 8,
+            "length": 16,
+            "byte_order": "little_endian",
+            "multiplexer_ids": [
+                2
+            ],
+            "multiplexer_signal": "vcu_pedals_settings_MUX"
+        },
+        {
+            "name": "vcu_apps2_end_threshold",
+            "start": 24,
+            "length": 16,
+            "byte_order": "little_endian",
+            "multiplexer_ids": [
+                2
+            ],
+            "multiplexer_signal": "vcu_pedals_settings_MUX"
+        },
+        {
+            "name": "vcu_apps2_ov_threshold",
+            "start": 40,
+            "length": 16,
+            "byte_order": "little_endian",
+            "multiplexer_ids": [
+                2
+            ],
+            "multiplexer_signal": "vcu_pedals_settings_MUX"
+        },
+
+        {
+            "name": "vcu_lifetime_ontime",
+            "start": 0,
+            "length": 32,
+            "units": "seconds"
+        },
+        {
+            "name": "vcu_lifetime_distance",
+            "start": 32,
+            "length": 32,
+            "units": "meters"
         },
 
 
 
         {
-            "name": "evelogger_vectornav_yaw",
+            "name": "dash_button1status",
+            "start": 0,
+            "length": 1,
+            "byte_order": "little_endian",
+            "comment": "status of button1 on dash (1 = pressed)",
+            "units": "bool"
+        },
+        {
+            "name": "dash_button2status",
+            "start": 1,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "status of button2 on dash (1 = pressed)",
+            "units": "bool"
+        },
+        {
+            "name": "dash_button3status",
+            "start": 2,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "status of button3 on dash (1 = pressed)",
+            "units": "bool"
+        },
+        {
+            "name": "dash_button4status",
+            "start": 3,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "status of button4 on dash (1 = pressed)",
+            "units": "bool"
+        },
+        {
+            "name": "dash_button5status",
+            "start": 4,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "status of button5 on dash (1 = pressed)",
+            "units": "bool"
+        },
+        {
+            "name": "dash_button6status",
+            "start": 5,
+            "length": 1,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "status of button6 on dash (1 = pressed)",
+            "units": "bool"
+        },
+
+
+
+        {
+            "name": "vn_yaw",
             "start": 0,
             "length": 16,
             "conversion": {
@@ -1915,10 +1611,11 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Degrees"
         },
         {
-            "name": "evelogger_vectornav_roll",
+            "name": "vn_roll",
             "start": 16,
             "length": 16,
             "conversion": {
@@ -1926,10 +1623,11 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Degrees"
         },
         {
-            "name": "evelogger_vectornav_pitch",
+            "name": "vn_pitch",
             "start": 32,
             "length": 16,
             "conversion": {
@@ -1937,10 +1635,12 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Degrees"
         },
+
         {
-            "name": "evelogger_vectornav_W_x",
+            "name": "vn_W_x",
             "start": 0,
             "length": 16,
             "conversion": {
@@ -1948,10 +1648,11 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Radians/s"
         },
         {
-            "name": "evelogger_vectornav_W_y",
+            "name": "vn_W_y",
             "start": 16,
             "length": 16,
             "conversion": {
@@ -1959,10 +1660,11 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Radians/s"
         },
         {
-            "name": "evelogger_vectornav_W_z",
+            "name": "vn_W_z",
             "start": 32,
             "length": 16,
             "conversion": {
@@ -1970,10 +1672,12 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Radians/s"
         },
+
         {
-            "name": "evelogger_vectornav_v_n",
+            "name": "vn_v_n",
             "start": 0,
             "length": 16,
             "conversion": {
@@ -1981,10 +1685,11 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Meter/s"
         },
         {
-            "name": "evelogger_vectornav_v_e",
+            "name": "vn_v_e",
             "start": 16,
             "length": 16,
             "conversion": {
@@ -1992,10 +1697,11 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Meter/s"
         },
         {
-            "name": "evelogger_vectornav_v_d",
+            "name": "vn_v_d",
             "start": 32,
             "length": 16,
             "conversion": {
@@ -2003,10 +1709,12 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Meter/s"
         },
+
         {
-            "name": "evelogger_vectornav_accelX",
+            "name": "vn_accel_x",
             "start": 0,
             "length": 16,
             "conversion": {
@@ -2014,10 +1722,11 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Meter/s^2"
         },
         {
-            "name": "evelogger_vectornav_accelY",
+            "name": "vn_accel_y",
             "start": 16,
             "length": 16,
             "conversion": {
@@ -2025,10 +1734,11 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Meter/s^2"
         },
         {
-            "name": "evelogger_vectornav_accelZ",
+            "name": "vn_accel_z",
             "start": 32,
             "length": 16,
             "conversion": {
@@ -2036,10 +1746,12 @@
                 "offset": 0,
                 "is_float": true
             },
-            "is_signed": true
+            "is_signed": true,
+            "units": "Meter/s^2"
         },
+
         {
-            "name": "evelogger_vectornav_latitude",
+            "name": "vn_latitude",
             "start": 0,
             "length": 32,
             "conversion": {
@@ -2050,7 +1762,7 @@
             "is_signed": true
         },
         {
-            "name": "evelogger_vectornav_longitude",
+            "name": "vn_longitude",
             "start": 32,
             "length": 32,
             "conversion": {
@@ -2060,46 +1772,152 @@
             },
             "is_signed": true
         },
-        {
-            "name": "omni_gps_latitude",
-            "start": 0,
-            "length": 32,
-            "conversion": {
-                "scale": 0.0000001,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": true
-        },
-        {
-            "name": "omni_gps_longitude",
-            "start": 32,
-            "length": 32,
-            "conversion": {
-                "scale": 0.0000001,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": true
-        },
-
-
 
         {
             "name": "unix_time_ns",
             "start": 0,
             "length": 64,
             "byte_order": "little_endian",
-            "comment": "Time in nanoseconds since January 1st 1970"
+            "comment": "Time in nanoseconds since January 1st 1980",
+            "units": "nanoseconds"
         },
+
+
+
         {
-            "name": "uint16",
+            "name": "an1_uint12",
             "start": 0,
             "length": 16,
-            "comment": "Raw unsigned integer with 16 bits"
+            "comment": "Raw unsigned integer reading from the ADC",
+            "units": "3.3v 2^12 ADC"
+        },
+
+        {
+            "name": "angle",
+            "start": 16,
+            "length": 16,
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "Angle of the steering rack pot",
+            "units": "Degrees"
         },
         {
-            "name": "temp_C",
+            "name": "angle_delta",
+            "start": 32,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "The rate of change of the angle reading",
+            "units": "Degrees/s"
+        },
+
+        {
+            "name": "pressure_kPa",
+            "start": 16,
+            "length": 16,
+            "comment": "Line pressure in kPa",
+            "units": "Kilopascal"
+        },
+        {
+            "name": "pressure_delta",
+            "start": 32,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "The rate of change of the line pressure, kPa/s",
+            "units": "Kilopascal/s"
+        },
+
+        {
+            "name": "length_mm",
+            "start": 16,
+            "length": 16,
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "Length of the shockpot in mm",
+            "units": "Milimeter"
+        },
+        {
+            "name": "length_delta",
+            "start": 32,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "The rate of change of the length, mm/s",
+            "units": "Milimeter/s"
+        },
+
+        {
+            "name": "force_N",
+            "start": 16,
+            "length": 16,
+            "is_signed": false,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "Force on the loadcell of the pushrod in Newtons",
+            "units": "Newtons"
+        },
+        {
+            "name": "force_delta",
+            "start": 32,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "The rate of change of the force, N/s",
+            "units": "Newtons/s"
+        },
+
+        {
+            "name": "rpm",
+            "start": 0,
+            "length": 16,
+            "is_signed": true,
+            "comment": "Number of revolutions in a minute",
+            "units": "rpm"
+        },
+        {
+            "name": "rpm_delta",
+            "start": 16,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "The rate of change of the number of revolutions in a minute",
+            "units": "rpm/s"
+        },
+
+        {
+            "name": "inner_C",
             "start": 0,
             "length": 16,
             "is_signed": true,
@@ -2108,106 +1926,61 @@
                 "offset": 0,
                 "is_float": true
             },
-            "comment": "Temperature in degrees celcius"
-        },
-
-
-
-        {
-            "name": "module_voltage_1",
-            "start": 0,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            }
+            "comment": "Inner tire temperature in celcius",
+            "units": "Celcius"
         },
         {
-            "name": "module_voltage_2",
-            "start": 8,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "module_voltage_3",
+            "name": "middle_C",
             "start": 16,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
+            "length": 16,
+            "is_signed": true,
             "conversion": {
-                "scale": 0.01,
+                "scale": 0.1,
                 "offset": 0,
                 "is_float": true
-            }
+            },
+            "comment": "Middle tire temperature in celcius",
+            "units": "Celcius"
         },
         {
-            "name": "module_voltage_4",
-            "start": 24,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "module_voltage_5",
+            "name": "outer_C",
             "start": 32,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
+            "length": 16,
+            "is_signed": true,
             "conversion": {
-                "scale": 0.01,
+                "scale": 0.1,
                 "offset": 0,
                 "is_float": true
-            }
+            },
+            "comment": "Outer tire temperature in celcius",
+            "units": "Celcius"
         },
         {
-            "name": "module_voltage_6",
-            "start": 40,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
-            "conversion": {
-                "scale": 0.01,
-                "offset": 0,
-                "is_float": true
-            }
-        },
-        {
-            "name": "module_voltage_7",
+            "name": "average_C",
             "start": 48,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
+            "length": 16,
+            "is_signed": true,
             "conversion": {
-                "scale": 0.01,
+                "scale": 0.1,
                 "offset": 0,
                 "is_float": true
-            }
+            },
+            "comment": "Average tire temperature in celcius",
+            "units": "Celcius"
         },
+
         {
-            "name": "module_voltage_8",
-            "start": 56,
-            "length": 8,
-            "byte_order": "little_endian",
-            "is_signed": false,
+            "name": "temperature_C",
+            "start": 16,
+            "length": 16,
+            "is_signed": true,
             "conversion": {
-                "scale": 0.01,
+                "scale": 0.1,
                 "offset": 0,
                 "is_float": true
-            }
+            },
+            "comment": "Temperature in degrees celcius",
+            "units": "Celcius"
         }
     ]
 }
