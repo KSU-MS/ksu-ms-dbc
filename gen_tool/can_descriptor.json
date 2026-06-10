@@ -304,8 +304,23 @@
 
 
 
-        "vectornav_attitude": {
+        "vectornav_position": {
             "id": 500,
+            "length": 8,
+            "signals": [
+                "vn_latitude",
+                "vn_longitude"
+            ],
+            "comment": "vectornav position",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger",
+                "an1_mm"
+            ]
+        },
+
+        "vectornav_attitude": {
+            "id": 501,
             "length": 6,
             "signals": [
                 "vn_yaw",
@@ -321,7 +336,7 @@
         },
 
         "vectornav_gyro": {
-            "id": 501,
+            "id": 502,
             "length": 6,
             "signals": [
                 "vn_W_x",
@@ -329,21 +344,6 @@
                 "vn_W_z"
             ],
             "comment": "vectornav gyro readings",
-            "bus_name": "daq",
-            "senders": [
-                "evelogger",
-                "an1_mm"
-            ]
-        },
-
-        "vectornav_position": {
-            "id": 502,
-            "length": 8,
-            "signals": [
-                "vn_latitude",
-                "vn_longitude"
-            ],
-            "comment": "vectornav position",
             "bus_name": "daq",
             "senders": [
                 "evelogger",
@@ -390,6 +390,20 @@
                 "unix_time_ns"
             ],
             "comment": "Vectornav gps realtime",
+            "bus_name": "daq",
+            "senders": [
+                "evelogger",
+                "an1_mm"
+            ]
+        },
+
+        "vectornav_state": {
+            "id": 506,
+            "length": 8,
+            "signals": [
+                "inertial_navigation_state"
+            ],
+            "comment": "How the vectornav is feeling",
             "bus_name": "daq",
             "senders": [
                 "evelogger",
@@ -1603,6 +1617,29 @@
 
 
         {
+            "name": "vn_latitude",
+            "start": 0,
+            "length": 32,
+            "conversion": {
+                "scale": 0.0000001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+        {
+            "name": "vn_longitude",
+            "start": 32,
+            "length": 32,
+            "conversion": {
+                "scale": 0.0000001,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": true
+        },
+
+        {
             "name": "vn_yaw",
             "start": 0,
             "length": 16,
@@ -1751,35 +1788,20 @@
         },
 
         {
-            "name": "vn_latitude",
-            "start": 0,
-            "length": 32,
-            "conversion": {
-                "scale": 0.0000001,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": true
-        },
-        {
-            "name": "vn_longitude",
-            "start": 32,
-            "length": 32,
-            "conversion": {
-                "scale": 0.0000001,
-                "offset": 0,
-                "is_float": true
-            },
-            "is_signed": true
-        },
-
-        {
             "name": "unix_time_ns",
             "start": 0,
             "length": 64,
             "byte_order": "little_endian",
             "comment": "Time in nanoseconds since January 1st 1980",
             "units": "nanoseconds"
+        },
+
+        {
+            "name": "inertial_navigation_state",
+            "start": 0,
+            "length": 16,
+            "byte_order": "big_endian",
+            "comment": "A bit field signal that gives the state of the vectornav"
         },
 
 
