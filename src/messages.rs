@@ -58,18 +58,20 @@ pub enum Messages {
     VcuLifetimeDistanceAndOntime(VcuLifetimeDistanceAndOntime),
     /// dash_buttons
     DashButtons(DashButtons),
+    /// vectornav_position
+    VectornavPosition(VectornavPosition),
     /// vectornav_attitude
     VectornavAttitude(VectornavAttitude),
     /// vectornav_gyro
     VectornavGyro(VectornavGyro),
-    /// vectornav_position
-    VectornavPosition(VectornavPosition),
     /// vectornav_velocity
     VectornavVelocity(VectornavVelocity),
     /// vectornav_acceleration
     VectornavAcceleration(VectornavAcceleration),
     /// vectornav_time
     VectornavTime(VectornavTime),
+    /// vectornav_state
+    VectornavState(VectornavState),
     /// an1_steeringpot
     An1Steeringpot(An1Steeringpot),
     /// an1_front_brakepressure
@@ -263,14 +265,14 @@ impl Messages {
             DashButtons::MESSAGE_ID => {
                 Messages::DashButtons(DashButtons::try_from(payload)?)
             }
+            VectornavPosition::MESSAGE_ID => {
+                Messages::VectornavPosition(VectornavPosition::try_from(payload)?)
+            }
             VectornavAttitude::MESSAGE_ID => {
                 Messages::VectornavAttitude(VectornavAttitude::try_from(payload)?)
             }
             VectornavGyro::MESSAGE_ID => {
                 Messages::VectornavGyro(VectornavGyro::try_from(payload)?)
-            }
-            VectornavPosition::MESSAGE_ID => {
-                Messages::VectornavPosition(VectornavPosition::try_from(payload)?)
             }
             VectornavVelocity::MESSAGE_ID => {
                 Messages::VectornavVelocity(VectornavVelocity::try_from(payload)?)
@@ -282,6 +284,9 @@ impl Messages {
             }
             VectornavTime::MESSAGE_ID => {
                 Messages::VectornavTime(VectornavTime::try_from(payload)?)
+            }
+            VectornavState::MESSAGE_ID => {
+                Messages::VectornavState(VectornavState::try_from(payload)?)
             }
             An1Steeringpot::MESSAGE_ID => {
                 Messages::An1Steeringpot(An1Steeringpot::try_from(payload)?)
@@ -6429,9 +6434,167 @@ impl embedded_can::Frame for DashButtons {
         &self.raw
     }
 }
-/// vectornav_attitude
+/// vectornav_position
 ///
 /// - Standard ID: 500 (0x1f4)
+/// - Size: 8 bytes
+/// - Transmitter: evelogger
+///
+/// vectornav position
+#[derive(Clone, Copy)]
+pub struct VectornavPosition {
+    raw: [u8; 8],
+}
+#[allow(
+    clippy::absurd_extreme_comparisons,
+    clippy::excessive_precision,
+    clippy::manual_range_contains,
+    clippy::unnecessary_cast,
+    clippy::useless_conversion,
+    unused_comparisons,
+    unused_variables,
+)]
+impl VectornavPosition {
+    pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+        StandardId::new_unchecked(0x1f4)
+    });
+    pub const VN_LONGITUDE_MIN: f32 = 0_f32;
+    pub const VN_LONGITUDE_MAX: f32 = 4294967295_f32;
+    pub const VN_LATITUDE_MIN: f32 = 0_f32;
+    pub const VN_LATITUDE_MAX: f32 = 4294967295_f32;
+    /// Construct new vectornav_position from values
+    pub fn new(vn_longitude: f32, vn_latitude: f32) -> Result<Self, CanError> {
+        let mut res = Self { raw: [0u8; 8] };
+        res.set_vn_longitude(vn_longitude)?;
+        res.set_vn_latitude(vn_latitude)?;
+        Ok(res)
+    }
+    /// Access message payload raw value
+    pub fn raw(&self) -> &[u8; 8] {
+        &self.raw
+    }
+    /// vn_longitude
+    ///
+    /// - Min: 0
+    /// - Max: 4294967295
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn vn_longitude(&self) -> f32 {
+        self.vn_longitude_raw()
+    }
+    /// Get raw value of vn_longitude
+    ///
+    /// - Start bit: 32
+    /// - Signal size: 32 bits
+    /// - Factor: 0.0000001
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Signed
+    #[inline(always)]
+    pub fn vn_longitude_raw(&self) -> f32 {
+        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
+        let factor = 0.0000001_f32;
+        let offset = 0_f32;
+        (signal as f32) * factor + offset
+    }
+    /// Set value of vn_longitude
+    #[inline(always)]
+    pub fn set_vn_longitude(&mut self, value: f32) -> Result<(), CanError> {
+        if value < 0_f32 || 4294967295_f32 < value {
+            return Err(CanError::ParameterOutOfRange {
+                message_id: VectornavPosition::MESSAGE_ID,
+            });
+        }
+        let factor = 0.0000001_f32;
+        let offset = 0_f32;
+        let value = ((value - offset) / factor) as i32;
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
+        Ok(())
+    }
+    /// vn_latitude
+    ///
+    /// - Min: 0
+    /// - Max: 4294967295
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn vn_latitude(&self) -> f32 {
+        self.vn_latitude_raw()
+    }
+    /// Get raw value of vn_latitude
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 32 bits
+    /// - Factor: 0.0000001
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Signed
+    #[inline(always)]
+    pub fn vn_latitude_raw(&self) -> f32 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
+        let factor = 0.0000001_f32;
+        let offset = 0_f32;
+        (signal as f32) * factor + offset
+    }
+    /// Set value of vn_latitude
+    #[inline(always)]
+    pub fn set_vn_latitude(&mut self, value: f32) -> Result<(), CanError> {
+        if value < 0_f32 || 4294967295_f32 < value {
+            return Err(CanError::ParameterOutOfRange {
+                message_id: VectornavPosition::MESSAGE_ID,
+            });
+        }
+        let factor = 0.0000001_f32;
+        let offset = 0_f32;
+        let value = ((value - offset) / factor) as i32;
+        let value = u32::from_ne_bytes(value.to_ne_bytes());
+        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
+        Ok(())
+    }
+}
+impl core::convert::TryFrom<&[u8]> for VectornavPosition {
+    type Error = CanError;
+    #[inline(always)]
+    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
+        if payload.len() != 8 {
+            return Err(CanError::InvalidPayloadSize);
+        }
+        let mut raw = [0u8; 8];
+        raw.copy_from_slice(&payload[..8]);
+        Ok(Self { raw })
+    }
+}
+impl embedded_can::Frame for VectornavPosition {
+    fn new(id: impl Into<Id>, data: &[u8]) -> Option<Self> {
+        if id.into() != Self::MESSAGE_ID { None } else { data.try_into().ok() }
+    }
+    fn new_remote(_id: impl Into<Id>, _dlc: usize) -> Option<Self> {
+        unimplemented!()
+    }
+    fn is_extended(&self) -> bool {
+        match self.id() {
+            Id::Standard(_) => false,
+            Id::Extended(_) => true,
+        }
+    }
+    fn is_remote_frame(&self) -> bool {
+        false
+    }
+    fn id(&self) -> Id {
+        Self::MESSAGE_ID
+    }
+    fn dlc(&self) -> usize {
+        self.raw.len()
+    }
+    fn data(&self) -> &[u8] {
+        &self.raw
+    }
+}
+/// vectornav_attitude
+///
+/// - Standard ID: 501 (0x1f5)
 /// - Size: 6 bytes
 /// - Transmitter: evelogger
 ///
@@ -6451,7 +6614,7 @@ pub struct VectornavAttitude {
 )]
 impl VectornavAttitude {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
-        StandardId::new_unchecked(0x1f4)
+        StandardId::new_unchecked(0x1f5)
     });
     pub const VN_PITCH_MIN: f32 = 0_f32;
     pub const VN_PITCH_MAX: f32 = 65535_f32;
@@ -6632,7 +6795,7 @@ impl embedded_can::Frame for VectornavAttitude {
 }
 /// vectornav_gyro
 ///
-/// - Standard ID: 501 (0x1f5)
+/// - Standard ID: 502 (0x1f6)
 /// - Size: 6 bytes
 /// - Transmitter: evelogger
 ///
@@ -6652,7 +6815,7 @@ pub struct VectornavGyro {
 )]
 impl VectornavGyro {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
-        StandardId::new_unchecked(0x1f5)
+        StandardId::new_unchecked(0x1f6)
     });
     pub const VN_W_Z_MIN: f32 = 0_f32;
     pub const VN_W_Z_MAX: f32 = 65535_f32;
@@ -6806,164 +6969,6 @@ impl core::convert::TryFrom<&[u8]> for VectornavGyro {
     }
 }
 impl embedded_can::Frame for VectornavGyro {
-    fn new(id: impl Into<Id>, data: &[u8]) -> Option<Self> {
-        if id.into() != Self::MESSAGE_ID { None } else { data.try_into().ok() }
-    }
-    fn new_remote(_id: impl Into<Id>, _dlc: usize) -> Option<Self> {
-        unimplemented!()
-    }
-    fn is_extended(&self) -> bool {
-        match self.id() {
-            Id::Standard(_) => false,
-            Id::Extended(_) => true,
-        }
-    }
-    fn is_remote_frame(&self) -> bool {
-        false
-    }
-    fn id(&self) -> Id {
-        Self::MESSAGE_ID
-    }
-    fn dlc(&self) -> usize {
-        self.raw.len()
-    }
-    fn data(&self) -> &[u8] {
-        &self.raw
-    }
-}
-/// vectornav_position
-///
-/// - Standard ID: 502 (0x1f6)
-/// - Size: 8 bytes
-/// - Transmitter: evelogger
-///
-/// vectornav position
-#[derive(Clone, Copy)]
-pub struct VectornavPosition {
-    raw: [u8; 8],
-}
-#[allow(
-    clippy::absurd_extreme_comparisons,
-    clippy::excessive_precision,
-    clippy::manual_range_contains,
-    clippy::unnecessary_cast,
-    clippy::useless_conversion,
-    unused_comparisons,
-    unused_variables,
-)]
-impl VectornavPosition {
-    pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
-        StandardId::new_unchecked(0x1f6)
-    });
-    pub const VN_LONGITUDE_MIN: f32 = 0_f32;
-    pub const VN_LONGITUDE_MAX: f32 = 4294967295_f32;
-    pub const VN_LATITUDE_MIN: f32 = 0_f32;
-    pub const VN_LATITUDE_MAX: f32 = 4294967295_f32;
-    /// Construct new vectornav_position from values
-    pub fn new(vn_longitude: f32, vn_latitude: f32) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
-        res.set_vn_longitude(vn_longitude)?;
-        res.set_vn_latitude(vn_latitude)?;
-        Ok(res)
-    }
-    /// Access message payload raw value
-    pub fn raw(&self) -> &[u8; 8] {
-        &self.raw
-    }
-    /// vn_longitude
-    ///
-    /// - Min: 0
-    /// - Max: 4294967295
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn vn_longitude(&self) -> f32 {
-        self.vn_longitude_raw()
-    }
-    /// Get raw value of vn_longitude
-    ///
-    /// - Start bit: 32
-    /// - Signal size: 32 bits
-    /// - Factor: 0.0000001
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Signed
-    #[inline(always)]
-    pub fn vn_longitude_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Lsb0>()[32..64].load_le::<i32>();
-        let factor = 0.0000001_f32;
-        let offset = 0_f32;
-        (signal as f32) * factor + offset
-    }
-    /// Set value of vn_longitude
-    #[inline(always)]
-    pub fn set_vn_longitude(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 4294967295_f32 < value {
-            return Err(CanError::ParameterOutOfRange {
-                message_id: VectornavPosition::MESSAGE_ID,
-            });
-        }
-        let factor = 0.0000001_f32;
-        let offset = 0_f32;
-        let value = ((value - offset) / factor) as i32;
-        let value = u32::from_ne_bytes(value.to_ne_bytes());
-        self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
-        Ok(())
-    }
-    /// vn_latitude
-    ///
-    /// - Min: 0
-    /// - Max: 4294967295
-    /// - Unit: ""
-    /// - Receivers: Vector__XXX
-    #[inline(always)]
-    pub fn vn_latitude(&self) -> f32 {
-        self.vn_latitude_raw()
-    }
-    /// Get raw value of vn_latitude
-    ///
-    /// - Start bit: 0
-    /// - Signal size: 32 bits
-    /// - Factor: 0.0000001
-    /// - Offset: 0
-    /// - Byte order: LittleEndian
-    /// - Value type: Signed
-    #[inline(always)]
-    pub fn vn_latitude_raw(&self) -> f32 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..32].load_le::<i32>();
-        let factor = 0.0000001_f32;
-        let offset = 0_f32;
-        (signal as f32) * factor + offset
-    }
-    /// Set value of vn_latitude
-    #[inline(always)]
-    pub fn set_vn_latitude(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 4294967295_f32 < value {
-            return Err(CanError::ParameterOutOfRange {
-                message_id: VectornavPosition::MESSAGE_ID,
-            });
-        }
-        let factor = 0.0000001_f32;
-        let offset = 0_f32;
-        let value = ((value - offset) / factor) as i32;
-        let value = u32::from_ne_bytes(value.to_ne_bytes());
-        self.raw.view_bits_mut::<Lsb0>()[0..32].store_le(value);
-        Ok(())
-    }
-}
-impl core::convert::TryFrom<&[u8]> for VectornavPosition {
-    type Error = CanError;
-    #[inline(always)]
-    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
-        if payload.len() != 8 {
-            return Err(CanError::InvalidPayloadSize);
-        }
-        let mut raw = [0u8; 8];
-        raw.copy_from_slice(&payload[..8]);
-        Ok(Self { raw })
-    }
-}
-impl embedded_can::Frame for VectornavPosition {
     fn new(id: impl Into<Id>, data: &[u8]) -> Option<Self> {
         if id.into() != Self::MESSAGE_ID { None } else { data.try_into().ok() }
     }
@@ -7489,6 +7494,125 @@ impl core::convert::TryFrom<&[u8]> for VectornavTime {
     }
 }
 impl embedded_can::Frame for VectornavTime {
+    fn new(id: impl Into<Id>, data: &[u8]) -> Option<Self> {
+        if id.into() != Self::MESSAGE_ID { None } else { data.try_into().ok() }
+    }
+    fn new_remote(_id: impl Into<Id>, _dlc: usize) -> Option<Self> {
+        unimplemented!()
+    }
+    fn is_extended(&self) -> bool {
+        match self.id() {
+            Id::Standard(_) => false,
+            Id::Extended(_) => true,
+        }
+    }
+    fn is_remote_frame(&self) -> bool {
+        false
+    }
+    fn id(&self) -> Id {
+        Self::MESSAGE_ID
+    }
+    fn dlc(&self) -> usize {
+        self.raw.len()
+    }
+    fn data(&self) -> &[u8] {
+        &self.raw
+    }
+}
+/// vectornav_state
+///
+/// - Standard ID: 506 (0x1fa)
+/// - Size: 8 bytes
+/// - Transmitter: evelogger
+///
+/// How the vectornav is feeling
+#[derive(Clone, Copy)]
+pub struct VectornavState {
+    raw: [u8; 8],
+}
+#[allow(
+    clippy::absurd_extreme_comparisons,
+    clippy::excessive_precision,
+    clippy::manual_range_contains,
+    clippy::unnecessary_cast,
+    clippy::useless_conversion,
+    unused_comparisons,
+    unused_variables,
+)]
+impl VectornavState {
+    pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
+        StandardId::new_unchecked(0x1fa)
+    });
+    pub const INERTIAL_NAVIGATION_STATE_MIN: u16 = 0_u16;
+    pub const INERTIAL_NAVIGATION_STATE_MAX: u16 = 65535_u16;
+    /// Construct new vectornav_state from values
+    pub fn new(inertial_navigation_state: u16) -> Result<Self, CanError> {
+        let mut res = Self { raw: [0u8; 8] };
+        res.set_inertial_navigation_state(inertial_navigation_state)?;
+        Ok(res)
+    }
+    /// Access message payload raw value
+    pub fn raw(&self) -> &[u8; 8] {
+        &self.raw
+    }
+    /// inertial_navigation_state
+    ///
+    /// A bit field signal that gives the state of the vectornav
+    ///
+    /// - Min: 0
+    /// - Max: 65535
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn inertial_navigation_state(&self) -> u16 {
+        self.inertial_navigation_state_raw()
+    }
+    /// Get raw value of inertial_navigation_state
+    ///
+    /// - Start bit: 0
+    /// - Signal size: 16 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: BigEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn inertial_navigation_state_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Msb0>()[7..23].load_be::<u16>();
+        let factor = 1;
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
+    }
+    /// Set value of inertial_navigation_state
+    #[inline(always)]
+    pub fn set_inertial_navigation_state(&mut self, value: u16) -> Result<(), CanError> {
+        if value < 0_u16 || 65535_u16 < value {
+            return Err(CanError::ParameterOutOfRange {
+                message_id: VectornavState::MESSAGE_ID,
+            });
+        }
+        let factor = 1;
+        let value = value
+            .checked_sub(0)
+            .ok_or(CanError::ParameterOutOfRange {
+                message_id: VectornavState::MESSAGE_ID,
+            })?;
+        let value = (value / factor) as u16;
+        self.raw.view_bits_mut::<Msb0>()[7..23].store_be(value);
+        Ok(())
+    }
+}
+impl core::convert::TryFrom<&[u8]> for VectornavState {
+    type Error = CanError;
+    #[inline(always)]
+    fn try_from(payload: &[u8]) -> Result<Self, Self::Error> {
+        if payload.len() != 8 {
+            return Err(CanError::InvalidPayloadSize);
+        }
+        let mut raw = [0u8; 8];
+        raw.copy_from_slice(&payload[..8]);
+        Ok(Self { raw })
+    }
+}
+impl embedded_can::Frame for VectornavState {
     fn new(id: impl Into<Id>, data: &[u8]) -> Option<Self> {
         if id.into() != Self::MESSAGE_ID { None } else { data.try_into().ok() }
     }
