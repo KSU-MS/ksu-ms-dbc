@@ -2,7 +2,7 @@
   description = "A very basic flake that generates the DBCs by running a python script";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
   };
 
   outputs =

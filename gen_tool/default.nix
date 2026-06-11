@@ -7,7 +7,7 @@ pkgs.stdenv.mkDerivation {
 
   # Some deps needed to generate the output DBC
   buildInputs = [
-    pkgs.python313Packages.cantools
+    pkgs.python311Packages.cantools
   ];
 
   # Specify the output of the build process
