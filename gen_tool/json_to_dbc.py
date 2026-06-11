@@ -1,8 +1,7 @@
-import cantools
-from cantools.database import conversion
 import json
 import sys
-import subprocess
+
+import cantools
 from utils import get_dbc_files
 
 
@@ -15,61 +14,119 @@ def cantools_json_to_dbc(input_json: str, outfilename: str, dbs=[]):
 
     for signal in can_json_input["signals"]:
         print(f"processing signal: {signal['name']}")
+
         new_signal = cantools.db.Signal(
             name=signal["name"], start=signal["start"], length=signal["length"]
         )
+
+        # Set byte order, if Null assume little endian
         try:
             new_signal.byte_order = signal["byte_order"]
-        except KeyError as e:
-            print(f"\tbyte order not specified for {signal['name']}")
-        try:
-            new_signal.is_signed = signal["is_signed"]
-        except KeyError as e:
-            print(f"\tSigned not specified for {signal['name']}")
+        except KeyError:
+            print(f"\tbyte order not specified for {signal['name']}, assuming le")
+            new_signal.byte_order = "little_endian"
 
-        try:
-            new_signal.initial = signal["initial"]
-        except:
-            print(f"\tno initial value specified for {signal['name']}")
-        try:
-            new_signal.minimum = signal["min"]
-        except:
-            print(f"\tminimum not specified for {signal['name']}")
-            new_signal.minimum = 0
-        try:
-            new_signal.maximum = signal["max"]
-        except:
-            print(f"\tmax not specified for {signal['name']}")
-            # Set max to largest possible value for the length
-            new_signal.maximum = 2 ** (new_signal.length) - 1
+        # If there is weird conversion math, set it all
         if "conversion" in signal:
-            if "is_float" in signal:
-                new_signal.is_float = signal["conversion"]["is_float"]
+            # NOTE: This is only true if the bits of the raw input are IEEE floats
+            # not if the scale/offset makes it a float after
+            # if "is_float" in signal["conversion"]:
+            #     new_signal.is_float = signal["conversion"]["is_float"]
+
             if "scale" in signal["conversion"]:
                 new_signal.scale = signal["conversion"]["scale"]
+
             if "offset" in signal["conversion"]:
                 new_signal.offset = signal["conversion"]["offset"]
+
             if "choices" in signal["conversion"]:
                 new_signal.choices = signal["conversion"]["choices"]
+
+        # Set if its signed, if Null assume it isn't
+        try:
+            new_signal.is_signed = signal["is_signed"]
+        except KeyError:
+            print(f"\tSigned not specified for {signal['name']}, assuming no sign")
+            new_signal.is_signed = False
+
+        # Set signal minimum, if Null try to guess minimum
+        try:
+            new_signal.minimum = signal["min"]
+        except KeyError:
+            # Assume UINT
+            min = 0
+
+            if "conversion" in signal:
+                # UFLOAT
+                if not new_signal.is_signed and signal["conversion"]["is_float"]:
+                    min = 0.0
+
+                # FLOAT
+                elif new_signal.is_signed and signal["conversion"]["is_float"]:
+                    min = ((2 ** (new_signal.length - 1)) * -1) * signal["conversion"][
+                        "scale"
+                    ]
+            else:
+                # INT
+                if new_signal.is_signed:
+                    min = (2 ** (new_signal.length - 1)) * -1
+
+            print(f"\tminimum not specified for {signal['name']}, best guess is {min}")
+            new_signal.minimum = min
+
+        # Set signal maximum, if Null try to guess maximum
+        try:
+            new_signal.maximum = signal["max"]
+        except KeyError:
+            # Assume UINT
+            max = 2 ** (new_signal.length) - 1
+
+            if "conversion" in signal:
+                # UFLOAT
+                if not new_signal.is_signed and signal["conversion"]["is_float"]:
+                    max = (2 ** (new_signal.length) - 1) * signal["conversion"]["scale"]
+
+                # FLOAT
+                elif new_signal.is_signed and signal["conversion"]["is_float"]:
+                    max = (2 ** (new_signal.length - 1) - 1) * signal["conversion"][
+                        "scale"
+                    ]
+
+            else:
+                # INT
+                if new_signal.is_signed:
+                    max = 2 ** (new_signal.length - 1) - 1
+
+            # Set max to largest possible value for the length
+            print(f"\tmax not specified for {signal['name']}, best guess is {max}")
+            new_signal.maximum = max
+
+        # Set its initial value, if Null assume minimum
+        try:
+            new_signal.initial = signal["initial"]
+        except KeyError:
+            new_signal.initial = new_signal.minimum
+            print(f"\tno initial value specified for {signal['name']}, assuming min")
+
+        # Set if the signal is the multiplexer ID field
         try:
             new_signal.is_multiplexer = signal["is_multiplexer"]
-        except:
+        except KeyError:
             print(f"\tmux not specified for {signal['name']}")
-        try:
-            new_signal.multiplexer_ids = signal["multiplexer_ids"]
-        except:
-            print(f"\tmux ids not specified for {signal['name']}")
-        try:
+
+        # Set the sub ID and the controller if it has a multiplexer_signal
+        if "multiplexer_signal" in signal:
             new_signal.multiplexer_signal = signal["multiplexer_signal"]
-        except:
-            print(f"\tmux signal not specified for {signal['name']}")
+            new_signal.multiplexer_ids = signal["multiplexer_ids"]
+
         try:
             new_signal.comment = signal["comment"]
-        except:
+        except KeyError:
             print(f"\tno comment specified for {signal['name']}")
+
         try:
             new_signal.unit = signal["units"]
-        except:
+        except KeyError:
             print(f"\tno units specified for {signal['name']}")
         new_signal_dict[new_signal.name] = new_signal
         print("")
@@ -132,15 +189,8 @@ def cantools_json_to_dbc(input_json: str, outfilename: str, dbs=[]):
     node_objs = [cantools.db.Node(name) for name in nodes]
 
     new_db = cantools.db.Database(list_of_cantools_msgs, nodes=node_objs, buses=buses)
-    # build_version = subprocess.run(
-    #     ["cd ..", "&&", "git", "rev-parse", "--short", "HEAD"], stdout=subprocess.PIPE
-    # ).stdout.decode("utf-8")
-    # build_version.strip()
-    # new_db.version = build_version
-    # print(f"Generated DBC hash: {new_db.version}")
 
     cantools.db.dump_file(new_db, outfilename + ".dbc")
-    # cantools.db.dump_file(new_db, outfilename + ".sym", database_format="sym")
 
 
 def json_gen(outfile, infile, dbs):

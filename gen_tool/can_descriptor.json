@@ -94,7 +94,10 @@
             "signals": [
                 "precharge_state",
                 "precharge_errorCode"
-            ]
+            ],
+            "comment": "Precharge related diag info",
+            "bus_name": "accumulator",
+            "senders": [ "tcu" ]
         },
 
 
@@ -262,6 +265,8 @@
                 "vcu_apps2_end_threshold",
                 "vcu_apps2_ov_threshold"
             ],
+            "comment": "A multiplexed signal that handles the pedal encoder settings",
+            "bus_name": "inverter",
             "senders": [
                 "vcu"
             ]
