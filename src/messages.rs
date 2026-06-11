@@ -509,21 +509,21 @@ impl Module1Temps {
         StandardId::new_unchecked(0x1f)
     });
     pub const MODULE_VOLTAGE_8_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_8_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_8_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_7_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_7_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_7_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_6_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_6_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_6_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_5_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_5_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_5_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_4_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_4_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_4_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_3_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_3_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_3_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_2_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_2_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_2_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_1_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_1_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_1_MAX: f32 = 2.5500000000000003_f32;
     /// Construct new module1_temps from values
     pub fn new(
         module_voltage_8: f32,
@@ -553,7 +553,7 @@ impl Module1Temps {
     /// module_voltage_8
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -578,7 +578,7 @@ impl Module1Temps {
     /// Set value of module_voltage_8
     #[inline(always)]
     pub fn set_module_voltage_8(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module1Temps::MESSAGE_ID,
             });
@@ -592,7 +592,7 @@ impl Module1Temps {
     /// module_voltage_7
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -617,7 +617,7 @@ impl Module1Temps {
     /// Set value of module_voltage_7
     #[inline(always)]
     pub fn set_module_voltage_7(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module1Temps::MESSAGE_ID,
             });
@@ -631,7 +631,7 @@ impl Module1Temps {
     /// module_voltage_6
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -656,7 +656,7 @@ impl Module1Temps {
     /// Set value of module_voltage_6
     #[inline(always)]
     pub fn set_module_voltage_6(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module1Temps::MESSAGE_ID,
             });
@@ -670,7 +670,7 @@ impl Module1Temps {
     /// module_voltage_5
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -695,7 +695,7 @@ impl Module1Temps {
     /// Set value of module_voltage_5
     #[inline(always)]
     pub fn set_module_voltage_5(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module1Temps::MESSAGE_ID,
             });
@@ -709,7 +709,7 @@ impl Module1Temps {
     /// module_voltage_4
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -734,7 +734,7 @@ impl Module1Temps {
     /// Set value of module_voltage_4
     #[inline(always)]
     pub fn set_module_voltage_4(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module1Temps::MESSAGE_ID,
             });
@@ -748,7 +748,7 @@ impl Module1Temps {
     /// module_voltage_3
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -773,7 +773,7 @@ impl Module1Temps {
     /// Set value of module_voltage_3
     #[inline(always)]
     pub fn set_module_voltage_3(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module1Temps::MESSAGE_ID,
             });
@@ -787,7 +787,7 @@ impl Module1Temps {
     /// module_voltage_2
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -812,7 +812,7 @@ impl Module1Temps {
     /// Set value of module_voltage_2
     #[inline(always)]
     pub fn set_module_voltage_2(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module1Temps::MESSAGE_ID,
             });
@@ -826,7 +826,7 @@ impl Module1Temps {
     /// module_voltage_1
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -851,7 +851,7 @@ impl Module1Temps {
     /// Set value of module_voltage_1
     #[inline(always)]
     pub fn set_module_voltage_1(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module1Temps::MESSAGE_ID,
             });
@@ -926,21 +926,21 @@ impl Module2Temps {
         StandardId::new_unchecked(0x20)
     });
     pub const MODULE_VOLTAGE_8_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_8_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_8_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_7_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_7_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_7_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_6_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_6_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_6_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_5_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_5_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_5_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_4_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_4_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_4_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_3_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_3_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_3_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_2_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_2_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_2_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_1_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_1_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_1_MAX: f32 = 2.5500000000000003_f32;
     /// Construct new module2_temps from values
     pub fn new(
         module_voltage_8: f32,
@@ -970,7 +970,7 @@ impl Module2Temps {
     /// module_voltage_8
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -995,7 +995,7 @@ impl Module2Temps {
     /// Set value of module_voltage_8
     #[inline(always)]
     pub fn set_module_voltage_8(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module2Temps::MESSAGE_ID,
             });
@@ -1009,7 +1009,7 @@ impl Module2Temps {
     /// module_voltage_7
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1034,7 +1034,7 @@ impl Module2Temps {
     /// Set value of module_voltage_7
     #[inline(always)]
     pub fn set_module_voltage_7(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module2Temps::MESSAGE_ID,
             });
@@ -1048,7 +1048,7 @@ impl Module2Temps {
     /// module_voltage_6
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1073,7 +1073,7 @@ impl Module2Temps {
     /// Set value of module_voltage_6
     #[inline(always)]
     pub fn set_module_voltage_6(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module2Temps::MESSAGE_ID,
             });
@@ -1087,7 +1087,7 @@ impl Module2Temps {
     /// module_voltage_5
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1112,7 +1112,7 @@ impl Module2Temps {
     /// Set value of module_voltage_5
     #[inline(always)]
     pub fn set_module_voltage_5(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module2Temps::MESSAGE_ID,
             });
@@ -1126,7 +1126,7 @@ impl Module2Temps {
     /// module_voltage_4
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1151,7 +1151,7 @@ impl Module2Temps {
     /// Set value of module_voltage_4
     #[inline(always)]
     pub fn set_module_voltage_4(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module2Temps::MESSAGE_ID,
             });
@@ -1165,7 +1165,7 @@ impl Module2Temps {
     /// module_voltage_3
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1190,7 +1190,7 @@ impl Module2Temps {
     /// Set value of module_voltage_3
     #[inline(always)]
     pub fn set_module_voltage_3(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module2Temps::MESSAGE_ID,
             });
@@ -1204,7 +1204,7 @@ impl Module2Temps {
     /// module_voltage_2
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1229,7 +1229,7 @@ impl Module2Temps {
     /// Set value of module_voltage_2
     #[inline(always)]
     pub fn set_module_voltage_2(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module2Temps::MESSAGE_ID,
             });
@@ -1243,7 +1243,7 @@ impl Module2Temps {
     /// module_voltage_1
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1268,7 +1268,7 @@ impl Module2Temps {
     /// Set value of module_voltage_1
     #[inline(always)]
     pub fn set_module_voltage_1(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module2Temps::MESSAGE_ID,
             });
@@ -1343,21 +1343,21 @@ impl Module3Temps {
         StandardId::new_unchecked(0x21)
     });
     pub const MODULE_VOLTAGE_8_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_8_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_8_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_7_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_7_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_7_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_6_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_6_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_6_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_5_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_5_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_5_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_4_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_4_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_4_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_3_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_3_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_3_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_2_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_2_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_2_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_1_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_1_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_1_MAX: f32 = 2.5500000000000003_f32;
     /// Construct new module3_temps from values
     pub fn new(
         module_voltage_8: f32,
@@ -1387,7 +1387,7 @@ impl Module3Temps {
     /// module_voltage_8
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1412,7 +1412,7 @@ impl Module3Temps {
     /// Set value of module_voltage_8
     #[inline(always)]
     pub fn set_module_voltage_8(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module3Temps::MESSAGE_ID,
             });
@@ -1426,7 +1426,7 @@ impl Module3Temps {
     /// module_voltage_7
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1451,7 +1451,7 @@ impl Module3Temps {
     /// Set value of module_voltage_7
     #[inline(always)]
     pub fn set_module_voltage_7(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module3Temps::MESSAGE_ID,
             });
@@ -1465,7 +1465,7 @@ impl Module3Temps {
     /// module_voltage_6
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1490,7 +1490,7 @@ impl Module3Temps {
     /// Set value of module_voltage_6
     #[inline(always)]
     pub fn set_module_voltage_6(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module3Temps::MESSAGE_ID,
             });
@@ -1504,7 +1504,7 @@ impl Module3Temps {
     /// module_voltage_5
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1529,7 +1529,7 @@ impl Module3Temps {
     /// Set value of module_voltage_5
     #[inline(always)]
     pub fn set_module_voltage_5(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module3Temps::MESSAGE_ID,
             });
@@ -1543,7 +1543,7 @@ impl Module3Temps {
     /// module_voltage_4
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1568,7 +1568,7 @@ impl Module3Temps {
     /// Set value of module_voltage_4
     #[inline(always)]
     pub fn set_module_voltage_4(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module3Temps::MESSAGE_ID,
             });
@@ -1582,7 +1582,7 @@ impl Module3Temps {
     /// module_voltage_3
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1607,7 +1607,7 @@ impl Module3Temps {
     /// Set value of module_voltage_3
     #[inline(always)]
     pub fn set_module_voltage_3(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module3Temps::MESSAGE_ID,
             });
@@ -1621,7 +1621,7 @@ impl Module3Temps {
     /// module_voltage_2
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1646,7 +1646,7 @@ impl Module3Temps {
     /// Set value of module_voltage_2
     #[inline(always)]
     pub fn set_module_voltage_2(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module3Temps::MESSAGE_ID,
             });
@@ -1660,7 +1660,7 @@ impl Module3Temps {
     /// module_voltage_1
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1685,7 +1685,7 @@ impl Module3Temps {
     /// Set value of module_voltage_1
     #[inline(always)]
     pub fn set_module_voltage_1(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module3Temps::MESSAGE_ID,
             });
@@ -1760,21 +1760,21 @@ impl Module4Temps {
         StandardId::new_unchecked(0x22)
     });
     pub const MODULE_VOLTAGE_8_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_8_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_8_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_7_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_7_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_7_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_6_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_6_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_6_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_5_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_5_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_5_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_4_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_4_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_4_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_3_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_3_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_3_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_2_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_2_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_2_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_1_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_1_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_1_MAX: f32 = 2.5500000000000003_f32;
     /// Construct new module4_temps from values
     pub fn new(
         module_voltage_8: f32,
@@ -1804,7 +1804,7 @@ impl Module4Temps {
     /// module_voltage_8
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1829,7 +1829,7 @@ impl Module4Temps {
     /// Set value of module_voltage_8
     #[inline(always)]
     pub fn set_module_voltage_8(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module4Temps::MESSAGE_ID,
             });
@@ -1843,7 +1843,7 @@ impl Module4Temps {
     /// module_voltage_7
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1868,7 +1868,7 @@ impl Module4Temps {
     /// Set value of module_voltage_7
     #[inline(always)]
     pub fn set_module_voltage_7(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module4Temps::MESSAGE_ID,
             });
@@ -1882,7 +1882,7 @@ impl Module4Temps {
     /// module_voltage_6
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1907,7 +1907,7 @@ impl Module4Temps {
     /// Set value of module_voltage_6
     #[inline(always)]
     pub fn set_module_voltage_6(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module4Temps::MESSAGE_ID,
             });
@@ -1921,7 +1921,7 @@ impl Module4Temps {
     /// module_voltage_5
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1946,7 +1946,7 @@ impl Module4Temps {
     /// Set value of module_voltage_5
     #[inline(always)]
     pub fn set_module_voltage_5(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module4Temps::MESSAGE_ID,
             });
@@ -1960,7 +1960,7 @@ impl Module4Temps {
     /// module_voltage_4
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -1985,7 +1985,7 @@ impl Module4Temps {
     /// Set value of module_voltage_4
     #[inline(always)]
     pub fn set_module_voltage_4(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module4Temps::MESSAGE_ID,
             });
@@ -1999,7 +1999,7 @@ impl Module4Temps {
     /// module_voltage_3
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -2024,7 +2024,7 @@ impl Module4Temps {
     /// Set value of module_voltage_3
     #[inline(always)]
     pub fn set_module_voltage_3(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module4Temps::MESSAGE_ID,
             });
@@ -2038,7 +2038,7 @@ impl Module4Temps {
     /// module_voltage_2
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -2063,7 +2063,7 @@ impl Module4Temps {
     /// Set value of module_voltage_2
     #[inline(always)]
     pub fn set_module_voltage_2(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module4Temps::MESSAGE_ID,
             });
@@ -2077,7 +2077,7 @@ impl Module4Temps {
     /// module_voltage_1
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -2102,7 +2102,7 @@ impl Module4Temps {
     /// Set value of module_voltage_1
     #[inline(always)]
     pub fn set_module_voltage_1(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module4Temps::MESSAGE_ID,
             });
@@ -2177,21 +2177,21 @@ impl Module5Temps {
         StandardId::new_unchecked(0x23)
     });
     pub const MODULE_VOLTAGE_8_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_8_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_8_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_7_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_7_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_7_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_6_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_6_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_6_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_5_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_5_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_5_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_4_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_4_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_4_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_3_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_3_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_3_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_2_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_2_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_2_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_1_MIN: f32 = 0_f32;
-    pub const MODULE_VOLTAGE_1_MAX: f32 = 255_f32;
+    pub const MODULE_VOLTAGE_1_MAX: f32 = 2.5500000000000003_f32;
     /// Construct new module5_temps from values
     pub fn new(
         module_voltage_8: f32,
@@ -2221,7 +2221,7 @@ impl Module5Temps {
     /// module_voltage_8
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -2246,7 +2246,7 @@ impl Module5Temps {
     /// Set value of module_voltage_8
     #[inline(always)]
     pub fn set_module_voltage_8(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module5Temps::MESSAGE_ID,
             });
@@ -2260,7 +2260,7 @@ impl Module5Temps {
     /// module_voltage_7
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -2285,7 +2285,7 @@ impl Module5Temps {
     /// Set value of module_voltage_7
     #[inline(always)]
     pub fn set_module_voltage_7(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module5Temps::MESSAGE_ID,
             });
@@ -2299,7 +2299,7 @@ impl Module5Temps {
     /// module_voltage_6
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -2324,7 +2324,7 @@ impl Module5Temps {
     /// Set value of module_voltage_6
     #[inline(always)]
     pub fn set_module_voltage_6(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module5Temps::MESSAGE_ID,
             });
@@ -2338,7 +2338,7 @@ impl Module5Temps {
     /// module_voltage_5
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -2363,7 +2363,7 @@ impl Module5Temps {
     /// Set value of module_voltage_5
     #[inline(always)]
     pub fn set_module_voltage_5(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module5Temps::MESSAGE_ID,
             });
@@ -2377,7 +2377,7 @@ impl Module5Temps {
     /// module_voltage_4
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -2402,7 +2402,7 @@ impl Module5Temps {
     /// Set value of module_voltage_4
     #[inline(always)]
     pub fn set_module_voltage_4(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module5Temps::MESSAGE_ID,
             });
@@ -2416,7 +2416,7 @@ impl Module5Temps {
     /// module_voltage_3
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -2441,7 +2441,7 @@ impl Module5Temps {
     /// Set value of module_voltage_3
     #[inline(always)]
     pub fn set_module_voltage_3(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module5Temps::MESSAGE_ID,
             });
@@ -2455,7 +2455,7 @@ impl Module5Temps {
     /// module_voltage_2
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -2480,7 +2480,7 @@ impl Module5Temps {
     /// Set value of module_voltage_2
     #[inline(always)]
     pub fn set_module_voltage_2(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module5Temps::MESSAGE_ID,
             });
@@ -2494,7 +2494,7 @@ impl Module5Temps {
     /// module_voltage_1
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 2.5500000000000003
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -2519,7 +2519,7 @@ impl Module5Temps {
     /// Set value of module_voltage_1
     #[inline(always)]
     pub fn set_module_voltage_1(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 2.5500000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: Module5Temps::MESSAGE_ID,
             });
@@ -2573,6 +2573,9 @@ impl embedded_can::Frame for Module5Temps {
 ///
 /// - Standard ID: 105 (0x69)
 /// - Size: 8 bytes
+/// - Transmitter: tcu
+///
+/// Precharge related diag info
 #[derive(Clone, Copy)]
 pub struct PrechargeStatus {
     raw: [u8; 8],
@@ -3060,17 +3063,17 @@ impl AcuBoardVoltageReadings {
         StandardId::new_unchecked(0xa1)
     });
     pub const ACU_3V_VOLTAGE_MIN: f32 = 0_f32;
-    pub const ACU_3V_VOLTAGE_MAX: f32 = 255_f32;
+    pub const ACU_3V_VOLTAGE_MAX: f32 = 3.2997_f32;
     pub const ACU_5V_VOLTAGE_MIN: f32 = 0_f32;
-    pub const ACU_5V_VOLTAGE_MAX: f32 = 255_f32;
+    pub const ACU_5V_VOLTAGE_MAX: f32 = 3.2997_f32;
     pub const ACU_GLV_CURRENT_MIN: f32 = 0_f32;
-    pub const ACU_GLV_CURRENT_MAX: f32 = 255_f32;
+    pub const ACU_GLV_CURRENT_MAX: f32 = 8.24925_f32;
     pub const ACU_GLV_VOLTAGE_MIN: f32 = 0_f32;
-    pub const ACU_GLV_VOLTAGE_MAX: f32 = 255_f32;
+    pub const ACU_GLV_VOLTAGE_MAX: f32 = 3.2997_f32;
     pub const ACU_SDC_CURRENT_MIN: f32 = 0_f32;
-    pub const ACU_SDC_CURRENT_MAX: f32 = 255_f32;
+    pub const ACU_SDC_CURRENT_MAX: f32 = 8.24925_f32;
     pub const ACU_SDC_VOLTAGE_MIN: f32 = 0_f32;
-    pub const ACU_SDC_VOLTAGE_MAX: f32 = 255_f32;
+    pub const ACU_SDC_VOLTAGE_MAX: f32 = 3.2997_f32;
     /// Construct new acu_board_voltage_readings from values
     pub fn new(
         acu_3v_voltage: f32,
@@ -3098,7 +3101,7 @@ impl AcuBoardVoltageReadings {
     /// ACU 3v rail reading
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 3.2997
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -3123,7 +3126,7 @@ impl AcuBoardVoltageReadings {
     /// Set value of acu_3v_voltage
     #[inline(always)]
     pub fn set_acu_3v_voltage(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 3.2997_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: AcuBoardVoltageReadings::MESSAGE_ID,
             });
@@ -3139,7 +3142,7 @@ impl AcuBoardVoltageReadings {
     /// ACU 5v rail reading
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 3.2997
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -3164,7 +3167,7 @@ impl AcuBoardVoltageReadings {
     /// Set value of acu_5v_voltage
     #[inline(always)]
     pub fn set_acu_5v_voltage(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 3.2997_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: AcuBoardVoltageReadings::MESSAGE_ID,
             });
@@ -3180,7 +3183,7 @@ impl AcuBoardVoltageReadings {
     /// ACU GLV current reading from the ACU
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 8.24925
     /// - Unit: "amps"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -3205,7 +3208,7 @@ impl AcuBoardVoltageReadings {
     /// Set value of acu_glv_current
     #[inline(always)]
     pub fn set_acu_glv_current(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 8.24925_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: AcuBoardVoltageReadings::MESSAGE_ID,
             });
@@ -3221,7 +3224,7 @@ impl AcuBoardVoltageReadings {
     /// ACU GLV system voltage reading
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 3.2997
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -3246,7 +3249,7 @@ impl AcuBoardVoltageReadings {
     /// Set value of acu_glv_voltage
     #[inline(always)]
     pub fn set_acu_glv_voltage(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 3.2997_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: AcuBoardVoltageReadings::MESSAGE_ID,
             });
@@ -3262,7 +3265,7 @@ impl AcuBoardVoltageReadings {
     /// ACU shutdown circuit current reading thru the ACU
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 8.24925
     /// - Unit: "amps"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -3287,7 +3290,7 @@ impl AcuBoardVoltageReadings {
     /// Set value of acu_sdc_current
     #[inline(always)]
     pub fn set_acu_sdc_current(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 8.24925_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: AcuBoardVoltageReadings::MESSAGE_ID,
             });
@@ -3303,7 +3306,7 @@ impl AcuBoardVoltageReadings {
     /// ACU GLV system voltage reading
     ///
     /// - Min: 0
-    /// - Max: 255
+    /// - Max: 3.2997
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -3328,7 +3331,7 @@ impl AcuBoardVoltageReadings {
     /// Set value of acu_sdc_voltage
     #[inline(always)]
     pub fn set_acu_sdc_voltage(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 255_f32 < value {
+        if value < 0_f32 || 3.2997_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: AcuBoardVoltageReadings::MESSAGE_ID,
             });
@@ -3926,11 +3929,11 @@ impl VcuPedalsTravel {
         StandardId::new_unchecked(0xc4)
     });
     pub const VCU_BSE_TRAVEL_MIN: f32 = 0_f32;
-    pub const VCU_BSE_TRAVEL_MAX: f32 = 65535_f32;
+    pub const VCU_BSE_TRAVEL_MAX: f32 = 655.35_f32;
     pub const VCU_APPS2_TRAVEL_MIN: f32 = 0_f32;
-    pub const VCU_APPS2_TRAVEL_MAX: f32 = 65535_f32;
+    pub const VCU_APPS2_TRAVEL_MAX: f32 = 655.35_f32;
     pub const VCU_APPS1_TRAVEL_MIN: f32 = 0_f32;
-    pub const VCU_APPS1_TRAVEL_MAX: f32 = 65535_f32;
+    pub const VCU_APPS1_TRAVEL_MAX: f32 = 655.35_f32;
     /// Construct new vcu_pedals_travel from values
     pub fn new(
         vcu_bse_travel: f32,
@@ -3952,7 +3955,7 @@ impl VcuPedalsTravel {
     /// 0 to 100%
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 655.35
     /// - Unit: "Percentage"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -3977,7 +3980,7 @@ impl VcuPedalsTravel {
     /// Set value of vcu_bse_travel
     #[inline(always)]
     pub fn set_vcu_bse_travel(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 655.35_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VcuPedalsTravel::MESSAGE_ID,
             });
@@ -3993,7 +3996,7 @@ impl VcuPedalsTravel {
     /// 0 to 100%
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 655.35
     /// - Unit: "Percentage"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -4018,7 +4021,7 @@ impl VcuPedalsTravel {
     /// Set value of vcu_apps2_travel
     #[inline(always)]
     pub fn set_vcu_apps2_travel(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 655.35_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VcuPedalsTravel::MESSAGE_ID,
             });
@@ -4034,7 +4037,7 @@ impl VcuPedalsTravel {
     /// 0 to 100%
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 655.35
     /// - Unit: "Percentage"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -4059,7 +4062,7 @@ impl VcuPedalsTravel {
     /// Set value of vcu_apps1_travel
     #[inline(always)]
     pub fn set_vcu_apps1_travel(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 655.35_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VcuPedalsTravel::MESSAGE_ID,
             });
@@ -4925,13 +4928,13 @@ impl VcuDistanceTrackerMotor {
         StandardId::new_unchecked(0xc8)
     });
     pub const VCU_MOTOR_EFFICIENCY_KMKWH_MIN: f32 = 0_f32;
-    pub const VCU_MOTOR_EFFICIENCY_KMKWH_MAX: f32 = 65535_f32;
+    pub const VCU_MOTOR_EFFICIENCY_KMKWH_MAX: f32 = 65.535_f32;
     pub const VCU_MOTOR_DISTANCE_METERS_MIN: u16 = 0_u16;
     pub const VCU_MOTOR_DISTANCE_METERS_MAX: u16 = 65535_u16;
     pub const VCU_MOTOR_EFFICIENCY_INSTANTANEO_MIN: f32 = 0_f32;
-    pub const VCU_MOTOR_EFFICIENCY_INSTANTANEO_MAX: f32 = 65535_f32;
+    pub const VCU_MOTOR_EFFICIENCY_INSTANTANEO_MAX: f32 = 65.535_f32;
     pub const VCU_MOTOR_ENERGY_WH_MIN: f32 = 0_f32;
-    pub const VCU_MOTOR_ENERGY_WH_MAX: f32 = 65535_f32;
+    pub const VCU_MOTOR_ENERGY_WH_MAX: f32 = 6553.5_f32;
     /// Construct new vcu_distance_tracker_motor from values
     pub fn new(
         vcu_motor_efficiency_kmkwh: f32,
@@ -4953,7 +4956,7 @@ impl VcuDistanceTrackerMotor {
     /// vcu_motor_efficiency_kmkwh
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 65.535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -4981,7 +4984,7 @@ impl VcuDistanceTrackerMotor {
         &mut self,
         value: f32,
     ) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 65.535_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VcuDistanceTrackerMotor::MESSAGE_ID,
             });
@@ -5037,7 +5040,7 @@ impl VcuDistanceTrackerMotor {
     /// vcu_motor_efficiency_instantaneo
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 65.535
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -5065,7 +5068,7 @@ impl VcuDistanceTrackerMotor {
         &mut self,
         value: f32,
     ) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 65.535_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VcuDistanceTrackerMotor::MESSAGE_ID,
             });
@@ -5079,7 +5082,7 @@ impl VcuDistanceTrackerMotor {
     /// vcu_motor_energy_wh
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 6553.5
     /// - Unit: "watt-hours"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -5104,7 +5107,7 @@ impl VcuDistanceTrackerMotor {
     /// Set value of vcu_motor_energy_wh
     #[inline(always)]
     pub fn set_vcu_motor_energy_wh(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 6553.5_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VcuDistanceTrackerMotor::MESSAGE_ID,
             });
@@ -5328,6 +5331,8 @@ impl embedded_can::Frame for VcuSetParameter {
 /// - Standard ID: 202 (0xca)
 /// - Size: 7 bytes
 /// - Transmitter: vcu
+///
+/// A multiplexed signal that handles the pedal encoder settings
 #[derive(Clone, Copy)]
 pub struct VcuPedalThresholdSettings {
     raw: [u8; 7],
@@ -6458,10 +6463,10 @@ impl VectornavPosition {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f4)
     });
-    pub const VN_LONGITUDE_MIN: f32 = 0_f32;
-    pub const VN_LONGITUDE_MAX: f32 = 4294967295_f32;
-    pub const VN_LATITUDE_MIN: f32 = 0_f32;
-    pub const VN_LATITUDE_MAX: f32 = 4294967295_f32;
+    pub const VN_LONGITUDE_MIN: f32 = -214.7483648_f32;
+    pub const VN_LONGITUDE_MAX: f32 = 214.7483647_f32;
+    pub const VN_LATITUDE_MIN: f32 = -214.7483648_f32;
+    pub const VN_LATITUDE_MAX: f32 = 214.7483647_f32;
     /// Construct new vectornav_position from values
     pub fn new(vn_longitude: f32, vn_latitude: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 8] };
@@ -6475,8 +6480,8 @@ impl VectornavPosition {
     }
     /// vn_longitude
     ///
-    /// - Min: 0
-    /// - Max: 4294967295
+    /// - Min: -214.7483648
+    /// - Max: 214.7483647
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -6501,7 +6506,7 @@ impl VectornavPosition {
     /// Set value of vn_longitude
     #[inline(always)]
     pub fn set_vn_longitude(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 4294967295_f32 < value {
+        if value < -214.7483648_f32 || 214.7483647_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavPosition::MESSAGE_ID,
             });
@@ -6515,8 +6520,8 @@ impl VectornavPosition {
     }
     /// vn_latitude
     ///
-    /// - Min: 0
-    /// - Max: 4294967295
+    /// - Min: -214.7483648
+    /// - Max: 214.7483647
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -6541,7 +6546,7 @@ impl VectornavPosition {
     /// Set value of vn_latitude
     #[inline(always)]
     pub fn set_vn_latitude(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 4294967295_f32 < value {
+        if value < -214.7483648_f32 || 214.7483647_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavPosition::MESSAGE_ID,
             });
@@ -6616,12 +6621,12 @@ impl VectornavAttitude {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f5)
     });
-    pub const VN_PITCH_MIN: f32 = 0_f32;
-    pub const VN_PITCH_MAX: f32 = 65535_f32;
-    pub const VN_ROLL_MIN: f32 = 0_f32;
-    pub const VN_ROLL_MAX: f32 = 65535_f32;
-    pub const VN_YAW_MIN: f32 = 0_f32;
-    pub const VN_YAW_MAX: f32 = 65535_f32;
+    pub const VN_PITCH_MIN: f32 = -327.68_f32;
+    pub const VN_PITCH_MAX: f32 = 327.67_f32;
+    pub const VN_ROLL_MIN: f32 = -327.68_f32;
+    pub const VN_ROLL_MAX: f32 = 327.67_f32;
+    pub const VN_YAW_MIN: f32 = -327.68_f32;
+    pub const VN_YAW_MAX: f32 = 327.67_f32;
     /// Construct new vectornav_attitude from values
     pub fn new(vn_pitch: f32, vn_roll: f32, vn_yaw: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 6] };
@@ -6636,8 +6641,8 @@ impl VectornavAttitude {
     }
     /// vn_pitch
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Degrees"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -6662,7 +6667,7 @@ impl VectornavAttitude {
     /// Set value of vn_pitch
     #[inline(always)]
     pub fn set_vn_pitch(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavAttitude::MESSAGE_ID,
             });
@@ -6676,8 +6681,8 @@ impl VectornavAttitude {
     }
     /// vn_roll
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Degrees"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -6702,7 +6707,7 @@ impl VectornavAttitude {
     /// Set value of vn_roll
     #[inline(always)]
     pub fn set_vn_roll(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavAttitude::MESSAGE_ID,
             });
@@ -6716,8 +6721,8 @@ impl VectornavAttitude {
     }
     /// vn_yaw
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Degrees"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -6742,7 +6747,7 @@ impl VectornavAttitude {
     /// Set value of vn_yaw
     #[inline(always)]
     pub fn set_vn_yaw(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavAttitude::MESSAGE_ID,
             });
@@ -6817,12 +6822,12 @@ impl VectornavGyro {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f6)
     });
-    pub const VN_W_Z_MIN: f32 = 0_f32;
-    pub const VN_W_Z_MAX: f32 = 65535_f32;
-    pub const VN_W_Y_MIN: f32 = 0_f32;
-    pub const VN_W_Y_MAX: f32 = 65535_f32;
-    pub const VN_W_X_MIN: f32 = 0_f32;
-    pub const VN_W_X_MAX: f32 = 65535_f32;
+    pub const VN_W_Z_MIN: f32 = -327.68_f32;
+    pub const VN_W_Z_MAX: f32 = 327.67_f32;
+    pub const VN_W_Y_MIN: f32 = -327.68_f32;
+    pub const VN_W_Y_MAX: f32 = 327.67_f32;
+    pub const VN_W_X_MIN: f32 = -327.68_f32;
+    pub const VN_W_X_MAX: f32 = 327.67_f32;
     /// Construct new vectornav_gyro from values
     pub fn new(vn_w_z: f32, vn_w_y: f32, vn_w_x: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 6] };
@@ -6837,8 +6842,8 @@ impl VectornavGyro {
     }
     /// vn_W_z
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Radians/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -6863,7 +6868,7 @@ impl VectornavGyro {
     /// Set value of vn_W_z
     #[inline(always)]
     pub fn set_vn_w_z(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavGyro::MESSAGE_ID,
             });
@@ -6877,8 +6882,8 @@ impl VectornavGyro {
     }
     /// vn_W_y
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Radians/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -6903,7 +6908,7 @@ impl VectornavGyro {
     /// Set value of vn_W_y
     #[inline(always)]
     pub fn set_vn_w_y(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavGyro::MESSAGE_ID,
             });
@@ -6917,8 +6922,8 @@ impl VectornavGyro {
     }
     /// vn_W_x
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Radians/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -6943,7 +6948,7 @@ impl VectornavGyro {
     /// Set value of vn_W_x
     #[inline(always)]
     pub fn set_vn_w_x(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavGyro::MESSAGE_ID,
             });
@@ -7018,12 +7023,12 @@ impl VectornavVelocity {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f7)
     });
-    pub const VN_V_D_MIN: f32 = 0_f32;
-    pub const VN_V_D_MAX: f32 = 65535_f32;
-    pub const VN_V_E_MIN: f32 = 0_f32;
-    pub const VN_V_E_MAX: f32 = 65535_f32;
-    pub const VN_V_N_MIN: f32 = 0_f32;
-    pub const VN_V_N_MAX: f32 = 65535_f32;
+    pub const VN_V_D_MIN: f32 = -327.68_f32;
+    pub const VN_V_D_MAX: f32 = 327.67_f32;
+    pub const VN_V_E_MIN: f32 = -327.68_f32;
+    pub const VN_V_E_MAX: f32 = 327.67_f32;
+    pub const VN_V_N_MIN: f32 = -327.68_f32;
+    pub const VN_V_N_MAX: f32 = 327.67_f32;
     /// Construct new vectornav_velocity from values
     pub fn new(vn_v_d: f32, vn_v_e: f32, vn_v_n: f32) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 6] };
@@ -7038,8 +7043,8 @@ impl VectornavVelocity {
     }
     /// vn_v_d
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Meter/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -7064,7 +7069,7 @@ impl VectornavVelocity {
     /// Set value of vn_v_d
     #[inline(always)]
     pub fn set_vn_v_d(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavVelocity::MESSAGE_ID,
             });
@@ -7078,8 +7083,8 @@ impl VectornavVelocity {
     }
     /// vn_v_e
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Meter/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -7104,7 +7109,7 @@ impl VectornavVelocity {
     /// Set value of vn_v_e
     #[inline(always)]
     pub fn set_vn_v_e(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavVelocity::MESSAGE_ID,
             });
@@ -7118,8 +7123,8 @@ impl VectornavVelocity {
     }
     /// vn_v_n
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Meter/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -7144,7 +7149,7 @@ impl VectornavVelocity {
     /// Set value of vn_v_n
     #[inline(always)]
     pub fn set_vn_v_n(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavVelocity::MESSAGE_ID,
             });
@@ -7219,12 +7224,12 @@ impl VectornavAcceleration {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f8)
     });
-    pub const VN_ACCEL_Z_MIN: f32 = 0_f32;
-    pub const VN_ACCEL_Z_MAX: f32 = 65535_f32;
-    pub const VN_ACCEL_Y_MIN: f32 = 0_f32;
-    pub const VN_ACCEL_Y_MAX: f32 = 65535_f32;
-    pub const VN_ACCEL_X_MIN: f32 = 0_f32;
-    pub const VN_ACCEL_X_MAX: f32 = 65535_f32;
+    pub const VN_ACCEL_Z_MIN: f32 = -327.68_f32;
+    pub const VN_ACCEL_Z_MAX: f32 = 327.67_f32;
+    pub const VN_ACCEL_Y_MIN: f32 = -327.68_f32;
+    pub const VN_ACCEL_Y_MAX: f32 = 327.67_f32;
+    pub const VN_ACCEL_X_MIN: f32 = -327.68_f32;
+    pub const VN_ACCEL_X_MAX: f32 = 327.67_f32;
     /// Construct new vectornav_acceleration from values
     pub fn new(
         vn_accel_z: f32,
@@ -7243,8 +7248,8 @@ impl VectornavAcceleration {
     }
     /// vn_accel_z
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Meter/s^2"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -7269,7 +7274,7 @@ impl VectornavAcceleration {
     /// Set value of vn_accel_z
     #[inline(always)]
     pub fn set_vn_accel_z(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavAcceleration::MESSAGE_ID,
             });
@@ -7283,8 +7288,8 @@ impl VectornavAcceleration {
     }
     /// vn_accel_y
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Meter/s^2"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -7309,7 +7314,7 @@ impl VectornavAcceleration {
     /// Set value of vn_accel_y
     #[inline(always)]
     pub fn set_vn_accel_y(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavAcceleration::MESSAGE_ID,
             });
@@ -7323,8 +7328,8 @@ impl VectornavAcceleration {
     }
     /// vn_accel_x
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -327.68
+    /// - Max: 327.67
     /// - Unit: "Meter/s^2"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -7349,7 +7354,7 @@ impl VectornavAcceleration {
     /// Set value of vn_accel_x
     #[inline(always)]
     pub fn set_vn_accel_x(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -327.68_f32 || 327.67_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VectornavAcceleration::MESSAGE_ID,
             });
@@ -7662,10 +7667,10 @@ impl An1Steeringpot {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x383)
     });
-    pub const ANGLE_DELTA_MIN: f32 = 0_f32;
-    pub const ANGLE_DELTA_MAX: f32 = 65535_f32;
+    pub const ANGLE_DELTA_MIN: f32 = -3276.8_f32;
+    pub const ANGLE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const ANGLE_MIN: f32 = 0_f32;
-    pub const ANGLE_MAX: f32 = 65535_f32;
+    pub const ANGLE_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
     /// Construct new an1_steeringpot from values
@@ -7684,8 +7689,8 @@ impl An1Steeringpot {
     ///
     /// The rate of change of the angle reading
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Degrees/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -7710,7 +7715,7 @@ impl An1Steeringpot {
     /// Set value of angle_delta
     #[inline(always)]
     pub fn set_angle_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1Steeringpot::MESSAGE_ID,
             });
@@ -7727,7 +7732,7 @@ impl An1Steeringpot {
     /// Angle of the steering rack pot
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 6553.5
     /// - Unit: "Degrees"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -7752,7 +7757,7 @@ impl An1Steeringpot {
     /// Set value of angle
     #[inline(always)]
     pub fn set_angle(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 6553.5_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1Steeringpot::MESSAGE_ID,
             });
@@ -7870,8 +7875,8 @@ impl An1FrontBrakepressure {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x384)
     });
-    pub const PRESSURE_DELTA_MIN: f32 = 0_f32;
-    pub const PRESSURE_DELTA_MAX: f32 = 65535_f32;
+    pub const PRESSURE_DELTA_MIN: f32 = -3276.8_f32;
+    pub const PRESSURE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const PRESSURE_K_PA_MIN: u16 = 0_u16;
     pub const PRESSURE_K_PA_MAX: u16 = 65535_u16;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
@@ -7896,8 +7901,8 @@ impl An1FrontBrakepressure {
     ///
     /// The rate of change of the line pressure, kPa/s
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Kilopascal/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -7922,7 +7927,7 @@ impl An1FrontBrakepressure {
     /// Set value of pressure_delta
     #[inline(always)]
     pub fn set_pressure_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrontBrakepressure::MESSAGE_ID,
             });
@@ -8085,8 +8090,8 @@ impl An1RearBrakepressure {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x385)
     });
-    pub const PRESSURE_DELTA_MIN: f32 = 0_f32;
-    pub const PRESSURE_DELTA_MAX: f32 = 65535_f32;
+    pub const PRESSURE_DELTA_MIN: f32 = -3276.8_f32;
+    pub const PRESSURE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const PRESSURE_K_PA_MIN: u16 = 0_u16;
     pub const PRESSURE_K_PA_MAX: u16 = 65535_u16;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
@@ -8111,8 +8116,8 @@ impl An1RearBrakepressure {
     ///
     /// The rate of change of the line pressure, kPa/s
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Kilopascal/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -8137,7 +8142,7 @@ impl An1RearBrakepressure {
     /// Set value of pressure_delta
     #[inline(always)]
     pub fn set_pressure_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RearBrakepressure::MESSAGE_ID,
             });
@@ -8300,10 +8305,10 @@ impl An1FlShockpot {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x386)
     });
-    pub const LENGTH_DELTA_MIN: f32 = 0_f32;
-    pub const LENGTH_DELTA_MAX: f32 = 65535_f32;
+    pub const LENGTH_DELTA_MIN: f32 = -3276.8_f32;
+    pub const LENGTH_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const LENGTH_MM_MIN: f32 = 0_f32;
-    pub const LENGTH_MM_MAX: f32 = 65535_f32;
+    pub const LENGTH_MM_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
     /// Construct new an1_fl_shockpot from values
@@ -8326,8 +8331,8 @@ impl An1FlShockpot {
     ///
     /// The rate of change of the length, mm/s
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Milimeter/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -8352,7 +8357,7 @@ impl An1FlShockpot {
     /// Set value of length_delta
     #[inline(always)]
     pub fn set_length_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlShockpot::MESSAGE_ID,
             });
@@ -8369,7 +8374,7 @@ impl An1FlShockpot {
     /// Length of the shockpot in mm
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 6553.5
     /// - Unit: "Milimeter"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -8394,7 +8399,7 @@ impl An1FlShockpot {
     /// Set value of length_mm
     #[inline(always)]
     pub fn set_length_mm(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 6553.5_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlShockpot::MESSAGE_ID,
             });
@@ -8512,10 +8517,10 @@ impl An1FrShockpot {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x387)
     });
-    pub const LENGTH_DELTA_MIN: f32 = 0_f32;
-    pub const LENGTH_DELTA_MAX: f32 = 65535_f32;
+    pub const LENGTH_DELTA_MIN: f32 = -3276.8_f32;
+    pub const LENGTH_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const LENGTH_MM_MIN: f32 = 0_f32;
-    pub const LENGTH_MM_MAX: f32 = 65535_f32;
+    pub const LENGTH_MM_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
     /// Construct new an1_fr_shockpot from values
@@ -8538,8 +8543,8 @@ impl An1FrShockpot {
     ///
     /// The rate of change of the length, mm/s
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Milimeter/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -8564,7 +8569,7 @@ impl An1FrShockpot {
     /// Set value of length_delta
     #[inline(always)]
     pub fn set_length_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrShockpot::MESSAGE_ID,
             });
@@ -8581,7 +8586,7 @@ impl An1FrShockpot {
     /// Length of the shockpot in mm
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 6553.5
     /// - Unit: "Milimeter"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -8606,7 +8611,7 @@ impl An1FrShockpot {
     /// Set value of length_mm
     #[inline(always)]
     pub fn set_length_mm(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 6553.5_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrShockpot::MESSAGE_ID,
             });
@@ -8724,10 +8729,10 @@ impl An1RlShockpot {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x388)
     });
-    pub const LENGTH_DELTA_MIN: f32 = 0_f32;
-    pub const LENGTH_DELTA_MAX: f32 = 65535_f32;
+    pub const LENGTH_DELTA_MIN: f32 = -3276.8_f32;
+    pub const LENGTH_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const LENGTH_MM_MIN: f32 = 0_f32;
-    pub const LENGTH_MM_MAX: f32 = 65535_f32;
+    pub const LENGTH_MM_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
     /// Construct new an1_rl_shockpot from values
@@ -8750,8 +8755,8 @@ impl An1RlShockpot {
     ///
     /// The rate of change of the length, mm/s
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Milimeter/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -8776,7 +8781,7 @@ impl An1RlShockpot {
     /// Set value of length_delta
     #[inline(always)]
     pub fn set_length_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlShockpot::MESSAGE_ID,
             });
@@ -8793,7 +8798,7 @@ impl An1RlShockpot {
     /// Length of the shockpot in mm
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 6553.5
     /// - Unit: "Milimeter"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -8818,7 +8823,7 @@ impl An1RlShockpot {
     /// Set value of length_mm
     #[inline(always)]
     pub fn set_length_mm(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 6553.5_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlShockpot::MESSAGE_ID,
             });
@@ -8936,10 +8941,10 @@ impl An1RrShockpot {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x389)
     });
-    pub const LENGTH_DELTA_MIN: f32 = 0_f32;
-    pub const LENGTH_DELTA_MAX: f32 = 65535_f32;
+    pub const LENGTH_DELTA_MIN: f32 = -3276.8_f32;
+    pub const LENGTH_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const LENGTH_MM_MIN: f32 = 0_f32;
-    pub const LENGTH_MM_MAX: f32 = 65535_f32;
+    pub const LENGTH_MM_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
     /// Construct new an1_rr_shockpot from values
@@ -8962,8 +8967,8 @@ impl An1RrShockpot {
     ///
     /// The rate of change of the length, mm/s
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Milimeter/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -8988,7 +8993,7 @@ impl An1RrShockpot {
     /// Set value of length_delta
     #[inline(always)]
     pub fn set_length_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrShockpot::MESSAGE_ID,
             });
@@ -9005,7 +9010,7 @@ impl An1RrShockpot {
     /// Length of the shockpot in mm
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 6553.5
     /// - Unit: "Milimeter"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -9030,7 +9035,7 @@ impl An1RrShockpot {
     /// Set value of length_mm
     #[inline(always)]
     pub fn set_length_mm(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 6553.5_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrShockpot::MESSAGE_ID,
             });
@@ -9148,10 +9153,10 @@ impl An1FlLoadcell {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38a)
     });
-    pub const FORCE_DELTA_MIN: f32 = 0_f32;
-    pub const FORCE_DELTA_MAX: f32 = 65535_f32;
+    pub const FORCE_DELTA_MIN: f32 = -3276.8_f32;
+    pub const FORCE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const FORCE_N_MIN: f32 = 0_f32;
-    pub const FORCE_N_MAX: f32 = 65535_f32;
+    pub const FORCE_N_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
     /// Construct new an1_fl_loadcell from values
@@ -9174,8 +9179,8 @@ impl An1FlLoadcell {
     ///
     /// The rate of change of the force, N/s
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Newtons/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -9200,7 +9205,7 @@ impl An1FlLoadcell {
     /// Set value of force_delta
     #[inline(always)]
     pub fn set_force_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlLoadcell::MESSAGE_ID,
             });
@@ -9217,7 +9222,7 @@ impl An1FlLoadcell {
     /// Force on the loadcell of the pushrod in Newtons
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 6553.5
     /// - Unit: "Newtons"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -9242,7 +9247,7 @@ impl An1FlLoadcell {
     /// Set value of force_N
     #[inline(always)]
     pub fn set_force_n(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 6553.5_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlLoadcell::MESSAGE_ID,
             });
@@ -9360,10 +9365,10 @@ impl An1FrLoadcell {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38b)
     });
-    pub const FORCE_DELTA_MIN: f32 = 0_f32;
-    pub const FORCE_DELTA_MAX: f32 = 65535_f32;
+    pub const FORCE_DELTA_MIN: f32 = -3276.8_f32;
+    pub const FORCE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const FORCE_N_MIN: f32 = 0_f32;
-    pub const FORCE_N_MAX: f32 = 65535_f32;
+    pub const FORCE_N_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
     /// Construct new an1_fr_loadcell from values
@@ -9386,8 +9391,8 @@ impl An1FrLoadcell {
     ///
     /// The rate of change of the force, N/s
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Newtons/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -9412,7 +9417,7 @@ impl An1FrLoadcell {
     /// Set value of force_delta
     #[inline(always)]
     pub fn set_force_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrLoadcell::MESSAGE_ID,
             });
@@ -9429,7 +9434,7 @@ impl An1FrLoadcell {
     /// Force on the loadcell of the pushrod in Newtons
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 6553.5
     /// - Unit: "Newtons"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -9454,7 +9459,7 @@ impl An1FrLoadcell {
     /// Set value of force_N
     #[inline(always)]
     pub fn set_force_n(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 6553.5_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrLoadcell::MESSAGE_ID,
             });
@@ -9572,10 +9577,10 @@ impl An1RlLoadcell {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38c)
     });
-    pub const FORCE_DELTA_MIN: f32 = 0_f32;
-    pub const FORCE_DELTA_MAX: f32 = 65535_f32;
+    pub const FORCE_DELTA_MIN: f32 = -3276.8_f32;
+    pub const FORCE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const FORCE_N_MIN: f32 = 0_f32;
-    pub const FORCE_N_MAX: f32 = 65535_f32;
+    pub const FORCE_N_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
     /// Construct new an1_rl_loadcell from values
@@ -9598,8 +9603,8 @@ impl An1RlLoadcell {
     ///
     /// The rate of change of the force, N/s
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Newtons/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -9624,7 +9629,7 @@ impl An1RlLoadcell {
     /// Set value of force_delta
     #[inline(always)]
     pub fn set_force_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlLoadcell::MESSAGE_ID,
             });
@@ -9641,7 +9646,7 @@ impl An1RlLoadcell {
     /// Force on the loadcell of the pushrod in Newtons
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 6553.5
     /// - Unit: "Newtons"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -9666,7 +9671,7 @@ impl An1RlLoadcell {
     /// Set value of force_N
     #[inline(always)]
     pub fn set_force_n(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 6553.5_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlLoadcell::MESSAGE_ID,
             });
@@ -9784,10 +9789,10 @@ impl An1RrLoadcell {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38d)
     });
-    pub const FORCE_DELTA_MIN: f32 = 0_f32;
-    pub const FORCE_DELTA_MAX: f32 = 65535_f32;
+    pub const FORCE_DELTA_MIN: f32 = -3276.8_f32;
+    pub const FORCE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const FORCE_N_MIN: f32 = 0_f32;
-    pub const FORCE_N_MAX: f32 = 65535_f32;
+    pub const FORCE_N_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
     /// Construct new an1_rr_loadcell from values
@@ -9810,8 +9815,8 @@ impl An1RrLoadcell {
     ///
     /// The rate of change of the force, N/s
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Newtons/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -9836,7 +9841,7 @@ impl An1RrLoadcell {
     /// Set value of force_delta
     #[inline(always)]
     pub fn set_force_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrLoadcell::MESSAGE_ID,
             });
@@ -9853,7 +9858,7 @@ impl An1RrLoadcell {
     /// Force on the loadcell of the pushrod in Newtons
     ///
     /// - Min: 0
-    /// - Max: 65535
+    /// - Max: 6553.5
     /// - Unit: "Newtons"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -9878,7 +9883,7 @@ impl An1RrLoadcell {
     /// Set value of force_N
     #[inline(always)]
     pub fn set_force_n(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < 0_f32 || 6553.5_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrLoadcell::MESSAGE_ID,
             });
@@ -9996,10 +10001,10 @@ impl An1FlWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38e)
     });
-    pub const RPM_DELTA_MIN: f32 = 0_f32;
-    pub const RPM_DELTA_MAX: f32 = 65535_f32;
-    pub const RPM_MIN: i16 = 0_i16;
-    pub const RPM_MAX: i16 = 65535_i16;
+    pub const RPM_DELTA_MIN: f32 = -3276.8_f32;
+    pub const RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
+    pub const RPM_MIN: i16 = -32768_i16;
+    pub const RPM_MAX: i16 = 32767_i16;
     /// Construct new an1_fl_wheelspeed from values
     pub fn new(rpm_delta: f32, rpm: i16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 4] };
@@ -10015,8 +10020,8 @@ impl An1FlWheelspeed {
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "rpm/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10041,7 +10046,7 @@ impl An1FlWheelspeed {
     /// Set value of rpm_delta
     #[inline(always)]
     pub fn set_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlWheelspeed::MESSAGE_ID,
             });
@@ -10057,8 +10062,8 @@ impl An1FlWheelspeed {
     ///
     /// Number of revolutions in a minute
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -32768
+    /// - Max: 32767
     /// - Unit: "rpm"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10083,7 +10088,7 @@ impl An1FlWheelspeed {
     /// Set value of rpm
     #[inline(always)]
     pub fn set_rpm(&mut self, value: i16) -> Result<(), CanError> {
-        if value < 0_i16 || 65535_i16 < value {
+        if value < -32768_i16 || 32767_i16 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlWheelspeed::MESSAGE_ID,
             });
@@ -10162,10 +10167,10 @@ impl An1FrWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38f)
     });
-    pub const RPM_DELTA_MIN: f32 = 0_f32;
-    pub const RPM_DELTA_MAX: f32 = 65535_f32;
-    pub const RPM_MIN: i16 = 0_i16;
-    pub const RPM_MAX: i16 = 65535_i16;
+    pub const RPM_DELTA_MIN: f32 = -3276.8_f32;
+    pub const RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
+    pub const RPM_MIN: i16 = -32768_i16;
+    pub const RPM_MAX: i16 = 32767_i16;
     /// Construct new an1_fr_wheelspeed from values
     pub fn new(rpm_delta: f32, rpm: i16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 4] };
@@ -10181,8 +10186,8 @@ impl An1FrWheelspeed {
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "rpm/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10207,7 +10212,7 @@ impl An1FrWheelspeed {
     /// Set value of rpm_delta
     #[inline(always)]
     pub fn set_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrWheelspeed::MESSAGE_ID,
             });
@@ -10223,8 +10228,8 @@ impl An1FrWheelspeed {
     ///
     /// Number of revolutions in a minute
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -32768
+    /// - Max: 32767
     /// - Unit: "rpm"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10249,7 +10254,7 @@ impl An1FrWheelspeed {
     /// Set value of rpm
     #[inline(always)]
     pub fn set_rpm(&mut self, value: i16) -> Result<(), CanError> {
-        if value < 0_i16 || 65535_i16 < value {
+        if value < -32768_i16 || 32767_i16 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrWheelspeed::MESSAGE_ID,
             });
@@ -10328,10 +10333,10 @@ impl An1RlWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x390)
     });
-    pub const RPM_DELTA_MIN: f32 = 0_f32;
-    pub const RPM_DELTA_MAX: f32 = 65535_f32;
-    pub const RPM_MIN: i16 = 0_i16;
-    pub const RPM_MAX: i16 = 65535_i16;
+    pub const RPM_DELTA_MIN: f32 = -3276.8_f32;
+    pub const RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
+    pub const RPM_MIN: i16 = -32768_i16;
+    pub const RPM_MAX: i16 = 32767_i16;
     /// Construct new an1_rl_wheelspeed from values
     pub fn new(rpm_delta: f32, rpm: i16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 4] };
@@ -10347,8 +10352,8 @@ impl An1RlWheelspeed {
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "rpm/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10373,7 +10378,7 @@ impl An1RlWheelspeed {
     /// Set value of rpm_delta
     #[inline(always)]
     pub fn set_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlWheelspeed::MESSAGE_ID,
             });
@@ -10389,8 +10394,8 @@ impl An1RlWheelspeed {
     ///
     /// Number of revolutions in a minute
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -32768
+    /// - Max: 32767
     /// - Unit: "rpm"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10415,7 +10420,7 @@ impl An1RlWheelspeed {
     /// Set value of rpm
     #[inline(always)]
     pub fn set_rpm(&mut self, value: i16) -> Result<(), CanError> {
-        if value < 0_i16 || 65535_i16 < value {
+        if value < -32768_i16 || 32767_i16 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlWheelspeed::MESSAGE_ID,
             });
@@ -10494,10 +10499,10 @@ impl An1RrWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x391)
     });
-    pub const RPM_DELTA_MIN: f32 = 0_f32;
-    pub const RPM_DELTA_MAX: f32 = 65535_f32;
-    pub const RPM_MIN: i16 = 0_i16;
-    pub const RPM_MAX: i16 = 65535_i16;
+    pub const RPM_DELTA_MIN: f32 = -3276.8_f32;
+    pub const RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
+    pub const RPM_MIN: i16 = -32768_i16;
+    pub const RPM_MAX: i16 = 32767_i16;
     /// Construct new an1_rr_wheelspeed from values
     pub fn new(rpm_delta: f32, rpm: i16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 4] };
@@ -10513,8 +10518,8 @@ impl An1RrWheelspeed {
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "rpm/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10539,7 +10544,7 @@ impl An1RrWheelspeed {
     /// Set value of rpm_delta
     #[inline(always)]
     pub fn set_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrWheelspeed::MESSAGE_ID,
             });
@@ -10555,8 +10560,8 @@ impl An1RrWheelspeed {
     ///
     /// Number of revolutions in a minute
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -32768
+    /// - Max: 32767
     /// - Unit: "rpm"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10581,7 +10586,7 @@ impl An1RrWheelspeed {
     /// Set value of rpm
     #[inline(always)]
     pub fn set_rpm(&mut self, value: i16) -> Result<(), CanError> {
-        if value < 0_i16 || 65535_i16 < value {
+        if value < -32768_i16 || 32767_i16 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrWheelspeed::MESSAGE_ID,
             });
@@ -10660,14 +10665,14 @@ impl An1FlTiretemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x392)
     });
-    pub const AVERAGE_C_MIN: f32 = 0_f32;
-    pub const AVERAGE_C_MAX: f32 = 65535_f32;
-    pub const OUTER_C_MIN: f32 = 0_f32;
-    pub const OUTER_C_MAX: f32 = 65535_f32;
-    pub const MIDDLE_C_MIN: f32 = 0_f32;
-    pub const MIDDLE_C_MAX: f32 = 65535_f32;
-    pub const INNER_C_MIN: f32 = 0_f32;
-    pub const INNER_C_MAX: f32 = 65535_f32;
+    pub const AVERAGE_C_MIN: f32 = -3276.8_f32;
+    pub const AVERAGE_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const OUTER_C_MIN: f32 = -3276.8_f32;
+    pub const OUTER_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const MIDDLE_C_MIN: f32 = -3276.8_f32;
+    pub const MIDDLE_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const INNER_C_MIN: f32 = -3276.8_f32;
+    pub const INNER_C_MAX: f32 = 3276.7000000000003_f32;
     /// Construct new an1_fl_tiretemp from values
     pub fn new(
         average_c: f32,
@@ -10690,8 +10695,8 @@ impl An1FlTiretemp {
     ///
     /// Average tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10716,7 +10721,7 @@ impl An1FlTiretemp {
     /// Set value of average_C
     #[inline(always)]
     pub fn set_average_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlTiretemp::MESSAGE_ID,
             });
@@ -10732,8 +10737,8 @@ impl An1FlTiretemp {
     ///
     /// Outer tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10758,7 +10763,7 @@ impl An1FlTiretemp {
     /// Set value of outer_C
     #[inline(always)]
     pub fn set_outer_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlTiretemp::MESSAGE_ID,
             });
@@ -10774,8 +10779,8 @@ impl An1FlTiretemp {
     ///
     /// Middle tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10800,7 +10805,7 @@ impl An1FlTiretemp {
     /// Set value of middle_C
     #[inline(always)]
     pub fn set_middle_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlTiretemp::MESSAGE_ID,
             });
@@ -10816,8 +10821,8 @@ impl An1FlTiretemp {
     ///
     /// Inner tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10842,7 +10847,7 @@ impl An1FlTiretemp {
     /// Set value of inner_C
     #[inline(always)]
     pub fn set_inner_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlTiretemp::MESSAGE_ID,
             });
@@ -10917,14 +10922,14 @@ impl An1FrTiretemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x393)
     });
-    pub const AVERAGE_C_MIN: f32 = 0_f32;
-    pub const AVERAGE_C_MAX: f32 = 65535_f32;
-    pub const OUTER_C_MIN: f32 = 0_f32;
-    pub const OUTER_C_MAX: f32 = 65535_f32;
-    pub const MIDDLE_C_MIN: f32 = 0_f32;
-    pub const MIDDLE_C_MAX: f32 = 65535_f32;
-    pub const INNER_C_MIN: f32 = 0_f32;
-    pub const INNER_C_MAX: f32 = 65535_f32;
+    pub const AVERAGE_C_MIN: f32 = -3276.8_f32;
+    pub const AVERAGE_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const OUTER_C_MIN: f32 = -3276.8_f32;
+    pub const OUTER_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const MIDDLE_C_MIN: f32 = -3276.8_f32;
+    pub const MIDDLE_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const INNER_C_MIN: f32 = -3276.8_f32;
+    pub const INNER_C_MAX: f32 = 3276.7000000000003_f32;
     /// Construct new an1_fr_tiretemp from values
     pub fn new(
         average_c: f32,
@@ -10947,8 +10952,8 @@ impl An1FrTiretemp {
     ///
     /// Average tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -10973,7 +10978,7 @@ impl An1FrTiretemp {
     /// Set value of average_C
     #[inline(always)]
     pub fn set_average_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrTiretemp::MESSAGE_ID,
             });
@@ -10989,8 +10994,8 @@ impl An1FrTiretemp {
     ///
     /// Outer tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11015,7 +11020,7 @@ impl An1FrTiretemp {
     /// Set value of outer_C
     #[inline(always)]
     pub fn set_outer_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrTiretemp::MESSAGE_ID,
             });
@@ -11031,8 +11036,8 @@ impl An1FrTiretemp {
     ///
     /// Middle tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11057,7 +11062,7 @@ impl An1FrTiretemp {
     /// Set value of middle_C
     #[inline(always)]
     pub fn set_middle_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrTiretemp::MESSAGE_ID,
             });
@@ -11073,8 +11078,8 @@ impl An1FrTiretemp {
     ///
     /// Inner tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11099,7 +11104,7 @@ impl An1FrTiretemp {
     /// Set value of inner_C
     #[inline(always)]
     pub fn set_inner_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrTiretemp::MESSAGE_ID,
             });
@@ -11174,14 +11179,14 @@ impl An1RlTiretemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x394)
     });
-    pub const AVERAGE_C_MIN: f32 = 0_f32;
-    pub const AVERAGE_C_MAX: f32 = 65535_f32;
-    pub const OUTER_C_MIN: f32 = 0_f32;
-    pub const OUTER_C_MAX: f32 = 65535_f32;
-    pub const MIDDLE_C_MIN: f32 = 0_f32;
-    pub const MIDDLE_C_MAX: f32 = 65535_f32;
-    pub const INNER_C_MIN: f32 = 0_f32;
-    pub const INNER_C_MAX: f32 = 65535_f32;
+    pub const AVERAGE_C_MIN: f32 = -3276.8_f32;
+    pub const AVERAGE_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const OUTER_C_MIN: f32 = -3276.8_f32;
+    pub const OUTER_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const MIDDLE_C_MIN: f32 = -3276.8_f32;
+    pub const MIDDLE_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const INNER_C_MIN: f32 = -3276.8_f32;
+    pub const INNER_C_MAX: f32 = 3276.7000000000003_f32;
     /// Construct new an1_rl_tiretemp from values
     pub fn new(
         average_c: f32,
@@ -11204,8 +11209,8 @@ impl An1RlTiretemp {
     ///
     /// Average tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11230,7 +11235,7 @@ impl An1RlTiretemp {
     /// Set value of average_C
     #[inline(always)]
     pub fn set_average_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlTiretemp::MESSAGE_ID,
             });
@@ -11246,8 +11251,8 @@ impl An1RlTiretemp {
     ///
     /// Outer tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11272,7 +11277,7 @@ impl An1RlTiretemp {
     /// Set value of outer_C
     #[inline(always)]
     pub fn set_outer_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlTiretemp::MESSAGE_ID,
             });
@@ -11288,8 +11293,8 @@ impl An1RlTiretemp {
     ///
     /// Middle tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11314,7 +11319,7 @@ impl An1RlTiretemp {
     /// Set value of middle_C
     #[inline(always)]
     pub fn set_middle_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlTiretemp::MESSAGE_ID,
             });
@@ -11330,8 +11335,8 @@ impl An1RlTiretemp {
     ///
     /// Inner tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11356,7 +11361,7 @@ impl An1RlTiretemp {
     /// Set value of inner_C
     #[inline(always)]
     pub fn set_inner_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlTiretemp::MESSAGE_ID,
             });
@@ -11431,14 +11436,14 @@ impl An1RrTiretemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x395)
     });
-    pub const AVERAGE_C_MIN: f32 = 0_f32;
-    pub const AVERAGE_C_MAX: f32 = 65535_f32;
-    pub const OUTER_C_MIN: f32 = 0_f32;
-    pub const OUTER_C_MAX: f32 = 65535_f32;
-    pub const MIDDLE_C_MIN: f32 = 0_f32;
-    pub const MIDDLE_C_MAX: f32 = 65535_f32;
-    pub const INNER_C_MIN: f32 = 0_f32;
-    pub const INNER_C_MAX: f32 = 65535_f32;
+    pub const AVERAGE_C_MIN: f32 = -3276.8_f32;
+    pub const AVERAGE_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const OUTER_C_MIN: f32 = -3276.8_f32;
+    pub const OUTER_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const MIDDLE_C_MIN: f32 = -3276.8_f32;
+    pub const MIDDLE_C_MAX: f32 = 3276.7000000000003_f32;
+    pub const INNER_C_MIN: f32 = -3276.8_f32;
+    pub const INNER_C_MAX: f32 = 3276.7000000000003_f32;
     /// Construct new an1_rr_tiretemp from values
     pub fn new(
         average_c: f32,
@@ -11461,8 +11466,8 @@ impl An1RrTiretemp {
     ///
     /// Average tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11487,7 +11492,7 @@ impl An1RrTiretemp {
     /// Set value of average_C
     #[inline(always)]
     pub fn set_average_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrTiretemp::MESSAGE_ID,
             });
@@ -11503,8 +11508,8 @@ impl An1RrTiretemp {
     ///
     /// Outer tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11529,7 +11534,7 @@ impl An1RrTiretemp {
     /// Set value of outer_C
     #[inline(always)]
     pub fn set_outer_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrTiretemp::MESSAGE_ID,
             });
@@ -11545,8 +11550,8 @@ impl An1RrTiretemp {
     ///
     /// Middle tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11571,7 +11576,7 @@ impl An1RrTiretemp {
     /// Set value of middle_C
     #[inline(always)]
     pub fn set_middle_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrTiretemp::MESSAGE_ID,
             });
@@ -11587,8 +11592,8 @@ impl An1RrTiretemp {
     ///
     /// Inner tire temperature in celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11613,7 +11618,7 @@ impl An1RrTiretemp {
     /// Set value of inner_C
     #[inline(always)]
     pub fn set_inner_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrTiretemp::MESSAGE_ID,
             });
@@ -11688,8 +11693,8 @@ impl An1MotorTemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x396)
     });
-    pub const TEMPERATURE_C_MIN: f32 = 0_f32;
-    pub const TEMPERATURE_C_MAX: f32 = 65535_f32;
+    pub const TEMPERATURE_C_MIN: f32 = -3276.8_f32;
+    pub const TEMPERATURE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
     /// Construct new an1_motor_temp from values
@@ -11707,8 +11712,8 @@ impl An1MotorTemp {
     ///
     /// Temperature in degrees celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11733,7 +11738,7 @@ impl An1MotorTemp {
     /// Set value of temperature_C
     #[inline(always)]
     pub fn set_temperature_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1MotorTemp::MESSAGE_ID,
             });
@@ -11852,8 +11857,8 @@ impl An1CoolantTemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x397)
     });
-    pub const TEMPERATURE_C_MIN: f32 = 0_f32;
-    pub const TEMPERATURE_C_MAX: f32 = 65535_f32;
+    pub const TEMPERATURE_C_MIN: f32 = -3276.8_f32;
+    pub const TEMPERATURE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
     /// Construct new an1_coolant_temp from values
@@ -11871,8 +11876,8 @@ impl An1CoolantTemp {
     ///
     /// Temperature in degrees celcius
     ///
-    /// - Min: 0
-    /// - Max: 65535
+    /// - Min: -3276.8
+    /// - Max: 3276.7000000000003
     /// - Unit: "Celcius"
     /// - Receivers: Vector__XXX
     #[inline(always)]
@@ -11897,7 +11902,7 @@ impl An1CoolantTemp {
     /// Set value of temperature_C
     #[inline(always)]
     pub fn set_temperature_c(&mut self, value: f32) -> Result<(), CanError> {
-        if value < 0_f32 || 65535_f32 < value {
+        if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1CoolantTemp::MESSAGE_ID,
             });
