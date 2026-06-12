@@ -2735,7 +2735,7 @@ impl embedded_can::Frame for PrechargeStatus {
 }
 /// acu_shutdown_status
 ///
-/// - Standard ID: 160 (0xa0)
+/// - Standard ID: 106 (0x6a)
 /// - Size: 6 bytes
 /// - Transmitter: acu
 ///
@@ -2755,7 +2755,7 @@ pub struct AcuShutdownStatus {
 )]
 impl AcuShutdownStatus {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
-        StandardId::new_unchecked(0xa0)
+        StandardId::new_unchecked(0x6a)
     });
     pub const ACU_IMD_PWM_DUTY_MIN: u8 = 0_u8;
     pub const ACU_IMD_PWM_DUTY_MAX: u8 = 255_u8;
@@ -3040,7 +3040,7 @@ impl embedded_can::Frame for AcuShutdownStatus {
 }
 /// acu_board_voltage_readings
 ///
-/// - Standard ID: 161 (0xa1)
+/// - Standard ID: 107 (0x6b)
 /// - Size: 6 bytes
 /// - Transmitter: acu
 ///
@@ -3060,7 +3060,7 @@ pub struct AcuBoardVoltageReadings {
 )]
 impl AcuBoardVoltageReadings {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
-        StandardId::new_unchecked(0xa1)
+        StandardId::new_unchecked(0x6b)
     });
     pub const ACU_3V_VOLTAGE_MIN: f32 = 0_f32;
     pub const ACU_3V_VOLTAGE_MAX: f32 = 3.2997_f32;
@@ -21026,8 +21026,6 @@ impl embedded_can::Frame for M162TemperatureSet3 {
 /// - Standard ID: 161 (0xa1)
 /// - Size: 8 bytes
 /// - Transmitter: INV
-///
-/// ACU voltage and current measurements
 #[derive(Clone, Copy)]
 pub struct M161TemperatureSet2 {
     raw: [u8; 8],
@@ -21286,8 +21284,6 @@ impl embedded_can::Frame for M161TemperatureSet2 {
 /// - Standard ID: 160 (0xa0)
 /// - Size: 8 bytes
 /// - Transmitter: INV
-///
-/// Information on IMD and BMS shutdown circuit relays, as well as IMD diagnostic info
 #[derive(Clone, Copy)]
 pub struct M160TemperatureSet1 {
     raw: [u8; 8],
