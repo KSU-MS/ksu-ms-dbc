@@ -580,8 +580,8 @@
             "id": 910,
             "length": 4,
             "signals": [
-                "rpm",
-                "rpm_delta"
+                "wheel_rpm",
+                "wheel_rpm_delta"
             ],
             "comment": "Front left wheelspeed data",
             "bus_name": "daq",
@@ -593,8 +593,8 @@
             "id": 911,
             "length": 4,
             "signals": [
-                "rpm",
-                "rpm_delta"
+                "wheel_rpm",
+                "wheel_rpm_delta"
             ],
             "comment": "Front right wheelspeed data",
             "bus_name": "daq",
@@ -606,8 +606,8 @@
             "id": 912,
             "length": 4,
             "signals": [
-                "rpm",
-                "rpm_delta"
+                "wheel_rpm",
+                "wheel_rpm_delta"
             ],
             "comment": "Rear left wheelspeed data",
             "bus_name": "daq",
@@ -619,8 +619,8 @@
             "id": 913,
             "length": 4,
             "signals": [
-                "rpm",
-                "rpm_delta"
+                "wheel_rpm",
+                "wheel_rpm_delta"
             ],
             "comment": "Rear right wheelspeed data",
             "bus_name": "daq",
@@ -1922,15 +1922,14 @@
         },
 
         {
-            "name": "rpm",
+            "name": "wheel_rpm",
             "start": 0,
             "length": 16,
-            "is_signed": true,
-            "comment": "Number of revolutions in a minute",
+            "comment": "Number of revolutions in a minute at the wheel",
             "units": "rpm"
         },
         {
-            "name": "rpm_delta",
+            "name": "wheel_rpm_delta",
             "start": 16,
             "length": 16,
             "is_signed": true,
