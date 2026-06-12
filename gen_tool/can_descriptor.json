@@ -103,7 +103,7 @@
 
 
         "acu_shutdown_status": {
-            "id": 160,
+            "id": 106,
             "length": 6,
             "signals": [
                 "acu_imd_relay_state",
@@ -119,7 +119,7 @@
         },
 
         "acu_board_voltage_readings": {
-            "id": 161,
+            "id": 107,
             "length": 6,
             "signals": [
                 "acu_sdc_voltage",
