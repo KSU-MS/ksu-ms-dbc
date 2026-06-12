@@ -10001,22 +10001,22 @@ impl An1FlWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38e)
     });
-    pub const RPM_DELTA_MIN: f32 = -3276.8_f32;
-    pub const RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
-    pub const RPM_MIN: i16 = -32768_i16;
-    pub const RPM_MAX: i16 = 32767_i16;
+    pub const WHEEL_RPM_DELTA_MIN: f32 = -3276.8_f32;
+    pub const WHEEL_RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
+    pub const WHEEL_RPM_MIN: u16 = 0_u16;
+    pub const WHEEL_RPM_MAX: u16 = 65535_u16;
     /// Construct new an1_fl_wheelspeed from values
-    pub fn new(rpm_delta: f32, rpm: i16) -> Result<Self, CanError> {
+    pub fn new(wheel_rpm_delta: f32, wheel_rpm: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 4] };
-        res.set_rpm_delta(rpm_delta)?;
-        res.set_rpm(rpm)?;
+        res.set_wheel_rpm_delta(wheel_rpm_delta)?;
+        res.set_wheel_rpm(wheel_rpm)?;
         Ok(res)
     }
     /// Access message payload raw value
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// rpm_delta
+    /// wheel_rpm_delta
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
@@ -10025,10 +10025,10 @@ impl An1FlWheelspeed {
     /// - Unit: "rpm/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn rpm_delta(&self) -> f32 {
-        self.rpm_delta_raw()
+    pub fn wheel_rpm_delta(&self) -> f32 {
+        self.wheel_rpm_delta_raw()
     }
-    /// Get raw value of rpm_delta
+    /// Get raw value of wheel_rpm_delta
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -10037,15 +10037,15 @@ impl An1FlWheelspeed {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rpm_delta_raw(&self) -> f32 {
+    pub fn wheel_rpm_delta_raw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of rpm_delta
+    /// Set value of wheel_rpm_delta
     #[inline(always)]
-    pub fn set_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
+    pub fn set_wheel_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlWheelspeed::MESSAGE_ID,
@@ -10058,37 +10058,36 @@ impl An1FlWheelspeed {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// rpm
+    /// wheel_rpm
     ///
-    /// Number of revolutions in a minute
+    /// Number of revolutions in a minute at the wheel
     ///
-    /// - Min: -32768
-    /// - Max: 32767
+    /// - Min: 0
+    /// - Max: 65535
     /// - Unit: "rpm"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn rpm(&self) -> i16 {
-        self.rpm_raw()
+    pub fn wheel_rpm(&self) -> u16 {
+        self.wheel_rpm_raw()
     }
-    /// Get raw value of rpm
+    /// Get raw value of wheel_rpm
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
-    /// - Value type: Signed
+    /// - Value type: Unsigned
     #[inline(always)]
-    pub fn rpm_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
+    pub fn wheel_rpm_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of rpm
+    /// Set value of wheel_rpm
     #[inline(always)]
-    pub fn set_rpm(&mut self, value: i16) -> Result<(), CanError> {
-        if value < -32768_i16 || 32767_i16 < value {
+    pub fn set_wheel_rpm(&mut self, value: u16) -> Result<(), CanError> {
+        if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FlWheelspeed::MESSAGE_ID,
             });
@@ -10099,8 +10098,7 @@ impl An1FlWheelspeed {
             .ok_or(CanError::ParameterOutOfRange {
                 message_id: An1FlWheelspeed::MESSAGE_ID,
             })?;
-        let value = (value / factor) as i16;
-        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -10167,22 +10165,22 @@ impl An1FrWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38f)
     });
-    pub const RPM_DELTA_MIN: f32 = -3276.8_f32;
-    pub const RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
-    pub const RPM_MIN: i16 = -32768_i16;
-    pub const RPM_MAX: i16 = 32767_i16;
+    pub const WHEEL_RPM_DELTA_MIN: f32 = -3276.8_f32;
+    pub const WHEEL_RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
+    pub const WHEEL_RPM_MIN: u16 = 0_u16;
+    pub const WHEEL_RPM_MAX: u16 = 65535_u16;
     /// Construct new an1_fr_wheelspeed from values
-    pub fn new(rpm_delta: f32, rpm: i16) -> Result<Self, CanError> {
+    pub fn new(wheel_rpm_delta: f32, wheel_rpm: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 4] };
-        res.set_rpm_delta(rpm_delta)?;
-        res.set_rpm(rpm)?;
+        res.set_wheel_rpm_delta(wheel_rpm_delta)?;
+        res.set_wheel_rpm(wheel_rpm)?;
         Ok(res)
     }
     /// Access message payload raw value
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// rpm_delta
+    /// wheel_rpm_delta
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
@@ -10191,10 +10189,10 @@ impl An1FrWheelspeed {
     /// - Unit: "rpm/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn rpm_delta(&self) -> f32 {
-        self.rpm_delta_raw()
+    pub fn wheel_rpm_delta(&self) -> f32 {
+        self.wheel_rpm_delta_raw()
     }
-    /// Get raw value of rpm_delta
+    /// Get raw value of wheel_rpm_delta
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -10203,15 +10201,15 @@ impl An1FrWheelspeed {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rpm_delta_raw(&self) -> f32 {
+    pub fn wheel_rpm_delta_raw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of rpm_delta
+    /// Set value of wheel_rpm_delta
     #[inline(always)]
-    pub fn set_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
+    pub fn set_wheel_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrWheelspeed::MESSAGE_ID,
@@ -10224,37 +10222,36 @@ impl An1FrWheelspeed {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// rpm
+    /// wheel_rpm
     ///
-    /// Number of revolutions in a minute
+    /// Number of revolutions in a minute at the wheel
     ///
-    /// - Min: -32768
-    /// - Max: 32767
+    /// - Min: 0
+    /// - Max: 65535
     /// - Unit: "rpm"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn rpm(&self) -> i16 {
-        self.rpm_raw()
+    pub fn wheel_rpm(&self) -> u16 {
+        self.wheel_rpm_raw()
     }
-    /// Get raw value of rpm
+    /// Get raw value of wheel_rpm
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
-    /// - Value type: Signed
+    /// - Value type: Unsigned
     #[inline(always)]
-    pub fn rpm_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
+    pub fn wheel_rpm_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of rpm
+    /// Set value of wheel_rpm
     #[inline(always)]
-    pub fn set_rpm(&mut self, value: i16) -> Result<(), CanError> {
-        if value < -32768_i16 || 32767_i16 < value {
+    pub fn set_wheel_rpm(&mut self, value: u16) -> Result<(), CanError> {
+        if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1FrWheelspeed::MESSAGE_ID,
             });
@@ -10265,8 +10262,7 @@ impl An1FrWheelspeed {
             .ok_or(CanError::ParameterOutOfRange {
                 message_id: An1FrWheelspeed::MESSAGE_ID,
             })?;
-        let value = (value / factor) as i16;
-        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -10333,22 +10329,22 @@ impl An1RlWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x390)
     });
-    pub const RPM_DELTA_MIN: f32 = -3276.8_f32;
-    pub const RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
-    pub const RPM_MIN: i16 = -32768_i16;
-    pub const RPM_MAX: i16 = 32767_i16;
+    pub const WHEEL_RPM_DELTA_MIN: f32 = -3276.8_f32;
+    pub const WHEEL_RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
+    pub const WHEEL_RPM_MIN: u16 = 0_u16;
+    pub const WHEEL_RPM_MAX: u16 = 65535_u16;
     /// Construct new an1_rl_wheelspeed from values
-    pub fn new(rpm_delta: f32, rpm: i16) -> Result<Self, CanError> {
+    pub fn new(wheel_rpm_delta: f32, wheel_rpm: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 4] };
-        res.set_rpm_delta(rpm_delta)?;
-        res.set_rpm(rpm)?;
+        res.set_wheel_rpm_delta(wheel_rpm_delta)?;
+        res.set_wheel_rpm(wheel_rpm)?;
         Ok(res)
     }
     /// Access message payload raw value
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// rpm_delta
+    /// wheel_rpm_delta
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
@@ -10357,10 +10353,10 @@ impl An1RlWheelspeed {
     /// - Unit: "rpm/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn rpm_delta(&self) -> f32 {
-        self.rpm_delta_raw()
+    pub fn wheel_rpm_delta(&self) -> f32 {
+        self.wheel_rpm_delta_raw()
     }
-    /// Get raw value of rpm_delta
+    /// Get raw value of wheel_rpm_delta
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -10369,15 +10365,15 @@ impl An1RlWheelspeed {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rpm_delta_raw(&self) -> f32 {
+    pub fn wheel_rpm_delta_raw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of rpm_delta
+    /// Set value of wheel_rpm_delta
     #[inline(always)]
-    pub fn set_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
+    pub fn set_wheel_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlWheelspeed::MESSAGE_ID,
@@ -10390,37 +10386,36 @@ impl An1RlWheelspeed {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// rpm
+    /// wheel_rpm
     ///
-    /// Number of revolutions in a minute
+    /// Number of revolutions in a minute at the wheel
     ///
-    /// - Min: -32768
-    /// - Max: 32767
+    /// - Min: 0
+    /// - Max: 65535
     /// - Unit: "rpm"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn rpm(&self) -> i16 {
-        self.rpm_raw()
+    pub fn wheel_rpm(&self) -> u16 {
+        self.wheel_rpm_raw()
     }
-    /// Get raw value of rpm
+    /// Get raw value of wheel_rpm
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
-    /// - Value type: Signed
+    /// - Value type: Unsigned
     #[inline(always)]
-    pub fn rpm_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
+    pub fn wheel_rpm_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of rpm
+    /// Set value of wheel_rpm
     #[inline(always)]
-    pub fn set_rpm(&mut self, value: i16) -> Result<(), CanError> {
-        if value < -32768_i16 || 32767_i16 < value {
+    pub fn set_wheel_rpm(&mut self, value: u16) -> Result<(), CanError> {
+        if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RlWheelspeed::MESSAGE_ID,
             });
@@ -10431,8 +10426,7 @@ impl An1RlWheelspeed {
             .ok_or(CanError::ParameterOutOfRange {
                 message_id: An1RlWheelspeed::MESSAGE_ID,
             })?;
-        let value = (value / factor) as i16;
-        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
@@ -10499,22 +10493,22 @@ impl An1RrWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x391)
     });
-    pub const RPM_DELTA_MIN: f32 = -3276.8_f32;
-    pub const RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
-    pub const RPM_MIN: i16 = -32768_i16;
-    pub const RPM_MAX: i16 = 32767_i16;
+    pub const WHEEL_RPM_DELTA_MIN: f32 = -3276.8_f32;
+    pub const WHEEL_RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
+    pub const WHEEL_RPM_MIN: u16 = 0_u16;
+    pub const WHEEL_RPM_MAX: u16 = 65535_u16;
     /// Construct new an1_rr_wheelspeed from values
-    pub fn new(rpm_delta: f32, rpm: i16) -> Result<Self, CanError> {
+    pub fn new(wheel_rpm_delta: f32, wheel_rpm: u16) -> Result<Self, CanError> {
         let mut res = Self { raw: [0u8; 4] };
-        res.set_rpm_delta(rpm_delta)?;
-        res.set_rpm(rpm)?;
+        res.set_wheel_rpm_delta(wheel_rpm_delta)?;
+        res.set_wheel_rpm(wheel_rpm)?;
         Ok(res)
     }
     /// Access message payload raw value
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// rpm_delta
+    /// wheel_rpm_delta
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
@@ -10523,10 +10517,10 @@ impl An1RrWheelspeed {
     /// - Unit: "rpm/s"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn rpm_delta(&self) -> f32 {
-        self.rpm_delta_raw()
+    pub fn wheel_rpm_delta(&self) -> f32 {
+        self.wheel_rpm_delta_raw()
     }
-    /// Get raw value of rpm_delta
+    /// Get raw value of wheel_rpm_delta
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -10535,15 +10529,15 @@ impl An1RrWheelspeed {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn rpm_delta_raw(&self) -> f32 {
+    pub fn wheel_rpm_delta_raw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of rpm_delta
+    /// Set value of wheel_rpm_delta
     #[inline(always)]
-    pub fn set_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
+    pub fn set_wheel_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrWheelspeed::MESSAGE_ID,
@@ -10556,37 +10550,36 @@ impl An1RrWheelspeed {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// rpm
+    /// wheel_rpm
     ///
-    /// Number of revolutions in a minute
+    /// Number of revolutions in a minute at the wheel
     ///
-    /// - Min: -32768
-    /// - Max: 32767
+    /// - Min: 0
+    /// - Max: 65535
     /// - Unit: "rpm"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn rpm(&self) -> i16 {
-        self.rpm_raw()
+    pub fn wheel_rpm(&self) -> u16 {
+        self.wheel_rpm_raw()
     }
-    /// Get raw value of rpm
+    /// Get raw value of wheel_rpm
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
     /// - Factor: 1
     /// - Offset: 0
     /// - Byte order: LittleEndian
-    /// - Value type: Signed
+    /// - Value type: Unsigned
     #[inline(always)]
-    pub fn rpm_raw(&self) -> i16 {
-        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<i16>();
+    pub fn wheel_rpm_raw(&self) -> u16 {
+        let signal = self.raw.view_bits::<Lsb0>()[0..16].load_le::<u16>();
         let factor = 1;
-        let signal = signal as i16;
-        i16::from(signal).saturating_mul(factor).saturating_add(0)
+        u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of rpm
+    /// Set value of wheel_rpm
     #[inline(always)]
-    pub fn set_rpm(&mut self, value: i16) -> Result<(), CanError> {
-        if value < -32768_i16 || 32767_i16 < value {
+    pub fn set_wheel_rpm(&mut self, value: u16) -> Result<(), CanError> {
+        if value < 0_u16 || 65535_u16 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: An1RrWheelspeed::MESSAGE_ID,
             });
@@ -10597,8 +10590,7 @@ impl An1RrWheelspeed {
             .ok_or(CanError::ParameterOutOfRange {
                 message_id: An1RrWheelspeed::MESSAGE_ID,
             })?;
-        let value = (value / factor) as i16;
-        let value = u16::from_ne_bytes(value.to_ne_bytes());
+        let value = (value / factor) as u16;
         self.raw.view_bits_mut::<Lsb0>()[0..16].store_le(value);
         Ok(())
     }
