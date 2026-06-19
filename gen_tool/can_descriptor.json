@@ -309,6 +309,87 @@
 
 
 
+        "emeter_0x10d": {
+            "id": 269,
+            "length": 8,
+            "signals": [
+                "em_current",
+                "em_voltage"
+            ],
+            "comment": "Current and Voltage readings as seen by the FSAE emeter",
+            "bus_name": "accumulator",
+            "senders": [
+                "emeter"
+            ]
+        },
+
+        "emeter_0x40d": {
+            "id": 1037,
+            "length": 5,
+            "signals": [
+                "em_violation",
+                "em_logging",
+                "em_fault_active",
+                "em_fault_prev_active",
+                "em_energy_whr"
+            ],
+            "comment": "Some bit flags and energy readout from the FSAE emeter",
+            "bus_name": "accumulator",
+            "senders": [
+                "emeter"
+            ]
+        },
+
+        "emeter_0x60d": {
+            "id": 1549,
+            "length": 8,
+            "signals": [
+                "em_temp_multiplexer",
+                "em_temp_sensor_count",
+                "em_min_temp",
+                "em_max_temp",
+                "em_temp_0",
+                "em_temp_1",
+                "em_temp_2",
+                "em_temp_3",
+                "em_temp_4",
+                "em_temp_5",
+                "em_temp_6",
+                "em_temp_7",
+                "em_temp_8",
+                "em_temp_9",
+                "em_temp_10",
+                "em_temp_11",
+                "em_temp_12",
+                "em_temp_13",
+                "em_temp_14",
+                "em_temp_15",
+                "em_temp_16",
+                "em_temp_17",
+                "em_temp_18",
+                "em_temp_19",
+                "em_temp_20",
+                "em_temp_21",
+                "em_temp_22",
+                "em_temp_23",
+                "em_temp_24",
+                "em_temp_25",
+                "em_temp_26",
+                "em_temp_27",
+                "em_temp_28",
+                "em_temp_29",
+                "em_temp_30",
+                "em_temp_31"
+            ],
+            "comment": "One-Wire temperatures as seen by the FSAE emeter",
+            "bus_name": "accumulator",
+            "senders": [
+                "emeter"
+            ]
+        },
+
+
+
         "vectornav_position": {
             "id": 500,
             "length": 8,
@@ -1116,6 +1197,606 @@
                 "offset": 0,
                 "is_float": true
             }
+        },
+
+
+
+        {
+            "name": "em_current",
+            "start": 0,
+            "length": 32,
+            "comment": "Emeter current reading in amps",
+            "ieee_float": true
+        },
+        {
+            "name": "em_voltage",
+            "start": 32,
+            "length": 32,
+            "comment": "Emeter current reading in voltage",
+            "ieee_float": true
+        },
+
+        {
+            "name": "em_violation",
+            "start": 0,
+            "length": 1,
+            "comment": "Emeter violation"
+        },
+        {
+            "name": "em_logging",
+            "start": 1,
+            "length": 1,
+            "comment": "Emeter is logging"
+        },
+        {
+            "name": "em_fault_active",
+            "start": 2,
+            "length": 1,
+            "comment": "Emeter fault"
+        },
+        {
+            "name": "em_fault_prev_active",
+            "start": 3,
+            "length": 1,
+            "comment": "Emeter fault 2"
+        },
+        {
+            "name": "em_energy_whr",
+            "start": 8,
+            "length": 32,
+            "comment": "Emeter power reading in watt/hours",
+            "ieee_float": true
+        },
+
+        {
+            "name": "em_temp_multiplexer",
+            "start": 0,
+            "length": 3,
+            "byte_order": "little_endian",
+            "comment": "mux signal for emeter one wire temp readings",
+            "is_multiplexer": true
+        },
+        {
+            "name": "em_temp_sensor_count",
+            "start": 3,
+            "length": 5,
+            "byte_order": "little_endian",
+            "comment": "number of temp sensors detected by the FSAE Emeter"
+        },
+
+        {
+            "name": "em_min_temp",
+            "start": 8,
+            "length": 8,
+            "byte_order": "little_endian",
+            "comment": "Minimum temperature detected by the FSAE Emeter"
+        },
+
+        {
+            "name": "em_max_temp",
+            "start": 16,
+            "length": 8,
+            "byte_order": "little_endian",
+            "comment": "Maximum temperature detected by the FSAE Emeter"
+        },
+
+        {
+            "name": "em_temp_0",
+            "start": 24,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                0
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_1",
+            "start": 32,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                0
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_2",
+            "start": 40,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                0
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_3",
+            "start": 48,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                0
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_4",
+            "start": 56,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                0
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+
+        {
+            "name": "em_temp_5",
+            "start": 24,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                1
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_6",
+            "start": 32,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                1
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_7",
+            "start": 40,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                1
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_8",
+            "start": 48,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                1
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_9",
+            "start": 56,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                1
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+
+        {
+            "name": "em_temp_10",
+            "start": 24,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                2
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_11",
+            "start": 32,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                2
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_12",
+            "start": 40,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                2
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_13",
+            "start": 48,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                2
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_14",
+            "start": 56,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                2
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+
+        {
+            "name": "em_temp_15",
+            "start": 24,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                3
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_16",
+            "start": 32,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                3
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_17",
+            "start": 40,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                3
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_18",
+            "start": 48,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                3
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_19",
+            "start": 56,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                3
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+
+        {
+            "name": "em_temp_20",
+            "start": 24,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                4
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_21",
+            "start": 32,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                4
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_22",
+            "start": 40,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                4
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_23",
+            "start": 48,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                4
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_24",
+            "start": 56,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                4
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+
+        {
+            "name": "em_temp_25",
+            "start": 24,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                5
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_26",
+            "start": 32,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                5
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_27",
+            "start": 40,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                5
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_28",
+            "start": 48,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                5
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_29",
+            "start": 56,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                5
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+
+        {
+            "name": "em_temp_30",
+            "start": 24,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                6
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
+        },
+        {
+            "name": "em_temp_31",
+            "start": 32,
+            "length": 8,
+            "byte_order": "little_endian",
+            "conversion": {
+                "scale": 0.5,
+                "offset": 0,
+                "is_float": true
+            },
+            "is_signed": false,
+            "multiplexer_ids": [
+                6
+            ],
+            "multiplexer_signal": "em_temp_multiplexer"
         },
 
 
