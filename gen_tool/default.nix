@@ -14,7 +14,7 @@ pkgs.stdenv.mkDerivation {
   # In this case, it will be the generated file
   installPhase = ''
     mkdir -p $out
-    python3 ./json_to_dbc.py ./can_descriptor.json ./dbc-output/car Orion 20240625-Gen5-CAN-DB elcon Megasquirt messageNEW
+    python3 ./json_to_dbc.py ./can_descriptor.json ./dbc-output/car Orion 20250206_CM_not_oil-cooled_CAN_DB elcon Megasquirt messageNEW
     mv ./dbc-output/car.dbc $out/car.dbc
   '';
 }
