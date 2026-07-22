@@ -508,6 +508,7 @@ impl Module1Temps {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const MODULE_VOLTAGE_8_MIN: f32 = 0_f32;
     pub const MODULE_VOLTAGE_8_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_7_MIN: f32 = 0_f32;
@@ -524,7 +525,7 @@ impl Module1Temps {
     pub const MODULE_VOLTAGE_2_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_1_MIN: f32 = 0_f32;
     pub const MODULE_VOLTAGE_1_MAX: f32 = 2.5500000000000003_f32;
-    /// Construct new module1_temps from values
+    /// Construct new 'module1_temps' from values
     pub fn new(
         module_voltage_8: f32,
         module_voltage_7: f32,
@@ -535,7 +536,7 @@ impl Module1Temps {
         module_voltage_2: f32,
         module_voltage_1: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_module_voltage_8(module_voltage_8)?;
         res.set_module_voltage_7(module_voltage_7)?;
         res.set_module_voltage_6(module_voltage_6)?;
@@ -550,7 +551,7 @@ impl Module1Temps {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// module_voltage_8
+    /// Get value of 'module_voltage_8'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -560,7 +561,7 @@ impl Module1Temps {
     pub fn module_voltage_8(&self) -> f32 {
         self.module_voltage_8_raw()
     }
-    /// Get raw value of module_voltage_8
+    /// Get raw value of 'module_voltage_8'
     ///
     /// - Start bit: 56
     /// - Signal size: 8 bits
@@ -575,7 +576,7 @@ impl Module1Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_8
+    /// Set value of 'module_voltage_8'
     #[inline(always)]
     pub fn set_module_voltage_8(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -589,7 +590,7 @@ impl Module1Temps {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
-    /// module_voltage_7
+    /// Get value of 'module_voltage_7'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -599,7 +600,7 @@ impl Module1Temps {
     pub fn module_voltage_7(&self) -> f32 {
         self.module_voltage_7_raw()
     }
-    /// Get raw value of module_voltage_7
+    /// Get raw value of 'module_voltage_7'
     ///
     /// - Start bit: 48
     /// - Signal size: 8 bits
@@ -614,7 +615,7 @@ impl Module1Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_7
+    /// Set value of 'module_voltage_7'
     #[inline(always)]
     pub fn set_module_voltage_7(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -628,7 +629,7 @@ impl Module1Temps {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
-    /// module_voltage_6
+    /// Get value of 'module_voltage_6'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -638,7 +639,7 @@ impl Module1Temps {
     pub fn module_voltage_6(&self) -> f32 {
         self.module_voltage_6_raw()
     }
-    /// Get raw value of module_voltage_6
+    /// Get raw value of 'module_voltage_6'
     ///
     /// - Start bit: 40
     /// - Signal size: 8 bits
@@ -653,7 +654,7 @@ impl Module1Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_6
+    /// Set value of 'module_voltage_6'
     #[inline(always)]
     pub fn set_module_voltage_6(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -667,7 +668,7 @@ impl Module1Temps {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
-    /// module_voltage_5
+    /// Get value of 'module_voltage_5'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -677,7 +678,7 @@ impl Module1Temps {
     pub fn module_voltage_5(&self) -> f32 {
         self.module_voltage_5_raw()
     }
-    /// Get raw value of module_voltage_5
+    /// Get raw value of 'module_voltage_5'
     ///
     /// - Start bit: 32
     /// - Signal size: 8 bits
@@ -692,7 +693,7 @@ impl Module1Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_5
+    /// Set value of 'module_voltage_5'
     #[inline(always)]
     pub fn set_module_voltage_5(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -706,7 +707,7 @@ impl Module1Temps {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
-    /// module_voltage_4
+    /// Get value of 'module_voltage_4'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -716,7 +717,7 @@ impl Module1Temps {
     pub fn module_voltage_4(&self) -> f32 {
         self.module_voltage_4_raw()
     }
-    /// Get raw value of module_voltage_4
+    /// Get raw value of 'module_voltage_4'
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
@@ -731,7 +732,7 @@ impl Module1Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_4
+    /// Set value of 'module_voltage_4'
     #[inline(always)]
     pub fn set_module_voltage_4(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -745,7 +746,7 @@ impl Module1Temps {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
-    /// module_voltage_3
+    /// Get value of 'module_voltage_3'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -755,7 +756,7 @@ impl Module1Temps {
     pub fn module_voltage_3(&self) -> f32 {
         self.module_voltage_3_raw()
     }
-    /// Get raw value of module_voltage_3
+    /// Get raw value of 'module_voltage_3'
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
@@ -770,7 +771,7 @@ impl Module1Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_3
+    /// Set value of 'module_voltage_3'
     #[inline(always)]
     pub fn set_module_voltage_3(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -784,7 +785,7 @@ impl Module1Temps {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// module_voltage_2
+    /// Get value of 'module_voltage_2'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -794,7 +795,7 @@ impl Module1Temps {
     pub fn module_voltage_2(&self) -> f32 {
         self.module_voltage_2_raw()
     }
-    /// Get raw value of module_voltage_2
+    /// Get raw value of 'module_voltage_2'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
@@ -809,7 +810,7 @@ impl Module1Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_2
+    /// Set value of 'module_voltage_2'
     #[inline(always)]
     pub fn set_module_voltage_2(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -823,7 +824,7 @@ impl Module1Temps {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// module_voltage_1
+    /// Get value of 'module_voltage_1'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -833,7 +834,7 @@ impl Module1Temps {
     pub fn module_voltage_1(&self) -> f32 {
         self.module_voltage_1_raw()
     }
-    /// Get raw value of module_voltage_1
+    /// Get raw value of 'module_voltage_1'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -848,7 +849,7 @@ impl Module1Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_1
+    /// Set value of 'module_voltage_1'
     #[inline(always)]
     pub fn set_module_voltage_1(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -925,6 +926,7 @@ impl Module2Temps {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x20)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const MODULE_VOLTAGE_8_MIN: f32 = 0_f32;
     pub const MODULE_VOLTAGE_8_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_7_MIN: f32 = 0_f32;
@@ -941,7 +943,7 @@ impl Module2Temps {
     pub const MODULE_VOLTAGE_2_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_1_MIN: f32 = 0_f32;
     pub const MODULE_VOLTAGE_1_MAX: f32 = 2.5500000000000003_f32;
-    /// Construct new module2_temps from values
+    /// Construct new 'module2_temps' from values
     pub fn new(
         module_voltage_8: f32,
         module_voltage_7: f32,
@@ -952,7 +954,7 @@ impl Module2Temps {
         module_voltage_2: f32,
         module_voltage_1: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_module_voltage_8(module_voltage_8)?;
         res.set_module_voltage_7(module_voltage_7)?;
         res.set_module_voltage_6(module_voltage_6)?;
@@ -967,7 +969,7 @@ impl Module2Temps {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// module_voltage_8
+    /// Get value of 'module_voltage_8'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -977,7 +979,7 @@ impl Module2Temps {
     pub fn module_voltage_8(&self) -> f32 {
         self.module_voltage_8_raw()
     }
-    /// Get raw value of module_voltage_8
+    /// Get raw value of 'module_voltage_8'
     ///
     /// - Start bit: 56
     /// - Signal size: 8 bits
@@ -992,7 +994,7 @@ impl Module2Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_8
+    /// Set value of 'module_voltage_8'
     #[inline(always)]
     pub fn set_module_voltage_8(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1006,7 +1008,7 @@ impl Module2Temps {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
-    /// module_voltage_7
+    /// Get value of 'module_voltage_7'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1016,7 +1018,7 @@ impl Module2Temps {
     pub fn module_voltage_7(&self) -> f32 {
         self.module_voltage_7_raw()
     }
-    /// Get raw value of module_voltage_7
+    /// Get raw value of 'module_voltage_7'
     ///
     /// - Start bit: 48
     /// - Signal size: 8 bits
@@ -1031,7 +1033,7 @@ impl Module2Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_7
+    /// Set value of 'module_voltage_7'
     #[inline(always)]
     pub fn set_module_voltage_7(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1045,7 +1047,7 @@ impl Module2Temps {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
-    /// module_voltage_6
+    /// Get value of 'module_voltage_6'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1055,7 +1057,7 @@ impl Module2Temps {
     pub fn module_voltage_6(&self) -> f32 {
         self.module_voltage_6_raw()
     }
-    /// Get raw value of module_voltage_6
+    /// Get raw value of 'module_voltage_6'
     ///
     /// - Start bit: 40
     /// - Signal size: 8 bits
@@ -1070,7 +1072,7 @@ impl Module2Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_6
+    /// Set value of 'module_voltage_6'
     #[inline(always)]
     pub fn set_module_voltage_6(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1084,7 +1086,7 @@ impl Module2Temps {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
-    /// module_voltage_5
+    /// Get value of 'module_voltage_5'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1094,7 +1096,7 @@ impl Module2Temps {
     pub fn module_voltage_5(&self) -> f32 {
         self.module_voltage_5_raw()
     }
-    /// Get raw value of module_voltage_5
+    /// Get raw value of 'module_voltage_5'
     ///
     /// - Start bit: 32
     /// - Signal size: 8 bits
@@ -1109,7 +1111,7 @@ impl Module2Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_5
+    /// Set value of 'module_voltage_5'
     #[inline(always)]
     pub fn set_module_voltage_5(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1123,7 +1125,7 @@ impl Module2Temps {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
-    /// module_voltage_4
+    /// Get value of 'module_voltage_4'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1133,7 +1135,7 @@ impl Module2Temps {
     pub fn module_voltage_4(&self) -> f32 {
         self.module_voltage_4_raw()
     }
-    /// Get raw value of module_voltage_4
+    /// Get raw value of 'module_voltage_4'
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
@@ -1148,7 +1150,7 @@ impl Module2Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_4
+    /// Set value of 'module_voltage_4'
     #[inline(always)]
     pub fn set_module_voltage_4(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1162,7 +1164,7 @@ impl Module2Temps {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
-    /// module_voltage_3
+    /// Get value of 'module_voltage_3'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1172,7 +1174,7 @@ impl Module2Temps {
     pub fn module_voltage_3(&self) -> f32 {
         self.module_voltage_3_raw()
     }
-    /// Get raw value of module_voltage_3
+    /// Get raw value of 'module_voltage_3'
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
@@ -1187,7 +1189,7 @@ impl Module2Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_3
+    /// Set value of 'module_voltage_3'
     #[inline(always)]
     pub fn set_module_voltage_3(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1201,7 +1203,7 @@ impl Module2Temps {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// module_voltage_2
+    /// Get value of 'module_voltage_2'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1211,7 +1213,7 @@ impl Module2Temps {
     pub fn module_voltage_2(&self) -> f32 {
         self.module_voltage_2_raw()
     }
-    /// Get raw value of module_voltage_2
+    /// Get raw value of 'module_voltage_2'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
@@ -1226,7 +1228,7 @@ impl Module2Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_2
+    /// Set value of 'module_voltage_2'
     #[inline(always)]
     pub fn set_module_voltage_2(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1240,7 +1242,7 @@ impl Module2Temps {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// module_voltage_1
+    /// Get value of 'module_voltage_1'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1250,7 +1252,7 @@ impl Module2Temps {
     pub fn module_voltage_1(&self) -> f32 {
         self.module_voltage_1_raw()
     }
-    /// Get raw value of module_voltage_1
+    /// Get raw value of 'module_voltage_1'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -1265,7 +1267,7 @@ impl Module2Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_1
+    /// Set value of 'module_voltage_1'
     #[inline(always)]
     pub fn set_module_voltage_1(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1342,6 +1344,7 @@ impl Module3Temps {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x21)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const MODULE_VOLTAGE_8_MIN: f32 = 0_f32;
     pub const MODULE_VOLTAGE_8_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_7_MIN: f32 = 0_f32;
@@ -1358,7 +1361,7 @@ impl Module3Temps {
     pub const MODULE_VOLTAGE_2_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_1_MIN: f32 = 0_f32;
     pub const MODULE_VOLTAGE_1_MAX: f32 = 2.5500000000000003_f32;
-    /// Construct new module3_temps from values
+    /// Construct new 'module3_temps' from values
     pub fn new(
         module_voltage_8: f32,
         module_voltage_7: f32,
@@ -1369,7 +1372,7 @@ impl Module3Temps {
         module_voltage_2: f32,
         module_voltage_1: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_module_voltage_8(module_voltage_8)?;
         res.set_module_voltage_7(module_voltage_7)?;
         res.set_module_voltage_6(module_voltage_6)?;
@@ -1384,7 +1387,7 @@ impl Module3Temps {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// module_voltage_8
+    /// Get value of 'module_voltage_8'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1394,7 +1397,7 @@ impl Module3Temps {
     pub fn module_voltage_8(&self) -> f32 {
         self.module_voltage_8_raw()
     }
-    /// Get raw value of module_voltage_8
+    /// Get raw value of 'module_voltage_8'
     ///
     /// - Start bit: 56
     /// - Signal size: 8 bits
@@ -1409,7 +1412,7 @@ impl Module3Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_8
+    /// Set value of 'module_voltage_8'
     #[inline(always)]
     pub fn set_module_voltage_8(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1423,7 +1426,7 @@ impl Module3Temps {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
-    /// module_voltage_7
+    /// Get value of 'module_voltage_7'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1433,7 +1436,7 @@ impl Module3Temps {
     pub fn module_voltage_7(&self) -> f32 {
         self.module_voltage_7_raw()
     }
-    /// Get raw value of module_voltage_7
+    /// Get raw value of 'module_voltage_7'
     ///
     /// - Start bit: 48
     /// - Signal size: 8 bits
@@ -1448,7 +1451,7 @@ impl Module3Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_7
+    /// Set value of 'module_voltage_7'
     #[inline(always)]
     pub fn set_module_voltage_7(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1462,7 +1465,7 @@ impl Module3Temps {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
-    /// module_voltage_6
+    /// Get value of 'module_voltage_6'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1472,7 +1475,7 @@ impl Module3Temps {
     pub fn module_voltage_6(&self) -> f32 {
         self.module_voltage_6_raw()
     }
-    /// Get raw value of module_voltage_6
+    /// Get raw value of 'module_voltage_6'
     ///
     /// - Start bit: 40
     /// - Signal size: 8 bits
@@ -1487,7 +1490,7 @@ impl Module3Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_6
+    /// Set value of 'module_voltage_6'
     #[inline(always)]
     pub fn set_module_voltage_6(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1501,7 +1504,7 @@ impl Module3Temps {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
-    /// module_voltage_5
+    /// Get value of 'module_voltage_5'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1511,7 +1514,7 @@ impl Module3Temps {
     pub fn module_voltage_5(&self) -> f32 {
         self.module_voltage_5_raw()
     }
-    /// Get raw value of module_voltage_5
+    /// Get raw value of 'module_voltage_5'
     ///
     /// - Start bit: 32
     /// - Signal size: 8 bits
@@ -1526,7 +1529,7 @@ impl Module3Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_5
+    /// Set value of 'module_voltage_5'
     #[inline(always)]
     pub fn set_module_voltage_5(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1540,7 +1543,7 @@ impl Module3Temps {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
-    /// module_voltage_4
+    /// Get value of 'module_voltage_4'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1550,7 +1553,7 @@ impl Module3Temps {
     pub fn module_voltage_4(&self) -> f32 {
         self.module_voltage_4_raw()
     }
-    /// Get raw value of module_voltage_4
+    /// Get raw value of 'module_voltage_4'
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
@@ -1565,7 +1568,7 @@ impl Module3Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_4
+    /// Set value of 'module_voltage_4'
     #[inline(always)]
     pub fn set_module_voltage_4(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1579,7 +1582,7 @@ impl Module3Temps {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
-    /// module_voltage_3
+    /// Get value of 'module_voltage_3'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1589,7 +1592,7 @@ impl Module3Temps {
     pub fn module_voltage_3(&self) -> f32 {
         self.module_voltage_3_raw()
     }
-    /// Get raw value of module_voltage_3
+    /// Get raw value of 'module_voltage_3'
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
@@ -1604,7 +1607,7 @@ impl Module3Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_3
+    /// Set value of 'module_voltage_3'
     #[inline(always)]
     pub fn set_module_voltage_3(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1618,7 +1621,7 @@ impl Module3Temps {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// module_voltage_2
+    /// Get value of 'module_voltage_2'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1628,7 +1631,7 @@ impl Module3Temps {
     pub fn module_voltage_2(&self) -> f32 {
         self.module_voltage_2_raw()
     }
-    /// Get raw value of module_voltage_2
+    /// Get raw value of 'module_voltage_2'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
@@ -1643,7 +1646,7 @@ impl Module3Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_2
+    /// Set value of 'module_voltage_2'
     #[inline(always)]
     pub fn set_module_voltage_2(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1657,7 +1660,7 @@ impl Module3Temps {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// module_voltage_1
+    /// Get value of 'module_voltage_1'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1667,7 +1670,7 @@ impl Module3Temps {
     pub fn module_voltage_1(&self) -> f32 {
         self.module_voltage_1_raw()
     }
-    /// Get raw value of module_voltage_1
+    /// Get raw value of 'module_voltage_1'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -1682,7 +1685,7 @@ impl Module3Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_1
+    /// Set value of 'module_voltage_1'
     #[inline(always)]
     pub fn set_module_voltage_1(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1759,6 +1762,7 @@ impl Module4Temps {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x22)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const MODULE_VOLTAGE_8_MIN: f32 = 0_f32;
     pub const MODULE_VOLTAGE_8_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_7_MIN: f32 = 0_f32;
@@ -1775,7 +1779,7 @@ impl Module4Temps {
     pub const MODULE_VOLTAGE_2_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_1_MIN: f32 = 0_f32;
     pub const MODULE_VOLTAGE_1_MAX: f32 = 2.5500000000000003_f32;
-    /// Construct new module4_temps from values
+    /// Construct new 'module4_temps' from values
     pub fn new(
         module_voltage_8: f32,
         module_voltage_7: f32,
@@ -1786,7 +1790,7 @@ impl Module4Temps {
         module_voltage_2: f32,
         module_voltage_1: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_module_voltage_8(module_voltage_8)?;
         res.set_module_voltage_7(module_voltage_7)?;
         res.set_module_voltage_6(module_voltage_6)?;
@@ -1801,7 +1805,7 @@ impl Module4Temps {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// module_voltage_8
+    /// Get value of 'module_voltage_8'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1811,7 +1815,7 @@ impl Module4Temps {
     pub fn module_voltage_8(&self) -> f32 {
         self.module_voltage_8_raw()
     }
-    /// Get raw value of module_voltage_8
+    /// Get raw value of 'module_voltage_8'
     ///
     /// - Start bit: 56
     /// - Signal size: 8 bits
@@ -1826,7 +1830,7 @@ impl Module4Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_8
+    /// Set value of 'module_voltage_8'
     #[inline(always)]
     pub fn set_module_voltage_8(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1840,7 +1844,7 @@ impl Module4Temps {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
-    /// module_voltage_7
+    /// Get value of 'module_voltage_7'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1850,7 +1854,7 @@ impl Module4Temps {
     pub fn module_voltage_7(&self) -> f32 {
         self.module_voltage_7_raw()
     }
-    /// Get raw value of module_voltage_7
+    /// Get raw value of 'module_voltage_7'
     ///
     /// - Start bit: 48
     /// - Signal size: 8 bits
@@ -1865,7 +1869,7 @@ impl Module4Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_7
+    /// Set value of 'module_voltage_7'
     #[inline(always)]
     pub fn set_module_voltage_7(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1879,7 +1883,7 @@ impl Module4Temps {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
-    /// module_voltage_6
+    /// Get value of 'module_voltage_6'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1889,7 +1893,7 @@ impl Module4Temps {
     pub fn module_voltage_6(&self) -> f32 {
         self.module_voltage_6_raw()
     }
-    /// Get raw value of module_voltage_6
+    /// Get raw value of 'module_voltage_6'
     ///
     /// - Start bit: 40
     /// - Signal size: 8 bits
@@ -1904,7 +1908,7 @@ impl Module4Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_6
+    /// Set value of 'module_voltage_6'
     #[inline(always)]
     pub fn set_module_voltage_6(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1918,7 +1922,7 @@ impl Module4Temps {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
-    /// module_voltage_5
+    /// Get value of 'module_voltage_5'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1928,7 +1932,7 @@ impl Module4Temps {
     pub fn module_voltage_5(&self) -> f32 {
         self.module_voltage_5_raw()
     }
-    /// Get raw value of module_voltage_5
+    /// Get raw value of 'module_voltage_5'
     ///
     /// - Start bit: 32
     /// - Signal size: 8 bits
@@ -1943,7 +1947,7 @@ impl Module4Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_5
+    /// Set value of 'module_voltage_5'
     #[inline(always)]
     pub fn set_module_voltage_5(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1957,7 +1961,7 @@ impl Module4Temps {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
-    /// module_voltage_4
+    /// Get value of 'module_voltage_4'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -1967,7 +1971,7 @@ impl Module4Temps {
     pub fn module_voltage_4(&self) -> f32 {
         self.module_voltage_4_raw()
     }
-    /// Get raw value of module_voltage_4
+    /// Get raw value of 'module_voltage_4'
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
@@ -1982,7 +1986,7 @@ impl Module4Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_4
+    /// Set value of 'module_voltage_4'
     #[inline(always)]
     pub fn set_module_voltage_4(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -1996,7 +2000,7 @@ impl Module4Temps {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
-    /// module_voltage_3
+    /// Get value of 'module_voltage_3'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -2006,7 +2010,7 @@ impl Module4Temps {
     pub fn module_voltage_3(&self) -> f32 {
         self.module_voltage_3_raw()
     }
-    /// Get raw value of module_voltage_3
+    /// Get raw value of 'module_voltage_3'
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
@@ -2021,7 +2025,7 @@ impl Module4Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_3
+    /// Set value of 'module_voltage_3'
     #[inline(always)]
     pub fn set_module_voltage_3(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -2035,7 +2039,7 @@ impl Module4Temps {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// module_voltage_2
+    /// Get value of 'module_voltage_2'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -2045,7 +2049,7 @@ impl Module4Temps {
     pub fn module_voltage_2(&self) -> f32 {
         self.module_voltage_2_raw()
     }
-    /// Get raw value of module_voltage_2
+    /// Get raw value of 'module_voltage_2'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
@@ -2060,7 +2064,7 @@ impl Module4Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_2
+    /// Set value of 'module_voltage_2'
     #[inline(always)]
     pub fn set_module_voltage_2(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -2074,7 +2078,7 @@ impl Module4Temps {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// module_voltage_1
+    /// Get value of 'module_voltage_1'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -2084,7 +2088,7 @@ impl Module4Temps {
     pub fn module_voltage_1(&self) -> f32 {
         self.module_voltage_1_raw()
     }
-    /// Get raw value of module_voltage_1
+    /// Get raw value of 'module_voltage_1'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -2099,7 +2103,7 @@ impl Module4Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_1
+    /// Set value of 'module_voltage_1'
     #[inline(always)]
     pub fn set_module_voltage_1(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -2176,6 +2180,7 @@ impl Module5Temps {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x23)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const MODULE_VOLTAGE_8_MIN: f32 = 0_f32;
     pub const MODULE_VOLTAGE_8_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_7_MIN: f32 = 0_f32;
@@ -2192,7 +2197,7 @@ impl Module5Temps {
     pub const MODULE_VOLTAGE_2_MAX: f32 = 2.5500000000000003_f32;
     pub const MODULE_VOLTAGE_1_MIN: f32 = 0_f32;
     pub const MODULE_VOLTAGE_1_MAX: f32 = 2.5500000000000003_f32;
-    /// Construct new module5_temps from values
+    /// Construct new 'module5_temps' from values
     pub fn new(
         module_voltage_8: f32,
         module_voltage_7: f32,
@@ -2203,7 +2208,7 @@ impl Module5Temps {
         module_voltage_2: f32,
         module_voltage_1: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_module_voltage_8(module_voltage_8)?;
         res.set_module_voltage_7(module_voltage_7)?;
         res.set_module_voltage_6(module_voltage_6)?;
@@ -2218,7 +2223,7 @@ impl Module5Temps {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// module_voltage_8
+    /// Get value of 'module_voltage_8'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -2228,7 +2233,7 @@ impl Module5Temps {
     pub fn module_voltage_8(&self) -> f32 {
         self.module_voltage_8_raw()
     }
-    /// Get raw value of module_voltage_8
+    /// Get raw value of 'module_voltage_8'
     ///
     /// - Start bit: 56
     /// - Signal size: 8 bits
@@ -2243,7 +2248,7 @@ impl Module5Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_8
+    /// Set value of 'module_voltage_8'
     #[inline(always)]
     pub fn set_module_voltage_8(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -2257,7 +2262,7 @@ impl Module5Temps {
         self.raw.view_bits_mut::<Lsb0>()[56..64].store_le(value);
         Ok(())
     }
-    /// module_voltage_7
+    /// Get value of 'module_voltage_7'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -2267,7 +2272,7 @@ impl Module5Temps {
     pub fn module_voltage_7(&self) -> f32 {
         self.module_voltage_7_raw()
     }
-    /// Get raw value of module_voltage_7
+    /// Get raw value of 'module_voltage_7'
     ///
     /// - Start bit: 48
     /// - Signal size: 8 bits
@@ -2282,7 +2287,7 @@ impl Module5Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_7
+    /// Set value of 'module_voltage_7'
     #[inline(always)]
     pub fn set_module_voltage_7(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -2296,7 +2301,7 @@ impl Module5Temps {
         self.raw.view_bits_mut::<Lsb0>()[48..56].store_le(value);
         Ok(())
     }
-    /// module_voltage_6
+    /// Get value of 'module_voltage_6'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -2306,7 +2311,7 @@ impl Module5Temps {
     pub fn module_voltage_6(&self) -> f32 {
         self.module_voltage_6_raw()
     }
-    /// Get raw value of module_voltage_6
+    /// Get raw value of 'module_voltage_6'
     ///
     /// - Start bit: 40
     /// - Signal size: 8 bits
@@ -2321,7 +2326,7 @@ impl Module5Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_6
+    /// Set value of 'module_voltage_6'
     #[inline(always)]
     pub fn set_module_voltage_6(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -2335,7 +2340,7 @@ impl Module5Temps {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
-    /// module_voltage_5
+    /// Get value of 'module_voltage_5'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -2345,7 +2350,7 @@ impl Module5Temps {
     pub fn module_voltage_5(&self) -> f32 {
         self.module_voltage_5_raw()
     }
-    /// Get raw value of module_voltage_5
+    /// Get raw value of 'module_voltage_5'
     ///
     /// - Start bit: 32
     /// - Signal size: 8 bits
@@ -2360,7 +2365,7 @@ impl Module5Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_5
+    /// Set value of 'module_voltage_5'
     #[inline(always)]
     pub fn set_module_voltage_5(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -2374,7 +2379,7 @@ impl Module5Temps {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
-    /// module_voltage_4
+    /// Get value of 'module_voltage_4'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -2384,7 +2389,7 @@ impl Module5Temps {
     pub fn module_voltage_4(&self) -> f32 {
         self.module_voltage_4_raw()
     }
-    /// Get raw value of module_voltage_4
+    /// Get raw value of 'module_voltage_4'
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
@@ -2399,7 +2404,7 @@ impl Module5Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_4
+    /// Set value of 'module_voltage_4'
     #[inline(always)]
     pub fn set_module_voltage_4(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -2413,7 +2418,7 @@ impl Module5Temps {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
-    /// module_voltage_3
+    /// Get value of 'module_voltage_3'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -2423,7 +2428,7 @@ impl Module5Temps {
     pub fn module_voltage_3(&self) -> f32 {
         self.module_voltage_3_raw()
     }
-    /// Get raw value of module_voltage_3
+    /// Get raw value of 'module_voltage_3'
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
@@ -2438,7 +2443,7 @@ impl Module5Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_3
+    /// Set value of 'module_voltage_3'
     #[inline(always)]
     pub fn set_module_voltage_3(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -2452,7 +2457,7 @@ impl Module5Temps {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// module_voltage_2
+    /// Get value of 'module_voltage_2'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -2462,7 +2467,7 @@ impl Module5Temps {
     pub fn module_voltage_2(&self) -> f32 {
         self.module_voltage_2_raw()
     }
-    /// Get raw value of module_voltage_2
+    /// Get raw value of 'module_voltage_2'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
@@ -2477,7 +2482,7 @@ impl Module5Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_2
+    /// Set value of 'module_voltage_2'
     #[inline(always)]
     pub fn set_module_voltage_2(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -2491,7 +2496,7 @@ impl Module5Temps {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// module_voltage_1
+    /// Get value of 'module_voltage_1'
     ///
     /// - Min: 0
     /// - Max: 2.5500000000000003
@@ -2501,7 +2506,7 @@ impl Module5Temps {
     pub fn module_voltage_1(&self) -> f32 {
         self.module_voltage_1_raw()
     }
-    /// Get raw value of module_voltage_1
+    /// Get raw value of 'module_voltage_1'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -2516,7 +2521,7 @@ impl Module5Temps {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of module_voltage_1
+    /// Set value of 'module_voltage_1'
     #[inline(always)]
     pub fn set_module_voltage_1(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2.5500000000000003_f32 < value {
@@ -2593,13 +2598,14 @@ impl PrechargeStatus {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x69)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const PRECHARGE_ERROR_CODE_MIN: u8 = 0_u8;
     pub const PRECHARGE_ERROR_CODE_MAX: u8 = 255_u8;
     pub const PRECHARGE_STATE_MIN: u8 = 0_u8;
     pub const PRECHARGE_STATE_MAX: u8 = 255_u8;
-    /// Construct new precharge_status from values
+    /// Construct new 'precharge_status' from values
     pub fn new(precharge_error_code: u8, precharge_state: u8) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_precharge_error_code(precharge_error_code)?;
         res.set_precharge_state(precharge_state)?;
         Ok(res)
@@ -2608,7 +2614,7 @@ impl PrechargeStatus {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// precharge_errorCode
+    /// Get value of 'precharge_errorCode'
     ///
     /// - Min: 0
     /// - Max: 255
@@ -2618,7 +2624,7 @@ impl PrechargeStatus {
     pub fn precharge_error_code(&self) -> u8 {
         self.precharge_error_code_raw()
     }
-    /// Get raw value of precharge_errorCode
+    /// Get raw value of 'precharge_errorCode'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
@@ -2632,7 +2638,7 @@ impl PrechargeStatus {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of precharge_errorCode
+    /// Set value of 'precharge_errorCode'
     #[inline(always)]
     pub fn set_precharge_error_code(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 255_u8 < value {
@@ -2650,7 +2656,7 @@ impl PrechargeStatus {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// precharge_state
+    /// Get value of 'precharge_state'
     ///
     /// 0 - standby, 1 - precharging, 2 - online, 3 - error
     ///
@@ -2662,7 +2668,7 @@ impl PrechargeStatus {
     pub fn precharge_state(&self) -> u8 {
         self.precharge_state_raw()
     }
-    /// Get raw value of precharge_state
+    /// Get raw value of 'precharge_state'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -2676,7 +2682,7 @@ impl PrechargeStatus {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of precharge_state
+    /// Set value of 'precharge_state'
     #[inline(always)]
     pub fn set_precharge_state(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 255_u8 < value {
@@ -2757,11 +2763,12 @@ impl AcuShutdownStatus {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x6a)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const ACU_IMD_PWM_DUTY_MIN: u8 = 0_u8;
     pub const ACU_IMD_PWM_DUTY_MAX: u8 = 255_u8;
     pub const ACU_IMD_PWM_FREQUENCY_MIN: u8 = 0_u8;
     pub const ACU_IMD_PWM_FREQUENCY_MAX: u8 = 255_u8;
-    /// Construct new acu_shutdown_status from values
+    /// Construct new 'acu_shutdown_status' from values
     pub fn new(
         acu_imd_pwm_duty: u8,
         acu_imd_pwm_frequency: u8,
@@ -2770,7 +2777,7 @@ impl AcuShutdownStatus {
         acu_bms_relay_state: bool,
         acu_imd_relay_state: bool,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_acu_imd_pwm_duty(acu_imd_pwm_duty)?;
         res.set_acu_imd_pwm_frequency(acu_imd_pwm_frequency)?;
         res.set_acu_bms_gpio_state(acu_bms_gpio_state)?;
@@ -2783,7 +2790,7 @@ impl AcuShutdownStatus {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// acu_imd_pwm_duty
+    /// Get value of 'acu_imd_pwm_duty'
     ///
     /// duty cycle of IMD: ~5% on normal conditions
     ///
@@ -2795,7 +2802,7 @@ impl AcuShutdownStatus {
     pub fn acu_imd_pwm_duty(&self) -> u8 {
         self.acu_imd_pwm_duty_raw()
     }
-    /// Get raw value of acu_imd_pwm_duty
+    /// Get raw value of 'acu_imd_pwm_duty'
     ///
     /// - Start bit: 40
     /// - Signal size: 8 bits
@@ -2809,7 +2816,7 @@ impl AcuShutdownStatus {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of acu_imd_pwm_duty
+    /// Set value of 'acu_imd_pwm_duty'
     #[inline(always)]
     pub fn set_acu_imd_pwm_duty(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 255_u8 < value {
@@ -2827,7 +2834,7 @@ impl AcuShutdownStatus {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
-    /// acu_imd_pwm_frequency
+    /// Get value of 'acu_imd_pwm_frequency'
     ///
     /// PWM frequency of the IMD: 10hz on normal operation
     ///
@@ -2839,7 +2846,7 @@ impl AcuShutdownStatus {
     pub fn acu_imd_pwm_frequency(&self) -> u8 {
         self.acu_imd_pwm_frequency_raw()
     }
-    /// Get raw value of acu_imd_pwm_frequency
+    /// Get raw value of 'acu_imd_pwm_frequency'
     ///
     /// - Start bit: 32
     /// - Signal size: 8 bits
@@ -2853,7 +2860,7 @@ impl AcuShutdownStatus {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of acu_imd_pwm_frequency
+    /// Set value of 'acu_imd_pwm_frequency'
     #[inline(always)]
     pub fn set_acu_imd_pwm_frequency(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 255_u8 < value {
@@ -2871,7 +2878,7 @@ impl AcuShutdownStatus {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
-    /// acu_bms_gpio_state
+    /// Get value of 'acu_bms_gpio_state'
     ///
     /// Status of the BMS ENABLE output: 1 is OK, 0 is FAULTED
     ///
@@ -2883,7 +2890,7 @@ impl AcuShutdownStatus {
     pub fn acu_bms_gpio_state(&self) -> bool {
         self.acu_bms_gpio_state_raw()
     }
-    /// Get raw value of acu_bms_gpio_state
+    /// Get raw value of 'acu_bms_gpio_state'
     ///
     /// - Start bit: 31
     /// - Signal size: 1 bits
@@ -2896,14 +2903,14 @@ impl AcuShutdownStatus {
         let signal = self.raw.view_bits::<Lsb0>()[31..32].load_le::<u8>();
         signal == 1
     }
-    /// Set value of acu_bms_gpio_state
+    /// Set value of 'acu_bms_gpio_state'
     #[inline(always)]
     pub fn set_acu_bms_gpio_state(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[31..32].store_le(value);
         Ok(())
     }
-    /// acu_imd_gpio_state
+    /// Get value of 'acu_imd_gpio_state'
     ///
     /// Status of the IMD OKHS output: 1 is OK, 0 is FAULTED
     ///
@@ -2915,7 +2922,7 @@ impl AcuShutdownStatus {
     pub fn acu_imd_gpio_state(&self) -> bool {
         self.acu_imd_gpio_state_raw()
     }
-    /// Get raw value of acu_imd_gpio_state
+    /// Get raw value of 'acu_imd_gpio_state'
     ///
     /// - Start bit: 23
     /// - Signal size: 1 bits
@@ -2928,14 +2935,14 @@ impl AcuShutdownStatus {
         let signal = self.raw.view_bits::<Lsb0>()[23..24].load_le::<u8>();
         signal == 1
     }
-    /// Set value of acu_imd_gpio_state
+    /// Set value of 'acu_imd_gpio_state'
     #[inline(always)]
     pub fn set_acu_imd_gpio_state(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[23..24].store_le(value);
         Ok(())
     }
-    /// acu_bms_relay_state
+    /// Get value of 'acu_bms_relay_state'
     ///
     /// Status of the BMS relay as sensed by the ACU: 1 is closed, 0 is open
     ///
@@ -2947,7 +2954,7 @@ impl AcuShutdownStatus {
     pub fn acu_bms_relay_state(&self) -> bool {
         self.acu_bms_relay_state_raw()
     }
-    /// Get raw value of acu_bms_relay_state
+    /// Get raw value of 'acu_bms_relay_state'
     ///
     /// - Start bit: 15
     /// - Signal size: 1 bits
@@ -2960,14 +2967,14 @@ impl AcuShutdownStatus {
         let signal = self.raw.view_bits::<Lsb0>()[15..16].load_le::<u8>();
         signal == 1
     }
-    /// Set value of acu_bms_relay_state
+    /// Set value of 'acu_bms_relay_state'
     #[inline(always)]
     pub fn set_acu_bms_relay_state(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[15..16].store_le(value);
         Ok(())
     }
-    /// acu_imd_relay_state
+    /// Get value of 'acu_imd_relay_state'
     ///
     /// Status of the IMD relay as sensed by the ACU: 1 is closed, 0 is open
     ///
@@ -2979,7 +2986,7 @@ impl AcuShutdownStatus {
     pub fn acu_imd_relay_state(&self) -> bool {
         self.acu_imd_relay_state_raw()
     }
-    /// Get raw value of acu_imd_relay_state
+    /// Get raw value of 'acu_imd_relay_state'
     ///
     /// - Start bit: 7
     /// - Signal size: 1 bits
@@ -2992,7 +2999,7 @@ impl AcuShutdownStatus {
         let signal = self.raw.view_bits::<Lsb0>()[7..8].load_le::<u8>();
         signal == 1
     }
-    /// Set value of acu_imd_relay_state
+    /// Set value of 'acu_imd_relay_state'
     #[inline(always)]
     pub fn set_acu_imd_relay_state(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
@@ -3062,6 +3069,7 @@ impl AcuBoardVoltageReadings {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x6b)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const ACU_3V_VOLTAGE_MIN: f32 = 0_f32;
     pub const ACU_3V_VOLTAGE_MAX: f32 = 3.2997_f32;
     pub const ACU_5V_VOLTAGE_MIN: f32 = 0_f32;
@@ -3074,7 +3082,7 @@ impl AcuBoardVoltageReadings {
     pub const ACU_SDC_CURRENT_MAX: f32 = 8.24925_f32;
     pub const ACU_SDC_VOLTAGE_MIN: f32 = 0_f32;
     pub const ACU_SDC_VOLTAGE_MAX: f32 = 3.2997_f32;
-    /// Construct new acu_board_voltage_readings from values
+    /// Construct new 'acu_board_voltage_readings' from values
     pub fn new(
         acu_3v_voltage: f32,
         acu_5v_voltage: f32,
@@ -3083,7 +3091,7 @@ impl AcuBoardVoltageReadings {
         acu_sdc_current: f32,
         acu_sdc_voltage: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_acu_3v_voltage(acu_3v_voltage)?;
         res.set_acu_5v_voltage(acu_5v_voltage)?;
         res.set_acu_glv_current(acu_glv_current)?;
@@ -3096,7 +3104,7 @@ impl AcuBoardVoltageReadings {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// acu_3v_voltage
+    /// Get value of 'acu_3v_voltage'
     ///
     /// ACU 3v rail reading
     ///
@@ -3108,7 +3116,7 @@ impl AcuBoardVoltageReadings {
     pub fn acu_3v_voltage(&self) -> f32 {
         self.acu_3v_voltage_raw()
     }
-    /// Get raw value of acu_3v_voltage
+    /// Get raw value of 'acu_3v_voltage'
     ///
     /// - Start bit: 40
     /// - Signal size: 8 bits
@@ -3123,7 +3131,7 @@ impl AcuBoardVoltageReadings {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of acu_3v_voltage
+    /// Set value of 'acu_3v_voltage'
     #[inline(always)]
     pub fn set_acu_3v_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 3.2997_f32 < value {
@@ -3137,7 +3145,7 @@ impl AcuBoardVoltageReadings {
         self.raw.view_bits_mut::<Lsb0>()[40..48].store_le(value);
         Ok(())
     }
-    /// acu_5v_voltage
+    /// Get value of 'acu_5v_voltage'
     ///
     /// ACU 5v rail reading
     ///
@@ -3149,7 +3157,7 @@ impl AcuBoardVoltageReadings {
     pub fn acu_5v_voltage(&self) -> f32 {
         self.acu_5v_voltage_raw()
     }
-    /// Get raw value of acu_5v_voltage
+    /// Get raw value of 'acu_5v_voltage'
     ///
     /// - Start bit: 32
     /// - Signal size: 8 bits
@@ -3164,7 +3172,7 @@ impl AcuBoardVoltageReadings {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of acu_5v_voltage
+    /// Set value of 'acu_5v_voltage'
     #[inline(always)]
     pub fn set_acu_5v_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 3.2997_f32 < value {
@@ -3178,7 +3186,7 @@ impl AcuBoardVoltageReadings {
         self.raw.view_bits_mut::<Lsb0>()[32..40].store_le(value);
         Ok(())
     }
-    /// acu_glv_current
+    /// Get value of 'acu_glv_current'
     ///
     /// ACU GLV current reading from the ACU
     ///
@@ -3190,7 +3198,7 @@ impl AcuBoardVoltageReadings {
     pub fn acu_glv_current(&self) -> f32 {
         self.acu_glv_current_raw()
     }
-    /// Get raw value of acu_glv_current
+    /// Get raw value of 'acu_glv_current'
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
@@ -3205,7 +3213,7 @@ impl AcuBoardVoltageReadings {
         let offset = -6.25_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of acu_glv_current
+    /// Set value of 'acu_glv_current'
     #[inline(always)]
     pub fn set_acu_glv_current(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 8.24925_f32 < value {
@@ -3219,7 +3227,7 @@ impl AcuBoardVoltageReadings {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
-    /// acu_glv_voltage
+    /// Get value of 'acu_glv_voltage'
     ///
     /// ACU GLV system voltage reading
     ///
@@ -3231,7 +3239,7 @@ impl AcuBoardVoltageReadings {
     pub fn acu_glv_voltage(&self) -> f32 {
         self.acu_glv_voltage_raw()
     }
-    /// Get raw value of acu_glv_voltage
+    /// Get raw value of 'acu_glv_voltage'
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
@@ -3246,7 +3254,7 @@ impl AcuBoardVoltageReadings {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of acu_glv_voltage
+    /// Set value of 'acu_glv_voltage'
     #[inline(always)]
     pub fn set_acu_glv_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 3.2997_f32 < value {
@@ -3260,7 +3268,7 @@ impl AcuBoardVoltageReadings {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// acu_sdc_current
+    /// Get value of 'acu_sdc_current'
     ///
     /// ACU shutdown circuit current reading thru the ACU
     ///
@@ -3272,7 +3280,7 @@ impl AcuBoardVoltageReadings {
     pub fn acu_sdc_current(&self) -> f32 {
         self.acu_sdc_current_raw()
     }
-    /// Get raw value of acu_sdc_current
+    /// Get raw value of 'acu_sdc_current'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
@@ -3287,7 +3295,7 @@ impl AcuBoardVoltageReadings {
         let offset = -6.25_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of acu_sdc_current
+    /// Set value of 'acu_sdc_current'
     #[inline(always)]
     pub fn set_acu_sdc_current(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 8.24925_f32 < value {
@@ -3301,7 +3309,7 @@ impl AcuBoardVoltageReadings {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// acu_sdc_voltage
+    /// Get value of 'acu_sdc_voltage'
     ///
     /// ACU GLV system voltage reading
     ///
@@ -3313,7 +3321,7 @@ impl AcuBoardVoltageReadings {
     pub fn acu_sdc_voltage(&self) -> f32 {
         self.acu_sdc_voltage_raw()
     }
-    /// Get raw value of acu_sdc_voltage
+    /// Get raw value of 'acu_sdc_voltage'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -3328,7 +3336,7 @@ impl AcuBoardVoltageReadings {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of acu_sdc_voltage
+    /// Set value of 'acu_sdc_voltage'
     #[inline(always)]
     pub fn set_acu_sdc_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 3.2997_f32 < value {
@@ -3405,11 +3413,12 @@ impl VcuStatus {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xc3)
     });
+    pub const MESSAGE_SIZE: usize = 7;
     pub const VCU_MAX_TORQUE_MIN: u8 = 0_u8;
     pub const VCU_MAX_TORQUE_MAX: u8 = 255_u8;
     pub const VCU_STATEMACHINE_STATE_MIN: u8 = 0_u8;
     pub const VCU_STATEMACHINE_STATE_MAX: u8 = 7_u8;
-    /// Construct new vcu_status from values
+    /// Construct new 'vcu_status' from values
     pub fn new(
         vcu_max_torque: u8,
         vcu_accel_brake_implausible: bool,
@@ -3421,9 +3430,9 @@ impl VcuStatus {
         vcu_bms_ok_high: bool,
         vcu_imd_ok_high: bool,
         vcu_brake_active: bool,
-        vcu_statemachine_state: u8,
+        vcu_statemachine_state: VcuStatusVcuStatemachineState,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 7] };
+        let mut res = Self { raw: [0x00; 7] };
         res.set_vcu_max_torque(vcu_max_torque)?;
         res.set_vcu_accel_brake_implausible(vcu_accel_brake_implausible)?;
         res.set_vcu_bspd_brake_high(vcu_bspd_brake_high)?;
@@ -3441,7 +3450,7 @@ impl VcuStatus {
     pub fn raw(&self) -> &[u8; 7] {
         &self.raw
     }
-    /// vcu_max_torque
+    /// Get value of 'vcu_max_torque'
     ///
     /// max torque setting in Newton-meters
     ///
@@ -3453,7 +3462,7 @@ impl VcuStatus {
     pub fn vcu_max_torque(&self) -> u8 {
         self.vcu_max_torque_raw()
     }
-    /// Get raw value of vcu_max_torque
+    /// Get raw value of 'vcu_max_torque'
     ///
     /// - Start bit: 24
     /// - Signal size: 8 bits
@@ -3467,7 +3476,7 @@ impl VcuStatus {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_max_torque
+    /// Set value of 'vcu_max_torque'
     #[inline(always)]
     pub fn set_vcu_max_torque(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 255_u8 < value {
@@ -3485,7 +3494,7 @@ impl VcuStatus {
         self.raw.view_bits_mut::<Lsb0>()[24..32].store_le(value);
         Ok(())
     }
-    /// vcu_accel_brake_implausible
+    /// Get value of 'vcu_accel_brake_implausible'
     ///
     /// 1 if the accel and brake plausibility is tripped
     ///
@@ -3497,7 +3506,7 @@ impl VcuStatus {
     pub fn vcu_accel_brake_implausible(&self) -> bool {
         self.vcu_accel_brake_implausible_raw()
     }
-    /// Get raw value of vcu_accel_brake_implausible
+    /// Get raw value of 'vcu_accel_brake_implausible'
     ///
     /// - Start bit: 15
     /// - Signal size: 1 bits
@@ -3510,7 +3519,7 @@ impl VcuStatus {
         let signal = self.raw.view_bits::<Lsb0>()[15..16].load_le::<u8>();
         signal == 1
     }
-    /// Set value of vcu_accel_brake_implausible
+    /// Set value of 'vcu_accel_brake_implausible'
     #[inline(always)]
     pub fn set_vcu_accel_brake_implausible(
         &mut self,
@@ -3520,7 +3529,7 @@ impl VcuStatus {
         self.raw.view_bits_mut::<Lsb0>()[15..16].store_le(value);
         Ok(())
     }
-    /// vcu_bspd_brake_high
+    /// Get value of 'vcu_bspd_brake_high'
     ///
     /// 1 if the brake is above the bspd trip threshold
     ///
@@ -3532,7 +3541,7 @@ impl VcuStatus {
     pub fn vcu_bspd_brake_high(&self) -> bool {
         self.vcu_bspd_brake_high_raw()
     }
-    /// Get raw value of vcu_bspd_brake_high
+    /// Get raw value of 'vcu_bspd_brake_high'
     ///
     /// - Start bit: 14
     /// - Signal size: 1 bits
@@ -3545,14 +3554,14 @@ impl VcuStatus {
         let signal = self.raw.view_bits::<Lsb0>()[14..15].load_le::<u8>();
         signal == 1
     }
-    /// Set value of vcu_bspd_brake_high
+    /// Set value of 'vcu_bspd_brake_high'
     #[inline(always)]
     pub fn set_vcu_bspd_brake_high(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[14..15].store_le(value);
         Ok(())
     }
-    /// vcu_bspd_current_high
+    /// Get value of 'vcu_bspd_current_high'
     ///
     /// 1 if the acc current is above the bspd trip threshold
     ///
@@ -3564,7 +3573,7 @@ impl VcuStatus {
     pub fn vcu_bspd_current_high(&self) -> bool {
         self.vcu_bspd_current_high_raw()
     }
-    /// Get raw value of vcu_bspd_current_high
+    /// Get raw value of 'vcu_bspd_current_high'
     ///
     /// - Start bit: 13
     /// - Signal size: 1 bits
@@ -3577,14 +3586,14 @@ impl VcuStatus {
         let signal = self.raw.view_bits::<Lsb0>()[13..14].load_le::<u8>();
         signal == 1
     }
-    /// Set value of vcu_bspd_current_high
+    /// Set value of 'vcu_bspd_current_high'
     #[inline(always)]
     pub fn set_vcu_bspd_current_high(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[13..14].store_le(value);
         Ok(())
     }
-    /// vcu_brake_implausible
+    /// Get value of 'vcu_brake_implausible'
     ///
     /// 1 if the brake is implausible, 0 if not
     ///
@@ -3596,7 +3605,7 @@ impl VcuStatus {
     pub fn vcu_brake_implausible(&self) -> bool {
         self.vcu_brake_implausible_raw()
     }
-    /// Get raw value of vcu_brake_implausible
+    /// Get raw value of 'vcu_brake_implausible'
     ///
     /// - Start bit: 11
     /// - Signal size: 1 bits
@@ -3609,14 +3618,14 @@ impl VcuStatus {
         let signal = self.raw.view_bits::<Lsb0>()[11..12].load_le::<u8>();
         signal == 1
     }
-    /// Set value of vcu_brake_implausible
+    /// Set value of 'vcu_brake_implausible'
     #[inline(always)]
     pub fn set_vcu_brake_implausible(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[11..12].store_le(value);
         Ok(())
     }
-    /// vcu_accel_implausible
+    /// Get value of 'vcu_accel_implausible'
     ///
     /// 1 if the accel pedal is implausible, 0 if not
     ///
@@ -3628,7 +3637,7 @@ impl VcuStatus {
     pub fn vcu_accel_implausible(&self) -> bool {
         self.vcu_accel_implausible_raw()
     }
-    /// Get raw value of vcu_accel_implausible
+    /// Get raw value of 'vcu_accel_implausible'
     ///
     /// - Start bit: 10
     /// - Signal size: 1 bits
@@ -3641,14 +3650,14 @@ impl VcuStatus {
         let signal = self.raw.view_bits::<Lsb0>()[10..11].load_le::<u8>();
         signal == 1
     }
-    /// Set value of vcu_accel_implausible
+    /// Set value of 'vcu_accel_implausible'
     #[inline(always)]
     pub fn set_vcu_accel_implausible(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[10..11].store_le(value);
         Ok(())
     }
-    /// vcu_bspd_ok_high
+    /// Get value of 'vcu_bspd_ok_high'
     ///
     /// BSPD status, high = good
     ///
@@ -3660,7 +3669,7 @@ impl VcuStatus {
     pub fn vcu_bspd_ok_high(&self) -> bool {
         self.vcu_bspd_ok_high_raw()
     }
-    /// Get raw value of vcu_bspd_ok_high
+    /// Get raw value of 'vcu_bspd_ok_high'
     ///
     /// - Start bit: 6
     /// - Signal size: 1 bits
@@ -3673,14 +3682,14 @@ impl VcuStatus {
         let signal = self.raw.view_bits::<Lsb0>()[6..7].load_le::<u8>();
         signal == 1
     }
-    /// Set value of vcu_bspd_ok_high
+    /// Set value of 'vcu_bspd_ok_high'
     #[inline(always)]
     pub fn set_vcu_bspd_ok_high(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[6..7].store_le(value);
         Ok(())
     }
-    /// vcu_bms_ok_high
+    /// Get value of 'vcu_bms_ok_high'
     ///
     /// BMS status, high = good
     ///
@@ -3692,7 +3701,7 @@ impl VcuStatus {
     pub fn vcu_bms_ok_high(&self) -> bool {
         self.vcu_bms_ok_high_raw()
     }
-    /// Get raw value of vcu_bms_ok_high
+    /// Get raw value of 'vcu_bms_ok_high'
     ///
     /// - Start bit: 5
     /// - Signal size: 1 bits
@@ -3705,14 +3714,14 @@ impl VcuStatus {
         let signal = self.raw.view_bits::<Lsb0>()[5..6].load_le::<u8>();
         signal == 1
     }
-    /// Set value of vcu_bms_ok_high
+    /// Set value of 'vcu_bms_ok_high'
     #[inline(always)]
     pub fn set_vcu_bms_ok_high(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[5..6].store_le(value);
         Ok(())
     }
-    /// vcu_imd_ok_high
+    /// Get value of 'vcu_imd_ok_high'
     ///
     /// IMD status, high = good
     ///
@@ -3724,7 +3733,7 @@ impl VcuStatus {
     pub fn vcu_imd_ok_high(&self) -> bool {
         self.vcu_imd_ok_high_raw()
     }
-    /// Get raw value of vcu_imd_ok_high
+    /// Get raw value of 'vcu_imd_ok_high'
     ///
     /// - Start bit: 4
     /// - Signal size: 1 bits
@@ -3737,14 +3746,14 @@ impl VcuStatus {
         let signal = self.raw.view_bits::<Lsb0>()[4..5].load_le::<u8>();
         signal == 1
     }
-    /// Set value of vcu_imd_ok_high
+    /// Set value of 'vcu_imd_ok_high'
     #[inline(always)]
     pub fn set_vcu_imd_ok_high(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[4..5].store_le(value);
         Ok(())
     }
-    /// vcu_brake_active
+    /// Get value of 'vcu_brake_active'
     ///
     /// 1 if the brake is active (above 'vcu_brake_active_threshold')
     ///
@@ -3756,7 +3765,7 @@ impl VcuStatus {
     pub fn vcu_brake_active(&self) -> bool {
         self.vcu_brake_active_raw()
     }
-    /// Get raw value of vcu_brake_active
+    /// Get raw value of 'vcu_brake_active'
     ///
     /// - Start bit: 3
     /// - Signal size: 1 bits
@@ -3769,14 +3778,14 @@ impl VcuStatus {
         let signal = self.raw.view_bits::<Lsb0>()[3..4].load_le::<u8>();
         signal == 1
     }
-    /// Set value of vcu_brake_active
+    /// Set value of 'vcu_brake_active'
     #[inline(always)]
     pub fn set_vcu_brake_active(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[3..4].store_le(value);
         Ok(())
     }
-    /// vcu_statemachine_state
+    /// Get value of 'vcu_statemachine_state'
     ///
     /// Current VCU state
     ///
@@ -3798,7 +3807,7 @@ impl VcuStatus {
             _ => VcuStatusVcuStatemachineState::_Other(self.vcu_statemachine_state_raw()),
         }
     }
-    /// Get raw value of vcu_statemachine_state
+    /// Get raw value of 'vcu_statemachine_state'
     ///
     /// - Start bit: 0
     /// - Signal size: 3 bits
@@ -3812,9 +3821,13 @@ impl VcuStatus {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_statemachine_state
+    /// Set value of 'vcu_statemachine_state'
     #[inline(always)]
-    pub fn set_vcu_statemachine_state(&mut self, value: u8) -> Result<(), CanError> {
+    pub fn set_vcu_statemachine_state(
+        &mut self,
+        value: VcuStatusVcuStatemachineState,
+    ) -> Result<(), CanError> {
+        let value = u8::from(value);
         if value < 0_u8 || 7_u8 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: VcuStatus::MESSAGE_ID,
@@ -3928,19 +3941,20 @@ impl VcuPedalsTravel {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xc4)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const VCU_BSE_TRAVEL_MIN: f32 = 0_f32;
     pub const VCU_BSE_TRAVEL_MAX: f32 = 655.35_f32;
     pub const VCU_APPS2_TRAVEL_MIN: f32 = 0_f32;
     pub const VCU_APPS2_TRAVEL_MAX: f32 = 655.35_f32;
     pub const VCU_APPS1_TRAVEL_MIN: f32 = 0_f32;
     pub const VCU_APPS1_TRAVEL_MAX: f32 = 655.35_f32;
-    /// Construct new vcu_pedals_travel from values
+    /// Construct new 'vcu_pedals_travel' from values
     pub fn new(
         vcu_bse_travel: f32,
         vcu_apps2_travel: f32,
         vcu_apps1_travel: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_vcu_bse_travel(vcu_bse_travel)?;
         res.set_vcu_apps2_travel(vcu_apps2_travel)?;
         res.set_vcu_apps1_travel(vcu_apps1_travel)?;
@@ -3950,7 +3964,7 @@ impl VcuPedalsTravel {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// vcu_bse_travel
+    /// Get value of 'vcu_bse_travel'
     ///
     /// 0 to 100%
     ///
@@ -3962,7 +3976,7 @@ impl VcuPedalsTravel {
     pub fn vcu_bse_travel(&self) -> f32 {
         self.vcu_bse_travel_raw()
     }
-    /// Get raw value of vcu_bse_travel
+    /// Get raw value of 'vcu_bse_travel'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -3977,7 +3991,7 @@ impl VcuPedalsTravel {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vcu_bse_travel
+    /// Set value of 'vcu_bse_travel'
     #[inline(always)]
     pub fn set_vcu_bse_travel(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 655.35_f32 < value {
@@ -3991,7 +4005,7 @@ impl VcuPedalsTravel {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// vcu_apps2_travel
+    /// Get value of 'vcu_apps2_travel'
     ///
     /// 0 to 100%
     ///
@@ -4003,7 +4017,7 @@ impl VcuPedalsTravel {
     pub fn vcu_apps2_travel(&self) -> f32 {
         self.vcu_apps2_travel_raw()
     }
-    /// Get raw value of vcu_apps2_travel
+    /// Get raw value of 'vcu_apps2_travel'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -4018,7 +4032,7 @@ impl VcuPedalsTravel {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vcu_apps2_travel
+    /// Set value of 'vcu_apps2_travel'
     #[inline(always)]
     pub fn set_vcu_apps2_travel(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 655.35_f32 < value {
@@ -4032,7 +4046,7 @@ impl VcuPedalsTravel {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// vcu_apps1_travel
+    /// Get value of 'vcu_apps1_travel'
     ///
     /// 0 to 100%
     ///
@@ -4044,7 +4058,7 @@ impl VcuPedalsTravel {
     pub fn vcu_apps1_travel(&self) -> f32 {
         self.vcu_apps1_travel_raw()
     }
-    /// Get raw value of vcu_apps1_travel
+    /// Get raw value of 'vcu_apps1_travel'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -4059,7 +4073,7 @@ impl VcuPedalsTravel {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vcu_apps1_travel
+    /// Set value of 'vcu_apps1_travel'
     #[inline(always)]
     pub fn set_vcu_apps1_travel(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 655.35_f32 < value {
@@ -4136,19 +4150,20 @@ impl VcuPedalReadings {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xc5)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const BSE_RAW_MIN: u16 = 0_u16;
     pub const BSE_RAW_MAX: u16 = 65535_u16;
     pub const APPS_2_RAW_MIN: u16 = 0_u16;
     pub const APPS_2_RAW_MAX: u16 = 65535_u16;
     pub const APPS_1_RAW_MIN: u16 = 0_u16;
     pub const APPS_1_RAW_MAX: u16 = 65535_u16;
-    /// Construct new vcu_pedal_readings from values
+    /// Construct new 'vcu_pedal_readings' from values
     pub fn new(
         bse_raw: u16,
         apps_2_raw: u16,
         apps_1_raw: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_bse_raw(bse_raw)?;
         res.set_apps_2_raw(apps_2_raw)?;
         res.set_apps_1_raw(apps_1_raw)?;
@@ -4158,7 +4173,7 @@ impl VcuPedalReadings {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// bse_raw
+    /// Get value of 'bse_raw'
     ///
     /// brake system encoder sensor ADC reading
     ///
@@ -4170,7 +4185,7 @@ impl VcuPedalReadings {
     pub fn bse_raw(&self) -> u16 {
         self.bse_raw_raw()
     }
-    /// Get raw value of bse_raw
+    /// Get raw value of 'bse_raw'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -4184,7 +4199,7 @@ impl VcuPedalReadings {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of bse_raw
+    /// Set value of 'bse_raw'
     #[inline(always)]
     pub fn set_bse_raw(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -4202,7 +4217,7 @@ impl VcuPedalReadings {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// apps_2_raw
+    /// Get value of 'apps_2_raw'
     ///
     /// Accelerator pedal sensor 2 ADC reading
     ///
@@ -4214,7 +4229,7 @@ impl VcuPedalReadings {
     pub fn apps_2_raw(&self) -> u16 {
         self.apps_2_raw_raw()
     }
-    /// Get raw value of apps_2_raw
+    /// Get raw value of 'apps_2_raw'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -4228,7 +4243,7 @@ impl VcuPedalReadings {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of apps_2_raw
+    /// Set value of 'apps_2_raw'
     #[inline(always)]
     pub fn set_apps_2_raw(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -4246,7 +4261,7 @@ impl VcuPedalReadings {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// apps_1_raw
+    /// Get value of 'apps_1_raw'
     ///
     /// Accelerator pedal sensor 1 ADC reading
     ///
@@ -4258,7 +4273,7 @@ impl VcuPedalReadings {
     pub fn apps_1_raw(&self) -> u16 {
         self.apps_1_raw_raw()
     }
-    /// Get raw value of apps_1_raw
+    /// Get raw value of 'apps_1_raw'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -4272,7 +4287,7 @@ impl VcuPedalReadings {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of apps_1_raw
+    /// Set value of 'apps_1_raw'
     #[inline(always)]
     pub fn set_apps_1_raw(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -4353,15 +4368,16 @@ impl VcuBoardReadingsOne {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xc6)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const BSPD_FAULT_MIN: u16 = 0_u16;
     pub const BSPD_FAULT_MAX: u16 = 65535_u16;
     pub const BSE_OK_MIN: u16 = 0_u16;
     pub const BSE_OK_MAX: u16 = 65535_u16;
     pub const HALL_OK_MIN: u16 = 0_u16;
     pub const HALL_OK_MAX: u16 = 65535_u16;
-    /// Construct new vcu_board_readings_one from values
+    /// Construct new 'vcu_board_readings_one' from values
     pub fn new(bspd_fault: u16, bse_ok: u16, hall_ok: u16) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_bspd_fault(bspd_fault)?;
         res.set_bse_ok(bse_ok)?;
         res.set_hall_ok(hall_ok)?;
@@ -4371,7 +4387,7 @@ impl VcuBoardReadingsOne {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// bspd_fault
+    /// Get value of 'bspd_fault'
     ///
     /// VCU pcb voltage sense of the BSPD signal to close relay
     ///
@@ -4383,7 +4399,7 @@ impl VcuBoardReadingsOne {
     pub fn bspd_fault(&self) -> u16 {
         self.bspd_fault_raw()
     }
-    /// Get raw value of bspd_fault
+    /// Get raw value of 'bspd_fault'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -4397,7 +4413,7 @@ impl VcuBoardReadingsOne {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of bspd_fault
+    /// Set value of 'bspd_fault'
     #[inline(always)]
     pub fn set_bspd_fault(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -4415,7 +4431,7 @@ impl VcuBoardReadingsOne {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// bse_OK
+    /// Get value of 'bse_OK'
     ///
     /// VCU pcb voltage sense of glv rail
     ///
@@ -4427,7 +4443,7 @@ impl VcuBoardReadingsOne {
     pub fn bse_ok(&self) -> u16 {
         self.bse_ok_raw()
     }
-    /// Get raw value of bse_OK
+    /// Get raw value of 'bse_OK'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -4441,7 +4457,7 @@ impl VcuBoardReadingsOne {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of bse_OK
+    /// Set value of 'bse_OK'
     #[inline(always)]
     pub fn set_bse_ok(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -4459,7 +4475,7 @@ impl VcuBoardReadingsOne {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// hall_OK
+    /// Get value of 'hall_OK'
     ///
     /// VCU pcb current sense of the glv rail
     ///
@@ -4471,7 +4487,7 @@ impl VcuBoardReadingsOne {
     pub fn hall_ok(&self) -> u16 {
         self.hall_ok_raw()
     }
-    /// Get raw value of hall_OK
+    /// Get raw value of 'hall_OK'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -4485,7 +4501,7 @@ impl VcuBoardReadingsOne {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of hall_OK
+    /// Set value of 'hall_OK'
     #[inline(always)]
     pub fn set_hall_ok(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -4566,6 +4582,7 @@ impl VcuBoardReadingsTwo {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xc7)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const VCU_AIN_17_MIN: u16 = 0_u16;
     pub const VCU_AIN_17_MAX: u16 = 1023_u16;
     pub const VCU_AIN_16_MIN: u16 = 0_u16;
@@ -4578,7 +4595,7 @@ impl VcuBoardReadingsTwo {
     pub const VCU_AIN_11_MAX: u16 = 1023_u16;
     pub const VCU_AIN_10_MIN: u16 = 0_u16;
     pub const VCU_AIN_10_MAX: u16 = 1023_u16;
-    /// Construct new vcu_board_readings_two from values
+    /// Construct new 'vcu_board_readings_two' from values
     pub fn new(
         vcu_ain_17: u16,
         vcu_ain_16: u16,
@@ -4587,7 +4604,7 @@ impl VcuBoardReadingsTwo {
         vcu_ain_11: u16,
         vcu_ain_10: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_vcu_ain_17(vcu_ain_17)?;
         res.set_vcu_ain_16(vcu_ain_16)?;
         res.set_vcu_ain_15(vcu_ain_15)?;
@@ -4600,7 +4617,7 @@ impl VcuBoardReadingsTwo {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// vcu_ain_17
+    /// Get value of 'vcu_ain_17'
     ///
     /// VCU pcb non specific analog channel
     ///
@@ -4612,7 +4629,7 @@ impl VcuBoardReadingsTwo {
     pub fn vcu_ain_17(&self) -> u16 {
         self.vcu_ain_17_raw()
     }
-    /// Get raw value of vcu_ain_17
+    /// Get raw value of 'vcu_ain_17'
     ///
     /// - Start bit: 50
     /// - Signal size: 10 bits
@@ -4626,7 +4643,7 @@ impl VcuBoardReadingsTwo {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_ain_17
+    /// Set value of 'vcu_ain_17'
     #[inline(always)]
     pub fn set_vcu_ain_17(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 1023_u16 < value {
@@ -4644,7 +4661,7 @@ impl VcuBoardReadingsTwo {
         self.raw.view_bits_mut::<Lsb0>()[50..60].store_le(value);
         Ok(())
     }
-    /// vcu_ain_16
+    /// Get value of 'vcu_ain_16'
     ///
     /// VCU pcb non specific analog channel
     ///
@@ -4656,7 +4673,7 @@ impl VcuBoardReadingsTwo {
     pub fn vcu_ain_16(&self) -> u16 {
         self.vcu_ain_16_raw()
     }
-    /// Get raw value of vcu_ain_16
+    /// Get raw value of 'vcu_ain_16'
     ///
     /// - Start bit: 40
     /// - Signal size: 10 bits
@@ -4670,7 +4687,7 @@ impl VcuBoardReadingsTwo {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_ain_16
+    /// Set value of 'vcu_ain_16'
     #[inline(always)]
     pub fn set_vcu_ain_16(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 1023_u16 < value {
@@ -4688,7 +4705,7 @@ impl VcuBoardReadingsTwo {
         self.raw.view_bits_mut::<Lsb0>()[40..50].store_le(value);
         Ok(())
     }
-    /// vcu_ain_15
+    /// Get value of 'vcu_ain_15'
     ///
     /// VCU pcb non specific analog channel
     ///
@@ -4700,7 +4717,7 @@ impl VcuBoardReadingsTwo {
     pub fn vcu_ain_15(&self) -> u16 {
         self.vcu_ain_15_raw()
     }
-    /// Get raw value of vcu_ain_15
+    /// Get raw value of 'vcu_ain_15'
     ///
     /// - Start bit: 30
     /// - Signal size: 10 bits
@@ -4714,7 +4731,7 @@ impl VcuBoardReadingsTwo {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_ain_15
+    /// Set value of 'vcu_ain_15'
     #[inline(always)]
     pub fn set_vcu_ain_15(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 1023_u16 < value {
@@ -4732,7 +4749,7 @@ impl VcuBoardReadingsTwo {
         self.raw.view_bits_mut::<Lsb0>()[30..40].store_le(value);
         Ok(())
     }
-    /// vcu_ain_14
+    /// Get value of 'vcu_ain_14'
     ///
     /// VCU pcb non specific analog channel
     ///
@@ -4744,7 +4761,7 @@ impl VcuBoardReadingsTwo {
     pub fn vcu_ain_14(&self) -> u16 {
         self.vcu_ain_14_raw()
     }
-    /// Get raw value of vcu_ain_14
+    /// Get raw value of 'vcu_ain_14'
     ///
     /// - Start bit: 20
     /// - Signal size: 10 bits
@@ -4758,7 +4775,7 @@ impl VcuBoardReadingsTwo {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_ain_14
+    /// Set value of 'vcu_ain_14'
     #[inline(always)]
     pub fn set_vcu_ain_14(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 1023_u16 < value {
@@ -4776,7 +4793,7 @@ impl VcuBoardReadingsTwo {
         self.raw.view_bits_mut::<Lsb0>()[20..30].store_le(value);
         Ok(())
     }
-    /// vcu_ain_11
+    /// Get value of 'vcu_ain_11'
     ///
     /// VCU pcb non specific analog channel
     ///
@@ -4788,7 +4805,7 @@ impl VcuBoardReadingsTwo {
     pub fn vcu_ain_11(&self) -> u16 {
         self.vcu_ain_11_raw()
     }
-    /// Get raw value of vcu_ain_11
+    /// Get raw value of 'vcu_ain_11'
     ///
     /// - Start bit: 10
     /// - Signal size: 10 bits
@@ -4802,7 +4819,7 @@ impl VcuBoardReadingsTwo {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_ain_11
+    /// Set value of 'vcu_ain_11'
     #[inline(always)]
     pub fn set_vcu_ain_11(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 1023_u16 < value {
@@ -4820,7 +4837,7 @@ impl VcuBoardReadingsTwo {
         self.raw.view_bits_mut::<Lsb0>()[10..20].store_le(value);
         Ok(())
     }
-    /// vcu_ain_10
+    /// Get value of 'vcu_ain_10'
     ///
     /// VCU pcb non specific analog channel
     ///
@@ -4832,7 +4849,7 @@ impl VcuBoardReadingsTwo {
     pub fn vcu_ain_10(&self) -> u16 {
         self.vcu_ain_10_raw()
     }
-    /// Get raw value of vcu_ain_10
+    /// Get raw value of 'vcu_ain_10'
     ///
     /// - Start bit: 0
     /// - Signal size: 10 bits
@@ -4846,7 +4863,7 @@ impl VcuBoardReadingsTwo {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_ain_10
+    /// Set value of 'vcu_ain_10'
     #[inline(always)]
     pub fn set_vcu_ain_10(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 1023_u16 < value {
@@ -4927,6 +4944,7 @@ impl VcuDistanceTrackerMotor {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xc8)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const VCU_MOTOR_EFFICIENCY_KMKWH_MIN: f32 = 0_f32;
     pub const VCU_MOTOR_EFFICIENCY_KMKWH_MAX: f32 = 65.535_f32;
     pub const VCU_MOTOR_DISTANCE_METERS_MIN: u16 = 0_u16;
@@ -4935,14 +4953,14 @@ impl VcuDistanceTrackerMotor {
     pub const VCU_MOTOR_EFFICIENCY_INSTANTANEO_MAX: f32 = 65.535_f32;
     pub const VCU_MOTOR_ENERGY_WH_MIN: f32 = 0_f32;
     pub const VCU_MOTOR_ENERGY_WH_MAX: f32 = 6553.5_f32;
-    /// Construct new vcu_distance_tracker_motor from values
+    /// Construct new 'vcu_distance_tracker_motor' from values
     pub fn new(
         vcu_motor_efficiency_kmkwh: f32,
         vcu_motor_distance_meters: u16,
         vcu_motor_efficiency_instantaneo: f32,
         vcu_motor_energy_wh: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_vcu_motor_efficiency_kmkwh(vcu_motor_efficiency_kmkwh)?;
         res.set_vcu_motor_distance_meters(vcu_motor_distance_meters)?;
         res.set_vcu_motor_efficiency_instantaneo(vcu_motor_efficiency_instantaneo)?;
@@ -4953,7 +4971,7 @@ impl VcuDistanceTrackerMotor {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// vcu_motor_efficiency_kmkwh
+    /// Get value of 'vcu_motor_efficiency_kmkwh'
     ///
     /// - Min: 0
     /// - Max: 65.535
@@ -4963,7 +4981,7 @@ impl VcuDistanceTrackerMotor {
     pub fn vcu_motor_efficiency_kmkwh(&self) -> f32 {
         self.vcu_motor_efficiency_kmkwh_raw()
     }
-    /// Get raw value of vcu_motor_efficiency_kmkwh
+    /// Get raw value of 'vcu_motor_efficiency_kmkwh'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -4978,7 +4996,7 @@ impl VcuDistanceTrackerMotor {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vcu_motor_efficiency_kmkwh
+    /// Set value of 'vcu_motor_efficiency_kmkwh'
     #[inline(always)]
     pub fn set_vcu_motor_efficiency_kmkwh(
         &mut self,
@@ -4995,7 +5013,7 @@ impl VcuDistanceTrackerMotor {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// vcu_motor_distance_meters
+    /// Get value of 'vcu_motor_distance_meters'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -5005,7 +5023,7 @@ impl VcuDistanceTrackerMotor {
     pub fn vcu_motor_distance_meters(&self) -> u16 {
         self.vcu_motor_distance_meters_raw()
     }
-    /// Get raw value of vcu_motor_distance_meters
+    /// Get raw value of 'vcu_motor_distance_meters'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -5019,7 +5037,7 @@ impl VcuDistanceTrackerMotor {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_motor_distance_meters
+    /// Set value of 'vcu_motor_distance_meters'
     #[inline(always)]
     pub fn set_vcu_motor_distance_meters(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -5037,7 +5055,7 @@ impl VcuDistanceTrackerMotor {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// vcu_motor_efficiency_instantaneo
+    /// Get value of 'vcu_motor_efficiency_instantaneo'
     ///
     /// - Min: 0
     /// - Max: 65.535
@@ -5047,7 +5065,7 @@ impl VcuDistanceTrackerMotor {
     pub fn vcu_motor_efficiency_instantaneo(&self) -> f32 {
         self.vcu_motor_efficiency_instantaneo_raw()
     }
-    /// Get raw value of vcu_motor_efficiency_instantaneo
+    /// Get raw value of 'vcu_motor_efficiency_instantaneo'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -5062,7 +5080,7 @@ impl VcuDistanceTrackerMotor {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vcu_motor_efficiency_instantaneo
+    /// Set value of 'vcu_motor_efficiency_instantaneo'
     #[inline(always)]
     pub fn set_vcu_motor_efficiency_instantaneo(
         &mut self,
@@ -5079,7 +5097,7 @@ impl VcuDistanceTrackerMotor {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// vcu_motor_energy_wh
+    /// Get value of 'vcu_motor_energy_wh'
     ///
     /// - Min: 0
     /// - Max: 6553.5
@@ -5089,7 +5107,7 @@ impl VcuDistanceTrackerMotor {
     pub fn vcu_motor_energy_wh(&self) -> f32 {
         self.vcu_motor_energy_wh_raw()
     }
-    /// Get raw value of vcu_motor_energy_wh
+    /// Get raw value of 'vcu_motor_energy_wh'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -5104,7 +5122,7 @@ impl VcuDistanceTrackerMotor {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vcu_motor_energy_wh
+    /// Set value of 'vcu_motor_energy_wh'
     #[inline(always)]
     pub fn set_vcu_motor_energy_wh(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 6553.5_f32 < value {
@@ -5181,16 +5199,17 @@ impl VcuSetParameter {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xc9)
     });
+    pub const MESSAGE_SIZE: usize = 5;
     pub const VCU_PARAMETER_VALUE_MIN: u32 = 0_u32;
     pub const VCU_PARAMETER_VALUE_MAX: u32 = 4294967295_u32;
     pub const VCU_TARGET_PARAMETER_MIN: u8 = 0_u8;
     pub const VCU_TARGET_PARAMETER_MAX: u8 = 255_u8;
-    /// Construct new vcu_set_parameter from values
+    /// Construct new 'vcu_set_parameter' from values
     pub fn new(
         vcu_parameter_value: u32,
         vcu_target_parameter: u8,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 5] };
+        let mut res = Self { raw: [0x00; 5] };
         res.set_vcu_parameter_value(vcu_parameter_value)?;
         res.set_vcu_target_parameter(vcu_target_parameter)?;
         Ok(res)
@@ -5199,7 +5218,7 @@ impl VcuSetParameter {
     pub fn raw(&self) -> &[u8; 5] {
         &self.raw
     }
-    /// vcu_parameter_value
+    /// Get value of 'vcu_parameter_value'
     ///
     /// The actual value that you want to set the parameter to
     ///
@@ -5211,7 +5230,7 @@ impl VcuSetParameter {
     pub fn vcu_parameter_value(&self) -> u32 {
         self.vcu_parameter_value_raw()
     }
-    /// Get raw value of vcu_parameter_value
+    /// Get raw value of 'vcu_parameter_value'
     ///
     /// - Start bit: 8
     /// - Signal size: 32 bits
@@ -5225,7 +5244,7 @@ impl VcuSetParameter {
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_parameter_value
+    /// Set value of 'vcu_parameter_value'
     #[inline(always)]
     pub fn set_vcu_parameter_value(&mut self, value: u32) -> Result<(), CanError> {
         if value < 0_u32 || 4294967295_u32 < value {
@@ -5243,7 +5262,7 @@ impl VcuSetParameter {
         self.raw.view_bits_mut::<Lsb0>()[8..40].store_le(value);
         Ok(())
     }
-    /// vcu_target_parameter
+    /// Get value of 'vcu_target_parameter'
     ///
     /// look in the vcu.hpp file in the VCU repo for the enum of targets
     ///
@@ -5255,7 +5274,7 @@ impl VcuSetParameter {
     pub fn vcu_target_parameter(&self) -> u8 {
         self.vcu_target_parameter_raw()
     }
-    /// Get raw value of vcu_target_parameter
+    /// Get raw value of 'vcu_target_parameter'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -5269,7 +5288,7 @@ impl VcuSetParameter {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_target_parameter
+    /// Set value of 'vcu_target_parameter'
     #[inline(always)]
     pub fn set_vcu_target_parameter(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 255_u8 < value {
@@ -5350,6 +5369,7 @@ impl VcuPedalThresholdSettings {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xca)
     });
+    pub const MESSAGE_SIZE: usize = 7;
     pub const VCU_APPS2_OV_THRESHOLD_MIN: u16 = 0_u16;
     pub const VCU_APPS2_OV_THRESHOLD_MAX: u16 = 65535_u16;
     pub const VCU_APPS2_UV_THRESHOLD_MIN: u16 = 0_u16;
@@ -5370,9 +5390,9 @@ impl VcuPedalThresholdSettings {
     pub const VCU_BRAKE_ACTIVE_THRESHOLD_MAX: u16 = 65535_u16;
     pub const VCU_PEDALS_SETTINGS_MUX_MIN: u8 = 0_u8;
     pub const VCU_PEDALS_SETTINGS_MUX_MAX: u8 = 255_u8;
-    /// Construct new vcu_pedal_threshold_settings from values
+    /// Construct new 'vcu_pedal_threshold_settings' from values
     pub fn new(vcu_pedals_settings_mux: u8) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 7] };
+        let mut res = Self { raw: [0x00; 7] };
         res.set_vcu_pedals_settings_mux(vcu_pedals_settings_mux)?;
         Ok(res)
     }
@@ -5380,7 +5400,7 @@ impl VcuPedalThresholdSettings {
     pub fn raw(&self) -> &[u8; 7] {
         &self.raw
     }
-    /// Get raw value of vcu_pedals_settings_MUX
+    /// Get raw value of 'vcu_pedals_settings_MUX'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -5427,7 +5447,7 @@ impl VcuPedalThresholdSettings {
             }
         }
     }
-    /// Set value of vcu_pedals_settings_MUX
+    /// Set value of 'vcu_pedals_settings_MUX'
     #[inline(always)]
     fn set_vcu_pedals_settings_mux(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 255_u8 < value {
@@ -5445,7 +5465,7 @@ impl VcuPedalThresholdSettings {
         self.raw.view_bits_mut::<Lsb0>()[0..8].store_le(value);
         Ok(())
     }
-    /// Set value of vcu_pedals_settings_MUX
+    /// Set value of 'vcu_pedals_settings_MUX'
     #[inline(always)]
     pub fn set_m0(
         &mut self,
@@ -5457,7 +5477,7 @@ impl VcuPedalThresholdSettings {
         self.set_vcu_pedals_settings_mux(0)?;
         Ok(())
     }
-    /// Set value of vcu_pedals_settings_MUX
+    /// Set value of 'vcu_pedals_settings_MUX'
     #[inline(always)]
     pub fn set_m1(
         &mut self,
@@ -5469,7 +5489,7 @@ impl VcuPedalThresholdSettings {
         self.set_vcu_pedals_settings_mux(1)?;
         Ok(())
     }
-    /// Set value of vcu_pedals_settings_MUX
+    /// Set value of 'vcu_pedals_settings_MUX'
     #[inline(always)]
     pub fn set_m2(
         &mut self,
@@ -5561,7 +5581,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM0 {
     pub fn new() -> Self {
         Self { raw: [0u8; 7] }
     }
-    /// vcu_apps1_start_threshold
+    /// Get value of 'vcu_apps1_start_threshold'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -5571,7 +5591,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM0 {
     pub fn vcu_apps1_start_threshold(&self) -> u16 {
         self.vcu_apps1_start_threshold_raw()
     }
-    /// Get raw value of vcu_apps1_start_threshold
+    /// Get raw value of 'vcu_apps1_start_threshold'
     ///
     /// - Start bit: 40
     /// - Signal size: 16 bits
@@ -5585,7 +5605,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM0 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_apps1_start_threshold
+    /// Set value of 'vcu_apps1_start_threshold'
     #[inline(always)]
     pub fn set_vcu_apps1_start_threshold(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -5603,7 +5623,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM0 {
         self.raw.view_bits_mut::<Lsb0>()[40..56].store_le(value);
         Ok(())
     }
-    /// vcu_apps1_uv_threshold
+    /// Get value of 'vcu_apps1_uv_threshold'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -5613,7 +5633,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM0 {
     pub fn vcu_apps1_uv_threshold(&self) -> u16 {
         self.vcu_apps1_uv_threshold_raw()
     }
-    /// Get raw value of vcu_apps1_uv_threshold
+    /// Get raw value of 'vcu_apps1_uv_threshold'
     ///
     /// - Start bit: 24
     /// - Signal size: 16 bits
@@ -5627,7 +5647,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM0 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_apps1_uv_threshold
+    /// Set value of 'vcu_apps1_uv_threshold'
     #[inline(always)]
     pub fn set_vcu_apps1_uv_threshold(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -5645,7 +5665,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM0 {
         self.raw.view_bits_mut::<Lsb0>()[24..40].store_le(value);
         Ok(())
     }
-    /// vcu_brake_active_threshold
+    /// Get value of 'vcu_brake_active_threshold'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -5655,7 +5675,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM0 {
     pub fn vcu_brake_active_threshold(&self) -> u16 {
         self.vcu_brake_active_threshold_raw()
     }
-    /// Get raw value of vcu_brake_active_threshold
+    /// Get raw value of 'vcu_brake_active_threshold'
     ///
     /// - Start bit: 8
     /// - Signal size: 16 bits
@@ -5669,7 +5689,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM0 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_brake_active_threshold
+    /// Set value of 'vcu_brake_active_threshold'
     #[inline(always)]
     pub fn set_vcu_brake_active_threshold(
         &mut self,
@@ -5717,7 +5737,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM1 {
     pub fn new() -> Self {
         Self { raw: [0u8; 7] }
     }
-    /// vcu_apps2_uv_threshold
+    /// Get value of 'vcu_apps2_uv_threshold'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -5727,7 +5747,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM1 {
     pub fn vcu_apps2_uv_threshold(&self) -> u16 {
         self.vcu_apps2_uv_threshold_raw()
     }
-    /// Get raw value of vcu_apps2_uv_threshold
+    /// Get raw value of 'vcu_apps2_uv_threshold'
     ///
     /// - Start bit: 40
     /// - Signal size: 16 bits
@@ -5741,7 +5761,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM1 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_apps2_uv_threshold
+    /// Set value of 'vcu_apps2_uv_threshold'
     #[inline(always)]
     pub fn set_vcu_apps2_uv_threshold(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -5759,7 +5779,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM1 {
         self.raw.view_bits_mut::<Lsb0>()[40..56].store_le(value);
         Ok(())
     }
-    /// vcu_apps1_ov_threshold
+    /// Get value of 'vcu_apps1_ov_threshold'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -5769,7 +5789,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM1 {
     pub fn vcu_apps1_ov_threshold(&self) -> u16 {
         self.vcu_apps1_ov_threshold_raw()
     }
-    /// Get raw value of vcu_apps1_ov_threshold
+    /// Get raw value of 'vcu_apps1_ov_threshold'
     ///
     /// - Start bit: 24
     /// - Signal size: 16 bits
@@ -5783,7 +5803,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM1 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_apps1_ov_threshold
+    /// Set value of 'vcu_apps1_ov_threshold'
     #[inline(always)]
     pub fn set_vcu_apps1_ov_threshold(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -5801,7 +5821,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM1 {
         self.raw.view_bits_mut::<Lsb0>()[24..40].store_le(value);
         Ok(())
     }
-    /// vcu_apps1_end_threshold
+    /// Get value of 'vcu_apps1_end_threshold'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -5811,7 +5831,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM1 {
     pub fn vcu_apps1_end_threshold(&self) -> u16 {
         self.vcu_apps1_end_threshold_raw()
     }
-    /// Get raw value of vcu_apps1_end_threshold
+    /// Get raw value of 'vcu_apps1_end_threshold'
     ///
     /// - Start bit: 8
     /// - Signal size: 16 bits
@@ -5825,7 +5845,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM1 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_apps1_end_threshold
+    /// Set value of 'vcu_apps1_end_threshold'
     #[inline(always)]
     pub fn set_vcu_apps1_end_threshold(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -5870,7 +5890,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM2 {
     pub fn new() -> Self {
         Self { raw: [0u8; 7] }
     }
-    /// vcu_apps2_ov_threshold
+    /// Get value of 'vcu_apps2_ov_threshold'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -5880,7 +5900,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM2 {
     pub fn vcu_apps2_ov_threshold(&self) -> u16 {
         self.vcu_apps2_ov_threshold_raw()
     }
-    /// Get raw value of vcu_apps2_ov_threshold
+    /// Get raw value of 'vcu_apps2_ov_threshold'
     ///
     /// - Start bit: 40
     /// - Signal size: 16 bits
@@ -5894,7 +5914,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM2 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_apps2_ov_threshold
+    /// Set value of 'vcu_apps2_ov_threshold'
     #[inline(always)]
     pub fn set_vcu_apps2_ov_threshold(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -5912,7 +5932,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM2 {
         self.raw.view_bits_mut::<Lsb0>()[40..56].store_le(value);
         Ok(())
     }
-    /// vcu_apps2_end_threshold
+    /// Get value of 'vcu_apps2_end_threshold'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -5922,7 +5942,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM2 {
     pub fn vcu_apps2_end_threshold(&self) -> u16 {
         self.vcu_apps2_end_threshold_raw()
     }
-    /// Get raw value of vcu_apps2_end_threshold
+    /// Get raw value of 'vcu_apps2_end_threshold'
     ///
     /// - Start bit: 24
     /// - Signal size: 16 bits
@@ -5936,7 +5956,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM2 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_apps2_end_threshold
+    /// Set value of 'vcu_apps2_end_threshold'
     #[inline(always)]
     pub fn set_vcu_apps2_end_threshold(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -5954,7 +5974,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM2 {
         self.raw.view_bits_mut::<Lsb0>()[24..40].store_le(value);
         Ok(())
     }
-    /// vcu_apps2_start_threshold
+    /// Get value of 'vcu_apps2_start_threshold'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -5964,7 +5984,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM2 {
     pub fn vcu_apps2_start_threshold(&self) -> u16 {
         self.vcu_apps2_start_threshold_raw()
     }
-    /// Get raw value of vcu_apps2_start_threshold
+    /// Get raw value of 'vcu_apps2_start_threshold'
     ///
     /// - Start bit: 8
     /// - Signal size: 16 bits
@@ -5978,7 +5998,7 @@ impl VcuPedalThresholdSettingsVcuPedalsSettingsMuxM2 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_apps2_start_threshold
+    /// Set value of 'vcu_apps2_start_threshold'
     #[inline(always)]
     pub fn set_vcu_apps2_start_threshold(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -6021,16 +6041,17 @@ impl VcuLifetimeDistanceAndOntime {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xcb)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const VCU_LIFETIME_DISTANCE_MIN: u32 = 0_u32;
     pub const VCU_LIFETIME_DISTANCE_MAX: u32 = 4294967295_u32;
     pub const VCU_LIFETIME_ONTIME_MIN: u32 = 0_u32;
     pub const VCU_LIFETIME_ONTIME_MAX: u32 = 4294967295_u32;
-    /// Construct new vcu_lifetime_distance_and_ontime from values
+    /// Construct new 'vcu_lifetime_distance_and_ontime' from values
     pub fn new(
         vcu_lifetime_distance: u32,
         vcu_lifetime_ontime: u32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_vcu_lifetime_distance(vcu_lifetime_distance)?;
         res.set_vcu_lifetime_ontime(vcu_lifetime_ontime)?;
         Ok(res)
@@ -6039,7 +6060,7 @@ impl VcuLifetimeDistanceAndOntime {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// vcu_lifetime_distance
+    /// Get value of 'vcu_lifetime_distance'
     ///
     /// - Min: 0
     /// - Max: 4294967295
@@ -6049,7 +6070,7 @@ impl VcuLifetimeDistanceAndOntime {
     pub fn vcu_lifetime_distance(&self) -> u32 {
         self.vcu_lifetime_distance_raw()
     }
-    /// Get raw value of vcu_lifetime_distance
+    /// Get raw value of 'vcu_lifetime_distance'
     ///
     /// - Start bit: 32
     /// - Signal size: 32 bits
@@ -6063,7 +6084,7 @@ impl VcuLifetimeDistanceAndOntime {
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_lifetime_distance
+    /// Set value of 'vcu_lifetime_distance'
     #[inline(always)]
     pub fn set_vcu_lifetime_distance(&mut self, value: u32) -> Result<(), CanError> {
         if value < 0_u32 || 4294967295_u32 < value {
@@ -6081,7 +6102,7 @@ impl VcuLifetimeDistanceAndOntime {
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
         Ok(())
     }
-    /// vcu_lifetime_ontime
+    /// Get value of 'vcu_lifetime_ontime'
     ///
     /// - Min: 0
     /// - Max: 4294967295
@@ -6091,7 +6112,7 @@ impl VcuLifetimeDistanceAndOntime {
     pub fn vcu_lifetime_ontime(&self) -> u32 {
         self.vcu_lifetime_ontime_raw()
     }
-    /// Get raw value of vcu_lifetime_ontime
+    /// Get raw value of 'vcu_lifetime_ontime'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -6105,7 +6126,7 @@ impl VcuLifetimeDistanceAndOntime {
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of vcu_lifetime_ontime
+    /// Set value of 'vcu_lifetime_ontime'
     #[inline(always)]
     pub fn set_vcu_lifetime_ontime(&mut self, value: u32) -> Result<(), CanError> {
         if value < 0_u32 || 4294967295_u32 < value {
@@ -6186,7 +6207,8 @@ impl DashButtons {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xeb)
     });
-    /// Construct new dash_buttons from values
+    pub const MESSAGE_SIZE: usize = 1;
+    /// Construct new 'dash_buttons' from values
     pub fn new(
         dash_button6status: bool,
         dash_button5status: bool,
@@ -6195,7 +6217,7 @@ impl DashButtons {
         dash_button2status: bool,
         dash_button1status: bool,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 1] };
+        let mut res = Self { raw: [0x00; 1] };
         res.set_dash_button6status(dash_button6status)?;
         res.set_dash_button5status(dash_button5status)?;
         res.set_dash_button4status(dash_button4status)?;
@@ -6208,7 +6230,7 @@ impl DashButtons {
     pub fn raw(&self) -> &[u8; 1] {
         &self.raw
     }
-    /// dash_button6status
+    /// Get value of 'dash_button6status'
     ///
     /// status of button6 on dash (1 = pressed)
     ///
@@ -6220,7 +6242,7 @@ impl DashButtons {
     pub fn dash_button6status(&self) -> bool {
         self.dash_button6status_raw()
     }
-    /// Get raw value of dash_button6status
+    /// Get raw value of 'dash_button6status'
     ///
     /// - Start bit: 5
     /// - Signal size: 1 bits
@@ -6233,14 +6255,14 @@ impl DashButtons {
         let signal = self.raw.view_bits::<Lsb0>()[5..6].load_le::<u8>();
         signal == 1
     }
-    /// Set value of dash_button6status
+    /// Set value of 'dash_button6status'
     #[inline(always)]
     pub fn set_dash_button6status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[5..6].store_le(value);
         Ok(())
     }
-    /// dash_button5status
+    /// Get value of 'dash_button5status'
     ///
     /// status of button5 on dash (1 = pressed)
     ///
@@ -6252,7 +6274,7 @@ impl DashButtons {
     pub fn dash_button5status(&self) -> bool {
         self.dash_button5status_raw()
     }
-    /// Get raw value of dash_button5status
+    /// Get raw value of 'dash_button5status'
     ///
     /// - Start bit: 4
     /// - Signal size: 1 bits
@@ -6265,14 +6287,14 @@ impl DashButtons {
         let signal = self.raw.view_bits::<Lsb0>()[4..5].load_le::<u8>();
         signal == 1
     }
-    /// Set value of dash_button5status
+    /// Set value of 'dash_button5status'
     #[inline(always)]
     pub fn set_dash_button5status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[4..5].store_le(value);
         Ok(())
     }
-    /// dash_button4status
+    /// Get value of 'dash_button4status'
     ///
     /// status of button4 on dash (1 = pressed)
     ///
@@ -6284,7 +6306,7 @@ impl DashButtons {
     pub fn dash_button4status(&self) -> bool {
         self.dash_button4status_raw()
     }
-    /// Get raw value of dash_button4status
+    /// Get raw value of 'dash_button4status'
     ///
     /// - Start bit: 3
     /// - Signal size: 1 bits
@@ -6297,14 +6319,14 @@ impl DashButtons {
         let signal = self.raw.view_bits::<Lsb0>()[3..4].load_le::<u8>();
         signal == 1
     }
-    /// Set value of dash_button4status
+    /// Set value of 'dash_button4status'
     #[inline(always)]
     pub fn set_dash_button4status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[3..4].store_le(value);
         Ok(())
     }
-    /// dash_button3status
+    /// Get value of 'dash_button3status'
     ///
     /// status of button3 on dash (1 = pressed)
     ///
@@ -6316,7 +6338,7 @@ impl DashButtons {
     pub fn dash_button3status(&self) -> bool {
         self.dash_button3status_raw()
     }
-    /// Get raw value of dash_button3status
+    /// Get raw value of 'dash_button3status'
     ///
     /// - Start bit: 2
     /// - Signal size: 1 bits
@@ -6329,14 +6351,14 @@ impl DashButtons {
         let signal = self.raw.view_bits::<Lsb0>()[2..3].load_le::<u8>();
         signal == 1
     }
-    /// Set value of dash_button3status
+    /// Set value of 'dash_button3status'
     #[inline(always)]
     pub fn set_dash_button3status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[2..3].store_le(value);
         Ok(())
     }
-    /// dash_button2status
+    /// Get value of 'dash_button2status'
     ///
     /// status of button2 on dash (1 = pressed)
     ///
@@ -6348,7 +6370,7 @@ impl DashButtons {
     pub fn dash_button2status(&self) -> bool {
         self.dash_button2status_raw()
     }
-    /// Get raw value of dash_button2status
+    /// Get raw value of 'dash_button2status'
     ///
     /// - Start bit: 1
     /// - Signal size: 1 bits
@@ -6361,14 +6383,14 @@ impl DashButtons {
         let signal = self.raw.view_bits::<Lsb0>()[1..2].load_le::<u8>();
         signal == 1
     }
-    /// Set value of dash_button2status
+    /// Set value of 'dash_button2status'
     #[inline(always)]
     pub fn set_dash_button2status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[1..2].store_le(value);
         Ok(())
     }
-    /// dash_button1status
+    /// Get value of 'dash_button1status'
     ///
     /// status of button1 on dash (1 = pressed)
     ///
@@ -6380,7 +6402,7 @@ impl DashButtons {
     pub fn dash_button1status(&self) -> bool {
         self.dash_button1status_raw()
     }
-    /// Get raw value of dash_button1status
+    /// Get raw value of 'dash_button1status'
     ///
     /// - Start bit: 0
     /// - Signal size: 1 bits
@@ -6393,7 +6415,7 @@ impl DashButtons {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
-    /// Set value of dash_button1status
+    /// Set value of 'dash_button1status'
     #[inline(always)]
     pub fn set_dash_button1status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
@@ -6463,13 +6485,14 @@ impl VectornavPosition {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f4)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const VN_LONGITUDE_MIN: f32 = -214.7483648_f32;
     pub const VN_LONGITUDE_MAX: f32 = 214.7483647_f32;
     pub const VN_LATITUDE_MIN: f32 = -214.7483648_f32;
     pub const VN_LATITUDE_MAX: f32 = 214.7483647_f32;
-    /// Construct new vectornav_position from values
+    /// Construct new 'vectornav_position' from values
     pub fn new(vn_longitude: f32, vn_latitude: f32) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_vn_longitude(vn_longitude)?;
         res.set_vn_latitude(vn_latitude)?;
         Ok(res)
@@ -6478,7 +6501,7 @@ impl VectornavPosition {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// vn_longitude
+    /// Get value of 'vn_longitude'
     ///
     /// - Min: -214.7483648
     /// - Max: 214.7483647
@@ -6488,7 +6511,7 @@ impl VectornavPosition {
     pub fn vn_longitude(&self) -> f32 {
         self.vn_longitude_raw()
     }
-    /// Get raw value of vn_longitude
+    /// Get raw value of 'vn_longitude'
     ///
     /// - Start bit: 32
     /// - Signal size: 32 bits
@@ -6503,7 +6526,7 @@ impl VectornavPosition {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_longitude
+    /// Set value of 'vn_longitude'
     #[inline(always)]
     pub fn set_vn_longitude(&mut self, value: f32) -> Result<(), CanError> {
         if value < -214.7483648_f32 || 214.7483647_f32 < value {
@@ -6518,7 +6541,7 @@ impl VectornavPosition {
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
         Ok(())
     }
-    /// vn_latitude
+    /// Get value of 'vn_latitude'
     ///
     /// - Min: -214.7483648
     /// - Max: 214.7483647
@@ -6528,7 +6551,7 @@ impl VectornavPosition {
     pub fn vn_latitude(&self) -> f32 {
         self.vn_latitude_raw()
     }
-    /// Get raw value of vn_latitude
+    /// Get raw value of 'vn_latitude'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -6543,7 +6566,7 @@ impl VectornavPosition {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_latitude
+    /// Set value of 'vn_latitude'
     #[inline(always)]
     pub fn set_vn_latitude(&mut self, value: f32) -> Result<(), CanError> {
         if value < -214.7483648_f32 || 214.7483647_f32 < value {
@@ -6621,15 +6644,16 @@ impl VectornavAttitude {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f5)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const VN_PITCH_MIN: f32 = -327.68_f32;
     pub const VN_PITCH_MAX: f32 = 327.67_f32;
     pub const VN_ROLL_MIN: f32 = -327.68_f32;
     pub const VN_ROLL_MAX: f32 = 327.67_f32;
     pub const VN_YAW_MIN: f32 = -327.68_f32;
     pub const VN_YAW_MAX: f32 = 327.67_f32;
-    /// Construct new vectornav_attitude from values
+    /// Construct new 'vectornav_attitude' from values
     pub fn new(vn_pitch: f32, vn_roll: f32, vn_yaw: f32) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_vn_pitch(vn_pitch)?;
         res.set_vn_roll(vn_roll)?;
         res.set_vn_yaw(vn_yaw)?;
@@ -6639,7 +6663,7 @@ impl VectornavAttitude {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// vn_pitch
+    /// Get value of 'vn_pitch'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -6649,7 +6673,7 @@ impl VectornavAttitude {
     pub fn vn_pitch(&self) -> f32 {
         self.vn_pitch_raw()
     }
-    /// Get raw value of vn_pitch
+    /// Get raw value of 'vn_pitch'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -6664,7 +6688,7 @@ impl VectornavAttitude {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_pitch
+    /// Set value of 'vn_pitch'
     #[inline(always)]
     pub fn set_vn_pitch(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -6679,7 +6703,7 @@ impl VectornavAttitude {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// vn_roll
+    /// Get value of 'vn_roll'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -6689,7 +6713,7 @@ impl VectornavAttitude {
     pub fn vn_roll(&self) -> f32 {
         self.vn_roll_raw()
     }
-    /// Get raw value of vn_roll
+    /// Get raw value of 'vn_roll'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -6704,7 +6728,7 @@ impl VectornavAttitude {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_roll
+    /// Set value of 'vn_roll'
     #[inline(always)]
     pub fn set_vn_roll(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -6719,7 +6743,7 @@ impl VectornavAttitude {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// vn_yaw
+    /// Get value of 'vn_yaw'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -6729,7 +6753,7 @@ impl VectornavAttitude {
     pub fn vn_yaw(&self) -> f32 {
         self.vn_yaw_raw()
     }
-    /// Get raw value of vn_yaw
+    /// Get raw value of 'vn_yaw'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -6744,7 +6768,7 @@ impl VectornavAttitude {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_yaw
+    /// Set value of 'vn_yaw'
     #[inline(always)]
     pub fn set_vn_yaw(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -6822,15 +6846,16 @@ impl VectornavGyro {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f6)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const VN_W_Z_MIN: f32 = -327.68_f32;
     pub const VN_W_Z_MAX: f32 = 327.67_f32;
     pub const VN_W_Y_MIN: f32 = -327.68_f32;
     pub const VN_W_Y_MAX: f32 = 327.67_f32;
     pub const VN_W_X_MIN: f32 = -327.68_f32;
     pub const VN_W_X_MAX: f32 = 327.67_f32;
-    /// Construct new vectornav_gyro from values
+    /// Construct new 'vectornav_gyro' from values
     pub fn new(vn_w_z: f32, vn_w_y: f32, vn_w_x: f32) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_vn_w_z(vn_w_z)?;
         res.set_vn_w_y(vn_w_y)?;
         res.set_vn_w_x(vn_w_x)?;
@@ -6840,7 +6865,7 @@ impl VectornavGyro {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// vn_W_z
+    /// Get value of 'vn_W_z'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -6850,7 +6875,7 @@ impl VectornavGyro {
     pub fn vn_w_z(&self) -> f32 {
         self.vn_w_z_raw()
     }
-    /// Get raw value of vn_W_z
+    /// Get raw value of 'vn_W_z'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -6865,7 +6890,7 @@ impl VectornavGyro {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_W_z
+    /// Set value of 'vn_W_z'
     #[inline(always)]
     pub fn set_vn_w_z(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -6880,7 +6905,7 @@ impl VectornavGyro {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// vn_W_y
+    /// Get value of 'vn_W_y'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -6890,7 +6915,7 @@ impl VectornavGyro {
     pub fn vn_w_y(&self) -> f32 {
         self.vn_w_y_raw()
     }
-    /// Get raw value of vn_W_y
+    /// Get raw value of 'vn_W_y'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -6905,7 +6930,7 @@ impl VectornavGyro {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_W_y
+    /// Set value of 'vn_W_y'
     #[inline(always)]
     pub fn set_vn_w_y(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -6920,7 +6945,7 @@ impl VectornavGyro {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// vn_W_x
+    /// Get value of 'vn_W_x'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -6930,7 +6955,7 @@ impl VectornavGyro {
     pub fn vn_w_x(&self) -> f32 {
         self.vn_w_x_raw()
     }
-    /// Get raw value of vn_W_x
+    /// Get raw value of 'vn_W_x'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -6945,7 +6970,7 @@ impl VectornavGyro {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_W_x
+    /// Set value of 'vn_W_x'
     #[inline(always)]
     pub fn set_vn_w_x(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -7023,15 +7048,16 @@ impl VectornavVelocity {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f7)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const VN_V_D_MIN: f32 = -327.68_f32;
     pub const VN_V_D_MAX: f32 = 327.67_f32;
     pub const VN_V_E_MIN: f32 = -327.68_f32;
     pub const VN_V_E_MAX: f32 = 327.67_f32;
     pub const VN_V_N_MIN: f32 = -327.68_f32;
     pub const VN_V_N_MAX: f32 = 327.67_f32;
-    /// Construct new vectornav_velocity from values
+    /// Construct new 'vectornav_velocity' from values
     pub fn new(vn_v_d: f32, vn_v_e: f32, vn_v_n: f32) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_vn_v_d(vn_v_d)?;
         res.set_vn_v_e(vn_v_e)?;
         res.set_vn_v_n(vn_v_n)?;
@@ -7041,7 +7067,7 @@ impl VectornavVelocity {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// vn_v_d
+    /// Get value of 'vn_v_d'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -7051,7 +7077,7 @@ impl VectornavVelocity {
     pub fn vn_v_d(&self) -> f32 {
         self.vn_v_d_raw()
     }
-    /// Get raw value of vn_v_d
+    /// Get raw value of 'vn_v_d'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -7066,7 +7092,7 @@ impl VectornavVelocity {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_v_d
+    /// Set value of 'vn_v_d'
     #[inline(always)]
     pub fn set_vn_v_d(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -7081,7 +7107,7 @@ impl VectornavVelocity {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// vn_v_e
+    /// Get value of 'vn_v_e'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -7091,7 +7117,7 @@ impl VectornavVelocity {
     pub fn vn_v_e(&self) -> f32 {
         self.vn_v_e_raw()
     }
-    /// Get raw value of vn_v_e
+    /// Get raw value of 'vn_v_e'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -7106,7 +7132,7 @@ impl VectornavVelocity {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_v_e
+    /// Set value of 'vn_v_e'
     #[inline(always)]
     pub fn set_vn_v_e(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -7121,7 +7147,7 @@ impl VectornavVelocity {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// vn_v_n
+    /// Get value of 'vn_v_n'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -7131,7 +7157,7 @@ impl VectornavVelocity {
     pub fn vn_v_n(&self) -> f32 {
         self.vn_v_n_raw()
     }
-    /// Get raw value of vn_v_n
+    /// Get raw value of 'vn_v_n'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -7146,7 +7172,7 @@ impl VectornavVelocity {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_v_n
+    /// Set value of 'vn_v_n'
     #[inline(always)]
     pub fn set_vn_v_n(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -7224,19 +7250,20 @@ impl VectornavAcceleration {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f8)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const VN_ACCEL_Z_MIN: f32 = -327.68_f32;
     pub const VN_ACCEL_Z_MAX: f32 = 327.67_f32;
     pub const VN_ACCEL_Y_MIN: f32 = -327.68_f32;
     pub const VN_ACCEL_Y_MAX: f32 = 327.67_f32;
     pub const VN_ACCEL_X_MIN: f32 = -327.68_f32;
     pub const VN_ACCEL_X_MAX: f32 = 327.67_f32;
-    /// Construct new vectornav_acceleration from values
+    /// Construct new 'vectornav_acceleration' from values
     pub fn new(
         vn_accel_z: f32,
         vn_accel_y: f32,
         vn_accel_x: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_vn_accel_z(vn_accel_z)?;
         res.set_vn_accel_y(vn_accel_y)?;
         res.set_vn_accel_x(vn_accel_x)?;
@@ -7246,7 +7273,7 @@ impl VectornavAcceleration {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// vn_accel_z
+    /// Get value of 'vn_accel_z'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -7256,7 +7283,7 @@ impl VectornavAcceleration {
     pub fn vn_accel_z(&self) -> f32 {
         self.vn_accel_z_raw()
     }
-    /// Get raw value of vn_accel_z
+    /// Get raw value of 'vn_accel_z'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -7271,7 +7298,7 @@ impl VectornavAcceleration {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_accel_z
+    /// Set value of 'vn_accel_z'
     #[inline(always)]
     pub fn set_vn_accel_z(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -7286,7 +7313,7 @@ impl VectornavAcceleration {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// vn_accel_y
+    /// Get value of 'vn_accel_y'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -7296,7 +7323,7 @@ impl VectornavAcceleration {
     pub fn vn_accel_y(&self) -> f32 {
         self.vn_accel_y_raw()
     }
-    /// Get raw value of vn_accel_y
+    /// Get raw value of 'vn_accel_y'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -7311,7 +7338,7 @@ impl VectornavAcceleration {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_accel_y
+    /// Set value of 'vn_accel_y'
     #[inline(always)]
     pub fn set_vn_accel_y(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -7326,7 +7353,7 @@ impl VectornavAcceleration {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// vn_accel_x
+    /// Get value of 'vn_accel_x'
     ///
     /// - Min: -327.68
     /// - Max: 327.67
@@ -7336,7 +7363,7 @@ impl VectornavAcceleration {
     pub fn vn_accel_x(&self) -> f32 {
         self.vn_accel_x_raw()
     }
-    /// Get raw value of vn_accel_x
+    /// Get raw value of 'vn_accel_x'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -7351,7 +7378,7 @@ impl VectornavAcceleration {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of vn_accel_x
+    /// Set value of 'vn_accel_x'
     #[inline(always)]
     pub fn set_vn_accel_x(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -7429,11 +7456,12 @@ impl VectornavTime {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1f9)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const UNIX_TIME_NS_MIN: u64 = 0_u64;
     pub const UNIX_TIME_NS_MAX: u64 = 18446744073709551615_u64;
-    /// Construct new vectornav_time from values
+    /// Construct new 'vectornav_time' from values
     pub fn new(unix_time_ns: u64) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_unix_time_ns(unix_time_ns)?;
         Ok(res)
     }
@@ -7441,7 +7469,7 @@ impl VectornavTime {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// unix_time_ns
+    /// Get value of 'unix_time_ns'
     ///
     /// Time in nanoseconds since January 1st 1980
     ///
@@ -7453,7 +7481,7 @@ impl VectornavTime {
     pub fn unix_time_ns(&self) -> u64 {
         self.unix_time_ns_raw()
     }
-    /// Get raw value of unix_time_ns
+    /// Get raw value of 'unix_time_ns'
     ///
     /// - Start bit: 0
     /// - Signal size: 64 bits
@@ -7467,7 +7495,7 @@ impl VectornavTime {
         let factor = 1;
         u64::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of unix_time_ns
+    /// Set value of 'unix_time_ns'
     #[inline(always)]
     pub fn set_unix_time_ns(&mut self, value: u64) -> Result<(), CanError> {
         if value < 0_u64 || 18446744073709551615_u64 < value {
@@ -7548,11 +7576,12 @@ impl VectornavState {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x1fa)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const INERTIAL_NAVIGATION_STATE_MIN: u16 = 0_u16;
     pub const INERTIAL_NAVIGATION_STATE_MAX: u16 = 65535_u16;
-    /// Construct new vectornav_state from values
+    /// Construct new 'vectornav_state' from values
     pub fn new(inertial_navigation_state: u16) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inertial_navigation_state(inertial_navigation_state)?;
         Ok(res)
     }
@@ -7560,7 +7589,7 @@ impl VectornavState {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// inertial_navigation_state
+    /// Get value of 'inertial_navigation_state'
     ///
     /// A bit field signal that gives the state of the vectornav
     ///
@@ -7572,7 +7601,7 @@ impl VectornavState {
     pub fn inertial_navigation_state(&self) -> u16 {
         self.inertial_navigation_state_raw()
     }
-    /// Get raw value of inertial_navigation_state
+    /// Get raw value of 'inertial_navigation_state'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -7586,7 +7615,7 @@ impl VectornavState {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of inertial_navigation_state
+    /// Set value of 'inertial_navigation_state'
     #[inline(always)]
     pub fn set_inertial_navigation_state(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -7667,15 +7696,16 @@ impl An1Steeringpot {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x383)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const ANGLE_DELTA_MIN: f32 = -3276.8_f32;
     pub const ANGLE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const ANGLE_MIN: f32 = 0_f32;
     pub const ANGLE_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_steeringpot from values
+    /// Construct new 'an1_steeringpot' from values
     pub fn new(angle_delta: f32, angle: f32, an1_uint12: u16) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_angle_delta(angle_delta)?;
         res.set_angle(angle)?;
         res.set_an1_uint12(an1_uint12)?;
@@ -7685,7 +7715,7 @@ impl An1Steeringpot {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// angle_delta
+    /// Get value of 'angle_delta'
     ///
     /// The rate of change of the angle reading
     ///
@@ -7697,7 +7727,7 @@ impl An1Steeringpot {
     pub fn angle_delta(&self) -> f32 {
         self.angle_delta_raw()
     }
-    /// Get raw value of angle_delta
+    /// Get raw value of 'angle_delta'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -7712,7 +7742,7 @@ impl An1Steeringpot {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of angle_delta
+    /// Set value of 'angle_delta'
     #[inline(always)]
     pub fn set_angle_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -7727,7 +7757,7 @@ impl An1Steeringpot {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// angle
+    /// Get value of 'angle'
     ///
     /// Angle of the steering rack pot
     ///
@@ -7739,7 +7769,7 @@ impl An1Steeringpot {
     pub fn angle(&self) -> f32 {
         self.angle_raw()
     }
-    /// Get raw value of angle
+    /// Get raw value of 'angle'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -7754,7 +7784,7 @@ impl An1Steeringpot {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of angle
+    /// Set value of 'angle'
     #[inline(always)]
     pub fn set_angle(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 6553.5_f32 < value {
@@ -7768,7 +7798,7 @@ impl An1Steeringpot {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -7780,7 +7810,7 @@ impl An1Steeringpot {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -7794,7 +7824,7 @@ impl An1Steeringpot {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -7875,19 +7905,20 @@ impl An1FrontBrakepressure {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x384)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const PRESSURE_DELTA_MIN: f32 = -3276.8_f32;
     pub const PRESSURE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const PRESSURE_K_PA_MIN: u16 = 0_u16;
     pub const PRESSURE_K_PA_MAX: u16 = 65535_u16;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_front_brakepressure from values
+    /// Construct new 'an1_front_brakepressure' from values
     pub fn new(
         pressure_delta: f32,
         pressure_k_pa: u16,
         an1_uint12: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_pressure_delta(pressure_delta)?;
         res.set_pressure_k_pa(pressure_k_pa)?;
         res.set_an1_uint12(an1_uint12)?;
@@ -7897,7 +7928,7 @@ impl An1FrontBrakepressure {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// pressure_delta
+    /// Get value of 'pressure_delta'
     ///
     /// The rate of change of the line pressure, kPa/s
     ///
@@ -7909,7 +7940,7 @@ impl An1FrontBrakepressure {
     pub fn pressure_delta(&self) -> f32 {
         self.pressure_delta_raw()
     }
-    /// Get raw value of pressure_delta
+    /// Get raw value of 'pressure_delta'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -7924,7 +7955,7 @@ impl An1FrontBrakepressure {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of pressure_delta
+    /// Set value of 'pressure_delta'
     #[inline(always)]
     pub fn set_pressure_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -7939,7 +7970,7 @@ impl An1FrontBrakepressure {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// pressure_kPa
+    /// Get value of 'pressure_kPa'
     ///
     /// Line pressure in kPa
     ///
@@ -7951,7 +7982,7 @@ impl An1FrontBrakepressure {
     pub fn pressure_k_pa(&self) -> u16 {
         self.pressure_k_pa_raw()
     }
-    /// Get raw value of pressure_kPa
+    /// Get raw value of 'pressure_kPa'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -7965,7 +7996,7 @@ impl An1FrontBrakepressure {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of pressure_kPa
+    /// Set value of 'pressure_kPa'
     #[inline(always)]
     pub fn set_pressure_k_pa(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -7983,7 +8014,7 @@ impl An1FrontBrakepressure {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -7995,7 +8026,7 @@ impl An1FrontBrakepressure {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -8009,7 +8040,7 @@ impl An1FrontBrakepressure {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -8090,19 +8121,20 @@ impl An1RearBrakepressure {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x385)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const PRESSURE_DELTA_MIN: f32 = -3276.8_f32;
     pub const PRESSURE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const PRESSURE_K_PA_MIN: u16 = 0_u16;
     pub const PRESSURE_K_PA_MAX: u16 = 65535_u16;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_rear_brakepressure from values
+    /// Construct new 'an1_rear_brakepressure' from values
     pub fn new(
         pressure_delta: f32,
         pressure_k_pa: u16,
         an1_uint12: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_pressure_delta(pressure_delta)?;
         res.set_pressure_k_pa(pressure_k_pa)?;
         res.set_an1_uint12(an1_uint12)?;
@@ -8112,7 +8144,7 @@ impl An1RearBrakepressure {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// pressure_delta
+    /// Get value of 'pressure_delta'
     ///
     /// The rate of change of the line pressure, kPa/s
     ///
@@ -8124,7 +8156,7 @@ impl An1RearBrakepressure {
     pub fn pressure_delta(&self) -> f32 {
         self.pressure_delta_raw()
     }
-    /// Get raw value of pressure_delta
+    /// Get raw value of 'pressure_delta'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -8139,7 +8171,7 @@ impl An1RearBrakepressure {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of pressure_delta
+    /// Set value of 'pressure_delta'
     #[inline(always)]
     pub fn set_pressure_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -8154,7 +8186,7 @@ impl An1RearBrakepressure {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// pressure_kPa
+    /// Get value of 'pressure_kPa'
     ///
     /// Line pressure in kPa
     ///
@@ -8166,7 +8198,7 @@ impl An1RearBrakepressure {
     pub fn pressure_k_pa(&self) -> u16 {
         self.pressure_k_pa_raw()
     }
-    /// Get raw value of pressure_kPa
+    /// Get raw value of 'pressure_kPa'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -8180,7 +8212,7 @@ impl An1RearBrakepressure {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of pressure_kPa
+    /// Set value of 'pressure_kPa'
     #[inline(always)]
     pub fn set_pressure_k_pa(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -8198,7 +8230,7 @@ impl An1RearBrakepressure {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -8210,7 +8242,7 @@ impl An1RearBrakepressure {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -8224,7 +8256,7 @@ impl An1RearBrakepressure {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -8305,19 +8337,20 @@ impl An1FlShockpot {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x386)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const LENGTH_DELTA_MIN: f32 = -3276.8_f32;
     pub const LENGTH_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const LENGTH_MM_MIN: f32 = 0_f32;
     pub const LENGTH_MM_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_fl_shockpot from values
+    /// Construct new 'an1_fl_shockpot' from values
     pub fn new(
         length_delta: f32,
         length_mm: f32,
         an1_uint12: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_length_delta(length_delta)?;
         res.set_length_mm(length_mm)?;
         res.set_an1_uint12(an1_uint12)?;
@@ -8327,7 +8360,7 @@ impl An1FlShockpot {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// length_delta
+    /// Get value of 'length_delta'
     ///
     /// The rate of change of the length, mm/s
     ///
@@ -8339,7 +8372,7 @@ impl An1FlShockpot {
     pub fn length_delta(&self) -> f32 {
         self.length_delta_raw()
     }
-    /// Get raw value of length_delta
+    /// Get raw value of 'length_delta'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -8354,7 +8387,7 @@ impl An1FlShockpot {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of length_delta
+    /// Set value of 'length_delta'
     #[inline(always)]
     pub fn set_length_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -8369,7 +8402,7 @@ impl An1FlShockpot {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// length_mm
+    /// Get value of 'length_mm'
     ///
     /// Length of the shockpot in mm
     ///
@@ -8381,7 +8414,7 @@ impl An1FlShockpot {
     pub fn length_mm(&self) -> f32 {
         self.length_mm_raw()
     }
-    /// Get raw value of length_mm
+    /// Get raw value of 'length_mm'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -8396,7 +8429,7 @@ impl An1FlShockpot {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of length_mm
+    /// Set value of 'length_mm'
     #[inline(always)]
     pub fn set_length_mm(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 6553.5_f32 < value {
@@ -8410,7 +8443,7 @@ impl An1FlShockpot {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -8422,7 +8455,7 @@ impl An1FlShockpot {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -8436,7 +8469,7 @@ impl An1FlShockpot {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -8517,19 +8550,20 @@ impl An1FrShockpot {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x387)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const LENGTH_DELTA_MIN: f32 = -3276.8_f32;
     pub const LENGTH_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const LENGTH_MM_MIN: f32 = 0_f32;
     pub const LENGTH_MM_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_fr_shockpot from values
+    /// Construct new 'an1_fr_shockpot' from values
     pub fn new(
         length_delta: f32,
         length_mm: f32,
         an1_uint12: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_length_delta(length_delta)?;
         res.set_length_mm(length_mm)?;
         res.set_an1_uint12(an1_uint12)?;
@@ -8539,7 +8573,7 @@ impl An1FrShockpot {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// length_delta
+    /// Get value of 'length_delta'
     ///
     /// The rate of change of the length, mm/s
     ///
@@ -8551,7 +8585,7 @@ impl An1FrShockpot {
     pub fn length_delta(&self) -> f32 {
         self.length_delta_raw()
     }
-    /// Get raw value of length_delta
+    /// Get raw value of 'length_delta'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -8566,7 +8600,7 @@ impl An1FrShockpot {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of length_delta
+    /// Set value of 'length_delta'
     #[inline(always)]
     pub fn set_length_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -8581,7 +8615,7 @@ impl An1FrShockpot {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// length_mm
+    /// Get value of 'length_mm'
     ///
     /// Length of the shockpot in mm
     ///
@@ -8593,7 +8627,7 @@ impl An1FrShockpot {
     pub fn length_mm(&self) -> f32 {
         self.length_mm_raw()
     }
-    /// Get raw value of length_mm
+    /// Get raw value of 'length_mm'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -8608,7 +8642,7 @@ impl An1FrShockpot {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of length_mm
+    /// Set value of 'length_mm'
     #[inline(always)]
     pub fn set_length_mm(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 6553.5_f32 < value {
@@ -8622,7 +8656,7 @@ impl An1FrShockpot {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -8634,7 +8668,7 @@ impl An1FrShockpot {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -8648,7 +8682,7 @@ impl An1FrShockpot {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -8729,19 +8763,20 @@ impl An1RlShockpot {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x388)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const LENGTH_DELTA_MIN: f32 = -3276.8_f32;
     pub const LENGTH_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const LENGTH_MM_MIN: f32 = 0_f32;
     pub const LENGTH_MM_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_rl_shockpot from values
+    /// Construct new 'an1_rl_shockpot' from values
     pub fn new(
         length_delta: f32,
         length_mm: f32,
         an1_uint12: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_length_delta(length_delta)?;
         res.set_length_mm(length_mm)?;
         res.set_an1_uint12(an1_uint12)?;
@@ -8751,7 +8786,7 @@ impl An1RlShockpot {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// length_delta
+    /// Get value of 'length_delta'
     ///
     /// The rate of change of the length, mm/s
     ///
@@ -8763,7 +8798,7 @@ impl An1RlShockpot {
     pub fn length_delta(&self) -> f32 {
         self.length_delta_raw()
     }
-    /// Get raw value of length_delta
+    /// Get raw value of 'length_delta'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -8778,7 +8813,7 @@ impl An1RlShockpot {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of length_delta
+    /// Set value of 'length_delta'
     #[inline(always)]
     pub fn set_length_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -8793,7 +8828,7 @@ impl An1RlShockpot {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// length_mm
+    /// Get value of 'length_mm'
     ///
     /// Length of the shockpot in mm
     ///
@@ -8805,7 +8840,7 @@ impl An1RlShockpot {
     pub fn length_mm(&self) -> f32 {
         self.length_mm_raw()
     }
-    /// Get raw value of length_mm
+    /// Get raw value of 'length_mm'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -8820,7 +8855,7 @@ impl An1RlShockpot {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of length_mm
+    /// Set value of 'length_mm'
     #[inline(always)]
     pub fn set_length_mm(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 6553.5_f32 < value {
@@ -8834,7 +8869,7 @@ impl An1RlShockpot {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -8846,7 +8881,7 @@ impl An1RlShockpot {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -8860,7 +8895,7 @@ impl An1RlShockpot {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -8941,19 +8976,20 @@ impl An1RrShockpot {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x389)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const LENGTH_DELTA_MIN: f32 = -3276.8_f32;
     pub const LENGTH_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const LENGTH_MM_MIN: f32 = 0_f32;
     pub const LENGTH_MM_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_rr_shockpot from values
+    /// Construct new 'an1_rr_shockpot' from values
     pub fn new(
         length_delta: f32,
         length_mm: f32,
         an1_uint12: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_length_delta(length_delta)?;
         res.set_length_mm(length_mm)?;
         res.set_an1_uint12(an1_uint12)?;
@@ -8963,7 +8999,7 @@ impl An1RrShockpot {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// length_delta
+    /// Get value of 'length_delta'
     ///
     /// The rate of change of the length, mm/s
     ///
@@ -8975,7 +9011,7 @@ impl An1RrShockpot {
     pub fn length_delta(&self) -> f32 {
         self.length_delta_raw()
     }
-    /// Get raw value of length_delta
+    /// Get raw value of 'length_delta'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -8990,7 +9026,7 @@ impl An1RrShockpot {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of length_delta
+    /// Set value of 'length_delta'
     #[inline(always)]
     pub fn set_length_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -9005,7 +9041,7 @@ impl An1RrShockpot {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// length_mm
+    /// Get value of 'length_mm'
     ///
     /// Length of the shockpot in mm
     ///
@@ -9017,7 +9053,7 @@ impl An1RrShockpot {
     pub fn length_mm(&self) -> f32 {
         self.length_mm_raw()
     }
-    /// Get raw value of length_mm
+    /// Get raw value of 'length_mm'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -9032,7 +9068,7 @@ impl An1RrShockpot {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of length_mm
+    /// Set value of 'length_mm'
     #[inline(always)]
     pub fn set_length_mm(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 6553.5_f32 < value {
@@ -9046,7 +9082,7 @@ impl An1RrShockpot {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -9058,7 +9094,7 @@ impl An1RrShockpot {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -9072,7 +9108,7 @@ impl An1RrShockpot {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -9153,19 +9189,20 @@ impl An1FlLoadcell {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38a)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const FORCE_DELTA_MIN: f32 = -3276.8_f32;
     pub const FORCE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const FORCE_N_MIN: f32 = 0_f32;
     pub const FORCE_N_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_fl_loadcell from values
+    /// Construct new 'an1_fl_loadcell' from values
     pub fn new(
         force_delta: f32,
         force_n: f32,
         an1_uint12: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_force_delta(force_delta)?;
         res.set_force_n(force_n)?;
         res.set_an1_uint12(an1_uint12)?;
@@ -9175,7 +9212,7 @@ impl An1FlLoadcell {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// force_delta
+    /// Get value of 'force_delta'
     ///
     /// The rate of change of the force, N/s
     ///
@@ -9187,7 +9224,7 @@ impl An1FlLoadcell {
     pub fn force_delta(&self) -> f32 {
         self.force_delta_raw()
     }
-    /// Get raw value of force_delta
+    /// Get raw value of 'force_delta'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -9202,7 +9239,7 @@ impl An1FlLoadcell {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of force_delta
+    /// Set value of 'force_delta'
     #[inline(always)]
     pub fn set_force_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -9217,7 +9254,7 @@ impl An1FlLoadcell {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// force_N
+    /// Get value of 'force_N'
     ///
     /// Force on the loadcell of the pushrod in Newtons
     ///
@@ -9229,7 +9266,7 @@ impl An1FlLoadcell {
     pub fn force_n(&self) -> f32 {
         self.force_n_raw()
     }
-    /// Get raw value of force_N
+    /// Get raw value of 'force_N'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -9244,7 +9281,7 @@ impl An1FlLoadcell {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of force_N
+    /// Set value of 'force_N'
     #[inline(always)]
     pub fn set_force_n(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 6553.5_f32 < value {
@@ -9258,7 +9295,7 @@ impl An1FlLoadcell {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -9270,7 +9307,7 @@ impl An1FlLoadcell {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -9284,7 +9321,7 @@ impl An1FlLoadcell {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -9365,19 +9402,20 @@ impl An1FrLoadcell {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38b)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const FORCE_DELTA_MIN: f32 = -3276.8_f32;
     pub const FORCE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const FORCE_N_MIN: f32 = 0_f32;
     pub const FORCE_N_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_fr_loadcell from values
+    /// Construct new 'an1_fr_loadcell' from values
     pub fn new(
         force_delta: f32,
         force_n: f32,
         an1_uint12: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_force_delta(force_delta)?;
         res.set_force_n(force_n)?;
         res.set_an1_uint12(an1_uint12)?;
@@ -9387,7 +9425,7 @@ impl An1FrLoadcell {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// force_delta
+    /// Get value of 'force_delta'
     ///
     /// The rate of change of the force, N/s
     ///
@@ -9399,7 +9437,7 @@ impl An1FrLoadcell {
     pub fn force_delta(&self) -> f32 {
         self.force_delta_raw()
     }
-    /// Get raw value of force_delta
+    /// Get raw value of 'force_delta'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -9414,7 +9452,7 @@ impl An1FrLoadcell {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of force_delta
+    /// Set value of 'force_delta'
     #[inline(always)]
     pub fn set_force_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -9429,7 +9467,7 @@ impl An1FrLoadcell {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// force_N
+    /// Get value of 'force_N'
     ///
     /// Force on the loadcell of the pushrod in Newtons
     ///
@@ -9441,7 +9479,7 @@ impl An1FrLoadcell {
     pub fn force_n(&self) -> f32 {
         self.force_n_raw()
     }
-    /// Get raw value of force_N
+    /// Get raw value of 'force_N'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -9456,7 +9494,7 @@ impl An1FrLoadcell {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of force_N
+    /// Set value of 'force_N'
     #[inline(always)]
     pub fn set_force_n(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 6553.5_f32 < value {
@@ -9470,7 +9508,7 @@ impl An1FrLoadcell {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -9482,7 +9520,7 @@ impl An1FrLoadcell {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -9496,7 +9534,7 @@ impl An1FrLoadcell {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -9577,19 +9615,20 @@ impl An1RlLoadcell {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38c)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const FORCE_DELTA_MIN: f32 = -3276.8_f32;
     pub const FORCE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const FORCE_N_MIN: f32 = 0_f32;
     pub const FORCE_N_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_rl_loadcell from values
+    /// Construct new 'an1_rl_loadcell' from values
     pub fn new(
         force_delta: f32,
         force_n: f32,
         an1_uint12: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_force_delta(force_delta)?;
         res.set_force_n(force_n)?;
         res.set_an1_uint12(an1_uint12)?;
@@ -9599,7 +9638,7 @@ impl An1RlLoadcell {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// force_delta
+    /// Get value of 'force_delta'
     ///
     /// The rate of change of the force, N/s
     ///
@@ -9611,7 +9650,7 @@ impl An1RlLoadcell {
     pub fn force_delta(&self) -> f32 {
         self.force_delta_raw()
     }
-    /// Get raw value of force_delta
+    /// Get raw value of 'force_delta'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -9626,7 +9665,7 @@ impl An1RlLoadcell {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of force_delta
+    /// Set value of 'force_delta'
     #[inline(always)]
     pub fn set_force_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -9641,7 +9680,7 @@ impl An1RlLoadcell {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// force_N
+    /// Get value of 'force_N'
     ///
     /// Force on the loadcell of the pushrod in Newtons
     ///
@@ -9653,7 +9692,7 @@ impl An1RlLoadcell {
     pub fn force_n(&self) -> f32 {
         self.force_n_raw()
     }
-    /// Get raw value of force_N
+    /// Get raw value of 'force_N'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -9668,7 +9707,7 @@ impl An1RlLoadcell {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of force_N
+    /// Set value of 'force_N'
     #[inline(always)]
     pub fn set_force_n(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 6553.5_f32 < value {
@@ -9682,7 +9721,7 @@ impl An1RlLoadcell {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -9694,7 +9733,7 @@ impl An1RlLoadcell {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -9708,7 +9747,7 @@ impl An1RlLoadcell {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -9789,19 +9828,20 @@ impl An1RrLoadcell {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38d)
     });
+    pub const MESSAGE_SIZE: usize = 6;
     pub const FORCE_DELTA_MIN: f32 = -3276.8_f32;
     pub const FORCE_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const FORCE_N_MIN: f32 = 0_f32;
     pub const FORCE_N_MAX: f32 = 6553.5_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_rr_loadcell from values
+    /// Construct new 'an1_rr_loadcell' from values
     pub fn new(
         force_delta: f32,
         force_n: f32,
         an1_uint12: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 6] };
+        let mut res = Self { raw: [0x00; 6] };
         res.set_force_delta(force_delta)?;
         res.set_force_n(force_n)?;
         res.set_an1_uint12(an1_uint12)?;
@@ -9811,7 +9851,7 @@ impl An1RrLoadcell {
     pub fn raw(&self) -> &[u8; 6] {
         &self.raw
     }
-    /// force_delta
+    /// Get value of 'force_delta'
     ///
     /// The rate of change of the force, N/s
     ///
@@ -9823,7 +9863,7 @@ impl An1RrLoadcell {
     pub fn force_delta(&self) -> f32 {
         self.force_delta_raw()
     }
-    /// Get raw value of force_delta
+    /// Get raw value of 'force_delta'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -9838,7 +9878,7 @@ impl An1RrLoadcell {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of force_delta
+    /// Set value of 'force_delta'
     #[inline(always)]
     pub fn set_force_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -9853,7 +9893,7 @@ impl An1RrLoadcell {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// force_N
+    /// Get value of 'force_N'
     ///
     /// Force on the loadcell of the pushrod in Newtons
     ///
@@ -9865,7 +9905,7 @@ impl An1RrLoadcell {
     pub fn force_n(&self) -> f32 {
         self.force_n_raw()
     }
-    /// Get raw value of force_N
+    /// Get raw value of 'force_N'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -9880,7 +9920,7 @@ impl An1RrLoadcell {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of force_N
+    /// Set value of 'force_N'
     #[inline(always)]
     pub fn set_force_n(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 6553.5_f32 < value {
@@ -9894,7 +9934,7 @@ impl An1RrLoadcell {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -9906,7 +9946,7 @@ impl An1RrLoadcell {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -9920,7 +9960,7 @@ impl An1RrLoadcell {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -10001,13 +10041,14 @@ impl An1FlWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38e)
     });
+    pub const MESSAGE_SIZE: usize = 4;
     pub const WHEEL_RPM_DELTA_MIN: f32 = -3276.8_f32;
     pub const WHEEL_RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const WHEEL_RPM_MIN: u16 = 0_u16;
     pub const WHEEL_RPM_MAX: u16 = 65535_u16;
-    /// Construct new an1_fl_wheelspeed from values
+    /// Construct new 'an1_fl_wheelspeed' from values
     pub fn new(wheel_rpm_delta: f32, wheel_rpm: u16) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 4] };
+        let mut res = Self { raw: [0x00; 4] };
         res.set_wheel_rpm_delta(wheel_rpm_delta)?;
         res.set_wheel_rpm(wheel_rpm)?;
         Ok(res)
@@ -10016,7 +10057,7 @@ impl An1FlWheelspeed {
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// wheel_rpm_delta
+    /// Get value of 'wheel_rpm_delta'
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
@@ -10028,7 +10069,7 @@ impl An1FlWheelspeed {
     pub fn wheel_rpm_delta(&self) -> f32 {
         self.wheel_rpm_delta_raw()
     }
-    /// Get raw value of wheel_rpm_delta
+    /// Get raw value of 'wheel_rpm_delta'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -10043,7 +10084,7 @@ impl An1FlWheelspeed {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of wheel_rpm_delta
+    /// Set value of 'wheel_rpm_delta'
     #[inline(always)]
     pub fn set_wheel_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -10058,7 +10099,7 @@ impl An1FlWheelspeed {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// wheel_rpm
+    /// Get value of 'wheel_rpm'
     ///
     /// Number of revolutions in a minute at the wheel
     ///
@@ -10070,7 +10111,7 @@ impl An1FlWheelspeed {
     pub fn wheel_rpm(&self) -> u16 {
         self.wheel_rpm_raw()
     }
-    /// Get raw value of wheel_rpm
+    /// Get raw value of 'wheel_rpm'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -10084,7 +10125,7 @@ impl An1FlWheelspeed {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of wheel_rpm
+    /// Set value of 'wheel_rpm'
     #[inline(always)]
     pub fn set_wheel_rpm(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -10165,13 +10206,14 @@ impl An1FrWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x38f)
     });
+    pub const MESSAGE_SIZE: usize = 4;
     pub const WHEEL_RPM_DELTA_MIN: f32 = -3276.8_f32;
     pub const WHEEL_RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const WHEEL_RPM_MIN: u16 = 0_u16;
     pub const WHEEL_RPM_MAX: u16 = 65535_u16;
-    /// Construct new an1_fr_wheelspeed from values
+    /// Construct new 'an1_fr_wheelspeed' from values
     pub fn new(wheel_rpm_delta: f32, wheel_rpm: u16) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 4] };
+        let mut res = Self { raw: [0x00; 4] };
         res.set_wheel_rpm_delta(wheel_rpm_delta)?;
         res.set_wheel_rpm(wheel_rpm)?;
         Ok(res)
@@ -10180,7 +10222,7 @@ impl An1FrWheelspeed {
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// wheel_rpm_delta
+    /// Get value of 'wheel_rpm_delta'
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
@@ -10192,7 +10234,7 @@ impl An1FrWheelspeed {
     pub fn wheel_rpm_delta(&self) -> f32 {
         self.wheel_rpm_delta_raw()
     }
-    /// Get raw value of wheel_rpm_delta
+    /// Get raw value of 'wheel_rpm_delta'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -10207,7 +10249,7 @@ impl An1FrWheelspeed {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of wheel_rpm_delta
+    /// Set value of 'wheel_rpm_delta'
     #[inline(always)]
     pub fn set_wheel_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -10222,7 +10264,7 @@ impl An1FrWheelspeed {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// wheel_rpm
+    /// Get value of 'wheel_rpm'
     ///
     /// Number of revolutions in a minute at the wheel
     ///
@@ -10234,7 +10276,7 @@ impl An1FrWheelspeed {
     pub fn wheel_rpm(&self) -> u16 {
         self.wheel_rpm_raw()
     }
-    /// Get raw value of wheel_rpm
+    /// Get raw value of 'wheel_rpm'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -10248,7 +10290,7 @@ impl An1FrWheelspeed {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of wheel_rpm
+    /// Set value of 'wheel_rpm'
     #[inline(always)]
     pub fn set_wheel_rpm(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -10329,13 +10371,14 @@ impl An1RlWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x390)
     });
+    pub const MESSAGE_SIZE: usize = 4;
     pub const WHEEL_RPM_DELTA_MIN: f32 = -3276.8_f32;
     pub const WHEEL_RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const WHEEL_RPM_MIN: u16 = 0_u16;
     pub const WHEEL_RPM_MAX: u16 = 65535_u16;
-    /// Construct new an1_rl_wheelspeed from values
+    /// Construct new 'an1_rl_wheelspeed' from values
     pub fn new(wheel_rpm_delta: f32, wheel_rpm: u16) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 4] };
+        let mut res = Self { raw: [0x00; 4] };
         res.set_wheel_rpm_delta(wheel_rpm_delta)?;
         res.set_wheel_rpm(wheel_rpm)?;
         Ok(res)
@@ -10344,7 +10387,7 @@ impl An1RlWheelspeed {
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// wheel_rpm_delta
+    /// Get value of 'wheel_rpm_delta'
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
@@ -10356,7 +10399,7 @@ impl An1RlWheelspeed {
     pub fn wheel_rpm_delta(&self) -> f32 {
         self.wheel_rpm_delta_raw()
     }
-    /// Get raw value of wheel_rpm_delta
+    /// Get raw value of 'wheel_rpm_delta'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -10371,7 +10414,7 @@ impl An1RlWheelspeed {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of wheel_rpm_delta
+    /// Set value of 'wheel_rpm_delta'
     #[inline(always)]
     pub fn set_wheel_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -10386,7 +10429,7 @@ impl An1RlWheelspeed {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// wheel_rpm
+    /// Get value of 'wheel_rpm'
     ///
     /// Number of revolutions in a minute at the wheel
     ///
@@ -10398,7 +10441,7 @@ impl An1RlWheelspeed {
     pub fn wheel_rpm(&self) -> u16 {
         self.wheel_rpm_raw()
     }
-    /// Get raw value of wheel_rpm
+    /// Get raw value of 'wheel_rpm'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -10412,7 +10455,7 @@ impl An1RlWheelspeed {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of wheel_rpm
+    /// Set value of 'wheel_rpm'
     #[inline(always)]
     pub fn set_wheel_rpm(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -10493,13 +10536,14 @@ impl An1RrWheelspeed {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x391)
     });
+    pub const MESSAGE_SIZE: usize = 4;
     pub const WHEEL_RPM_DELTA_MIN: f32 = -3276.8_f32;
     pub const WHEEL_RPM_DELTA_MAX: f32 = 3276.7000000000003_f32;
     pub const WHEEL_RPM_MIN: u16 = 0_u16;
     pub const WHEEL_RPM_MAX: u16 = 65535_u16;
-    /// Construct new an1_rr_wheelspeed from values
+    /// Construct new 'an1_rr_wheelspeed' from values
     pub fn new(wheel_rpm_delta: f32, wheel_rpm: u16) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 4] };
+        let mut res = Self { raw: [0x00; 4] };
         res.set_wheel_rpm_delta(wheel_rpm_delta)?;
         res.set_wheel_rpm(wheel_rpm)?;
         Ok(res)
@@ -10508,7 +10552,7 @@ impl An1RrWheelspeed {
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// wheel_rpm_delta
+    /// Get value of 'wheel_rpm_delta'
     ///
     /// The rate of change of the number of revolutions in a minute
     ///
@@ -10520,7 +10564,7 @@ impl An1RrWheelspeed {
     pub fn wheel_rpm_delta(&self) -> f32 {
         self.wheel_rpm_delta_raw()
     }
-    /// Get raw value of wheel_rpm_delta
+    /// Get raw value of 'wheel_rpm_delta'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -10535,7 +10579,7 @@ impl An1RrWheelspeed {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of wheel_rpm_delta
+    /// Set value of 'wheel_rpm_delta'
     #[inline(always)]
     pub fn set_wheel_rpm_delta(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -10550,7 +10594,7 @@ impl An1RrWheelspeed {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// wheel_rpm
+    /// Get value of 'wheel_rpm'
     ///
     /// Number of revolutions in a minute at the wheel
     ///
@@ -10562,7 +10606,7 @@ impl An1RrWheelspeed {
     pub fn wheel_rpm(&self) -> u16 {
         self.wheel_rpm_raw()
     }
-    /// Get raw value of wheel_rpm
+    /// Get raw value of 'wheel_rpm'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -10576,7 +10620,7 @@ impl An1RrWheelspeed {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of wheel_rpm
+    /// Set value of 'wheel_rpm'
     #[inline(always)]
     pub fn set_wheel_rpm(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -10657,6 +10701,7 @@ impl An1FlTiretemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x392)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const AVERAGE_C_MIN: f32 = -3276.8_f32;
     pub const AVERAGE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const OUTER_C_MIN: f32 = -3276.8_f32;
@@ -10665,14 +10710,14 @@ impl An1FlTiretemp {
     pub const MIDDLE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const INNER_C_MIN: f32 = -3276.8_f32;
     pub const INNER_C_MAX: f32 = 3276.7000000000003_f32;
-    /// Construct new an1_fl_tiretemp from values
+    /// Construct new 'an1_fl_tiretemp' from values
     pub fn new(
         average_c: f32,
         outer_c: f32,
         middle_c: f32,
         inner_c: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_average_c(average_c)?;
         res.set_outer_c(outer_c)?;
         res.set_middle_c(middle_c)?;
@@ -10683,7 +10728,7 @@ impl An1FlTiretemp {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// average_C
+    /// Get value of 'average_C'
     ///
     /// Average tire temperature in celcius
     ///
@@ -10695,7 +10740,7 @@ impl An1FlTiretemp {
     pub fn average_c(&self) -> f32 {
         self.average_c_raw()
     }
-    /// Get raw value of average_C
+    /// Get raw value of 'average_C'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -10710,7 +10755,7 @@ impl An1FlTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of average_C
+    /// Set value of 'average_C'
     #[inline(always)]
     pub fn set_average_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -10725,7 +10770,7 @@ impl An1FlTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// outer_C
+    /// Get value of 'outer_C'
     ///
     /// Outer tire temperature in celcius
     ///
@@ -10737,7 +10782,7 @@ impl An1FlTiretemp {
     pub fn outer_c(&self) -> f32 {
         self.outer_c_raw()
     }
-    /// Get raw value of outer_C
+    /// Get raw value of 'outer_C'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -10752,7 +10797,7 @@ impl An1FlTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of outer_C
+    /// Set value of 'outer_C'
     #[inline(always)]
     pub fn set_outer_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -10767,7 +10812,7 @@ impl An1FlTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// middle_C
+    /// Get value of 'middle_C'
     ///
     /// Middle tire temperature in celcius
     ///
@@ -10779,7 +10824,7 @@ impl An1FlTiretemp {
     pub fn middle_c(&self) -> f32 {
         self.middle_c_raw()
     }
-    /// Get raw value of middle_C
+    /// Get raw value of 'middle_C'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -10794,7 +10839,7 @@ impl An1FlTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of middle_C
+    /// Set value of 'middle_C'
     #[inline(always)]
     pub fn set_middle_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -10809,7 +10854,7 @@ impl An1FlTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// inner_C
+    /// Get value of 'inner_C'
     ///
     /// Inner tire temperature in celcius
     ///
@@ -10821,7 +10866,7 @@ impl An1FlTiretemp {
     pub fn inner_c(&self) -> f32 {
         self.inner_c_raw()
     }
-    /// Get raw value of inner_C
+    /// Get raw value of 'inner_C'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -10836,7 +10881,7 @@ impl An1FlTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of inner_C
+    /// Set value of 'inner_C'
     #[inline(always)]
     pub fn set_inner_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -10914,6 +10959,7 @@ impl An1FrTiretemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x393)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const AVERAGE_C_MIN: f32 = -3276.8_f32;
     pub const AVERAGE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const OUTER_C_MIN: f32 = -3276.8_f32;
@@ -10922,14 +10968,14 @@ impl An1FrTiretemp {
     pub const MIDDLE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const INNER_C_MIN: f32 = -3276.8_f32;
     pub const INNER_C_MAX: f32 = 3276.7000000000003_f32;
-    /// Construct new an1_fr_tiretemp from values
+    /// Construct new 'an1_fr_tiretemp' from values
     pub fn new(
         average_c: f32,
         outer_c: f32,
         middle_c: f32,
         inner_c: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_average_c(average_c)?;
         res.set_outer_c(outer_c)?;
         res.set_middle_c(middle_c)?;
@@ -10940,7 +10986,7 @@ impl An1FrTiretemp {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// average_C
+    /// Get value of 'average_C'
     ///
     /// Average tire temperature in celcius
     ///
@@ -10952,7 +10998,7 @@ impl An1FrTiretemp {
     pub fn average_c(&self) -> f32 {
         self.average_c_raw()
     }
-    /// Get raw value of average_C
+    /// Get raw value of 'average_C'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -10967,7 +11013,7 @@ impl An1FrTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of average_C
+    /// Set value of 'average_C'
     #[inline(always)]
     pub fn set_average_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -10982,7 +11028,7 @@ impl An1FrTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// outer_C
+    /// Get value of 'outer_C'
     ///
     /// Outer tire temperature in celcius
     ///
@@ -10994,7 +11040,7 @@ impl An1FrTiretemp {
     pub fn outer_c(&self) -> f32 {
         self.outer_c_raw()
     }
-    /// Get raw value of outer_C
+    /// Get raw value of 'outer_C'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -11009,7 +11055,7 @@ impl An1FrTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of outer_C
+    /// Set value of 'outer_C'
     #[inline(always)]
     pub fn set_outer_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11024,7 +11070,7 @@ impl An1FrTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// middle_C
+    /// Get value of 'middle_C'
     ///
     /// Middle tire temperature in celcius
     ///
@@ -11036,7 +11082,7 @@ impl An1FrTiretemp {
     pub fn middle_c(&self) -> f32 {
         self.middle_c_raw()
     }
-    /// Get raw value of middle_C
+    /// Get raw value of 'middle_C'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -11051,7 +11097,7 @@ impl An1FrTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of middle_C
+    /// Set value of 'middle_C'
     #[inline(always)]
     pub fn set_middle_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11066,7 +11112,7 @@ impl An1FrTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// inner_C
+    /// Get value of 'inner_C'
     ///
     /// Inner tire temperature in celcius
     ///
@@ -11078,7 +11124,7 @@ impl An1FrTiretemp {
     pub fn inner_c(&self) -> f32 {
         self.inner_c_raw()
     }
-    /// Get raw value of inner_C
+    /// Get raw value of 'inner_C'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -11093,7 +11139,7 @@ impl An1FrTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of inner_C
+    /// Set value of 'inner_C'
     #[inline(always)]
     pub fn set_inner_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11171,6 +11217,7 @@ impl An1RlTiretemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x394)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const AVERAGE_C_MIN: f32 = -3276.8_f32;
     pub const AVERAGE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const OUTER_C_MIN: f32 = -3276.8_f32;
@@ -11179,14 +11226,14 @@ impl An1RlTiretemp {
     pub const MIDDLE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const INNER_C_MIN: f32 = -3276.8_f32;
     pub const INNER_C_MAX: f32 = 3276.7000000000003_f32;
-    /// Construct new an1_rl_tiretemp from values
+    /// Construct new 'an1_rl_tiretemp' from values
     pub fn new(
         average_c: f32,
         outer_c: f32,
         middle_c: f32,
         inner_c: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_average_c(average_c)?;
         res.set_outer_c(outer_c)?;
         res.set_middle_c(middle_c)?;
@@ -11197,7 +11244,7 @@ impl An1RlTiretemp {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// average_C
+    /// Get value of 'average_C'
     ///
     /// Average tire temperature in celcius
     ///
@@ -11209,7 +11256,7 @@ impl An1RlTiretemp {
     pub fn average_c(&self) -> f32 {
         self.average_c_raw()
     }
-    /// Get raw value of average_C
+    /// Get raw value of 'average_C'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -11224,7 +11271,7 @@ impl An1RlTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of average_C
+    /// Set value of 'average_C'
     #[inline(always)]
     pub fn set_average_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11239,7 +11286,7 @@ impl An1RlTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// outer_C
+    /// Get value of 'outer_C'
     ///
     /// Outer tire temperature in celcius
     ///
@@ -11251,7 +11298,7 @@ impl An1RlTiretemp {
     pub fn outer_c(&self) -> f32 {
         self.outer_c_raw()
     }
-    /// Get raw value of outer_C
+    /// Get raw value of 'outer_C'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -11266,7 +11313,7 @@ impl An1RlTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of outer_C
+    /// Set value of 'outer_C'
     #[inline(always)]
     pub fn set_outer_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11281,7 +11328,7 @@ impl An1RlTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// middle_C
+    /// Get value of 'middle_C'
     ///
     /// Middle tire temperature in celcius
     ///
@@ -11293,7 +11340,7 @@ impl An1RlTiretemp {
     pub fn middle_c(&self) -> f32 {
         self.middle_c_raw()
     }
-    /// Get raw value of middle_C
+    /// Get raw value of 'middle_C'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -11308,7 +11355,7 @@ impl An1RlTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of middle_C
+    /// Set value of 'middle_C'
     #[inline(always)]
     pub fn set_middle_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11323,7 +11370,7 @@ impl An1RlTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// inner_C
+    /// Get value of 'inner_C'
     ///
     /// Inner tire temperature in celcius
     ///
@@ -11335,7 +11382,7 @@ impl An1RlTiretemp {
     pub fn inner_c(&self) -> f32 {
         self.inner_c_raw()
     }
-    /// Get raw value of inner_C
+    /// Get raw value of 'inner_C'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -11350,7 +11397,7 @@ impl An1RlTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of inner_C
+    /// Set value of 'inner_C'
     #[inline(always)]
     pub fn set_inner_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11428,6 +11475,7 @@ impl An1RrTiretemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x395)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const AVERAGE_C_MIN: f32 = -3276.8_f32;
     pub const AVERAGE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const OUTER_C_MIN: f32 = -3276.8_f32;
@@ -11436,14 +11484,14 @@ impl An1RrTiretemp {
     pub const MIDDLE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const INNER_C_MIN: f32 = -3276.8_f32;
     pub const INNER_C_MAX: f32 = 3276.7000000000003_f32;
-    /// Construct new an1_rr_tiretemp from values
+    /// Construct new 'an1_rr_tiretemp' from values
     pub fn new(
         average_c: f32,
         outer_c: f32,
         middle_c: f32,
         inner_c: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_average_c(average_c)?;
         res.set_outer_c(outer_c)?;
         res.set_middle_c(middle_c)?;
@@ -11454,7 +11502,7 @@ impl An1RrTiretemp {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// average_C
+    /// Get value of 'average_C'
     ///
     /// Average tire temperature in celcius
     ///
@@ -11466,7 +11514,7 @@ impl An1RrTiretemp {
     pub fn average_c(&self) -> f32 {
         self.average_c_raw()
     }
-    /// Get raw value of average_C
+    /// Get raw value of 'average_C'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -11481,7 +11529,7 @@ impl An1RrTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of average_C
+    /// Set value of 'average_C'
     #[inline(always)]
     pub fn set_average_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11496,7 +11544,7 @@ impl An1RrTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// outer_C
+    /// Get value of 'outer_C'
     ///
     /// Outer tire temperature in celcius
     ///
@@ -11508,7 +11556,7 @@ impl An1RrTiretemp {
     pub fn outer_c(&self) -> f32 {
         self.outer_c_raw()
     }
-    /// Get raw value of outer_C
+    /// Get raw value of 'outer_C'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -11523,7 +11571,7 @@ impl An1RrTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of outer_C
+    /// Set value of 'outer_C'
     #[inline(always)]
     pub fn set_outer_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11538,7 +11586,7 @@ impl An1RrTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// middle_C
+    /// Get value of 'middle_C'
     ///
     /// Middle tire temperature in celcius
     ///
@@ -11550,7 +11598,7 @@ impl An1RrTiretemp {
     pub fn middle_c(&self) -> f32 {
         self.middle_c_raw()
     }
-    /// Get raw value of middle_C
+    /// Get raw value of 'middle_C'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -11565,7 +11613,7 @@ impl An1RrTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of middle_C
+    /// Set value of 'middle_C'
     #[inline(always)]
     pub fn set_middle_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11580,7 +11628,7 @@ impl An1RrTiretemp {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// inner_C
+    /// Get value of 'inner_C'
     ///
     /// Inner tire temperature in celcius
     ///
@@ -11592,7 +11640,7 @@ impl An1RrTiretemp {
     pub fn inner_c(&self) -> f32 {
         self.inner_c_raw()
     }
-    /// Get raw value of inner_C
+    /// Get raw value of 'inner_C'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -11607,7 +11655,7 @@ impl An1RrTiretemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of inner_C
+    /// Set value of 'inner_C'
     #[inline(always)]
     pub fn set_inner_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11685,13 +11733,14 @@ impl An1MotorTemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x396)
     });
+    pub const MESSAGE_SIZE: usize = 4;
     pub const TEMPERATURE_C_MIN: f32 = -3276.8_f32;
     pub const TEMPERATURE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_motor_temp from values
+    /// Construct new 'an1_motor_temp' from values
     pub fn new(temperature_c: f32, an1_uint12: u16) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 4] };
+        let mut res = Self { raw: [0x00; 4] };
         res.set_temperature_c(temperature_c)?;
         res.set_an1_uint12(an1_uint12)?;
         Ok(res)
@@ -11700,7 +11749,7 @@ impl An1MotorTemp {
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// temperature_C
+    /// Get value of 'temperature_C'
     ///
     /// Temperature in degrees celcius
     ///
@@ -11712,7 +11761,7 @@ impl An1MotorTemp {
     pub fn temperature_c(&self) -> f32 {
         self.temperature_c_raw()
     }
-    /// Get raw value of temperature_C
+    /// Get raw value of 'temperature_C'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -11727,7 +11776,7 @@ impl An1MotorTemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of temperature_C
+    /// Set value of 'temperature_C'
     #[inline(always)]
     pub fn set_temperature_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11742,7 +11791,7 @@ impl An1MotorTemp {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -11754,7 +11803,7 @@ impl An1MotorTemp {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -11768,7 +11817,7 @@ impl An1MotorTemp {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -11849,13 +11898,14 @@ impl An1CoolantTemp {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x397)
     });
+    pub const MESSAGE_SIZE: usize = 4;
     pub const TEMPERATURE_C_MIN: f32 = -3276.8_f32;
     pub const TEMPERATURE_C_MAX: f32 = 3276.7000000000003_f32;
     pub const AN1_UINT12_MIN: u16 = 0_u16;
     pub const AN1_UINT12_MAX: u16 = 65535_u16;
-    /// Construct new an1_coolant_temp from values
+    /// Construct new 'an1_coolant_temp' from values
     pub fn new(temperature_c: f32, an1_uint12: u16) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 4] };
+        let mut res = Self { raw: [0x00; 4] };
         res.set_temperature_c(temperature_c)?;
         res.set_an1_uint12(an1_uint12)?;
         Ok(res)
@@ -11864,7 +11914,7 @@ impl An1CoolantTemp {
     pub fn raw(&self) -> &[u8; 4] {
         &self.raw
     }
-    /// temperature_C
+    /// Get value of 'temperature_C'
     ///
     /// Temperature in degrees celcius
     ///
@@ -11876,7 +11926,7 @@ impl An1CoolantTemp {
     pub fn temperature_c(&self) -> f32 {
         self.temperature_c_raw()
     }
-    /// Get raw value of temperature_C
+    /// Get raw value of 'temperature_C'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -11891,7 +11941,7 @@ impl An1CoolantTemp {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of temperature_C
+    /// Set value of 'temperature_C'
     #[inline(always)]
     pub fn set_temperature_c(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7000000000003_f32 < value {
@@ -11906,7 +11956,7 @@ impl An1CoolantTemp {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// an1_uint12
+    /// Get value of 'an1_uint12'
     ///
     /// Raw unsigned integer reading from the ADC
     ///
@@ -11918,7 +11968,7 @@ impl An1CoolantTemp {
     pub fn an1_uint12(&self) -> u16 {
         self.an1_uint12_raw()
     }
-    /// Get raw value of an1_uint12
+    /// Get raw value of 'an1_uint12'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -11932,7 +11982,7 @@ impl An1CoolantTemp {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of an1_uint12
+    /// Set value of 'an1_uint12'
     #[inline(always)]
     pub fn set_an1_uint12(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -12013,6 +12063,7 @@ impl Module1Status {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x3b6)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
     pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
     pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
@@ -12021,7 +12072,7 @@ impl Module1Status {
     pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
     pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
     pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    /// Construct new module1_status from values
+    /// Construct new 'module1_status' from values
     pub fn new(
         board_humidity: u8,
         board_temperature: u8,
@@ -12030,7 +12081,7 @@ impl Module1Status {
         board_on_time_seconds: u16,
         firmware_version: u32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_board_humidity(board_humidity)?;
         res.set_board_temperature(board_temperature)?;
         res.set_firmware_is_dirty(firmware_is_dirty)?;
@@ -12043,7 +12094,7 @@ impl Module1Status {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// board_humidity
+    /// Get value of 'board_humidity'
     ///
     /// the relative humidity at the PCB
     ///
@@ -12055,7 +12106,7 @@ impl Module1Status {
     pub fn board_humidity(&self) -> u8 {
         self.board_humidity_raw()
     }
-    /// Get raw value of board_humidity
+    /// Get raw value of 'board_humidity'
     ///
     /// - Start bit: 57
     /// - Signal size: 7 bits
@@ -12069,7 +12120,7 @@ impl Module1Status {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_humidity
+    /// Set value of 'board_humidity'
     #[inline(always)]
     pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -12087,7 +12138,7 @@ impl Module1Status {
         self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
         Ok(())
     }
-    /// board_temperature
+    /// Get value of 'board_temperature'
     ///
     /// The ambient temperature at the PCB
     ///
@@ -12099,7 +12150,7 @@ impl Module1Status {
     pub fn board_temperature(&self) -> u8 {
         self.board_temperature_raw()
     }
-    /// Get raw value of board_temperature
+    /// Get raw value of 'board_temperature'
     ///
     /// - Start bit: 50
     /// - Signal size: 7 bits
@@ -12113,7 +12164,7 @@ impl Module1Status {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_temperature
+    /// Set value of 'board_temperature'
     #[inline(always)]
     pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -12131,7 +12182,7 @@ impl Module1Status {
         self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
         Ok(())
     }
-    /// firmware_is_dirty
+    /// Get value of 'firmware_is_dirty'
     ///
     /// if the compiled firmware had uncommitted changes (1) or not (0)
     ///
@@ -12143,7 +12194,7 @@ impl Module1Status {
     pub fn firmware_is_dirty(&self) -> bool {
         self.firmware_is_dirty_raw()
     }
-    /// Get raw value of firmware_is_dirty
+    /// Get raw value of 'firmware_is_dirty'
     ///
     /// - Start bit: 49
     /// - Signal size: 1 bits
@@ -12156,14 +12207,14 @@ impl Module1Status {
         let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_is_dirty
+    /// Set value of 'firmware_is_dirty'
     #[inline(always)]
     pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
         Ok(())
     }
-    /// firmware_on_main
+    /// Get value of 'firmware_on_main'
     ///
     /// if the compiled firmware was from main branch (1) or not (0)
     ///
@@ -12175,7 +12226,7 @@ impl Module1Status {
     pub fn firmware_on_main(&self) -> bool {
         self.firmware_on_main_raw()
     }
-    /// Get raw value of firmware_on_main
+    /// Get raw value of 'firmware_on_main'
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -12188,14 +12239,14 @@ impl Module1Status {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_on_main
+    /// Set value of 'firmware_on_main'
     #[inline(always)]
     pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
-    /// board_on_time_seconds
+    /// Get value of 'board_on_time_seconds'
     ///
     /// time in seconds which the board has been powered on and running
     ///
@@ -12207,7 +12258,7 @@ impl Module1Status {
     pub fn board_on_time_seconds(&self) -> u16 {
         self.board_on_time_seconds_raw()
     }
-    /// Get raw value of board_on_time_seconds
+    /// Get raw value of 'board_on_time_seconds'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -12221,7 +12272,7 @@ impl Module1Status {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_on_time_seconds
+    /// Set value of 'board_on_time_seconds'
     #[inline(always)]
     pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -12239,7 +12290,7 @@ impl Module1Status {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// firmware_version
+    /// Get value of 'firmware_version'
     ///
     /// short hash of the firmware
     ///
@@ -12251,7 +12302,7 @@ impl Module1Status {
     pub fn firmware_version(&self) -> u32 {
         self.firmware_version_raw()
     }
-    /// Get raw value of firmware_version
+    /// Get raw value of 'firmware_version'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -12265,7 +12316,7 @@ impl Module1Status {
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of firmware_version
+    /// Set value of 'firmware_version'
     #[inline(always)]
     pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
         if value < 0_u32 || 4294967295_u32 < value {
@@ -12346,6 +12397,7 @@ impl Module2Status {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x3b7)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
     pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
     pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
@@ -12354,7 +12406,7 @@ impl Module2Status {
     pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
     pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
     pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    /// Construct new module2_status from values
+    /// Construct new 'module2_status' from values
     pub fn new(
         board_humidity: u8,
         board_temperature: u8,
@@ -12363,7 +12415,7 @@ impl Module2Status {
         board_on_time_seconds: u16,
         firmware_version: u32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_board_humidity(board_humidity)?;
         res.set_board_temperature(board_temperature)?;
         res.set_firmware_is_dirty(firmware_is_dirty)?;
@@ -12376,7 +12428,7 @@ impl Module2Status {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// board_humidity
+    /// Get value of 'board_humidity'
     ///
     /// the relative humidity at the PCB
     ///
@@ -12388,7 +12440,7 @@ impl Module2Status {
     pub fn board_humidity(&self) -> u8 {
         self.board_humidity_raw()
     }
-    /// Get raw value of board_humidity
+    /// Get raw value of 'board_humidity'
     ///
     /// - Start bit: 57
     /// - Signal size: 7 bits
@@ -12402,7 +12454,7 @@ impl Module2Status {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_humidity
+    /// Set value of 'board_humidity'
     #[inline(always)]
     pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -12420,7 +12472,7 @@ impl Module2Status {
         self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
         Ok(())
     }
-    /// board_temperature
+    /// Get value of 'board_temperature'
     ///
     /// The ambient temperature at the PCB
     ///
@@ -12432,7 +12484,7 @@ impl Module2Status {
     pub fn board_temperature(&self) -> u8 {
         self.board_temperature_raw()
     }
-    /// Get raw value of board_temperature
+    /// Get raw value of 'board_temperature'
     ///
     /// - Start bit: 50
     /// - Signal size: 7 bits
@@ -12446,7 +12498,7 @@ impl Module2Status {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_temperature
+    /// Set value of 'board_temperature'
     #[inline(always)]
     pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -12464,7 +12516,7 @@ impl Module2Status {
         self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
         Ok(())
     }
-    /// firmware_is_dirty
+    /// Get value of 'firmware_is_dirty'
     ///
     /// if the compiled firmware had uncommitted changes (1) or not (0)
     ///
@@ -12476,7 +12528,7 @@ impl Module2Status {
     pub fn firmware_is_dirty(&self) -> bool {
         self.firmware_is_dirty_raw()
     }
-    /// Get raw value of firmware_is_dirty
+    /// Get raw value of 'firmware_is_dirty'
     ///
     /// - Start bit: 49
     /// - Signal size: 1 bits
@@ -12489,14 +12541,14 @@ impl Module2Status {
         let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_is_dirty
+    /// Set value of 'firmware_is_dirty'
     #[inline(always)]
     pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
         Ok(())
     }
-    /// firmware_on_main
+    /// Get value of 'firmware_on_main'
     ///
     /// if the compiled firmware was from main branch (1) or not (0)
     ///
@@ -12508,7 +12560,7 @@ impl Module2Status {
     pub fn firmware_on_main(&self) -> bool {
         self.firmware_on_main_raw()
     }
-    /// Get raw value of firmware_on_main
+    /// Get raw value of 'firmware_on_main'
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -12521,14 +12573,14 @@ impl Module2Status {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_on_main
+    /// Set value of 'firmware_on_main'
     #[inline(always)]
     pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
-    /// board_on_time_seconds
+    /// Get value of 'board_on_time_seconds'
     ///
     /// time in seconds which the board has been powered on and running
     ///
@@ -12540,7 +12592,7 @@ impl Module2Status {
     pub fn board_on_time_seconds(&self) -> u16 {
         self.board_on_time_seconds_raw()
     }
-    /// Get raw value of board_on_time_seconds
+    /// Get raw value of 'board_on_time_seconds'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -12554,7 +12606,7 @@ impl Module2Status {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_on_time_seconds
+    /// Set value of 'board_on_time_seconds'
     #[inline(always)]
     pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -12572,7 +12624,7 @@ impl Module2Status {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// firmware_version
+    /// Get value of 'firmware_version'
     ///
     /// short hash of the firmware
     ///
@@ -12584,7 +12636,7 @@ impl Module2Status {
     pub fn firmware_version(&self) -> u32 {
         self.firmware_version_raw()
     }
-    /// Get raw value of firmware_version
+    /// Get raw value of 'firmware_version'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -12598,7 +12650,7 @@ impl Module2Status {
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of firmware_version
+    /// Set value of 'firmware_version'
     #[inline(always)]
     pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
         if value < 0_u32 || 4294967295_u32 < value {
@@ -12679,6 +12731,7 @@ impl Module3Status {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x3b8)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
     pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
     pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
@@ -12687,7 +12740,7 @@ impl Module3Status {
     pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
     pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
     pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    /// Construct new module3_status from values
+    /// Construct new 'module3_status' from values
     pub fn new(
         board_humidity: u8,
         board_temperature: u8,
@@ -12696,7 +12749,7 @@ impl Module3Status {
         board_on_time_seconds: u16,
         firmware_version: u32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_board_humidity(board_humidity)?;
         res.set_board_temperature(board_temperature)?;
         res.set_firmware_is_dirty(firmware_is_dirty)?;
@@ -12709,7 +12762,7 @@ impl Module3Status {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// board_humidity
+    /// Get value of 'board_humidity'
     ///
     /// the relative humidity at the PCB
     ///
@@ -12721,7 +12774,7 @@ impl Module3Status {
     pub fn board_humidity(&self) -> u8 {
         self.board_humidity_raw()
     }
-    /// Get raw value of board_humidity
+    /// Get raw value of 'board_humidity'
     ///
     /// - Start bit: 57
     /// - Signal size: 7 bits
@@ -12735,7 +12788,7 @@ impl Module3Status {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_humidity
+    /// Set value of 'board_humidity'
     #[inline(always)]
     pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -12753,7 +12806,7 @@ impl Module3Status {
         self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
         Ok(())
     }
-    /// board_temperature
+    /// Get value of 'board_temperature'
     ///
     /// The ambient temperature at the PCB
     ///
@@ -12765,7 +12818,7 @@ impl Module3Status {
     pub fn board_temperature(&self) -> u8 {
         self.board_temperature_raw()
     }
-    /// Get raw value of board_temperature
+    /// Get raw value of 'board_temperature'
     ///
     /// - Start bit: 50
     /// - Signal size: 7 bits
@@ -12779,7 +12832,7 @@ impl Module3Status {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_temperature
+    /// Set value of 'board_temperature'
     #[inline(always)]
     pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -12797,7 +12850,7 @@ impl Module3Status {
         self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
         Ok(())
     }
-    /// firmware_is_dirty
+    /// Get value of 'firmware_is_dirty'
     ///
     /// if the compiled firmware had uncommitted changes (1) or not (0)
     ///
@@ -12809,7 +12862,7 @@ impl Module3Status {
     pub fn firmware_is_dirty(&self) -> bool {
         self.firmware_is_dirty_raw()
     }
-    /// Get raw value of firmware_is_dirty
+    /// Get raw value of 'firmware_is_dirty'
     ///
     /// - Start bit: 49
     /// - Signal size: 1 bits
@@ -12822,14 +12875,14 @@ impl Module3Status {
         let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_is_dirty
+    /// Set value of 'firmware_is_dirty'
     #[inline(always)]
     pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
         Ok(())
     }
-    /// firmware_on_main
+    /// Get value of 'firmware_on_main'
     ///
     /// if the compiled firmware was from main branch (1) or not (0)
     ///
@@ -12841,7 +12894,7 @@ impl Module3Status {
     pub fn firmware_on_main(&self) -> bool {
         self.firmware_on_main_raw()
     }
-    /// Get raw value of firmware_on_main
+    /// Get raw value of 'firmware_on_main'
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -12854,14 +12907,14 @@ impl Module3Status {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_on_main
+    /// Set value of 'firmware_on_main'
     #[inline(always)]
     pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
-    /// board_on_time_seconds
+    /// Get value of 'board_on_time_seconds'
     ///
     /// time in seconds which the board has been powered on and running
     ///
@@ -12873,7 +12926,7 @@ impl Module3Status {
     pub fn board_on_time_seconds(&self) -> u16 {
         self.board_on_time_seconds_raw()
     }
-    /// Get raw value of board_on_time_seconds
+    /// Get raw value of 'board_on_time_seconds'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -12887,7 +12940,7 @@ impl Module3Status {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_on_time_seconds
+    /// Set value of 'board_on_time_seconds'
     #[inline(always)]
     pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -12905,7 +12958,7 @@ impl Module3Status {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// firmware_version
+    /// Get value of 'firmware_version'
     ///
     /// short hash of the firmware
     ///
@@ -12917,7 +12970,7 @@ impl Module3Status {
     pub fn firmware_version(&self) -> u32 {
         self.firmware_version_raw()
     }
-    /// Get raw value of firmware_version
+    /// Get raw value of 'firmware_version'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -12931,7 +12984,7 @@ impl Module3Status {
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of firmware_version
+    /// Set value of 'firmware_version'
     #[inline(always)]
     pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
         if value < 0_u32 || 4294967295_u32 < value {
@@ -13012,6 +13065,7 @@ impl Module4Status {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x3b9)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
     pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
     pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
@@ -13020,7 +13074,7 @@ impl Module4Status {
     pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
     pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
     pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    /// Construct new module4_status from values
+    /// Construct new 'module4_status' from values
     pub fn new(
         board_humidity: u8,
         board_temperature: u8,
@@ -13029,7 +13083,7 @@ impl Module4Status {
         board_on_time_seconds: u16,
         firmware_version: u32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_board_humidity(board_humidity)?;
         res.set_board_temperature(board_temperature)?;
         res.set_firmware_is_dirty(firmware_is_dirty)?;
@@ -13042,7 +13096,7 @@ impl Module4Status {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// board_humidity
+    /// Get value of 'board_humidity'
     ///
     /// the relative humidity at the PCB
     ///
@@ -13054,7 +13108,7 @@ impl Module4Status {
     pub fn board_humidity(&self) -> u8 {
         self.board_humidity_raw()
     }
-    /// Get raw value of board_humidity
+    /// Get raw value of 'board_humidity'
     ///
     /// - Start bit: 57
     /// - Signal size: 7 bits
@@ -13068,7 +13122,7 @@ impl Module4Status {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_humidity
+    /// Set value of 'board_humidity'
     #[inline(always)]
     pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -13086,7 +13140,7 @@ impl Module4Status {
         self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
         Ok(())
     }
-    /// board_temperature
+    /// Get value of 'board_temperature'
     ///
     /// The ambient temperature at the PCB
     ///
@@ -13098,7 +13152,7 @@ impl Module4Status {
     pub fn board_temperature(&self) -> u8 {
         self.board_temperature_raw()
     }
-    /// Get raw value of board_temperature
+    /// Get raw value of 'board_temperature'
     ///
     /// - Start bit: 50
     /// - Signal size: 7 bits
@@ -13112,7 +13166,7 @@ impl Module4Status {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_temperature
+    /// Set value of 'board_temperature'
     #[inline(always)]
     pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -13130,7 +13184,7 @@ impl Module4Status {
         self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
         Ok(())
     }
-    /// firmware_is_dirty
+    /// Get value of 'firmware_is_dirty'
     ///
     /// if the compiled firmware had uncommitted changes (1) or not (0)
     ///
@@ -13142,7 +13196,7 @@ impl Module4Status {
     pub fn firmware_is_dirty(&self) -> bool {
         self.firmware_is_dirty_raw()
     }
-    /// Get raw value of firmware_is_dirty
+    /// Get raw value of 'firmware_is_dirty'
     ///
     /// - Start bit: 49
     /// - Signal size: 1 bits
@@ -13155,14 +13209,14 @@ impl Module4Status {
         let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_is_dirty
+    /// Set value of 'firmware_is_dirty'
     #[inline(always)]
     pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
         Ok(())
     }
-    /// firmware_on_main
+    /// Get value of 'firmware_on_main'
     ///
     /// if the compiled firmware was from main branch (1) or not (0)
     ///
@@ -13174,7 +13228,7 @@ impl Module4Status {
     pub fn firmware_on_main(&self) -> bool {
         self.firmware_on_main_raw()
     }
-    /// Get raw value of firmware_on_main
+    /// Get raw value of 'firmware_on_main'
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -13187,14 +13241,14 @@ impl Module4Status {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_on_main
+    /// Set value of 'firmware_on_main'
     #[inline(always)]
     pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
-    /// board_on_time_seconds
+    /// Get value of 'board_on_time_seconds'
     ///
     /// time in seconds which the board has been powered on and running
     ///
@@ -13206,7 +13260,7 @@ impl Module4Status {
     pub fn board_on_time_seconds(&self) -> u16 {
         self.board_on_time_seconds_raw()
     }
-    /// Get raw value of board_on_time_seconds
+    /// Get raw value of 'board_on_time_seconds'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -13220,7 +13274,7 @@ impl Module4Status {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_on_time_seconds
+    /// Set value of 'board_on_time_seconds'
     #[inline(always)]
     pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -13238,7 +13292,7 @@ impl Module4Status {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// firmware_version
+    /// Get value of 'firmware_version'
     ///
     /// short hash of the firmware
     ///
@@ -13250,7 +13304,7 @@ impl Module4Status {
     pub fn firmware_version(&self) -> u32 {
         self.firmware_version_raw()
     }
-    /// Get raw value of firmware_version
+    /// Get raw value of 'firmware_version'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -13264,7 +13318,7 @@ impl Module4Status {
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of firmware_version
+    /// Set value of 'firmware_version'
     #[inline(always)]
     pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
         if value < 0_u32 || 4294967295_u32 < value {
@@ -13345,6 +13399,7 @@ impl Module5Status {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x3ba)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
     pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
     pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
@@ -13353,7 +13408,7 @@ impl Module5Status {
     pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
     pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
     pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    /// Construct new module5_status from values
+    /// Construct new 'module5_status' from values
     pub fn new(
         board_humidity: u8,
         board_temperature: u8,
@@ -13362,7 +13417,7 @@ impl Module5Status {
         board_on_time_seconds: u16,
         firmware_version: u32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_board_humidity(board_humidity)?;
         res.set_board_temperature(board_temperature)?;
         res.set_firmware_is_dirty(firmware_is_dirty)?;
@@ -13375,7 +13430,7 @@ impl Module5Status {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// board_humidity
+    /// Get value of 'board_humidity'
     ///
     /// the relative humidity at the PCB
     ///
@@ -13387,7 +13442,7 @@ impl Module5Status {
     pub fn board_humidity(&self) -> u8 {
         self.board_humidity_raw()
     }
-    /// Get raw value of board_humidity
+    /// Get raw value of 'board_humidity'
     ///
     /// - Start bit: 57
     /// - Signal size: 7 bits
@@ -13401,7 +13456,7 @@ impl Module5Status {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_humidity
+    /// Set value of 'board_humidity'
     #[inline(always)]
     pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -13419,7 +13474,7 @@ impl Module5Status {
         self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
         Ok(())
     }
-    /// board_temperature
+    /// Get value of 'board_temperature'
     ///
     /// The ambient temperature at the PCB
     ///
@@ -13431,7 +13486,7 @@ impl Module5Status {
     pub fn board_temperature(&self) -> u8 {
         self.board_temperature_raw()
     }
-    /// Get raw value of board_temperature
+    /// Get raw value of 'board_temperature'
     ///
     /// - Start bit: 50
     /// - Signal size: 7 bits
@@ -13445,7 +13500,7 @@ impl Module5Status {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_temperature
+    /// Set value of 'board_temperature'
     #[inline(always)]
     pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -13463,7 +13518,7 @@ impl Module5Status {
         self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
         Ok(())
     }
-    /// firmware_is_dirty
+    /// Get value of 'firmware_is_dirty'
     ///
     /// if the compiled firmware had uncommitted changes (1) or not (0)
     ///
@@ -13475,7 +13530,7 @@ impl Module5Status {
     pub fn firmware_is_dirty(&self) -> bool {
         self.firmware_is_dirty_raw()
     }
-    /// Get raw value of firmware_is_dirty
+    /// Get raw value of 'firmware_is_dirty'
     ///
     /// - Start bit: 49
     /// - Signal size: 1 bits
@@ -13488,14 +13543,14 @@ impl Module5Status {
         let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_is_dirty
+    /// Set value of 'firmware_is_dirty'
     #[inline(always)]
     pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
         Ok(())
     }
-    /// firmware_on_main
+    /// Get value of 'firmware_on_main'
     ///
     /// if the compiled firmware was from main branch (1) or not (0)
     ///
@@ -13507,7 +13562,7 @@ impl Module5Status {
     pub fn firmware_on_main(&self) -> bool {
         self.firmware_on_main_raw()
     }
-    /// Get raw value of firmware_on_main
+    /// Get raw value of 'firmware_on_main'
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -13520,14 +13575,14 @@ impl Module5Status {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_on_main
+    /// Set value of 'firmware_on_main'
     #[inline(always)]
     pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
-    /// board_on_time_seconds
+    /// Get value of 'board_on_time_seconds'
     ///
     /// time in seconds which the board has been powered on and running
     ///
@@ -13539,7 +13594,7 @@ impl Module5Status {
     pub fn board_on_time_seconds(&self) -> u16 {
         self.board_on_time_seconds_raw()
     }
-    /// Get raw value of board_on_time_seconds
+    /// Get raw value of 'board_on_time_seconds'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -13553,7 +13608,7 @@ impl Module5Status {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_on_time_seconds
+    /// Set value of 'board_on_time_seconds'
     #[inline(always)]
     pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -13571,7 +13626,7 @@ impl Module5Status {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// firmware_version
+    /// Get value of 'firmware_version'
     ///
     /// short hash of the firmware
     ///
@@ -13583,7 +13638,7 @@ impl Module5Status {
     pub fn firmware_version(&self) -> u32 {
         self.firmware_version_raw()
     }
-    /// Get raw value of firmware_version
+    /// Get raw value of 'firmware_version'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -13597,7 +13652,7 @@ impl Module5Status {
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of firmware_version
+    /// Set value of 'firmware_version'
     #[inline(always)]
     pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
         if value < 0_u32 || 4294967295_u32 < value {
@@ -13678,6 +13733,7 @@ impl AcuBoardData {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x3bb)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const BOARD_HUMIDITY_MIN: u8 = 0_u8;
     pub const BOARD_HUMIDITY_MAX: u8 = 127_u8;
     pub const BOARD_TEMPERATURE_MIN: u8 = 0_u8;
@@ -13686,7 +13742,7 @@ impl AcuBoardData {
     pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
     pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
     pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    /// Construct new acu_board_data from values
+    /// Construct new 'acu_board_data' from values
     pub fn new(
         board_humidity: u8,
         board_temperature: u8,
@@ -13695,7 +13751,7 @@ impl AcuBoardData {
         board_on_time_seconds: u16,
         firmware_version: u32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_board_humidity(board_humidity)?;
         res.set_board_temperature(board_temperature)?;
         res.set_firmware_is_dirty(firmware_is_dirty)?;
@@ -13708,7 +13764,7 @@ impl AcuBoardData {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// board_humidity
+    /// Get value of 'board_humidity'
     ///
     /// the relative humidity at the PCB
     ///
@@ -13720,7 +13776,7 @@ impl AcuBoardData {
     pub fn board_humidity(&self) -> u8 {
         self.board_humidity_raw()
     }
-    /// Get raw value of board_humidity
+    /// Get raw value of 'board_humidity'
     ///
     /// - Start bit: 57
     /// - Signal size: 7 bits
@@ -13734,7 +13790,7 @@ impl AcuBoardData {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_humidity
+    /// Set value of 'board_humidity'
     #[inline(always)]
     pub fn set_board_humidity(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -13752,7 +13808,7 @@ impl AcuBoardData {
         self.raw.view_bits_mut::<Lsb0>()[57..64].store_le(value);
         Ok(())
     }
-    /// board_temperature
+    /// Get value of 'board_temperature'
     ///
     /// The ambient temperature at the PCB
     ///
@@ -13764,7 +13820,7 @@ impl AcuBoardData {
     pub fn board_temperature(&self) -> u8 {
         self.board_temperature_raw()
     }
-    /// Get raw value of board_temperature
+    /// Get raw value of 'board_temperature'
     ///
     /// - Start bit: 50
     /// - Signal size: 7 bits
@@ -13778,7 +13834,7 @@ impl AcuBoardData {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_temperature
+    /// Set value of 'board_temperature'
     #[inline(always)]
     pub fn set_board_temperature(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 127_u8 < value {
@@ -13796,7 +13852,7 @@ impl AcuBoardData {
         self.raw.view_bits_mut::<Lsb0>()[50..57].store_le(value);
         Ok(())
     }
-    /// firmware_is_dirty
+    /// Get value of 'firmware_is_dirty'
     ///
     /// if the compiled firmware had uncommitted changes (1) or not (0)
     ///
@@ -13808,7 +13864,7 @@ impl AcuBoardData {
     pub fn firmware_is_dirty(&self) -> bool {
         self.firmware_is_dirty_raw()
     }
-    /// Get raw value of firmware_is_dirty
+    /// Get raw value of 'firmware_is_dirty'
     ///
     /// - Start bit: 49
     /// - Signal size: 1 bits
@@ -13821,14 +13877,14 @@ impl AcuBoardData {
         let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_is_dirty
+    /// Set value of 'firmware_is_dirty'
     #[inline(always)]
     pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
         Ok(())
     }
-    /// firmware_on_main
+    /// Get value of 'firmware_on_main'
     ///
     /// if the compiled firmware was from main branch (1) or not (0)
     ///
@@ -13840,7 +13896,7 @@ impl AcuBoardData {
     pub fn firmware_on_main(&self) -> bool {
         self.firmware_on_main_raw()
     }
-    /// Get raw value of firmware_on_main
+    /// Get raw value of 'firmware_on_main'
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -13853,14 +13909,14 @@ impl AcuBoardData {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_on_main
+    /// Set value of 'firmware_on_main'
     #[inline(always)]
     pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
-    /// board_on_time_seconds
+    /// Get value of 'board_on_time_seconds'
     ///
     /// time in seconds which the board has been powered on and running
     ///
@@ -13872,7 +13928,7 @@ impl AcuBoardData {
     pub fn board_on_time_seconds(&self) -> u16 {
         self.board_on_time_seconds_raw()
     }
-    /// Get raw value of board_on_time_seconds
+    /// Get raw value of 'board_on_time_seconds'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -13886,7 +13942,7 @@ impl AcuBoardData {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_on_time_seconds
+    /// Set value of 'board_on_time_seconds'
     #[inline(always)]
     pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -13904,7 +13960,7 @@ impl AcuBoardData {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// firmware_version
+    /// Get value of 'firmware_version'
     ///
     /// short hash of the firmware
     ///
@@ -13916,7 +13972,7 @@ impl AcuBoardData {
     pub fn firmware_version(&self) -> u32 {
         self.firmware_version_raw()
     }
-    /// Get raw value of firmware_version
+    /// Get raw value of 'firmware_version'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -13930,7 +13986,7 @@ impl AcuBoardData {
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of firmware_version
+    /// Set value of 'firmware_version'
     #[inline(always)]
     pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
         if value < 0_u32 || 4294967295_u32 < value {
@@ -14011,18 +14067,19 @@ impl VcuBoardData {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x3bc)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const BOARD_ON_TIME_SECONDS_MIN: u16 = 0_u16;
     pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
     pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
     pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    /// Construct new vcu_board_data from values
+    /// Construct new 'vcu_board_data' from values
     pub fn new(
         firmware_is_dirty: bool,
         firmware_on_main: bool,
         board_on_time_seconds: u16,
         firmware_version: u32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_firmware_is_dirty(firmware_is_dirty)?;
         res.set_firmware_on_main(firmware_on_main)?;
         res.set_board_on_time_seconds(board_on_time_seconds)?;
@@ -14033,7 +14090,7 @@ impl VcuBoardData {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// firmware_is_dirty
+    /// Get value of 'firmware_is_dirty'
     ///
     /// if the compiled firmware had uncommitted changes (1) or not (0)
     ///
@@ -14045,7 +14102,7 @@ impl VcuBoardData {
     pub fn firmware_is_dirty(&self) -> bool {
         self.firmware_is_dirty_raw()
     }
-    /// Get raw value of firmware_is_dirty
+    /// Get raw value of 'firmware_is_dirty'
     ///
     /// - Start bit: 49
     /// - Signal size: 1 bits
@@ -14058,14 +14115,14 @@ impl VcuBoardData {
         let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_is_dirty
+    /// Set value of 'firmware_is_dirty'
     #[inline(always)]
     pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
         Ok(())
     }
-    /// firmware_on_main
+    /// Get value of 'firmware_on_main'
     ///
     /// if the compiled firmware was from main branch (1) or not (0)
     ///
@@ -14077,7 +14134,7 @@ impl VcuBoardData {
     pub fn firmware_on_main(&self) -> bool {
         self.firmware_on_main_raw()
     }
-    /// Get raw value of firmware_on_main
+    /// Get raw value of 'firmware_on_main'
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -14090,14 +14147,14 @@ impl VcuBoardData {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_on_main
+    /// Set value of 'firmware_on_main'
     #[inline(always)]
     pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
-    /// board_on_time_seconds
+    /// Get value of 'board_on_time_seconds'
     ///
     /// time in seconds which the board has been powered on and running
     ///
@@ -14109,7 +14166,7 @@ impl VcuBoardData {
     pub fn board_on_time_seconds(&self) -> u16 {
         self.board_on_time_seconds_raw()
     }
-    /// Get raw value of board_on_time_seconds
+    /// Get raw value of 'board_on_time_seconds'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -14123,7 +14180,7 @@ impl VcuBoardData {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_on_time_seconds
+    /// Set value of 'board_on_time_seconds'
     #[inline(always)]
     pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -14141,7 +14198,7 @@ impl VcuBoardData {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// firmware_version
+    /// Get value of 'firmware_version'
     ///
     /// short hash of the firmware
     ///
@@ -14153,7 +14210,7 @@ impl VcuBoardData {
     pub fn firmware_version(&self) -> u32 {
         self.firmware_version_raw()
     }
-    /// Get raw value of firmware_version
+    /// Get raw value of 'firmware_version'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -14167,7 +14224,7 @@ impl VcuBoardData {
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of firmware_version
+    /// Set value of 'firmware_version'
     #[inline(always)]
     pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
         if value < 0_u32 || 4294967295_u32 < value {
@@ -14248,18 +14305,19 @@ impl DashBoardData {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x3bd)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const BOARD_ON_TIME_SECONDS_MIN: u16 = 0_u16;
     pub const BOARD_ON_TIME_SECONDS_MAX: u16 = 65535_u16;
     pub const FIRMWARE_VERSION_MIN: u32 = 0_u32;
     pub const FIRMWARE_VERSION_MAX: u32 = 4294967295_u32;
-    /// Construct new dash_board_data from values
+    /// Construct new 'dash_board_data' from values
     pub fn new(
         firmware_is_dirty: bool,
         firmware_on_main: bool,
         board_on_time_seconds: u16,
         firmware_version: u32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_firmware_is_dirty(firmware_is_dirty)?;
         res.set_firmware_on_main(firmware_on_main)?;
         res.set_board_on_time_seconds(board_on_time_seconds)?;
@@ -14270,7 +14328,7 @@ impl DashBoardData {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// firmware_is_dirty
+    /// Get value of 'firmware_is_dirty'
     ///
     /// if the compiled firmware had uncommitted changes (1) or not (0)
     ///
@@ -14282,7 +14340,7 @@ impl DashBoardData {
     pub fn firmware_is_dirty(&self) -> bool {
         self.firmware_is_dirty_raw()
     }
-    /// Get raw value of firmware_is_dirty
+    /// Get raw value of 'firmware_is_dirty'
     ///
     /// - Start bit: 49
     /// - Signal size: 1 bits
@@ -14295,14 +14353,14 @@ impl DashBoardData {
         let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_is_dirty
+    /// Set value of 'firmware_is_dirty'
     #[inline(always)]
     pub fn set_firmware_is_dirty(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
         Ok(())
     }
-    /// firmware_on_main
+    /// Get value of 'firmware_on_main'
     ///
     /// if the compiled firmware was from main branch (1) or not (0)
     ///
@@ -14314,7 +14372,7 @@ impl DashBoardData {
     pub fn firmware_on_main(&self) -> bool {
         self.firmware_on_main_raw()
     }
-    /// Get raw value of firmware_on_main
+    /// Get raw value of 'firmware_on_main'
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -14327,14 +14385,14 @@ impl DashBoardData {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         signal == 1
     }
-    /// Set value of firmware_on_main
+    /// Set value of 'firmware_on_main'
     #[inline(always)]
     pub fn set_firmware_on_main(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
-    /// board_on_time_seconds
+    /// Get value of 'board_on_time_seconds'
     ///
     /// time in seconds which the board has been powered on and running
     ///
@@ -14346,7 +14404,7 @@ impl DashBoardData {
     pub fn board_on_time_seconds(&self) -> u16 {
         self.board_on_time_seconds_raw()
     }
-    /// Get raw value of board_on_time_seconds
+    /// Get raw value of 'board_on_time_seconds'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -14360,7 +14418,7 @@ impl DashBoardData {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of board_on_time_seconds
+    /// Set value of 'board_on_time_seconds'
     #[inline(always)]
     pub fn set_board_on_time_seconds(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -14378,7 +14436,7 @@ impl DashBoardData {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// firmware_version
+    /// Get value of 'firmware_version'
     ///
     /// short hash of the firmware
     ///
@@ -14390,7 +14448,7 @@ impl DashBoardData {
     pub fn firmware_version(&self) -> u32 {
         self.firmware_version_raw()
     }
-    /// Get raw value of firmware_version
+    /// Get raw value of 'firmware_version'
     ///
     /// - Start bit: 0
     /// - Signal size: 32 bits
@@ -14404,7 +14462,7 @@ impl DashBoardData {
         let factor = 1;
         u32::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of firmware_version
+    /// Set value of 'firmware_version'
     #[inline(always)]
     pub fn set_firmware_version(&mut self, value: u32) -> Result<(), CanError> {
         if value < 0_u32 || 4294967295_u32 < value {
@@ -14485,6 +14543,7 @@ impl Msgid0x6b1 {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x6b1)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const PACK_SUMMED_VOLTAGE_MIN: f32 = 0_f32;
     pub const PACK_SUMMED_VOLTAGE_MAX: f32 = 0_f32;
     pub const PACK_OPEN_VOLTAGE_MIN: f32 = 0_f32;
@@ -14493,14 +14552,14 @@ impl Msgid0x6b1 {
     pub const PACK_INST_VOLTAGE_MAX: f32 = 0_f32;
     pub const PACK_CURRENT_MIN: f32 = 0_f32;
     pub const PACK_CURRENT_MAX: f32 = 0_f32;
-    /// Construct new MSGID_0X6B1 from values
+    /// Construct new 'MSGID_0X6B1' from values
     pub fn new(
         pack_summed_voltage: f32,
         pack_open_voltage: f32,
         pack_inst_voltage: f32,
         pack_current: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_pack_summed_voltage(pack_summed_voltage)?;
         res.set_pack_open_voltage(pack_open_voltage)?;
         res.set_pack_inst_voltage(pack_inst_voltage)?;
@@ -14511,7 +14570,7 @@ impl Msgid0x6b1 {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Pack_Summed_Voltage
+    /// Get value of 'Pack_Summed_Voltage'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -14521,7 +14580,7 @@ impl Msgid0x6b1 {
     pub fn pack_summed_voltage(&self) -> f32 {
         self.pack_summed_voltage_raw()
     }
-    /// Get raw value of Pack_Summed_Voltage
+    /// Get raw value of 'Pack_Summed_Voltage'
     ///
     /// - Start bit: 55
     /// - Signal size: 16 bits
@@ -14536,7 +14595,7 @@ impl Msgid0x6b1 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Pack_Summed_Voltage
+    /// Set value of 'Pack_Summed_Voltage'
     #[inline(always)]
     pub fn set_pack_summed_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -14550,7 +14609,7 @@ impl Msgid0x6b1 {
         self.raw.view_bits_mut::<Msb0>()[48..64].store_be(value);
         Ok(())
     }
-    /// Pack_Open_Voltage
+    /// Get value of 'Pack_Open_Voltage'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -14560,7 +14619,7 @@ impl Msgid0x6b1 {
     pub fn pack_open_voltage(&self) -> f32 {
         self.pack_open_voltage_raw()
     }
-    /// Get raw value of Pack_Open_Voltage
+    /// Get raw value of 'Pack_Open_Voltage'
     ///
     /// - Start bit: 39
     /// - Signal size: 16 bits
@@ -14575,7 +14634,7 @@ impl Msgid0x6b1 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Pack_Open_Voltage
+    /// Set value of 'Pack_Open_Voltage'
     #[inline(always)]
     pub fn set_pack_open_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -14589,7 +14648,7 @@ impl Msgid0x6b1 {
         self.raw.view_bits_mut::<Msb0>()[32..48].store_be(value);
         Ok(())
     }
-    /// Pack_Inst_Voltage
+    /// Get value of 'Pack_Inst_Voltage'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -14599,7 +14658,7 @@ impl Msgid0x6b1 {
     pub fn pack_inst_voltage(&self) -> f32 {
         self.pack_inst_voltage_raw()
     }
-    /// Get raw value of Pack_Inst_Voltage
+    /// Get raw value of 'Pack_Inst_Voltage'
     ///
     /// - Start bit: 23
     /// - Signal size: 16 bits
@@ -14614,7 +14673,7 @@ impl Msgid0x6b1 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Pack_Inst_Voltage
+    /// Set value of 'Pack_Inst_Voltage'
     #[inline(always)]
     pub fn set_pack_inst_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -14628,7 +14687,7 @@ impl Msgid0x6b1 {
         self.raw.view_bits_mut::<Msb0>()[16..32].store_be(value);
         Ok(())
     }
-    /// Pack_Current
+    /// Get value of 'Pack_Current'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -14638,7 +14697,7 @@ impl Msgid0x6b1 {
     pub fn pack_current(&self) -> f32 {
         self.pack_current_raw()
     }
-    /// Get raw value of Pack_Current
+    /// Get raw value of 'Pack_Current'
     ///
     /// - Start bit: 7
     /// - Signal size: 16 bits
@@ -14653,7 +14712,7 @@ impl Msgid0x6b1 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Pack_Current
+    /// Set value of 'Pack_Current'
     #[inline(always)]
     pub fn set_pack_current(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -14731,6 +14790,7 @@ impl Msgid0x6b2 {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x6b2)
     });
+    pub const MESSAGE_SIZE: usize = 7;
     pub const LOW_CELL_VOLTAGE_MIN: f32 = 0_f32;
     pub const LOW_CELL_VOLTAGE_MAX: f32 = 0_f32;
     pub const AVG_CELL_VOLTAGE_MIN: f32 = 0_f32;
@@ -14741,7 +14801,7 @@ impl Msgid0x6b2 {
     pub const LOW_TEMPERATURE_MAX: u8 = 0_u8;
     pub const HIGH_TEMPERATURE_MIN: u8 = 0_u8;
     pub const HIGH_TEMPERATURE_MAX: u8 = 0_u8;
-    /// Construct new MSGID_0X6B2 from values
+    /// Construct new 'MSGID_0X6B2' from values
     pub fn new(
         low_cell_voltage: f32,
         avg_cell_voltage: f32,
@@ -14749,7 +14809,7 @@ impl Msgid0x6b2 {
         low_temperature: u8,
         high_temperature: u8,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 7] };
+        let mut res = Self { raw: [0x00; 7] };
         res.set_low_cell_voltage(low_cell_voltage)?;
         res.set_avg_cell_voltage(avg_cell_voltage)?;
         res.set_average_temperature(average_temperature)?;
@@ -14761,7 +14821,7 @@ impl Msgid0x6b2 {
     pub fn raw(&self) -> &[u8; 7] {
         &self.raw
     }
-    /// Low_Cell_Voltage
+    /// Get value of 'Low_Cell_Voltage'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -14771,7 +14831,7 @@ impl Msgid0x6b2 {
     pub fn low_cell_voltage(&self) -> f32 {
         self.low_cell_voltage_raw()
     }
-    /// Get raw value of Low_Cell_Voltage
+    /// Get raw value of 'Low_Cell_Voltage'
     ///
     /// - Start bit: 47
     /// - Signal size: 16 bits
@@ -14786,7 +14846,7 @@ impl Msgid0x6b2 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Low_Cell_Voltage
+    /// Set value of 'Low_Cell_Voltage'
     #[inline(always)]
     pub fn set_low_cell_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -14800,7 +14860,7 @@ impl Msgid0x6b2 {
         self.raw.view_bits_mut::<Msb0>()[40..56].store_be(value);
         Ok(())
     }
-    /// Avg_Cell_Voltage
+    /// Get value of 'Avg_Cell_Voltage'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -14810,7 +14870,7 @@ impl Msgid0x6b2 {
     pub fn avg_cell_voltage(&self) -> f32 {
         self.avg_cell_voltage_raw()
     }
-    /// Get raw value of Avg_Cell_Voltage
+    /// Get raw value of 'Avg_Cell_Voltage'
     ///
     /// - Start bit: 31
     /// - Signal size: 16 bits
@@ -14825,7 +14885,7 @@ impl Msgid0x6b2 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Avg_Cell_Voltage
+    /// Set value of 'Avg_Cell_Voltage'
     #[inline(always)]
     pub fn set_avg_cell_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -14839,7 +14899,7 @@ impl Msgid0x6b2 {
         self.raw.view_bits_mut::<Msb0>()[24..40].store_be(value);
         Ok(())
     }
-    /// Average_Temperature
+    /// Get value of 'Average_Temperature'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -14849,7 +14909,7 @@ impl Msgid0x6b2 {
     pub fn average_temperature(&self) -> u8 {
         self.average_temperature_raw()
     }
-    /// Get raw value of Average_Temperature
+    /// Get raw value of 'Average_Temperature'
     ///
     /// - Start bit: 23
     /// - Signal size: 8 bits
@@ -14863,7 +14923,7 @@ impl Msgid0x6b2 {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of Average_Temperature
+    /// Set value of 'Average_Temperature'
     #[inline(always)]
     pub fn set_average_temperature(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 0_u8 < value {
@@ -14881,7 +14941,7 @@ impl Msgid0x6b2 {
         self.raw.view_bits_mut::<Msb0>()[16..24].store_be(value);
         Ok(())
     }
-    /// Low_Temperature
+    /// Get value of 'Low_Temperature'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -14891,7 +14951,7 @@ impl Msgid0x6b2 {
     pub fn low_temperature(&self) -> u8 {
         self.low_temperature_raw()
     }
-    /// Get raw value of Low_Temperature
+    /// Get raw value of 'Low_Temperature'
     ///
     /// - Start bit: 15
     /// - Signal size: 8 bits
@@ -14905,7 +14965,7 @@ impl Msgid0x6b2 {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of Low_Temperature
+    /// Set value of 'Low_Temperature'
     #[inline(always)]
     pub fn set_low_temperature(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 0_u8 < value {
@@ -14923,7 +14983,7 @@ impl Msgid0x6b2 {
         self.raw.view_bits_mut::<Msb0>()[8..16].store_be(value);
         Ok(())
     }
-    /// High_Temperature
+    /// Get value of 'High_Temperature'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -14933,7 +14993,7 @@ impl Msgid0x6b2 {
     pub fn high_temperature(&self) -> u8 {
         self.high_temperature_raw()
     }
-    /// Get raw value of High_Temperature
+    /// Get raw value of 'High_Temperature'
     ///
     /// - Start bit: 7
     /// - Signal size: 8 bits
@@ -14947,7 +15007,7 @@ impl Msgid0x6b2 {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of High_Temperature
+    /// Set value of 'High_Temperature'
     #[inline(always)]
     pub fn set_high_temperature(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 0_u8 < value {
@@ -15028,11 +15088,12 @@ impl Msgid0x6b3 {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x6b3)
     });
+    pub const MESSAGE_SIZE: usize = 1;
     pub const PACK_SOC_MIN: f32 = 0_f32;
     pub const PACK_SOC_MAX: f32 = 0_f32;
-    /// Construct new MSGID_0X6B3 from values
+    /// Construct new 'MSGID_0X6B3' from values
     pub fn new(pack_soc: f32) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 1] };
+        let mut res = Self { raw: [0x00; 1] };
         res.set_pack_soc(pack_soc)?;
         Ok(res)
     }
@@ -15040,7 +15101,7 @@ impl Msgid0x6b3 {
     pub fn raw(&self) -> &[u8; 1] {
         &self.raw
     }
-    /// Pack_SOC
+    /// Get value of 'Pack_SOC'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -15050,7 +15111,7 @@ impl Msgid0x6b3 {
     pub fn pack_soc(&self) -> f32 {
         self.pack_soc_raw()
     }
-    /// Get raw value of Pack_SOC
+    /// Get raw value of 'Pack_SOC'
     ///
     /// - Start bit: 7
     /// - Signal size: 8 bits
@@ -15065,7 +15126,7 @@ impl Msgid0x6b3 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Pack_SOC
+    /// Set value of 'Pack_SOC'
     #[inline(always)]
     pub fn set_pack_soc(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -15142,9 +15203,10 @@ impl Msgid0x6b4 {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x6b4)
     });
-    /// Construct new MSGID_0X6B4 from values
+    pub const MESSAGE_SIZE: usize = 1;
+    /// Construct new 'MSGID_0X6B4' from values
     pub fn new(dtc_p0aa6_high_voltage_isolation: bool) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 1] };
+        let mut res = Self { raw: [0x00; 1] };
         res.set_dtc_p0aa6_high_voltage_isolation(dtc_p0aa6_high_voltage_isolation)?;
         Ok(res)
     }
@@ -15152,7 +15214,7 @@ impl Msgid0x6b4 {
     pub fn raw(&self) -> &[u8; 1] {
         &self.raw
     }
-    /// DTC_P0AA6_High_Voltage_Isolation
+    /// Get value of 'DTC_P0AA6_High_Voltage_Isolation'
     ///
     /// - Min: 0
     /// - Max: 1
@@ -15162,7 +15224,7 @@ impl Msgid0x6b4 {
     pub fn dtc_p0aa6_high_voltage_isolation(&self) -> bool {
         self.dtc_p0aa6_high_voltage_isolation_raw()
     }
-    /// Get raw value of DTC_P0AA6_High_Voltage_Isolation
+    /// Get raw value of 'DTC_P0AA6_High_Voltage_Isolation'
     ///
     /// - Start bit: 0
     /// - Signal size: 1 bits
@@ -15175,7 +15237,7 @@ impl Msgid0x6b4 {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
-    /// Set value of DTC_P0AA6_High_Voltage_Isolation
+    /// Set value of 'DTC_P0AA6_High_Voltage_Isolation'
     #[inline(always)]
     pub fn set_dtc_p0aa6_high_voltage_isolation(
         &mut self,
@@ -15248,17 +15310,18 @@ impl Msgid0x1806e7f4 {
     pub const MESSAGE_ID: embedded_can::Id = Id::Extended(unsafe {
         ExtendedId::new_unchecked(0x1806e7f4)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const PACK_CCL_MIN: f32 = 0_f32;
     pub const PACK_CCL_MAX: f32 = 0_f32;
     pub const MAXIMUM_PACK_VOLTAGE_MIN: f32 = 0_f32;
     pub const MAXIMUM_PACK_VOLTAGE_MAX: f32 = 0_f32;
-    /// Construct new MSGID_0X1806E7F4 from values
+    /// Construct new 'MSGID_0X1806E7F4' from values
     pub fn new(
         dtc_p0a08_charger_safety_relay_f: bool,
         pack_ccl: f32,
         maximum_pack_voltage: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_dtc_p0a08_charger_safety_relay_f(dtc_p0a08_charger_safety_relay_f)?;
         res.set_pack_ccl(pack_ccl)?;
         res.set_maximum_pack_voltage(maximum_pack_voltage)?;
@@ -15268,7 +15331,7 @@ impl Msgid0x1806e7f4 {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// DTC_P0A08_Charger_Safety_Relay_F
+    /// Get value of 'DTC_P0A08_Charger_Safety_Relay_F'
     ///
     /// - Min: 0
     /// - Max: 1
@@ -15278,7 +15341,7 @@ impl Msgid0x1806e7f4 {
     pub fn dtc_p0a08_charger_safety_relay_f(&self) -> bool {
         self.dtc_p0a08_charger_safety_relay_f_raw()
     }
-    /// Get raw value of DTC_P0A08_Charger_Safety_Relay_F
+    /// Get raw value of 'DTC_P0A08_Charger_Safety_Relay_F'
     ///
     /// - Start bit: 39
     /// - Signal size: 1 bits
@@ -15291,7 +15354,7 @@ impl Msgid0x1806e7f4 {
         let signal = self.raw.view_bits::<Lsb0>()[39..40].load_le::<u8>();
         signal == 1
     }
-    /// Set value of DTC_P0A08_Charger_Safety_Relay_F
+    /// Set value of 'DTC_P0A08_Charger_Safety_Relay_F'
     #[inline(always)]
     pub fn set_dtc_p0a08_charger_safety_relay_f(
         &mut self,
@@ -15301,7 +15364,7 @@ impl Msgid0x1806e7f4 {
         self.raw.view_bits_mut::<Lsb0>()[39..40].store_le(value);
         Ok(())
     }
-    /// Pack_CCL
+    /// Get value of 'Pack_CCL'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -15311,7 +15374,7 @@ impl Msgid0x1806e7f4 {
     pub fn pack_ccl(&self) -> f32 {
         self.pack_ccl_raw()
     }
-    /// Get raw value of Pack_CCL
+    /// Get raw value of 'Pack_CCL'
     ///
     /// - Start bit: 23
     /// - Signal size: 16 bits
@@ -15326,7 +15389,7 @@ impl Msgid0x1806e7f4 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Pack_CCL
+    /// Set value of 'Pack_CCL'
     #[inline(always)]
     pub fn set_pack_ccl(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -15340,7 +15403,7 @@ impl Msgid0x1806e7f4 {
         self.raw.view_bits_mut::<Msb0>()[16..32].store_be(value);
         Ok(())
     }
-    /// Maximum_Pack_Voltage
+    /// Get value of 'Maximum_Pack_Voltage'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -15350,7 +15413,7 @@ impl Msgid0x1806e7f4 {
     pub fn maximum_pack_voltage(&self) -> f32 {
         self.maximum_pack_voltage_raw()
     }
-    /// Get raw value of Maximum_Pack_Voltage
+    /// Get raw value of 'Maximum_Pack_Voltage'
     ///
     /// - Start bit: 7
     /// - Signal size: 16 bits
@@ -15365,7 +15428,7 @@ impl Msgid0x1806e7f4 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Maximum_Pack_Voltage
+    /// Set value of 'Maximum_Pack_Voltage'
     #[inline(always)]
     pub fn set_maximum_pack_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -15442,17 +15505,18 @@ impl Msgid0x1806e5f4 {
     pub const MESSAGE_ID: embedded_can::Id = Id::Extended(unsafe {
         ExtendedId::new_unchecked(0x1806e5f4)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const PACK_CCL_MIN: f32 = 0_f32;
     pub const PACK_CCL_MAX: f32 = 0_f32;
     pub const MAXIMUM_PACK_VOLTAGE_MIN: f32 = 0_f32;
     pub const MAXIMUM_PACK_VOLTAGE_MAX: f32 = 0_f32;
-    /// Construct new MSGID_0X1806E5F4 from values
+    /// Construct new 'MSGID_0X1806E5F4' from values
     pub fn new(
         dtc_p0a08_charger_safety_re_0000: bool,
         pack_ccl: f32,
         maximum_pack_voltage: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_dtc_p0a08_charger_safety_re_0000(dtc_p0a08_charger_safety_re_0000)?;
         res.set_pack_ccl(pack_ccl)?;
         res.set_maximum_pack_voltage(maximum_pack_voltage)?;
@@ -15462,7 +15526,7 @@ impl Msgid0x1806e5f4 {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// DTC_P0A08_Charger_Safety_Re_0000
+    /// Get value of 'DTC_P0A08_Charger_Safety_Re_0000'
     ///
     /// - Min: 0
     /// - Max: 1
@@ -15472,7 +15536,7 @@ impl Msgid0x1806e5f4 {
     pub fn dtc_p0a08_charger_safety_re_0000(&self) -> bool {
         self.dtc_p0a08_charger_safety_re_0000_raw()
     }
-    /// Get raw value of DTC_P0A08_Charger_Safety_Re_0000
+    /// Get raw value of 'DTC_P0A08_Charger_Safety_Re_0000'
     ///
     /// - Start bit: 39
     /// - Signal size: 1 bits
@@ -15485,7 +15549,7 @@ impl Msgid0x1806e5f4 {
         let signal = self.raw.view_bits::<Lsb0>()[39..40].load_le::<u8>();
         signal == 1
     }
-    /// Set value of DTC_P0A08_Charger_Safety_Re_0000
+    /// Set value of 'DTC_P0A08_Charger_Safety_Re_0000'
     #[inline(always)]
     pub fn set_dtc_p0a08_charger_safety_re_0000(
         &mut self,
@@ -15495,7 +15559,7 @@ impl Msgid0x1806e5f4 {
         self.raw.view_bits_mut::<Lsb0>()[39..40].store_le(value);
         Ok(())
     }
-    /// Pack_CCL
+    /// Get value of 'Pack_CCL'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -15505,7 +15569,7 @@ impl Msgid0x1806e5f4 {
     pub fn pack_ccl(&self) -> f32 {
         self.pack_ccl_raw()
     }
-    /// Get raw value of Pack_CCL
+    /// Get raw value of 'Pack_CCL'
     ///
     /// - Start bit: 23
     /// - Signal size: 16 bits
@@ -15520,7 +15584,7 @@ impl Msgid0x1806e5f4 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Pack_CCL
+    /// Set value of 'Pack_CCL'
     #[inline(always)]
     pub fn set_pack_ccl(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -15534,7 +15598,7 @@ impl Msgid0x1806e5f4 {
         self.raw.view_bits_mut::<Msb0>()[16..32].store_be(value);
         Ok(())
     }
-    /// Maximum_Pack_Voltage
+    /// Get value of 'Maximum_Pack_Voltage'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -15544,7 +15608,7 @@ impl Msgid0x1806e5f4 {
     pub fn maximum_pack_voltage(&self) -> f32 {
         self.maximum_pack_voltage_raw()
     }
-    /// Get raw value of Maximum_Pack_Voltage
+    /// Get raw value of 'Maximum_Pack_Voltage'
     ///
     /// - Start bit: 7
     /// - Signal size: 16 bits
@@ -15559,7 +15623,7 @@ impl Msgid0x1806e5f4 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Maximum_Pack_Voltage
+    /// Set value of 'Maximum_Pack_Voltage'
     #[inline(always)]
     pub fn set_maximum_pack_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -15636,17 +15700,18 @@ impl Msgid0x1806e9f4 {
     pub const MESSAGE_ID: embedded_can::Id = Id::Extended(unsafe {
         ExtendedId::new_unchecked(0x1806e9f4)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const PACK_CCL_MIN: f32 = 0_f32;
     pub const PACK_CCL_MAX: f32 = 0_f32;
     pub const MAXIMUM_PACK_VOLTAGE_MIN: f32 = 0_f32;
     pub const MAXIMUM_PACK_VOLTAGE_MAX: f32 = 0_f32;
-    /// Construct new MSGID_0X1806E9F4 from values
+    /// Construct new 'MSGID_0X1806E9F4' from values
     pub fn new(
         dtc_p0a08_charger_safety_re_0001: bool,
         pack_ccl: f32,
         maximum_pack_voltage: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_dtc_p0a08_charger_safety_re_0001(dtc_p0a08_charger_safety_re_0001)?;
         res.set_pack_ccl(pack_ccl)?;
         res.set_maximum_pack_voltage(maximum_pack_voltage)?;
@@ -15656,7 +15721,7 @@ impl Msgid0x1806e9f4 {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// DTC_P0A08_Charger_Safety_Re_0001
+    /// Get value of 'DTC_P0A08_Charger_Safety_Re_0001'
     ///
     /// - Min: 0
     /// - Max: 1
@@ -15666,7 +15731,7 @@ impl Msgid0x1806e9f4 {
     pub fn dtc_p0a08_charger_safety_re_0001(&self) -> bool {
         self.dtc_p0a08_charger_safety_re_0001_raw()
     }
-    /// Get raw value of DTC_P0A08_Charger_Safety_Re_0001
+    /// Get raw value of 'DTC_P0A08_Charger_Safety_Re_0001'
     ///
     /// - Start bit: 39
     /// - Signal size: 1 bits
@@ -15679,7 +15744,7 @@ impl Msgid0x1806e9f4 {
         let signal = self.raw.view_bits::<Lsb0>()[39..40].load_le::<u8>();
         signal == 1
     }
-    /// Set value of DTC_P0A08_Charger_Safety_Re_0001
+    /// Set value of 'DTC_P0A08_Charger_Safety_Re_0001'
     #[inline(always)]
     pub fn set_dtc_p0a08_charger_safety_re_0001(
         &mut self,
@@ -15689,7 +15754,7 @@ impl Msgid0x1806e9f4 {
         self.raw.view_bits_mut::<Lsb0>()[39..40].store_le(value);
         Ok(())
     }
-    /// Pack_CCL
+    /// Get value of 'Pack_CCL'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -15699,7 +15764,7 @@ impl Msgid0x1806e9f4 {
     pub fn pack_ccl(&self) -> f32 {
         self.pack_ccl_raw()
     }
-    /// Get raw value of Pack_CCL
+    /// Get raw value of 'Pack_CCL'
     ///
     /// - Start bit: 23
     /// - Signal size: 16 bits
@@ -15714,7 +15779,7 @@ impl Msgid0x1806e9f4 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Pack_CCL
+    /// Set value of 'Pack_CCL'
     #[inline(always)]
     pub fn set_pack_ccl(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -15728,7 +15793,7 @@ impl Msgid0x1806e9f4 {
         self.raw.view_bits_mut::<Msb0>()[16..32].store_be(value);
         Ok(())
     }
-    /// Maximum_Pack_Voltage
+    /// Get value of 'Maximum_Pack_Voltage'
     ///
     /// - Min: 0
     /// - Max: 0
@@ -15738,7 +15803,7 @@ impl Msgid0x1806e9f4 {
     pub fn maximum_pack_voltage(&self) -> f32 {
         self.maximum_pack_voltage_raw()
     }
-    /// Get raw value of Maximum_Pack_Voltage
+    /// Get raw value of 'Maximum_Pack_Voltage'
     ///
     /// - Start bit: 7
     /// - Signal size: 16 bits
@@ -15753,7 +15818,7 @@ impl Msgid0x1806e9f4 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of Maximum_Pack_Voltage
+    /// Set value of 'Maximum_Pack_Voltage'
     #[inline(always)]
     pub fn set_maximum_pack_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -15828,6 +15893,8 @@ impl M173ModulationAndFluxInfo {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xad)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const INV_IQ_COMMAND_MIN: f32 = -3276.8_f32;
     pub const INV_IQ_COMMAND_MAX: f32 = 3276.7_f32;
     pub const INV_ID_COMMAND_MIN: f32 = -3276.8_f32;
@@ -15836,14 +15903,14 @@ impl M173ModulationAndFluxInfo {
     pub const INV_FLUX_WEAKENING_OUTPUT_MAX: f32 = 3276.7_f32;
     pub const INV_MODULATION_INDEX_MIN: f32 = -3.2768_f32;
     pub const INV_MODULATION_INDEX_MAX: f32 = 3.2767_f32;
-    /// Construct new M173_Modulation_And_Flux_Info from values
+    /// Construct new 'M173_Modulation_And_Flux_Info' from values
     pub fn new(
         inv_iq_command: f32,
         inv_id_command: f32,
         inv_flux_weakening_output: f32,
         inv_modulation_index: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_iq_command(inv_iq_command)?;
         res.set_inv_id_command(inv_id_command)?;
         res.set_inv_flux_weakening_output(inv_flux_weakening_output)?;
@@ -15854,7 +15921,7 @@ impl M173ModulationAndFluxInfo {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Iq_Command
+    /// Get value of 'INV_Iq_Command'
     ///
     /// The commanded Q-axis current
     ///
@@ -15866,7 +15933,7 @@ impl M173ModulationAndFluxInfo {
     pub fn inv_iq_command(&self) -> f32 {
         self.inv_iq_command_raw()
     }
-    /// Get raw value of INV_Iq_Command
+    /// Get raw value of 'INV_Iq_Command'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -15881,7 +15948,7 @@ impl M173ModulationAndFluxInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Iq_Command
+    /// Set value of 'INV_Iq_Command'
     #[inline(always)]
     pub fn set_inv_iq_command(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -15896,7 +15963,7 @@ impl M173ModulationAndFluxInfo {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Id_Command
+    /// Get value of 'INV_Id_Command'
     ///
     /// The commanded D-axis current
     ///
@@ -15908,7 +15975,7 @@ impl M173ModulationAndFluxInfo {
     pub fn inv_id_command(&self) -> f32 {
         self.inv_id_command_raw()
     }
-    /// Get raw value of INV_Id_Command
+    /// Get raw value of 'INV_Id_Command'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -15923,7 +15990,7 @@ impl M173ModulationAndFluxInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Id_Command
+    /// Set value of 'INV_Id_Command'
     #[inline(always)]
     pub fn set_inv_id_command(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -15938,7 +16005,7 @@ impl M173ModulationAndFluxInfo {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Flux_Weakening_Output
+    /// Get value of 'INV_Flux_Weakening_Output'
     ///
     /// This is the current output of the flux regulator.
     ///
@@ -15950,7 +16017,7 @@ impl M173ModulationAndFluxInfo {
     pub fn inv_flux_weakening_output(&self) -> f32 {
         self.inv_flux_weakening_output_raw()
     }
-    /// Get raw value of INV_Flux_Weakening_Output
+    /// Get raw value of 'INV_Flux_Weakening_Output'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -15965,7 +16032,7 @@ impl M173ModulationAndFluxInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Flux_Weakening_Output
+    /// Set value of 'INV_Flux_Weakening_Output'
     #[inline(always)]
     pub fn set_inv_flux_weakening_output(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -15980,7 +16047,7 @@ impl M173ModulationAndFluxInfo {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Modulation_Index
+    /// Get value of 'INV_Modulation_Index'
     ///
     /// This is the modulation index. The scale factor is x100. To get the actual modulation index divide the value by 100.
     ///
@@ -15992,7 +16059,7 @@ impl M173ModulationAndFluxInfo {
     pub fn inv_modulation_index(&self) -> f32 {
         self.inv_modulation_index_raw()
     }
-    /// Get raw value of INV_Modulation_Index
+    /// Get raw value of 'INV_Modulation_Index'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -16007,7 +16074,7 @@ impl M173ModulationAndFluxInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Modulation_Index
+    /// Set value of 'INV_Modulation_Index'
     #[inline(always)]
     pub fn set_inv_modulation_index(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3.2768_f32 || 3.2767_f32 < value {
@@ -16083,19 +16150,21 @@ impl M172TorqueAndTimerInfo {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xac)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const INV_POWER_ON_TIMER_MIN: f32 = 0_f32;
     pub const INV_POWER_ON_TIMER_MAX: f32 = 12884800_f32;
     pub const INV_TORQUE_FEEDBACK_MIN: f32 = -3276.8_f32;
     pub const INV_TORQUE_FEEDBACK_MAX: f32 = 3276.7_f32;
     pub const INV_COMMANDED_TORQUE_MIN: f32 = -3276.8_f32;
     pub const INV_COMMANDED_TORQUE_MAX: f32 = 3276.7_f32;
-    /// Construct new M172_Torque_And_Timer_Info from values
+    /// Construct new 'M172_Torque_And_Timer_Info' from values
     pub fn new(
         inv_power_on_timer: f32,
         inv_torque_feedback: f32,
         inv_commanded_torque: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_power_on_timer(inv_power_on_timer)?;
         res.set_inv_torque_feedback(inv_torque_feedback)?;
         res.set_inv_commanded_torque(inv_commanded_torque)?;
@@ -16105,7 +16174,7 @@ impl M172TorqueAndTimerInfo {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Power_On_Timer
+    /// Get value of 'INV_Power_On_Timer'
     ///
     /// Updated every 3 msec. This will roll over in approximately 150 days!
     ///
@@ -16117,7 +16186,7 @@ impl M172TorqueAndTimerInfo {
     pub fn inv_power_on_timer(&self) -> f32 {
         self.inv_power_on_timer_raw()
     }
-    /// Get raw value of INV_Power_On_Timer
+    /// Get raw value of 'INV_Power_On_Timer'
     ///
     /// - Start bit: 32
     /// - Signal size: 32 bits
@@ -16132,7 +16201,7 @@ impl M172TorqueAndTimerInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Power_On_Timer
+    /// Set value of 'INV_Power_On_Timer'
     #[inline(always)]
     pub fn set_inv_power_on_timer(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 12884800_f32 < value {
@@ -16146,7 +16215,7 @@ impl M172TorqueAndTimerInfo {
         self.raw.view_bits_mut::<Lsb0>()[32..64].store_le(value);
         Ok(())
     }
-    /// INV_Torque_Feedback
+    /// Get value of 'INV_Torque_Feedback'
     ///
     /// Estimated motor torque feedback
     ///
@@ -16158,7 +16227,7 @@ impl M172TorqueAndTimerInfo {
     pub fn inv_torque_feedback(&self) -> f32 {
         self.inv_torque_feedback_raw()
     }
-    /// Get raw value of INV_Torque_Feedback
+    /// Get raw value of 'INV_Torque_Feedback'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -16173,7 +16242,7 @@ impl M172TorqueAndTimerInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Torque_Feedback
+    /// Set value of 'INV_Torque_Feedback'
     #[inline(always)]
     pub fn set_inv_torque_feedback(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -16188,7 +16257,7 @@ impl M172TorqueAndTimerInfo {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Commanded_Torque
+    /// Get value of 'INV_Commanded_Torque'
     ///
     /// The commanded Torque
     ///
@@ -16200,7 +16269,7 @@ impl M172TorqueAndTimerInfo {
     pub fn inv_commanded_torque(&self) -> f32 {
         self.inv_commanded_torque_raw()
     }
-    /// Get raw value of INV_Commanded_Torque
+    /// Get raw value of 'INV_Commanded_Torque'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -16215,7 +16284,7 @@ impl M172TorqueAndTimerInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Commanded_Torque
+    /// Set value of 'INV_Commanded_Torque'
     #[inline(always)]
     pub fn set_inv_commanded_torque(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -16275,7 +16344,8 @@ impl embedded_can::Frame for M172TorqueAndTimerInfo {
 /// - Size: 8 bytes
 /// - Transmitter: INV
 ///
-/// To write a parameter use message 0x0C1 with byte #2 set to 1 (write). To read a parameter use message 0x0C1 with byte #2 to set 0 (read).
+/// To write a parameter use message 0x0C1 with byte #2 set to 1 (write).
+/// To read a parameter use message 0x0C1 with byte #2 to set 0 (read).
 #[derive(Clone, Copy)]
 pub struct M194ReadWriteParamResponse {
     raw: [u8; 8],
@@ -16293,17 +16363,18 @@ impl M194ReadWriteParamResponse {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xc2)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const INV_PARAMETER_RESPONSE_DATA_MIN: i16 = -32768_i16;
     pub const INV_PARAMETER_RESPONSE_DATA_MAX: i16 = 32767_i16;
     pub const INV_PARAMETER_RESPONSE_ADDR_MIN: u16 = 0_u16;
     pub const INV_PARAMETER_RESPONSE_ADDR_MAX: u16 = 65535_u16;
-    /// Construct new M194_Read_Write_Param_Response from values
+    /// Construct new 'M194_Read_Write_Param_Response' from values
     pub fn new(
         inv_parameter_response_data: i16,
         inv_parameter_response_write_ok: bool,
         inv_parameter_response_addr: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_parameter_response_data(inv_parameter_response_data)?;
         res.set_inv_parameter_response_write_ok(inv_parameter_response_write_ok)?;
         res.set_inv_parameter_response_addr(inv_parameter_response_addr)?;
@@ -16313,7 +16384,7 @@ impl M194ReadWriteParamResponse {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Parameter_Response_Data
+    /// Get value of 'INV_Parameter_Response_Data'
     ///
     /// Data from parameter message.  All data is 16 bits and is contained in bytes 4 and 5. Bytes 6 and 7 should be ignored.
     ///
@@ -16325,7 +16396,7 @@ impl M194ReadWriteParamResponse {
     pub fn inv_parameter_response_data(&self) -> i16 {
         self.inv_parameter_response_data_raw()
     }
-    /// Get raw value of INV_Parameter_Response_Data
+    /// Get raw value of 'INV_Parameter_Response_Data'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -16340,7 +16411,7 @@ impl M194ReadWriteParamResponse {
         let signal = signal as i16;
         i16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Parameter_Response_Data
+    /// Set value of 'INV_Parameter_Response_Data'
     #[inline(always)]
     pub fn set_inv_parameter_response_data(
         &mut self,
@@ -16362,7 +16433,7 @@ impl M194ReadWriteParamResponse {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Parameter_Response_Write_OK
+    /// Get value of 'INV_Parameter_Response_Write_OK'
     ///
     /// 0=Write failure, 1=Success
     ///
@@ -16374,7 +16445,7 @@ impl M194ReadWriteParamResponse {
     pub fn inv_parameter_response_write_ok(&self) -> bool {
         self.inv_parameter_response_write_ok_raw()
     }
-    /// Get raw value of INV_Parameter_Response_Write_OK
+    /// Get raw value of 'INV_Parameter_Response_Write_OK'
     ///
     /// - Start bit: 16
     /// - Signal size: 1 bits
@@ -16387,7 +16458,7 @@ impl M194ReadWriteParamResponse {
         let signal = self.raw.view_bits::<Lsb0>()[16..17].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Parameter_Response_Write_OK
+    /// Set value of 'INV_Parameter_Response_Write_OK'
     #[inline(always)]
     pub fn set_inv_parameter_response_write_ok(
         &mut self,
@@ -16397,7 +16468,7 @@ impl M194ReadWriteParamResponse {
         self.raw.view_bits_mut::<Lsb0>()[16..17].store_le(value);
         Ok(())
     }
-    /// INV_Parameter_Response_Addr
+    /// Get value of 'INV_Parameter_Response_Addr'
     ///
     /// Address of parameter response message data.
     ///
@@ -16409,7 +16480,7 @@ impl M194ReadWriteParamResponse {
     pub fn inv_parameter_response_addr(&self) -> u16 {
         self.inv_parameter_response_addr_raw()
     }
-    /// Get raw value of INV_Parameter_Response_Addr
+    /// Get raw value of 'INV_Parameter_Response_Addr'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -16423,7 +16494,7 @@ impl M194ReadWriteParamResponse {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Parameter_Response_Addr
+    /// Set value of 'INV_Parameter_Response_Addr'
     #[inline(always)]
     pub fn set_inv_parameter_response_addr(
         &mut self,
@@ -16487,8 +16558,10 @@ impl embedded_can::Frame for M194ReadWriteParamResponse {
 ///
 /// - Standard ID: 193 (0xc1)
 /// - Size: 8 bytes
+/// - Transmitter: VCU
 ///
-/// To write a parameter use message 0x0C1 with byte #2 set to 1 (write). To read a parameter use message 0x0C1 with byte #2 to set 0 (read).
+/// To write a parameter use message 0x0C1 with byte #2 set to 1 (write).
+/// To read a parameter use message 0x0C1 with byte #2 to set 0 (read).
 #[derive(Clone, Copy)]
 pub struct M193ReadWriteParamCommand {
     raw: [u8; 8],
@@ -16506,17 +16579,18 @@ impl M193ReadWriteParamCommand {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xc1)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const VCU_INV_PARAMETER_DATA_MIN: i16 = -32768_i16;
     pub const VCU_INV_PARAMETER_DATA_MAX: i16 = 32767_i16;
     pub const VCU_INV_PARAMETER_ADDRESS_MIN: u16 = 0_u16;
     pub const VCU_INV_PARAMETER_ADDRESS_MAX: u16 = 65535_u16;
-    /// Construct new M193_Read_Write_Param_Command from values
+    /// Construct new 'M193_Read_Write_Param_Command' from values
     pub fn new(
         vcu_inv_parameter_data: i16,
         vcu_inv_parameter_rw_command: bool,
         vcu_inv_parameter_address: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_vcu_inv_parameter_data(vcu_inv_parameter_data)?;
         res.set_vcu_inv_parameter_rw_command(vcu_inv_parameter_rw_command)?;
         res.set_vcu_inv_parameter_address(vcu_inv_parameter_address)?;
@@ -16526,7 +16600,7 @@ impl M193ReadWriteParamCommand {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// VCU_INV_Parameter_Data
+    /// Get value of 'VCU_INV_Parameter_Data'
     ///
     /// Data to be written.  All data is 16 bits and is contained in bytes 4 and 5.
     ///
@@ -16538,7 +16612,7 @@ impl M193ReadWriteParamCommand {
     pub fn vcu_inv_parameter_data(&self) -> i16 {
         self.vcu_inv_parameter_data_raw()
     }
-    /// Get raw value of VCU_INV_Parameter_Data
+    /// Get raw value of 'VCU_INV_Parameter_Data'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -16553,7 +16627,7 @@ impl M193ReadWriteParamCommand {
         let signal = signal as i16;
         i16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of VCU_INV_Parameter_Data
+    /// Set value of 'VCU_INV_Parameter_Data'
     #[inline(always)]
     pub fn set_vcu_inv_parameter_data(&mut self, value: i16) -> Result<(), CanError> {
         if value < -32768_i16 || 32767_i16 < value {
@@ -16572,7 +16646,7 @@ impl M193ReadWriteParamCommand {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// VCU_INV_Parameter_RW_Command
+    /// Get value of 'VCU_INV_Parameter_RW_Command'
     ///
     /// 0=Read, 1=Write
     ///
@@ -16584,7 +16658,7 @@ impl M193ReadWriteParamCommand {
     pub fn vcu_inv_parameter_rw_command(&self) -> bool {
         self.vcu_inv_parameter_rw_command_raw()
     }
-    /// Get raw value of VCU_INV_Parameter_RW_Command
+    /// Get raw value of 'VCU_INV_Parameter_RW_Command'
     ///
     /// - Start bit: 16
     /// - Signal size: 1 bits
@@ -16597,7 +16671,7 @@ impl M193ReadWriteParamCommand {
         let signal = self.raw.view_bits::<Lsb0>()[16..17].load_le::<u8>();
         signal == 1
     }
-    /// Set value of VCU_INV_Parameter_RW_Command
+    /// Set value of 'VCU_INV_Parameter_RW_Command'
     #[inline(always)]
     pub fn set_vcu_inv_parameter_rw_command(
         &mut self,
@@ -16607,7 +16681,7 @@ impl M193ReadWriteParamCommand {
         self.raw.view_bits_mut::<Lsb0>()[16..17].store_le(value);
         Ok(())
     }
-    /// VCU_INV_Parameter_Address
+    /// Get value of 'VCU_INV_Parameter_Address'
     ///
     /// Address of parameter to be written or read.
     ///
@@ -16619,7 +16693,7 @@ impl M193ReadWriteParamCommand {
     pub fn vcu_inv_parameter_address(&self) -> u16 {
         self.vcu_inv_parameter_address_raw()
     }
-    /// Get raw value of VCU_INV_Parameter_Address
+    /// Get raw value of 'VCU_INV_Parameter_Address'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -16633,7 +16707,7 @@ impl M193ReadWriteParamCommand {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of VCU_INV_Parameter_Address
+    /// Set value of 'VCU_INV_Parameter_Address'
     #[inline(always)]
     pub fn set_vcu_inv_parameter_address(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -16694,6 +16768,7 @@ impl embedded_can::Frame for M193ReadWriteParamCommand {
 ///
 /// - Standard ID: 192 (0xc0)
 /// - Size: 8 bytes
+/// - Transmitter: VCU
 ///
 /// The command message is used to transmit data to the controller. This message is sent from a user supplied external controller to the PMxxx controller.
 #[derive(Clone, Copy)]
@@ -16713,6 +16788,8 @@ impl M192CommandMessage {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xc0)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const VCU_INV_TORQUE_LIMIT_COMMAND_MIN: f32 = -3276.8_f32;
     pub const VCU_INV_TORQUE_LIMIT_COMMAND_MAX: f32 = 3276.7_f32;
     pub const VCU_INV_ROLLING_COUNTER_MIN: u8 = 0_u8;
@@ -16721,18 +16798,18 @@ impl M192CommandMessage {
     pub const VCU_INV_SPEED_COMMAND_MAX: i16 = 32767_i16;
     pub const VCU_INV_TORQUE_COMMAND_MIN: f32 = -3276.8_f32;
     pub const VCU_INV_TORQUE_COMMAND_MAX: f32 = 3276.7_f32;
-    /// Construct new M192_Command_Message from values
+    /// Construct new 'M192_Command_Message' from values
     pub fn new(
         vcu_inv_torque_limit_command: f32,
         vcu_inv_rolling_counter: u8,
         vcu_inv_speed_mode_enable: bool,
-        vcu_inv_inverter_discharge: bool,
-        vcu_inv_inverter_enable: bool,
-        vcu_inv_direction_command: bool,
+        vcu_inv_inverter_discharge: M192CommandMessageVcuInvInverterDischarge,
+        vcu_inv_inverter_enable: M192CommandMessageVcuInvInverterEnable,
+        vcu_inv_direction_command: M192CommandMessageVcuInvDirectionCommand,
         vcu_inv_speed_command: i16,
         vcu_inv_torque_command: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_vcu_inv_torque_limit_command(vcu_inv_torque_limit_command)?;
         res.set_vcu_inv_rolling_counter(vcu_inv_rolling_counter)?;
         res.set_vcu_inv_speed_mode_enable(vcu_inv_speed_mode_enable)?;
@@ -16747,7 +16824,7 @@ impl M192CommandMessage {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// VCU_INV_Torque_Limit_Command
+    /// Get value of 'VCU_INV_Torque_Limit_Command'
     ///
     /// Torque Limit, set to 0 to keep default
     ///
@@ -16759,7 +16836,7 @@ impl M192CommandMessage {
     pub fn vcu_inv_torque_limit_command(&self) -> f32 {
         self.vcu_inv_torque_limit_command_raw()
     }
-    /// Get raw value of VCU_INV_Torque_Limit_Command
+    /// Get raw value of 'VCU_INV_Torque_Limit_Command'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -16774,7 +16851,7 @@ impl M192CommandMessage {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of VCU_INV_Torque_Limit_Command
+    /// Set value of 'VCU_INV_Torque_Limit_Command'
     #[inline(always)]
     pub fn set_vcu_inv_torque_limit_command(
         &mut self,
@@ -16792,7 +16869,7 @@ impl M192CommandMessage {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// VCU_INV_Rolling_Counter
+    /// Get value of 'VCU_INV_Rolling_Counter'
     ///
     /// Rolling Counter sent to inverter.  If used increment count with each message sent.  Otherwise can be set to 0.
     ///
@@ -16804,7 +16881,7 @@ impl M192CommandMessage {
     pub fn vcu_inv_rolling_counter(&self) -> u8 {
         self.vcu_inv_rolling_counter_raw()
     }
-    /// Get raw value of VCU_INV_Rolling_Counter
+    /// Get raw value of 'VCU_INV_Rolling_Counter'
     ///
     /// - Start bit: 44
     /// - Signal size: 4 bits
@@ -16818,7 +16895,7 @@ impl M192CommandMessage {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of VCU_INV_Rolling_Counter
+    /// Set value of 'VCU_INV_Rolling_Counter'
     #[inline(always)]
     pub fn set_vcu_inv_rolling_counter(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 15_u8 < value {
@@ -16836,7 +16913,7 @@ impl M192CommandMessage {
         self.raw.view_bits_mut::<Lsb0>()[44..48].store_le(value);
         Ok(())
     }
-    /// VCU_INV_Speed_Mode_Enable
+    /// Get value of 'VCU_INV_Speed_Mode_Enable'
     ///
     /// 0 = No change to mode, 1 = change to speed mode from torque mode
     ///
@@ -16848,7 +16925,7 @@ impl M192CommandMessage {
     pub fn vcu_inv_speed_mode_enable(&self) -> bool {
         self.vcu_inv_speed_mode_enable_raw()
     }
-    /// Get raw value of VCU_INV_Speed_Mode_Enable
+    /// Get raw value of 'VCU_INV_Speed_Mode_Enable'
     ///
     /// - Start bit: 42
     /// - Signal size: 1 bits
@@ -16861,7 +16938,7 @@ impl M192CommandMessage {
         let signal = self.raw.view_bits::<Lsb0>()[42..43].load_le::<u8>();
         signal == 1
     }
-    /// Set value of VCU_INV_Speed_Mode_Enable
+    /// Set value of 'VCU_INV_Speed_Mode_Enable'
     #[inline(always)]
     pub fn set_vcu_inv_speed_mode_enable(
         &mut self,
@@ -16871,7 +16948,7 @@ impl M192CommandMessage {
         self.raw.view_bits_mut::<Lsb0>()[42..43].store_le(value);
         Ok(())
     }
-    /// VCU_INV_Inverter_Discharge
+    /// Get value of 'VCU_INV_Inverter_Discharge'
     ///
     /// 0=Discharge Disable,1=Discharge Enable
     ///
@@ -16896,7 +16973,7 @@ impl M192CommandMessage {
             }
         }
     }
-    /// Get raw value of VCU_INV_Inverter_Discharge
+    /// Get raw value of 'VCU_INV_Inverter_Discharge'
     ///
     /// - Start bit: 41
     /// - Signal size: 1 bits
@@ -16909,17 +16986,18 @@ impl M192CommandMessage {
         let signal = self.raw.view_bits::<Lsb0>()[41..42].load_le::<u8>();
         signal == 1
     }
-    /// Set value of VCU_INV_Inverter_Discharge
+    /// Set value of 'VCU_INV_Inverter_Discharge'
     #[inline(always)]
     pub fn set_vcu_inv_inverter_discharge(
         &mut self,
-        value: bool,
+        value: M192CommandMessageVcuInvInverterDischarge,
     ) -> Result<(), CanError> {
+        let value = bool::from(value);
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[41..42].store_le(value);
         Ok(())
     }
-    /// VCU_INV_Inverter_Enable
+    /// Get value of 'VCU_INV_Inverter_Enable'
     ///
     /// 0=Inverter OFF, 1 = Inverter ON
     ///
@@ -16940,7 +17018,7 @@ impl M192CommandMessage {
             }
         }
     }
-    /// Get raw value of VCU_INV_Inverter_Enable
+    /// Get raw value of 'VCU_INV_Inverter_Enable'
     ///
     /// - Start bit: 40
     /// - Signal size: 1 bits
@@ -16953,14 +17031,18 @@ impl M192CommandMessage {
         let signal = self.raw.view_bits::<Lsb0>()[40..41].load_le::<u8>();
         signal == 1
     }
-    /// Set value of VCU_INV_Inverter_Enable
+    /// Set value of 'VCU_INV_Inverter_Enable'
     #[inline(always)]
-    pub fn set_vcu_inv_inverter_enable(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_vcu_inv_inverter_enable(
+        &mut self,
+        value: M192CommandMessageVcuInvInverterEnable,
+    ) -> Result<(), CanError> {
+        let value = bool::from(value);
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[40..41].store_le(value);
         Ok(())
     }
-    /// VCU_INV_Direction_Command
+    /// Get value of 'VCU_INV_Direction_Command'
     ///
     /// 0=Reverse, 1=Forward.  Forward is positive motor speed.
     ///
@@ -16981,7 +17063,7 @@ impl M192CommandMessage {
             }
         }
     }
-    /// Get raw value of VCU_INV_Direction_Command
+    /// Get raw value of 'VCU_INV_Direction_Command'
     ///
     /// - Start bit: 32
     /// - Signal size: 1 bits
@@ -16994,17 +17076,18 @@ impl M192CommandMessage {
         let signal = self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>();
         signal == 1
     }
-    /// Set value of VCU_INV_Direction_Command
+    /// Set value of 'VCU_INV_Direction_Command'
     #[inline(always)]
     pub fn set_vcu_inv_direction_command(
         &mut self,
-        value: bool,
+        value: M192CommandMessageVcuInvDirectionCommand,
     ) -> Result<(), CanError> {
+        let value = bool::from(value);
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..33].store_le(value);
         Ok(())
     }
-    /// VCU_INV_Speed_Command
+    /// Get value of 'VCU_INV_Speed_Command'
     ///
     /// Speed command used when in speed mode
     ///
@@ -17016,7 +17099,7 @@ impl M192CommandMessage {
     pub fn vcu_inv_speed_command(&self) -> i16 {
         self.vcu_inv_speed_command_raw()
     }
-    /// Get raw value of VCU_INV_Speed_Command
+    /// Get raw value of 'VCU_INV_Speed_Command'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -17031,7 +17114,7 @@ impl M192CommandMessage {
         let signal = signal as i16;
         i16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of VCU_INV_Speed_Command
+    /// Set value of 'VCU_INV_Speed_Command'
     #[inline(always)]
     pub fn set_vcu_inv_speed_command(&mut self, value: i16) -> Result<(), CanError> {
         if value < -32768_i16 || 32767_i16 < value {
@@ -17050,7 +17133,7 @@ impl M192CommandMessage {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// VCU_INV_Torque_Command
+    /// Get value of 'VCU_INV_Torque_Command'
     ///
     /// Torque command when in torque mode
     ///
@@ -17062,7 +17145,7 @@ impl M192CommandMessage {
     pub fn vcu_inv_torque_command(&self) -> f32 {
         self.vcu_inv_torque_command_raw()
     }
-    /// Get raw value of VCU_INV_Torque_Command
+    /// Get raw value of 'VCU_INV_Torque_Command'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -17077,7 +17160,7 @@ impl M192CommandMessage {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of VCU_INV_Torque_Command
+    /// Set value of 'VCU_INV_Torque_Command'
     #[inline(always)]
     pub fn set_vcu_inv_torque_command(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -17230,6 +17313,8 @@ impl M171FaultCodes {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xab)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const INV_RUN_FAULT_HI_MIN: u16 = 0_u16;
     pub const INV_RUN_FAULT_HI_MAX: u16 = 65535_u16;
     pub const INV_RUN_FAULT_LO_MIN: u16 = 0_u16;
@@ -17238,14 +17323,14 @@ impl M171FaultCodes {
     pub const INV_POST_FAULT_HI_MAX: u16 = 65535_u16;
     pub const INV_POST_FAULT_LO_MIN: u16 = 0_u16;
     pub const INV_POST_FAULT_LO_MAX: u16 = 65535_u16;
-    /// Construct new M171_Fault_Codes from values
+    /// Construct new 'M171_Fault_Codes' from values
     pub fn new(
         inv_run_fault_hi: u16,
         inv_run_fault_lo: u16,
         inv_post_fault_hi: u16,
         inv_post_fault_lo: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_run_fault_hi(inv_run_fault_hi)?;
         res.set_inv_run_fault_lo(inv_run_fault_lo)?;
         res.set_inv_post_fault_hi(inv_post_fault_hi)?;
@@ -17256,7 +17341,7 @@ impl M171FaultCodes {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Run_Fault_Hi
+    /// Get value of 'INV_Run_Fault_Hi'
     ///
     /// Each bit represents a fault. Please refer to PM100 Users Manual for details.
     ///
@@ -17268,7 +17353,7 @@ impl M171FaultCodes {
     pub fn inv_run_fault_hi(&self) -> u16 {
         self.inv_run_fault_hi_raw()
     }
-    /// Get raw value of INV_Run_Fault_Hi
+    /// Get raw value of 'INV_Run_Fault_Hi'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -17282,7 +17367,7 @@ impl M171FaultCodes {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Run_Fault_Hi
+    /// Set value of 'INV_Run_Fault_Hi'
     #[inline(always)]
     pub fn set_inv_run_fault_hi(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -17300,7 +17385,7 @@ impl M171FaultCodes {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Run_Fault_Lo
+    /// Get value of 'INV_Run_Fault_Lo'
     ///
     /// Each bit represents a fault. Please refer to PM100 Users Manual for details.
     ///
@@ -17312,7 +17397,7 @@ impl M171FaultCodes {
     pub fn inv_run_fault_lo(&self) -> u16 {
         self.inv_run_fault_lo_raw()
     }
-    /// Get raw value of INV_Run_Fault_Lo
+    /// Get raw value of 'INV_Run_Fault_Lo'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -17326,7 +17411,7 @@ impl M171FaultCodes {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Run_Fault_Lo
+    /// Set value of 'INV_Run_Fault_Lo'
     #[inline(always)]
     pub fn set_inv_run_fault_lo(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -17344,7 +17429,7 @@ impl M171FaultCodes {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Post_Fault_Hi
+    /// Get value of 'INV_Post_Fault_Hi'
     ///
     /// Each bit represents a fault. Please refer to PM100 Users Manual for details.
     ///
@@ -17356,7 +17441,7 @@ impl M171FaultCodes {
     pub fn inv_post_fault_hi(&self) -> u16 {
         self.inv_post_fault_hi_raw()
     }
-    /// Get raw value of INV_Post_Fault_Hi
+    /// Get raw value of 'INV_Post_Fault_Hi'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -17370,7 +17455,7 @@ impl M171FaultCodes {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Post_Fault_Hi
+    /// Set value of 'INV_Post_Fault_Hi'
     #[inline(always)]
     pub fn set_inv_post_fault_hi(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -17388,7 +17473,7 @@ impl M171FaultCodes {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Post_Fault_Lo
+    /// Get value of 'INV_Post_Fault_Lo'
     ///
     /// Each bit represents a fault. Please refer to PM100 Users Manual for details.
     ///
@@ -17400,7 +17485,7 @@ impl M171FaultCodes {
     pub fn inv_post_fault_lo(&self) -> u16 {
         self.inv_post_fault_lo_raw()
     }
-    /// Get raw value of INV_Post_Fault_Lo
+    /// Get raw value of 'INV_Post_Fault_Lo'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -17414,7 +17499,7 @@ impl M171FaultCodes {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Post_Fault_Lo
+    /// Set value of 'INV_Post_Fault_Lo'
     #[inline(always)]
     pub fn set_inv_post_fault_lo(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -17493,34 +17578,41 @@ impl M170InternalStates {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xaa)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const INV_ROLLING_COUNTER_MIN: u8 = 0_u8;
     pub const INV_ROLLING_COUNTER_MAX: u8 = 15_u8;
     pub const INV_INVERTER_DISCHARGE_STATE_MIN: u8 = 0_u8;
     pub const INV_INVERTER_DISCHARGE_STATE_MAX: u8 = 7_u8;
+    pub const INV_ASC_STATE_MIN: u8 = 0_u8;
+    pub const INV_ASC_STATE_MAX: u8 = 0_u8;
     pub const INV_INVERTER_STATE_MIN: u8 = 0_u8;
     pub const INV_INVERTER_STATE_MAX: u8 = 255_u8;
     pub const INV_PWM_FREQUENCY_MIN: u8 = 0_u8;
     pub const INV_PWM_FREQUENCY_MAX: u8 = 255_u8;
     pub const INV_VSM_STATE_MIN: u8 = 0_u8;
     pub const INV_VSM_STATE_MAX: u8 = 15_u8;
-    /// Construct new M170_Internal_States from values
+    /// Construct new 'M170_Internal_States' from values
     pub fn new(
-        inv_limit_stall_burst_model: bool,
+        inv_limit_stall_burst_model: M170InternalStatesInvLimitStallBurstModel,
         inv_limit_coolant_derating: bool,
         inv_low_speed_limiting: bool,
-        inv_limit_hot_spot: bool,
+        inv_limit_hot_spot_inverter: bool,
         inv_limit_max_speed: bool,
         inv_bms_limiting_motor_torque: bool,
         inv_bms_active: bool,
         inv_direction_command: bool,
         inv_inverter_enable_lockout: bool,
         inv_key_switch_start_status: bool,
+        inv_limit_hot_spot_motor: bool,
+        inv_limit_motor_temp_derate: bool,
         inv_bms_limiting_regen_torque: bool,
-        inv_burst_model_mode: bool,
+        inv_burst_model_mode: M170InternalStatesInvBurstModelMode,
         inv_inverter_enable_state: bool,
         inv_rolling_counter: u8,
         inv_inverter_command_mode: bool,
-        inv_inverter_discharge_state: u8,
+        inv_inverter_discharge_state: M170InternalStatesInvInverterDischargeState,
+        inv_asc_state: M170InternalStatesInvAscState,
         inv_self_sensing_assist_enable: bool,
         inv_inverter_run_mode: bool,
         inv_relay_6_status: bool,
@@ -17529,27 +17621,30 @@ impl M170InternalStates {
         inv_relay_3_status: bool,
         inv_relay_2_status: bool,
         inv_relay_1_status: bool,
-        inv_inverter_state: u8,
+        inv_inverter_state: M170InternalStatesInvInverterState,
         inv_pwm_frequency: u8,
-        inv_vsm_state: u8,
+        inv_vsm_state: M170InternalStatesInvVsmState,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_limit_stall_burst_model(inv_limit_stall_burst_model)?;
         res.set_inv_limit_coolant_derating(inv_limit_coolant_derating)?;
         res.set_inv_low_speed_limiting(inv_low_speed_limiting)?;
-        res.set_inv_limit_hot_spot(inv_limit_hot_spot)?;
+        res.set_inv_limit_hot_spot_inverter(inv_limit_hot_spot_inverter)?;
         res.set_inv_limit_max_speed(inv_limit_max_speed)?;
         res.set_inv_bms_limiting_motor_torque(inv_bms_limiting_motor_torque)?;
         res.set_inv_bms_active(inv_bms_active)?;
         res.set_inv_direction_command(inv_direction_command)?;
         res.set_inv_inverter_enable_lockout(inv_inverter_enable_lockout)?;
         res.set_inv_key_switch_start_status(inv_key_switch_start_status)?;
+        res.set_inv_limit_hot_spot_motor(inv_limit_hot_spot_motor)?;
+        res.set_inv_limit_motor_temp_derate(inv_limit_motor_temp_derate)?;
         res.set_inv_bms_limiting_regen_torque(inv_bms_limiting_regen_torque)?;
         res.set_inv_burst_model_mode(inv_burst_model_mode)?;
         res.set_inv_inverter_enable_state(inv_inverter_enable_state)?;
         res.set_inv_rolling_counter(inv_rolling_counter)?;
         res.set_inv_inverter_command_mode(inv_inverter_command_mode)?;
         res.set_inv_inverter_discharge_state(inv_inverter_discharge_state)?;
+        res.set_inv_asc_state(inv_asc_state)?;
         res.set_inv_self_sensing_assist_enable(inv_self_sensing_assist_enable)?;
         res.set_inv_inverter_run_mode(inv_inverter_run_mode)?;
         res.set_inv_relay_6_status(inv_relay_6_status)?;
@@ -17567,7 +17662,7 @@ impl M170InternalStates {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Limit_Stall_Burst_Model
+    /// Get value of 'INV_Limit_Stall_Burst_Model'
     ///
     /// 0 = Not limiting, 1 = Limiting
     ///
@@ -17590,7 +17685,7 @@ impl M170InternalStates {
             }
         }
     }
-    /// Get raw value of INV_Limit_Stall_Burst_Model
+    /// Get raw value of 'INV_Limit_Stall_Burst_Model'
     ///
     /// - Start bit: 63
     /// - Signal size: 1 bits
@@ -17603,17 +17698,18 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[63..64].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Limit_Stall_Burst_Model
+    /// Set value of 'INV_Limit_Stall_Burst_Model'
     #[inline(always)]
     pub fn set_inv_limit_stall_burst_model(
         &mut self,
-        value: bool,
+        value: M170InternalStatesInvLimitStallBurstModel,
     ) -> Result<(), CanError> {
+        let value = bool::from(value);
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[63..64].store_le(value);
         Ok(())
     }
-    /// INV_Limit_Coolant_Derating
+    /// Get value of 'INV_Limit_Coolant_Derating'
     ///
     /// 0 = Not limiting, 1 = Limiting
     ///
@@ -17625,7 +17721,7 @@ impl M170InternalStates {
     pub fn inv_limit_coolant_derating(&self) -> bool {
         self.inv_limit_coolant_derating_raw()
     }
-    /// Get raw value of INV_Limit_Coolant_Derating
+    /// Get raw value of 'INV_Limit_Coolant_Derating'
     ///
     /// - Start bit: 62
     /// - Signal size: 1 bits
@@ -17638,7 +17734,7 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[62..63].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Limit_Coolant_Derating
+    /// Set value of 'INV_Limit_Coolant_Derating'
     #[inline(always)]
     pub fn set_inv_limit_coolant_derating(
         &mut self,
@@ -17648,7 +17744,7 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[62..63].store_le(value);
         Ok(())
     }
-    /// INV_Low_Speed_Limiting
+    /// Get value of 'INV_Low_Speed_Limiting'
     ///
     /// Indicates that motor current is being limited due to low motor electrical frequency.
     ///
@@ -17660,7 +17756,7 @@ impl M170InternalStates {
     pub fn inv_low_speed_limiting(&self) -> bool {
         self.inv_low_speed_limiting_raw()
     }
-    /// Get raw value of INV_Low_Speed_Limiting
+    /// Get raw value of 'INV_Low_Speed_Limiting'
     ///
     /// - Start bit: 61
     /// - Signal size: 1 bits
@@ -17673,26 +17769,26 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[61..62].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Low_Speed_Limiting
+    /// Set value of 'INV_Low_Speed_Limiting'
     #[inline(always)]
     pub fn set_inv_low_speed_limiting(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[61..62].store_le(value);
         Ok(())
     }
-    /// INV_Limit_Hot_Spot
+    /// Get value of 'INV_Limit_Hot_Spot_Inverter'
     ///
-    /// Indicates that torque is being limited to limit the hot spot temp
+    /// Indicates that torque is being limited to limit the inverter hot spot temp
     ///
     /// - Min: 0
     /// - Max: 1
     /// - Unit: ""
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn inv_limit_hot_spot(&self) -> bool {
-        self.inv_limit_hot_spot_raw()
+    pub fn inv_limit_hot_spot_inverter(&self) -> bool {
+        self.inv_limit_hot_spot_inverter_raw()
     }
-    /// Get raw value of INV_Limit_Hot_Spot
+    /// Get raw value of 'INV_Limit_Hot_Spot_Inverter'
     ///
     /// - Start bit: 60
     /// - Signal size: 1 bits
@@ -17701,18 +17797,21 @@ impl M170InternalStates {
     /// - Byte order: LittleEndian
     /// - Value type: Unsigned
     #[inline(always)]
-    pub fn inv_limit_hot_spot_raw(&self) -> bool {
+    pub fn inv_limit_hot_spot_inverter_raw(&self) -> bool {
         let signal = self.raw.view_bits::<Lsb0>()[60..61].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Limit_Hot_Spot
+    /// Set value of 'INV_Limit_Hot_Spot_Inverter'
     #[inline(always)]
-    pub fn set_inv_limit_hot_spot(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_inv_limit_hot_spot_inverter(
+        &mut self,
+        value: bool,
+    ) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[60..61].store_le(value);
         Ok(())
     }
-    /// INV_Limit_Max_Speed
+    /// Get value of 'INV_Limit_Max_Speed'
     ///
     /// Indicates that torque is being modified to limit the speed.
     ///
@@ -17724,7 +17823,7 @@ impl M170InternalStates {
     pub fn inv_limit_max_speed(&self) -> bool {
         self.inv_limit_max_speed_raw()
     }
-    /// Get raw value of INV_Limit_Max_Speed
+    /// Get raw value of 'INV_Limit_Max_Speed'
     ///
     /// - Start bit: 59
     /// - Signal size: 1 bits
@@ -17737,14 +17836,14 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[59..60].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Limit_Max_Speed
+    /// Set value of 'INV_Limit_Max_Speed'
     #[inline(always)]
     pub fn set_inv_limit_max_speed(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[59..60].store_le(value);
         Ok(())
     }
-    /// INV_BMS_Limiting_Motor_Torque
+    /// Get value of 'INV_BMS_Limiting_Motor_Torque'
     ///
     /// 0 = Not Limiting, 1 = Limiting
     ///
@@ -17756,7 +17855,7 @@ impl M170InternalStates {
     pub fn inv_bms_limiting_motor_torque(&self) -> bool {
         self.inv_bms_limiting_motor_torque_raw()
     }
-    /// Get raw value of INV_BMS_Limiting_Motor_Torque
+    /// Get raw value of 'INV_BMS_Limiting_Motor_Torque'
     ///
     /// - Start bit: 58
     /// - Signal size: 1 bits
@@ -17769,7 +17868,7 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[58..59].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_BMS_Limiting_Motor_Torque
+    /// Set value of 'INV_BMS_Limiting_Motor_Torque'
     #[inline(always)]
     pub fn set_inv_bms_limiting_motor_torque(
         &mut self,
@@ -17779,7 +17878,7 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[58..59].store_le(value);
         Ok(())
     }
-    /// INV_BMS_Active
+    /// Get value of 'INV_BMS_Active'
     ///
     /// 0 = BMS Not Active, 1 = BMS Active
     ///
@@ -17791,7 +17890,7 @@ impl M170InternalStates {
     pub fn inv_bms_active(&self) -> bool {
         self.inv_bms_active_raw()
     }
-    /// Get raw value of INV_BMS_Active
+    /// Get raw value of 'INV_BMS_Active'
     ///
     /// - Start bit: 57
     /// - Signal size: 1 bits
@@ -17804,16 +17903,17 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[57..58].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_BMS_Active
+    /// Set value of 'INV_BMS_Active'
     #[inline(always)]
     pub fn set_inv_bms_active(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[57..58].store_le(value);
         Ok(())
     }
-    /// INV_Direction_Command
+    /// Get value of 'INV_Direction_Command'
     ///
-    /// 1 = Forward 0 = 'Reverse' if inverter enabled  & 'Stopped' if inverter is disabled
+    /// 1 = Forward
+    /// 0 = 'Reverse' if inverter enabled  & 'Stopped' if inverter is disabled
     ///
     /// - Min: 0
     /// - Max: 1
@@ -17823,7 +17923,7 @@ impl M170InternalStates {
     pub fn inv_direction_command(&self) -> bool {
         self.inv_direction_command_raw()
     }
-    /// Get raw value of INV_Direction_Command
+    /// Get raw value of 'INV_Direction_Command'
     ///
     /// - Start bit: 56
     /// - Signal size: 1 bits
@@ -17836,14 +17936,14 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[56..57].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Direction_Command
+    /// Set value of 'INV_Direction_Command'
     #[inline(always)]
     pub fn set_inv_direction_command(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[56..57].store_le(value);
         Ok(())
     }
-    /// INV_Inverter_Enable_Lockout
+    /// Get value of 'INV_Inverter_Enable_Lockout'
     ///
     /// 0=Lockout Disabled, 1=Lockout Enabled
     ///
@@ -17855,7 +17955,7 @@ impl M170InternalStates {
     pub fn inv_inverter_enable_lockout(&self) -> bool {
         self.inv_inverter_enable_lockout_raw()
     }
-    /// Get raw value of INV_Inverter_Enable_Lockout
+    /// Get raw value of 'INV_Inverter_Enable_Lockout'
     ///
     /// - Start bit: 55
     /// - Signal size: 1 bits
@@ -17868,7 +17968,7 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[55..56].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Inverter_Enable_Lockout
+    /// Set value of 'INV_Inverter_Enable_Lockout'
     #[inline(always)]
     pub fn set_inv_inverter_enable_lockout(
         &mut self,
@@ -17878,7 +17978,7 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[55..56].store_le(value);
         Ok(())
     }
-    /// INV_Key_Switch_Start_Status
+    /// Get value of 'INV_Key_Switch_Start_Status'
     ///
     /// 0 = OFF, 1 = ON
     ///
@@ -17890,7 +17990,7 @@ impl M170InternalStates {
     pub fn inv_key_switch_start_status(&self) -> bool {
         self.inv_key_switch_start_status_raw()
     }
-    /// Get raw value of INV_Key_Switch_Start_Status
+    /// Get raw value of 'INV_Key_Switch_Start_Status'
     ///
     /// - Start bit: 54
     /// - Signal size: 1 bits
@@ -17903,7 +18003,7 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[54..55].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Key_Switch_Start_Status
+    /// Set value of 'INV_Key_Switch_Start_Status'
     #[inline(always)]
     pub fn set_inv_key_switch_start_status(
         &mut self,
@@ -17913,7 +18013,74 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[54..55].store_le(value);
         Ok(())
     }
-    /// INV_BMS_Limiting_Regen_Torque
+    /// Get value of 'INV_Limit_Hot_Spot_Motor'
+    ///
+    /// Indicates that torque is being limited to limit the motor hot spot temp
+    ///
+    /// - Min: 0
+    /// - Max: 0
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn inv_limit_hot_spot_motor(&self) -> bool {
+        self.inv_limit_hot_spot_motor_raw()
+    }
+    /// Get raw value of 'INV_Limit_Hot_Spot_Motor'
+    ///
+    /// - Start bit: 53
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn inv_limit_hot_spot_motor_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[53..54].load_le::<u8>();
+        signal == 1
+    }
+    /// Set value of 'INV_Limit_Hot_Spot_Motor'
+    #[inline(always)]
+    pub fn set_inv_limit_hot_spot_motor(&mut self, value: bool) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[53..54].store_le(value);
+        Ok(())
+    }
+    /// Get value of 'INV_Limit_Motor_Temp_Derate'
+    ///
+    /// Indicates that torque is being limited to limit the motor temperature, based on Full Torque and Zero Torque temperature EEPROM values.
+    ///
+    /// - Min: 0
+    /// - Max: 0
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn inv_limit_motor_temp_derate(&self) -> bool {
+        self.inv_limit_motor_temp_derate_raw()
+    }
+    /// Get raw value of 'INV_Limit_Motor_Temp_Derate'
+    ///
+    /// - Start bit: 52
+    /// - Signal size: 1 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn inv_limit_motor_temp_derate_raw(&self) -> bool {
+        let signal = self.raw.view_bits::<Lsb0>()[52..53].load_le::<u8>();
+        signal == 1
+    }
+    /// Set value of 'INV_Limit_Motor_Temp_Derate'
+    #[inline(always)]
+    pub fn set_inv_limit_motor_temp_derate(
+        &mut self,
+        value: bool,
+    ) -> Result<(), CanError> {
+        let value = value as u8;
+        self.raw.view_bits_mut::<Lsb0>()[52..53].store_le(value);
+        Ok(())
+    }
+    /// Get value of 'INV_BMS_Limiting_Regen_Torque'
     ///
     /// 0 = Not Limiting, 1 = Limiting
     ///
@@ -17925,7 +18092,7 @@ impl M170InternalStates {
     pub fn inv_bms_limiting_regen_torque(&self) -> bool {
         self.inv_bms_limiting_regen_torque_raw()
     }
-    /// Get raw value of INV_BMS_Limiting_Regen_Torque
+    /// Get raw value of 'INV_BMS_Limiting_Regen_Torque'
     ///
     /// - Start bit: 50
     /// - Signal size: 1 bits
@@ -17938,7 +18105,7 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[50..51].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_BMS_Limiting_Regen_Torque
+    /// Set value of 'INV_BMS_Limiting_Regen_Torque'
     #[inline(always)]
     pub fn set_inv_bms_limiting_regen_torque(
         &mut self,
@@ -17948,7 +18115,7 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[50..51].store_le(value);
         Ok(())
     }
-    /// INV_Burst_Model_Mode
+    /// Get value of 'INV_Burst_Model_Mode'
     ///
     /// 0 = Stall, 1 = High Speed
     ///
@@ -17969,7 +18136,7 @@ impl M170InternalStates {
             }
         }
     }
-    /// Get raw value of INV_Burst_Model_Mode
+    /// Get raw value of 'INV_Burst_Model_Mode'
     ///
     /// - Start bit: 49
     /// - Signal size: 1 bits
@@ -17982,16 +18149,21 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[49..50].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Burst_Model_Mode
+    /// Set value of 'INV_Burst_Model_Mode'
     #[inline(always)]
-    pub fn set_inv_burst_model_mode(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_inv_burst_model_mode(
+        &mut self,
+        value: M170InternalStatesInvBurstModelMode,
+    ) -> Result<(), CanError> {
+        let value = bool::from(value);
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[49..50].store_le(value);
         Ok(())
     }
-    /// INV_Inverter_Enable_State
+    /// Get value of 'INV_Inverter_Enable_State'
     ///
-    /// 0=Inverter Disabled, 1=Inverter Enabled
+    /// 0=Inverter Disabled,
+    /// 1=Inverter Enabled
     ///
     /// - Min: 0
     /// - Max: 1
@@ -18001,7 +18173,7 @@ impl M170InternalStates {
     pub fn inv_inverter_enable_state(&self) -> bool {
         self.inv_inverter_enable_state_raw()
     }
-    /// Get raw value of INV_Inverter_Enable_State
+    /// Get raw value of 'INV_Inverter_Enable_State'
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -18014,7 +18186,7 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Inverter_Enable_State
+    /// Set value of 'INV_Inverter_Enable_State'
     #[inline(always)]
     pub fn set_inv_inverter_enable_state(
         &mut self,
@@ -18024,7 +18196,7 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
-    /// INV_Rolling_Counter
+    /// Get value of 'INV_Rolling_Counter'
     ///
     /// Rolling Counter value
     ///
@@ -18036,7 +18208,7 @@ impl M170InternalStates {
     pub fn inv_rolling_counter(&self) -> u8 {
         self.inv_rolling_counter_raw()
     }
-    /// Get raw value of INV_Rolling_Counter
+    /// Get raw value of 'INV_Rolling_Counter'
     ///
     /// - Start bit: 44
     /// - Signal size: 4 bits
@@ -18050,7 +18222,7 @@ impl M170InternalStates {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Rolling_Counter
+    /// Set value of 'INV_Rolling_Counter'
     #[inline(always)]
     pub fn set_inv_rolling_counter(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 15_u8 < value {
@@ -18068,7 +18240,7 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[44..48].store_le(value);
         Ok(())
     }
-    /// INV_Inverter_Command_Mode
+    /// Get value of 'INV_Inverter_Command_Mode'
     ///
     /// 0=CAN mode, 1=VSM mode
     ///
@@ -18080,7 +18252,7 @@ impl M170InternalStates {
     pub fn inv_inverter_command_mode(&self) -> bool {
         self.inv_inverter_command_mode_raw()
     }
-    /// Get raw value of INV_Inverter_Command_Mode
+    /// Get raw value of 'INV_Inverter_Command_Mode'
     ///
     /// - Start bit: 40
     /// - Signal size: 1 bits
@@ -18093,7 +18265,7 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[40..41].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Inverter_Command_Mode
+    /// Set value of 'INV_Inverter_Command_Mode'
     #[inline(always)]
     pub fn set_inv_inverter_command_mode(
         &mut self,
@@ -18103,7 +18275,7 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[40..41].store_le(value);
         Ok(())
     }
-    /// INV_Inverter_Discharge_State
+    /// Get value of 'INV_Inverter_Discharge_State'
     ///
     /// 0 = Disabled, 1 = Enabled, 2 = Speed Check, 3 = Active, 4 = Complete, 5 = Error, 6 = Override, 7 = Timeout
     ///
@@ -18132,7 +18304,7 @@ impl M170InternalStates {
             }
         }
     }
-    /// Get raw value of INV_Inverter_Discharge_State
+    /// Get raw value of 'INV_Inverter_Discharge_State'
     ///
     /// - Start bit: 37
     /// - Signal size: 3 bits
@@ -18146,12 +18318,13 @@ impl M170InternalStates {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Inverter_Discharge_State
+    /// Set value of 'INV_Inverter_Discharge_State'
     #[inline(always)]
     pub fn set_inv_inverter_discharge_state(
         &mut self,
-        value: u8,
+        value: M170InternalStatesInvInverterDischargeState,
     ) -> Result<(), CanError> {
+        let value = u8::from(value);
         if value < 0_u8 || 7_u8 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: M170InternalStates::MESSAGE_ID,
@@ -18167,7 +18340,66 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[37..40].store_le(value);
         Ok(())
     }
-    /// INV_Self_Sensing_Assist_Enable
+    /// Get value of 'INV_ASC_State'
+    ///
+    /// Active Short Circuit State
+    ///
+    /// - Min: 0
+    /// - Max: 0
+    /// - Unit: ""
+    /// - Receivers: Vector__XXX
+    #[inline(always)]
+    pub fn inv_asc_state(&self) -> M170InternalStatesInvAscState {
+        let signal = self.raw.view_bits::<Lsb0>()[34..37].load_le::<u8>();
+        match signal {
+            0 => M170InternalStatesInvAscState::AscDisabled,
+            1 => M170InternalStatesInvAscState::AscEnabled,
+            2 => M170InternalStatesInvAscState::AscPending,
+            3 => M170InternalStatesInvAscState::AscDelay,
+            4 => M170InternalStatesInvAscState::AscActive,
+            5 => M170InternalStatesInvAscState::AscComplete,
+            6 => M170InternalStatesInvAscState::AscBlocked,
+            7 => M170InternalStatesInvAscState::AscSuppressed,
+            _ => M170InternalStatesInvAscState::_Other(self.inv_asc_state_raw()),
+        }
+    }
+    /// Get raw value of 'INV_ASC_State'
+    ///
+    /// - Start bit: 34
+    /// - Signal size: 3 bits
+    /// - Factor: 1
+    /// - Offset: 0
+    /// - Byte order: LittleEndian
+    /// - Value type: Unsigned
+    #[inline(always)]
+    pub fn inv_asc_state_raw(&self) -> u8 {
+        let signal = self.raw.view_bits::<Lsb0>()[34..37].load_le::<u8>();
+        let factor = 1;
+        u8::from(signal).saturating_mul(factor).saturating_add(0)
+    }
+    /// Set value of 'INV_ASC_State'
+    #[inline(always)]
+    pub fn set_inv_asc_state(
+        &mut self,
+        value: M170InternalStatesInvAscState,
+    ) -> Result<(), CanError> {
+        let value = u8::from(value);
+        if value < 0_u8 || 0_u8 < value {
+            return Err(CanError::ParameterOutOfRange {
+                message_id: M170InternalStates::MESSAGE_ID,
+            });
+        }
+        let factor = 1;
+        let value = value
+            .checked_sub(0)
+            .ok_or(CanError::ParameterOutOfRange {
+                message_id: M170InternalStates::MESSAGE_ID,
+            })?;
+        let value = (value / factor) as u8;
+        self.raw.view_bits_mut::<Lsb0>()[34..37].store_le(value);
+        Ok(())
+    }
+    /// Get value of 'INV_Self_Sensing_Assist_Enable'
     ///
     /// 1 = Self Sensing Assist Enabled, 0 = Self Sensing Assist Disabled
     ///
@@ -18179,7 +18411,7 @@ impl M170InternalStates {
     pub fn inv_self_sensing_assist_enable(&self) -> bool {
         self.inv_self_sensing_assist_enable_raw()
     }
-    /// Get raw value of INV_Self_Sensing_Assist_Enable
+    /// Get raw value of 'INV_Self_Sensing_Assist_Enable'
     ///
     /// - Start bit: 33
     /// - Signal size: 1 bits
@@ -18192,7 +18424,7 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[33..34].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Self_Sensing_Assist_Enable
+    /// Set value of 'INV_Self_Sensing_Assist_Enable'
     #[inline(always)]
     pub fn set_inv_self_sensing_assist_enable(
         &mut self,
@@ -18202,7 +18434,7 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[33..34].store_le(value);
         Ok(())
     }
-    /// INV_Inverter_Run_Mode
+    /// Get value of 'INV_Inverter_Run_Mode'
     ///
     /// 0=Torque Mode, 1=Speed Mode
     ///
@@ -18214,7 +18446,7 @@ impl M170InternalStates {
     pub fn inv_inverter_run_mode(&self) -> bool {
         self.inv_inverter_run_mode_raw()
     }
-    /// Get raw value of INV_Inverter_Run_Mode
+    /// Get raw value of 'INV_Inverter_Run_Mode'
     ///
     /// - Start bit: 32
     /// - Signal size: 1 bits
@@ -18227,14 +18459,14 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Inverter_Run_Mode
+    /// Set value of 'INV_Inverter_Run_Mode'
     #[inline(always)]
     pub fn set_inv_inverter_run_mode(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..33].store_le(value);
         Ok(())
     }
-    /// INV_Relay_6_Status
+    /// Get value of 'INV_Relay_6_Status'
     ///
     /// 0=OFF, 1=ON
     ///
@@ -18246,7 +18478,7 @@ impl M170InternalStates {
     pub fn inv_relay_6_status(&self) -> bool {
         self.inv_relay_6_status_raw()
     }
-    /// Get raw value of INV_Relay_6_Status
+    /// Get raw value of 'INV_Relay_6_Status'
     ///
     /// - Start bit: 29
     /// - Signal size: 1 bits
@@ -18259,14 +18491,14 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[29..30].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Relay_6_Status
+    /// Set value of 'INV_Relay_6_Status'
     #[inline(always)]
     pub fn set_inv_relay_6_status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[29..30].store_le(value);
         Ok(())
     }
-    /// INV_Relay_5_Status
+    /// Get value of 'INV_Relay_5_Status'
     ///
     /// 0=OFF, 1=ON
     ///
@@ -18278,7 +18510,7 @@ impl M170InternalStates {
     pub fn inv_relay_5_status(&self) -> bool {
         self.inv_relay_5_status_raw()
     }
-    /// Get raw value of INV_Relay_5_Status
+    /// Get raw value of 'INV_Relay_5_Status'
     ///
     /// - Start bit: 28
     /// - Signal size: 1 bits
@@ -18291,14 +18523,14 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[28..29].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Relay_5_Status
+    /// Set value of 'INV_Relay_5_Status'
     #[inline(always)]
     pub fn set_inv_relay_5_status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[28..29].store_le(value);
         Ok(())
     }
-    /// INV_Relay_4_Status
+    /// Get value of 'INV_Relay_4_Status'
     ///
     /// 0=OFF, 1=ON
     ///
@@ -18310,7 +18542,7 @@ impl M170InternalStates {
     pub fn inv_relay_4_status(&self) -> bool {
         self.inv_relay_4_status_raw()
     }
-    /// Get raw value of INV_Relay_4_Status
+    /// Get raw value of 'INV_Relay_4_Status'
     ///
     /// - Start bit: 27
     /// - Signal size: 1 bits
@@ -18323,14 +18555,14 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[27..28].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Relay_4_Status
+    /// Set value of 'INV_Relay_4_Status'
     #[inline(always)]
     pub fn set_inv_relay_4_status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[27..28].store_le(value);
         Ok(())
     }
-    /// INV_Relay_3_Status
+    /// Get value of 'INV_Relay_3_Status'
     ///
     /// 0=OFF, 1=ON
     ///
@@ -18342,7 +18574,7 @@ impl M170InternalStates {
     pub fn inv_relay_3_status(&self) -> bool {
         self.inv_relay_3_status_raw()
     }
-    /// Get raw value of INV_Relay_3_Status
+    /// Get raw value of 'INV_Relay_3_Status'
     ///
     /// - Start bit: 26
     /// - Signal size: 1 bits
@@ -18355,14 +18587,14 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[26..27].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Relay_3_Status
+    /// Set value of 'INV_Relay_3_Status'
     #[inline(always)]
     pub fn set_inv_relay_3_status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[26..27].store_le(value);
         Ok(())
     }
-    /// INV_Relay_2_Status
+    /// Get value of 'INV_Relay_2_Status'
     ///
     /// 0=OFF, 1=ON
     ///
@@ -18374,7 +18606,7 @@ impl M170InternalStates {
     pub fn inv_relay_2_status(&self) -> bool {
         self.inv_relay_2_status_raw()
     }
-    /// Get raw value of INV_Relay_2_Status
+    /// Get raw value of 'INV_Relay_2_Status'
     ///
     /// - Start bit: 25
     /// - Signal size: 1 bits
@@ -18387,14 +18619,14 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[25..26].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Relay_2_Status
+    /// Set value of 'INV_Relay_2_Status'
     #[inline(always)]
     pub fn set_inv_relay_2_status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[25..26].store_le(value);
         Ok(())
     }
-    /// INV_Relay_1_Status
+    /// Get value of 'INV_Relay_1_Status'
     ///
     /// 0=OFF, 1=ON
     ///
@@ -18406,7 +18638,7 @@ impl M170InternalStates {
     pub fn inv_relay_1_status(&self) -> bool {
         self.inv_relay_1_status_raw()
     }
-    /// Get raw value of INV_Relay_1_Status
+    /// Get raw value of 'INV_Relay_1_Status'
     ///
     /// - Start bit: 24
     /// - Signal size: 1 bits
@@ -18419,14 +18651,14 @@ impl M170InternalStates {
         let signal = self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Relay_1_Status
+    /// Set value of 'INV_Relay_1_Status'
     #[inline(always)]
     pub fn set_inv_relay_1_status(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..25].store_le(value);
         Ok(())
     }
-    /// INV_Inverter_State
+    /// Get value of 'INV_Inverter_State'
     ///
     /// Different states for the inverter state machine
     ///
@@ -18456,7 +18688,7 @@ impl M170InternalStates {
             }
         }
     }
-    /// Get raw value of INV_Inverter_State
+    /// Get raw value of 'INV_Inverter_State'
     ///
     /// - Start bit: 16
     /// - Signal size: 8 bits
@@ -18470,9 +18702,13 @@ impl M170InternalStates {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Inverter_State
+    /// Set value of 'INV_Inverter_State'
     #[inline(always)]
-    pub fn set_inv_inverter_state(&mut self, value: u8) -> Result<(), CanError> {
+    pub fn set_inv_inverter_state(
+        &mut self,
+        value: M170InternalStatesInvInverterState,
+    ) -> Result<(), CanError> {
+        let value = u8::from(value);
         if value < 0_u8 || 255_u8 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: M170InternalStates::MESSAGE_ID,
@@ -18488,7 +18724,7 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[16..24].store_le(value);
         Ok(())
     }
-    /// INV_PWM_Frequency
+    /// Get value of 'INV_PWM_Frequency'
     ///
     /// The current active PWM frequency
     ///
@@ -18500,7 +18736,7 @@ impl M170InternalStates {
     pub fn inv_pwm_frequency(&self) -> u8 {
         self.inv_pwm_frequency_raw()
     }
-    /// Get raw value of INV_PWM_Frequency
+    /// Get raw value of 'INV_PWM_Frequency'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
@@ -18514,7 +18750,7 @@ impl M170InternalStates {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_PWM_Frequency
+    /// Set value of 'INV_PWM_Frequency'
     #[inline(always)]
     pub fn set_inv_pwm_frequency(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 255_u8 < value {
@@ -18532,7 +18768,7 @@ impl M170InternalStates {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// INV_VSM_State
+    /// Get value of 'INV_VSM_State'
     ///
     /// Different states for the vehicle state machine
     ///
@@ -18557,7 +18793,7 @@ impl M170InternalStates {
             _ => M170InternalStatesInvVsmState::_Other(self.inv_vsm_state_raw()),
         }
     }
-    /// Get raw value of INV_VSM_State
+    /// Get raw value of 'INV_VSM_State'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -18571,9 +18807,13 @@ impl M170InternalStates {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_VSM_State
+    /// Set value of 'INV_VSM_State'
     #[inline(always)]
-    pub fn set_inv_vsm_state(&mut self, value: u8) -> Result<(), CanError> {
+    pub fn set_inv_vsm_state(
+        &mut self,
+        value: M170InternalStatesInvVsmState,
+    ) -> Result<(), CanError> {
+        let value = u8::from(value);
         if value < 0_u8 || 15_u8 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: M170InternalStates::MESSAGE_ID,
@@ -18715,6 +18955,43 @@ impl From<M170InternalStatesInvInverterDischargeState> for u8 {
         }
     }
 }
+/// Defined values for INV_ASC_State
+#[allow(
+    clippy::absurd_extreme_comparisons,
+    clippy::excessive_precision,
+    clippy::manual_range_contains,
+    clippy::unnecessary_cast,
+    clippy::useless_conversion,
+    unused_comparisons,
+    unused_variables,
+)]
+#[derive(Clone, Copy, PartialEq)]
+pub enum M170InternalStatesInvAscState {
+    AscDisabled,
+    AscEnabled,
+    AscPending,
+    AscDelay,
+    AscActive,
+    AscComplete,
+    AscBlocked,
+    AscSuppressed,
+    _Other(u8),
+}
+impl From<M170InternalStatesInvAscState> for u8 {
+    fn from(val: M170InternalStatesInvAscState) -> u8 {
+        match val {
+            M170InternalStatesInvAscState::AscDisabled => 0,
+            M170InternalStatesInvAscState::AscEnabled => 1,
+            M170InternalStatesInvAscState::AscPending => 2,
+            M170InternalStatesInvAscState::AscDelay => 3,
+            M170InternalStatesInvAscState::AscActive => 4,
+            M170InternalStatesInvAscState::AscComplete => 5,
+            M170InternalStatesInvAscState::AscBlocked => 6,
+            M170InternalStatesInvAscState::AscSuppressed => 7,
+            M170InternalStatesInvAscState::_Other(x) => x,
+        }
+    }
+}
 /// Defined values for INV_Inverter_State
 #[allow(
     clippy::absurd_extreme_comparisons,
@@ -18815,6 +19092,8 @@ impl M169InternalVoltages {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xa9)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 100;
     pub const INV_REF_VOLTAGE_12_0_MIN: f32 = -327.68_f32;
     pub const INV_REF_VOLTAGE_12_0_MAX: f32 = 327.67_f32;
     pub const INV_REF_VOLTAGE_5_0_MIN: f32 = -327.68_f32;
@@ -18823,14 +19102,14 @@ impl M169InternalVoltages {
     pub const INV_REF_VOLTAGE_2_5_MAX: f32 = 327.67_f32;
     pub const INV_REF_VOLTAGE_1_5_MIN: f32 = -327.68_f32;
     pub const INV_REF_VOLTAGE_1_5_MAX: f32 = 327.67_f32;
-    /// Construct new M169_Internal_Voltages from values
+    /// Construct new 'M169_Internal_Voltages' from values
     pub fn new(
         inv_ref_voltage_12_0: f32,
         inv_ref_voltage_5_0: f32,
         inv_ref_voltage_2_5: f32,
         inv_ref_voltage_1_5: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_ref_voltage_12_0(inv_ref_voltage_12_0)?;
         res.set_inv_ref_voltage_5_0(inv_ref_voltage_5_0)?;
         res.set_inv_ref_voltage_2_5(inv_ref_voltage_2_5)?;
@@ -18841,7 +19120,7 @@ impl M169InternalVoltages {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Ref_Voltage_12_0
+    /// Get value of 'INV_Ref_Voltage_12_0'
     ///
     /// 12V Input Voltage
     ///
@@ -18853,7 +19132,7 @@ impl M169InternalVoltages {
     pub fn inv_ref_voltage_12_0(&self) -> f32 {
         self.inv_ref_voltage_12_0_raw()
     }
-    /// Get raw value of INV_Ref_Voltage_12_0
+    /// Get raw value of 'INV_Ref_Voltage_12_0'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -18868,7 +19147,7 @@ impl M169InternalVoltages {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Ref_Voltage_12_0
+    /// Set value of 'INV_Ref_Voltage_12_0'
     #[inline(always)]
     pub fn set_inv_ref_voltage_12_0(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -18883,7 +19162,7 @@ impl M169InternalVoltages {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Ref_Voltage_5_0
+    /// Get value of 'INV_Ref_Voltage_5_0'
     ///
     /// Transducer voltage
     ///
@@ -18895,7 +19174,7 @@ impl M169InternalVoltages {
     pub fn inv_ref_voltage_5_0(&self) -> f32 {
         self.inv_ref_voltage_5_0_raw()
     }
-    /// Get raw value of INV_Ref_Voltage_5_0
+    /// Get raw value of 'INV_Ref_Voltage_5_0'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -18910,7 +19189,7 @@ impl M169InternalVoltages {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Ref_Voltage_5_0
+    /// Set value of 'INV_Ref_Voltage_5_0'
     #[inline(always)]
     pub fn set_inv_ref_voltage_5_0(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -18925,7 +19204,7 @@ impl M169InternalVoltages {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Ref_Voltage_2_5
+    /// Get value of 'INV_Ref_Voltage_2_5'
     ///
     /// Internal reference voltage
     ///
@@ -18937,7 +19216,7 @@ impl M169InternalVoltages {
     pub fn inv_ref_voltage_2_5(&self) -> f32 {
         self.inv_ref_voltage_2_5_raw()
     }
-    /// Get raw value of INV_Ref_Voltage_2_5
+    /// Get raw value of 'INV_Ref_Voltage_2_5'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -18952,7 +19231,7 @@ impl M169InternalVoltages {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Ref_Voltage_2_5
+    /// Set value of 'INV_Ref_Voltage_2_5'
     #[inline(always)]
     pub fn set_inv_ref_voltage_2_5(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -18967,7 +19246,7 @@ impl M169InternalVoltages {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Ref_Voltage_1_5
+    /// Get value of 'INV_Ref_Voltage_1_5'
     ///
     /// Internal reference voltage
     ///
@@ -18979,7 +19258,7 @@ impl M169InternalVoltages {
     pub fn inv_ref_voltage_1_5(&self) -> f32 {
         self.inv_ref_voltage_1_5_raw()
     }
-    /// Get raw value of INV_Ref_Voltage_1_5
+    /// Get raw value of 'INV_Ref_Voltage_1_5'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -18994,7 +19273,7 @@ impl M169InternalVoltages {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Ref_Voltage_1_5
+    /// Set value of 'INV_Ref_Voltage_1_5'
     #[inline(always)]
     pub fn set_inv_ref_voltage_1_5(&mut self, value: f32) -> Result<(), CanError> {
         if value < -327.68_f32 || 327.67_f32 < value {
@@ -19070,6 +19349,8 @@ impl M168FluxIdIqInfo {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xa8)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const INV_IQ_MIN: f32 = -3276.8_f32;
     pub const INV_IQ_MAX: f32 = 3276.7_f32;
     pub const INV_ID_MIN: f32 = -3276.8_f32;
@@ -19078,14 +19359,14 @@ impl M168FluxIdIqInfo {
     pub const INV_VQ_FF_MAX: f32 = 3276.7_f32;
     pub const INV_VD_FF_MIN: f32 = -3276.7_f32;
     pub const INV_VD_FF_MAX: f32 = 3276.7_f32;
-    /// Construct new M168_Flux_ID_IQ_Info from values
+    /// Construct new 'M168_Flux_ID_IQ_Info' from values
     pub fn new(
         inv_iq: f32,
         inv_id: f32,
         inv_vq_ff: f32,
         inv_vd_ff: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_iq(inv_iq)?;
         res.set_inv_id(inv_id)?;
         res.set_inv_vq_ff(inv_vq_ff)?;
@@ -19096,7 +19377,7 @@ impl M168FluxIdIqInfo {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Iq
+    /// Get value of 'INV_Iq'
     ///
     /// The measured Iq current
     ///
@@ -19108,7 +19389,7 @@ impl M168FluxIdIqInfo {
     pub fn inv_iq(&self) -> f32 {
         self.inv_iq_raw()
     }
-    /// Get raw value of INV_Iq
+    /// Get raw value of 'INV_Iq'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -19123,7 +19404,7 @@ impl M168FluxIdIqInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Iq
+    /// Set value of 'INV_Iq'
     #[inline(always)]
     pub fn set_inv_iq(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -19138,7 +19419,7 @@ impl M168FluxIdIqInfo {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Id
+    /// Get value of 'INV_Id'
     ///
     /// The measured Id current
     ///
@@ -19150,7 +19431,7 @@ impl M168FluxIdIqInfo {
     pub fn inv_id(&self) -> f32 {
         self.inv_id_raw()
     }
-    /// Get raw value of INV_Id
+    /// Get raw value of 'INV_Id'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -19165,7 +19446,7 @@ impl M168FluxIdIqInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Id
+    /// Set value of 'INV_Id'
     #[inline(always)]
     pub fn set_inv_id(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -19180,7 +19461,7 @@ impl M168FluxIdIqInfo {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Vq_ff
+    /// Get value of 'INV_Vq_ff'
     ///
     /// The q-axis voltage feedforward
     ///
@@ -19192,7 +19473,7 @@ impl M168FluxIdIqInfo {
     pub fn inv_vq_ff(&self) -> f32 {
         self.inv_vq_ff_raw()
     }
-    /// Get raw value of INV_Vq_ff
+    /// Get raw value of 'INV_Vq_ff'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -19207,7 +19488,7 @@ impl M168FluxIdIqInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Vq_ff
+    /// Set value of 'INV_Vq_ff'
     #[inline(always)]
     pub fn set_inv_vq_ff(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.7_f32 || 3276.7_f32 < value {
@@ -19222,7 +19503,7 @@ impl M168FluxIdIqInfo {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Vd_ff
+    /// Get value of 'INV_Vd_ff'
     ///
     /// The d-axis voltage feedforward
     ///
@@ -19234,7 +19515,7 @@ impl M168FluxIdIqInfo {
     pub fn inv_vd_ff(&self) -> f32 {
         self.inv_vd_ff_raw()
     }
-    /// Get raw value of INV_Vd_ff
+    /// Get raw value of 'INV_Vd_ff'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -19249,7 +19530,7 @@ impl M168FluxIdIqInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Vd_ff
+    /// Set value of 'INV_Vd_ff'
     #[inline(always)]
     pub fn set_inv_vd_ff(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.7_f32 || 3276.7_f32 < value {
@@ -19325,6 +19606,8 @@ impl M167VoltageInfo {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xa7)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const INV_VBC_VQ_VOLTAGE_MIN: f32 = -3276.8_f32;
     pub const INV_VBC_VQ_VOLTAGE_MAX: f32 = 3276.7_f32;
     pub const INV_VAB_VD_VOLTAGE_MIN: f32 = -3276.8_f32;
@@ -19333,14 +19616,14 @@ impl M167VoltageInfo {
     pub const INV_OUTPUT_VOLTAGE_MAX: f32 = 3276.7_f32;
     pub const INV_DC_BUS_VOLTAGE_MIN: f32 = -3276.8_f32;
     pub const INV_DC_BUS_VOLTAGE_MAX: f32 = 3276.7_f32;
-    /// Construct new M167_Voltage_Info from values
+    /// Construct new 'M167_Voltage_Info' from values
     pub fn new(
         inv_vbc_vq_voltage: f32,
         inv_vab_vd_voltage: f32,
         inv_output_voltage: f32,
         inv_dc_bus_voltage: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_vbc_vq_voltage(inv_vbc_vq_voltage)?;
         res.set_inv_vab_vd_voltage(inv_vab_vd_voltage)?;
         res.set_inv_output_voltage(inv_output_voltage)?;
@@ -19351,7 +19634,7 @@ impl M167VoltageInfo {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_VBC_Vq_Voltage
+    /// Get value of 'INV_VBC_Vq_Voltage'
     ///
     /// Measured value of the voltage between Phase B and Phase C
     ///
@@ -19363,7 +19646,7 @@ impl M167VoltageInfo {
     pub fn inv_vbc_vq_voltage(&self) -> f32 {
         self.inv_vbc_vq_voltage_raw()
     }
-    /// Get raw value of INV_VBC_Vq_Voltage
+    /// Get raw value of 'INV_VBC_Vq_Voltage'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -19378,7 +19661,7 @@ impl M167VoltageInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_VBC_Vq_Voltage
+    /// Set value of 'INV_VBC_Vq_Voltage'
     #[inline(always)]
     pub fn set_inv_vbc_vq_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -19393,7 +19676,7 @@ impl M167VoltageInfo {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_VAB_Vd_Voltage
+    /// Get value of 'INV_VAB_Vd_Voltage'
     ///
     /// Measured value of the voltage betwen phase A and Phase B
     ///
@@ -19405,7 +19688,7 @@ impl M167VoltageInfo {
     pub fn inv_vab_vd_voltage(&self) -> f32 {
         self.inv_vab_vd_voltage_raw()
     }
-    /// Get raw value of INV_VAB_Vd_Voltage
+    /// Get raw value of 'INV_VAB_Vd_Voltage'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -19420,7 +19703,7 @@ impl M167VoltageInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_VAB_Vd_Voltage
+    /// Set value of 'INV_VAB_Vd_Voltage'
     #[inline(always)]
     pub fn set_inv_vab_vd_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -19435,7 +19718,7 @@ impl M167VoltageInfo {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Output_Voltage
+    /// Get value of 'INV_Output_Voltage'
     ///
     /// The calculated value of the output voltage, in peak line-neutral volts
     ///
@@ -19447,7 +19730,7 @@ impl M167VoltageInfo {
     pub fn inv_output_voltage(&self) -> f32 {
         self.inv_output_voltage_raw()
     }
-    /// Get raw value of INV_Output_Voltage
+    /// Get raw value of 'INV_Output_Voltage'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -19462,7 +19745,7 @@ impl M167VoltageInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Output_Voltage
+    /// Set value of 'INV_Output_Voltage'
     #[inline(always)]
     pub fn set_inv_output_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -19477,7 +19760,7 @@ impl M167VoltageInfo {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_DC_Bus_Voltage
+    /// Get value of 'INV_DC_Bus_Voltage'
     ///
     /// The actual measured value of the DC bus voltage
     ///
@@ -19489,7 +19772,7 @@ impl M167VoltageInfo {
     pub fn inv_dc_bus_voltage(&self) -> f32 {
         self.inv_dc_bus_voltage_raw()
     }
-    /// Get raw value of INV_DC_Bus_Voltage
+    /// Get raw value of 'INV_DC_Bus_Voltage'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -19504,7 +19787,7 @@ impl M167VoltageInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_DC_Bus_Voltage
+    /// Set value of 'INV_DC_Bus_Voltage'
     #[inline(always)]
     pub fn set_inv_dc_bus_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -19580,6 +19863,8 @@ impl M166CurrentInfo {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xa6)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const INV_DC_BUS_CURRENT_MIN: f32 = -3276.8_f32;
     pub const INV_DC_BUS_CURRENT_MAX: f32 = 3276.7_f32;
     pub const INV_PHASE_C_CURRENT_MIN: f32 = -3276.8_f32;
@@ -19588,14 +19873,14 @@ impl M166CurrentInfo {
     pub const INV_PHASE_B_CURRENT_MAX: f32 = 3276.7_f32;
     pub const INV_PHASE_A_CURRENT_MIN: f32 = -3276.8_f32;
     pub const INV_PHASE_A_CURRENT_MAX: f32 = 3276.7_f32;
-    /// Construct new M166_Current_Info from values
+    /// Construct new 'M166_Current_Info' from values
     pub fn new(
         inv_dc_bus_current: f32,
         inv_phase_c_current: f32,
         inv_phase_b_current: f32,
         inv_phase_a_current: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_dc_bus_current(inv_dc_bus_current)?;
         res.set_inv_phase_c_current(inv_phase_c_current)?;
         res.set_inv_phase_b_current(inv_phase_b_current)?;
@@ -19606,7 +19891,7 @@ impl M166CurrentInfo {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_DC_Bus_Current
+    /// Get value of 'INV_DC_Bus_Current'
     ///
     /// The Calculated DC Bus Current
     ///
@@ -19618,7 +19903,7 @@ impl M166CurrentInfo {
     pub fn inv_dc_bus_current(&self) -> f32 {
         self.inv_dc_bus_current_raw()
     }
-    /// Get raw value of INV_DC_Bus_Current
+    /// Get raw value of 'INV_DC_Bus_Current'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -19633,7 +19918,7 @@ impl M166CurrentInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_DC_Bus_Current
+    /// Set value of 'INV_DC_Bus_Current'
     #[inline(always)]
     pub fn set_inv_dc_bus_current(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -19648,7 +19933,7 @@ impl M166CurrentInfo {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Phase_C_Current
+    /// Get value of 'INV_Phase_C_Current'
     ///
     /// The measured value of Phase C current
     ///
@@ -19660,7 +19945,7 @@ impl M166CurrentInfo {
     pub fn inv_phase_c_current(&self) -> f32 {
         self.inv_phase_c_current_raw()
     }
-    /// Get raw value of INV_Phase_C_Current
+    /// Get raw value of 'INV_Phase_C_Current'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -19675,7 +19960,7 @@ impl M166CurrentInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Phase_C_Current
+    /// Set value of 'INV_Phase_C_Current'
     #[inline(always)]
     pub fn set_inv_phase_c_current(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -19690,7 +19975,7 @@ impl M166CurrentInfo {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Phase_B_Current
+    /// Get value of 'INV_Phase_B_Current'
     ///
     /// The measured value of Phase B current
     ///
@@ -19702,7 +19987,7 @@ impl M166CurrentInfo {
     pub fn inv_phase_b_current(&self) -> f32 {
         self.inv_phase_b_current_raw()
     }
-    /// Get raw value of INV_Phase_B_Current
+    /// Get raw value of 'INV_Phase_B_Current'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -19717,7 +20002,7 @@ impl M166CurrentInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Phase_B_Current
+    /// Set value of 'INV_Phase_B_Current'
     #[inline(always)]
     pub fn set_inv_phase_b_current(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -19732,7 +20017,7 @@ impl M166CurrentInfo {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Phase_A_Current
+    /// Get value of 'INV_Phase_A_Current'
     ///
     /// The measured value of Phase A current
     ///
@@ -19744,7 +20029,7 @@ impl M166CurrentInfo {
     pub fn inv_phase_a_current(&self) -> f32 {
         self.inv_phase_a_current_raw()
     }
-    /// Get raw value of INV_Phase_A_Current
+    /// Get raw value of 'INV_Phase_A_Current'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -19759,7 +20044,7 @@ impl M166CurrentInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Phase_A_Current
+    /// Set value of 'INV_Phase_A_Current'
     #[inline(always)]
     pub fn set_inv_phase_a_current(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -19835,6 +20120,8 @@ impl M165MotorPositionInfo {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xa5)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const INV_DELTA_RESOLVER_FILTERED_MIN: f32 = -3276.8_f32;
     pub const INV_DELTA_RESOLVER_FILTERED_MAX: f32 = 3276.7_f32;
     pub const INV_ELECTRICAL_OUTPUT_FREQUENCY_MIN: f32 = -3276.8_f32;
@@ -19843,14 +20130,14 @@ impl M165MotorPositionInfo {
     pub const INV_MOTOR_SPEED_MAX: i16 = 32767_i16;
     pub const INV_MOTOR_ANGLE_ELECTRICAL_MIN: f32 = 0_f32;
     pub const INV_MOTOR_ANGLE_ELECTRICAL_MAX: f32 = 6553.5_f32;
-    /// Construct new M165_Motor_Position_Info from values
+    /// Construct new 'M165_Motor_Position_Info' from values
     pub fn new(
         inv_delta_resolver_filtered: f32,
         inv_electrical_output_frequency: f32,
         inv_motor_speed: i16,
         inv_motor_angle_electrical: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_delta_resolver_filtered(inv_delta_resolver_filtered)?;
         res.set_inv_electrical_output_frequency(inv_electrical_output_frequency)?;
         res.set_inv_motor_speed(inv_motor_speed)?;
@@ -19861,7 +20148,7 @@ impl M165MotorPositionInfo {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Delta_Resolver_Filtered
+    /// Get value of 'INV_Delta_Resolver_Filtered'
     ///
     /// Used in calibration of resolver angle adjustment.
     ///
@@ -19873,7 +20160,7 @@ impl M165MotorPositionInfo {
     pub fn inv_delta_resolver_filtered(&self) -> f32 {
         self.inv_delta_resolver_filtered_raw()
     }
-    /// Get raw value of INV_Delta_Resolver_Filtered
+    /// Get raw value of 'INV_Delta_Resolver_Filtered'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -19888,7 +20175,7 @@ impl M165MotorPositionInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Delta_Resolver_Filtered
+    /// Set value of 'INV_Delta_Resolver_Filtered'
     #[inline(always)]
     pub fn set_inv_delta_resolver_filtered(
         &mut self,
@@ -19906,7 +20193,7 @@ impl M165MotorPositionInfo {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Electrical_Output_Frequency
+    /// Get value of 'INV_Electrical_Output_Frequency'
     ///
     /// The actual electrical frequency of the inverter
     ///
@@ -19918,7 +20205,7 @@ impl M165MotorPositionInfo {
     pub fn inv_electrical_output_frequency(&self) -> f32 {
         self.inv_electrical_output_frequency_raw()
     }
-    /// Get raw value of INV_Electrical_Output_Frequency
+    /// Get raw value of 'INV_Electrical_Output_Frequency'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -19933,7 +20220,7 @@ impl M165MotorPositionInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Electrical_Output_Frequency
+    /// Set value of 'INV_Electrical_Output_Frequency'
     #[inline(always)]
     pub fn set_inv_electrical_output_frequency(
         &mut self,
@@ -19951,7 +20238,7 @@ impl M165MotorPositionInfo {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Motor_Speed
+    /// Get value of 'INV_Motor_Speed'
     ///
     /// The measured speed of the motor
     ///
@@ -19963,7 +20250,7 @@ impl M165MotorPositionInfo {
     pub fn inv_motor_speed(&self) -> i16 {
         self.inv_motor_speed_raw()
     }
-    /// Get raw value of INV_Motor_Speed
+    /// Get raw value of 'INV_Motor_Speed'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -19978,7 +20265,7 @@ impl M165MotorPositionInfo {
         let signal = signal as i16;
         i16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Motor_Speed
+    /// Set value of 'INV_Motor_Speed'
     #[inline(always)]
     pub fn set_inv_motor_speed(&mut self, value: i16) -> Result<(), CanError> {
         if value < -32768_i16 || 32767_i16 < value {
@@ -19997,7 +20284,7 @@ impl M165MotorPositionInfo {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Motor_Angle_Electrical
+    /// Get value of 'INV_Motor_Angle_Electrical'
     ///
     /// The Electrical Angle of the motor as read by the encoder or resolver
     ///
@@ -20009,7 +20296,7 @@ impl M165MotorPositionInfo {
     pub fn inv_motor_angle_electrical(&self) -> f32 {
         self.inv_motor_angle_electrical_raw()
     }
-    /// Get raw value of INV_Motor_Angle_Electrical
+    /// Get raw value of 'INV_Motor_Angle_Electrical'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -20024,7 +20311,7 @@ impl M165MotorPositionInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Motor_Angle_Electrical
+    /// Set value of 'INV_Motor_Angle_Electrical'
     #[inline(always)]
     pub fn set_inv_motor_angle_electrical(
         &mut self,
@@ -20102,7 +20389,9 @@ impl M164DigitalInputStatus {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xa4)
     });
-    /// Construct new M164_Digital_Input_Status from values
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
+    /// Construct new 'M164_Digital_Input_Status' from values
     pub fn new(
         inv_digital_input_8: bool,
         inv_digital_input_7: bool,
@@ -20113,7 +20402,7 @@ impl M164DigitalInputStatus {
         inv_digital_input_2: bool,
         inv_digital_input_1: bool,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_digital_input_8(inv_digital_input_8)?;
         res.set_inv_digital_input_7(inv_digital_input_7)?;
         res.set_inv_digital_input_6(inv_digital_input_6)?;
@@ -20128,7 +20417,7 @@ impl M164DigitalInputStatus {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Digital_Input_8
+    /// Get value of 'INV_Digital_Input_8'
     ///
     /// Status of Digital Input #8
     ///
@@ -20140,7 +20429,7 @@ impl M164DigitalInputStatus {
     pub fn inv_digital_input_8(&self) -> bool {
         self.inv_digital_input_8_raw()
     }
-    /// Get raw value of INV_Digital_Input_8
+    /// Get raw value of 'INV_Digital_Input_8'
     ///
     /// - Start bit: 56
     /// - Signal size: 1 bits
@@ -20153,14 +20442,14 @@ impl M164DigitalInputStatus {
         let signal = self.raw.view_bits::<Lsb0>()[56..57].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Digital_Input_8
+    /// Set value of 'INV_Digital_Input_8'
     #[inline(always)]
     pub fn set_inv_digital_input_8(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[56..57].store_le(value);
         Ok(())
     }
-    /// INV_Digital_Input_7
+    /// Get value of 'INV_Digital_Input_7'
     ///
     /// Status of Digital Input #7
     ///
@@ -20172,7 +20461,7 @@ impl M164DigitalInputStatus {
     pub fn inv_digital_input_7(&self) -> bool {
         self.inv_digital_input_7_raw()
     }
-    /// Get raw value of INV_Digital_Input_7
+    /// Get raw value of 'INV_Digital_Input_7'
     ///
     /// - Start bit: 48
     /// - Signal size: 1 bits
@@ -20185,14 +20474,14 @@ impl M164DigitalInputStatus {
         let signal = self.raw.view_bits::<Lsb0>()[48..49].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Digital_Input_7
+    /// Set value of 'INV_Digital_Input_7'
     #[inline(always)]
     pub fn set_inv_digital_input_7(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[48..49].store_le(value);
         Ok(())
     }
-    /// INV_Digital_Input_6
+    /// Get value of 'INV_Digital_Input_6'
     ///
     /// Status of Digital Input #6
     ///
@@ -20204,7 +20493,7 @@ impl M164DigitalInputStatus {
     pub fn inv_digital_input_6(&self) -> bool {
         self.inv_digital_input_6_raw()
     }
-    /// Get raw value of INV_Digital_Input_6
+    /// Get raw value of 'INV_Digital_Input_6'
     ///
     /// - Start bit: 40
     /// - Signal size: 1 bits
@@ -20217,14 +20506,14 @@ impl M164DigitalInputStatus {
         let signal = self.raw.view_bits::<Lsb0>()[40..41].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Digital_Input_6
+    /// Set value of 'INV_Digital_Input_6'
     #[inline(always)]
     pub fn set_inv_digital_input_6(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[40..41].store_le(value);
         Ok(())
     }
-    /// INV_Digital_Input_5
+    /// Get value of 'INV_Digital_Input_5'
     ///
     /// Status of Digital Input #5
     ///
@@ -20236,7 +20525,7 @@ impl M164DigitalInputStatus {
     pub fn inv_digital_input_5(&self) -> bool {
         self.inv_digital_input_5_raw()
     }
-    /// Get raw value of INV_Digital_Input_5
+    /// Get raw value of 'INV_Digital_Input_5'
     ///
     /// - Start bit: 32
     /// - Signal size: 1 bits
@@ -20249,14 +20538,14 @@ impl M164DigitalInputStatus {
         let signal = self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Digital_Input_5
+    /// Set value of 'INV_Digital_Input_5'
     #[inline(always)]
     pub fn set_inv_digital_input_5(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..33].store_le(value);
         Ok(())
     }
-    /// INV_Digital_Input_4
+    /// Get value of 'INV_Digital_Input_4'
     ///
     /// Status of Digital Input #4
     ///
@@ -20268,7 +20557,7 @@ impl M164DigitalInputStatus {
     pub fn inv_digital_input_4(&self) -> bool {
         self.inv_digital_input_4_raw()
     }
-    /// Get raw value of INV_Digital_Input_4
+    /// Get raw value of 'INV_Digital_Input_4'
     ///
     /// - Start bit: 24
     /// - Signal size: 1 bits
@@ -20281,14 +20570,14 @@ impl M164DigitalInputStatus {
         let signal = self.raw.view_bits::<Lsb0>()[24..25].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Digital_Input_4
+    /// Set value of 'INV_Digital_Input_4'
     #[inline(always)]
     pub fn set_inv_digital_input_4(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[24..25].store_le(value);
         Ok(())
     }
-    /// INV_Digital_Input_3
+    /// Get value of 'INV_Digital_Input_3'
     ///
     /// Status of Digital Input #3
     ///
@@ -20300,7 +20589,7 @@ impl M164DigitalInputStatus {
     pub fn inv_digital_input_3(&self) -> bool {
         self.inv_digital_input_3_raw()
     }
-    /// Get raw value of INV_Digital_Input_3
+    /// Get raw value of 'INV_Digital_Input_3'
     ///
     /// - Start bit: 16
     /// - Signal size: 1 bits
@@ -20313,14 +20602,14 @@ impl M164DigitalInputStatus {
         let signal = self.raw.view_bits::<Lsb0>()[16..17].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Digital_Input_3
+    /// Set value of 'INV_Digital_Input_3'
     #[inline(always)]
     pub fn set_inv_digital_input_3(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[16..17].store_le(value);
         Ok(())
     }
-    /// INV_Digital_Input_2
+    /// Get value of 'INV_Digital_Input_2'
     ///
     /// Status of Digital Input #2
     ///
@@ -20332,7 +20621,7 @@ impl M164DigitalInputStatus {
     pub fn inv_digital_input_2(&self) -> bool {
         self.inv_digital_input_2_raw()
     }
-    /// Get raw value of INV_Digital_Input_2
+    /// Get raw value of 'INV_Digital_Input_2'
     ///
     /// - Start bit: 8
     /// - Signal size: 1 bits
@@ -20345,14 +20634,14 @@ impl M164DigitalInputStatus {
         let signal = self.raw.view_bits::<Lsb0>()[8..9].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Digital_Input_2
+    /// Set value of 'INV_Digital_Input_2'
     #[inline(always)]
     pub fn set_inv_digital_input_2(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[8..9].store_le(value);
         Ok(())
     }
-    /// INV_Digital_Input_1
+    /// Get value of 'INV_Digital_Input_1'
     ///
     /// Status of Digital Input #1
     ///
@@ -20364,7 +20653,7 @@ impl M164DigitalInputStatus {
     pub fn inv_digital_input_1(&self) -> bool {
         self.inv_digital_input_1_raw()
     }
-    /// Get raw value of INV_Digital_Input_1
+    /// Get raw value of 'INV_Digital_Input_1'
     ///
     /// - Start bit: 0
     /// - Signal size: 1 bits
@@ -20377,7 +20666,7 @@ impl M164DigitalInputStatus {
         let signal = self.raw.view_bits::<Lsb0>()[0..1].load_le::<u8>();
         signal == 1
     }
-    /// Set value of INV_Digital_Input_1
+    /// Set value of 'INV_Digital_Input_1'
     #[inline(always)]
     pub fn set_inv_digital_input_1(&mut self, value: bool) -> Result<(), CanError> {
         let value = value as u8;
@@ -20429,7 +20718,6 @@ impl embedded_can::Frame for M164DigitalInputStatus {
 /// - Size: 8 bytes
 /// - Transmitter: INV
 ///
-/// A mostly useless message.
 #[derive(Clone, Copy)]
 pub struct M163AnalogInputVoltages {
     raw: [u8; 8],
@@ -20447,6 +20735,8 @@ impl M163AnalogInputVoltages {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xa3)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const INV_ANALOG_INPUT_6_MIN: f32 = 0_f32;
     pub const INV_ANALOG_INPUT_6_MAX: f32 = 10.23_f32;
     pub const INV_ANALOG_INPUT_5_MIN: f32 = 0_f32;
@@ -20459,7 +20749,7 @@ impl M163AnalogInputVoltages {
     pub const INV_ANALOG_INPUT_2_MAX: f32 = 10.23_f32;
     pub const INV_ANALOG_INPUT_1_MIN: f32 = 0_f32;
     pub const INV_ANALOG_INPUT_1_MAX: f32 = 10.23_f32;
-    /// Construct new M163_Analog_Input_Voltages from values
+    /// Construct new 'M163_Analog_Input_Voltages' from values
     pub fn new(
         inv_analog_input_6: f32,
         inv_analog_input_5: f32,
@@ -20468,7 +20758,7 @@ impl M163AnalogInputVoltages {
         inv_analog_input_2: f32,
         inv_analog_input_1: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_analog_input_6(inv_analog_input_6)?;
         res.set_inv_analog_input_5(inv_analog_input_5)?;
         res.set_inv_analog_input_4(inv_analog_input_4)?;
@@ -20481,7 +20771,7 @@ impl M163AnalogInputVoltages {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Analog_Input_6
+    /// Get value of 'INV_Analog_Input_6'
     ///
     /// Voltage on Analog Input #6
     ///
@@ -20493,7 +20783,7 @@ impl M163AnalogInputVoltages {
     pub fn inv_analog_input_6(&self) -> f32 {
         self.inv_analog_input_6_raw()
     }
-    /// Get raw value of INV_Analog_Input_6
+    /// Get raw value of 'INV_Analog_Input_6'
     ///
     /// - Start bit: 52
     /// - Signal size: 10 bits
@@ -20508,7 +20798,7 @@ impl M163AnalogInputVoltages {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Analog_Input_6
+    /// Set value of 'INV_Analog_Input_6'
     #[inline(always)]
     pub fn set_inv_analog_input_6(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 10.23_f32 < value {
@@ -20522,7 +20812,7 @@ impl M163AnalogInputVoltages {
         self.raw.view_bits_mut::<Lsb0>()[52..62].store_le(value);
         Ok(())
     }
-    /// INV_Analog_Input_5
+    /// Get value of 'INV_Analog_Input_5'
     ///
     /// Voltage on Analog Input #5
     ///
@@ -20534,7 +20824,7 @@ impl M163AnalogInputVoltages {
     pub fn inv_analog_input_5(&self) -> f32 {
         self.inv_analog_input_5_raw()
     }
-    /// Get raw value of INV_Analog_Input_5
+    /// Get raw value of 'INV_Analog_Input_5'
     ///
     /// - Start bit: 42
     /// - Signal size: 10 bits
@@ -20549,7 +20839,7 @@ impl M163AnalogInputVoltages {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Analog_Input_5
+    /// Set value of 'INV_Analog_Input_5'
     #[inline(always)]
     pub fn set_inv_analog_input_5(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 10.23_f32 < value {
@@ -20563,7 +20853,7 @@ impl M163AnalogInputVoltages {
         self.raw.view_bits_mut::<Lsb0>()[42..52].store_le(value);
         Ok(())
     }
-    /// INV_Analog_Input_4
+    /// Get value of 'INV_Analog_Input_4'
     ///
     /// Voltage on Analog Input #4
     ///
@@ -20575,7 +20865,7 @@ impl M163AnalogInputVoltages {
     pub fn inv_analog_input_4(&self) -> f32 {
         self.inv_analog_input_4_raw()
     }
-    /// Get raw value of INV_Analog_Input_4
+    /// Get raw value of 'INV_Analog_Input_4'
     ///
     /// - Start bit: 32
     /// - Signal size: 10 bits
@@ -20590,7 +20880,7 @@ impl M163AnalogInputVoltages {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Analog_Input_4
+    /// Set value of 'INV_Analog_Input_4'
     #[inline(always)]
     pub fn set_inv_analog_input_4(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 10.23_f32 < value {
@@ -20604,7 +20894,7 @@ impl M163AnalogInputVoltages {
         self.raw.view_bits_mut::<Lsb0>()[32..42].store_le(value);
         Ok(())
     }
-    /// INV_Analog_Input_3
+    /// Get value of 'INV_Analog_Input_3'
     ///
     /// Voltage on Analog Input #3
     ///
@@ -20616,7 +20906,7 @@ impl M163AnalogInputVoltages {
     pub fn inv_analog_input_3(&self) -> f32 {
         self.inv_analog_input_3_raw()
     }
-    /// Get raw value of INV_Analog_Input_3
+    /// Get raw value of 'INV_Analog_Input_3'
     ///
     /// - Start bit: 20
     /// - Signal size: 10 bits
@@ -20631,7 +20921,7 @@ impl M163AnalogInputVoltages {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Analog_Input_3
+    /// Set value of 'INV_Analog_Input_3'
     #[inline(always)]
     pub fn set_inv_analog_input_3(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 10.23_f32 < value {
@@ -20645,7 +20935,7 @@ impl M163AnalogInputVoltages {
         self.raw.view_bits_mut::<Lsb0>()[20..30].store_le(value);
         Ok(())
     }
-    /// INV_Analog_Input_2
+    /// Get value of 'INV_Analog_Input_2'
     ///
     /// Voltage on Analog Input #2
     ///
@@ -20657,7 +20947,7 @@ impl M163AnalogInputVoltages {
     pub fn inv_analog_input_2(&self) -> f32 {
         self.inv_analog_input_2_raw()
     }
-    /// Get raw value of INV_Analog_Input_2
+    /// Get raw value of 'INV_Analog_Input_2'
     ///
     /// - Start bit: 10
     /// - Signal size: 10 bits
@@ -20672,7 +20962,7 @@ impl M163AnalogInputVoltages {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Analog_Input_2
+    /// Set value of 'INV_Analog_Input_2'
     #[inline(always)]
     pub fn set_inv_analog_input_2(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 10.23_f32 < value {
@@ -20686,7 +20976,7 @@ impl M163AnalogInputVoltages {
         self.raw.view_bits_mut::<Lsb0>()[10..20].store_le(value);
         Ok(())
     }
-    /// INV_Analog_Input_1
+    /// Get value of 'INV_Analog_Input_1'
     ///
     /// Voltage on Analog Input #1
     ///
@@ -20698,7 +20988,7 @@ impl M163AnalogInputVoltages {
     pub fn inv_analog_input_1(&self) -> f32 {
         self.inv_analog_input_1_raw()
     }
-    /// Get raw value of INV_Analog_Input_1
+    /// Get raw value of 'INV_Analog_Input_1'
     ///
     /// - Start bit: 0
     /// - Signal size: 10 bits
@@ -20713,7 +21003,7 @@ impl M163AnalogInputVoltages {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Analog_Input_1
+    /// Set value of 'INV_Analog_Input_1'
     #[inline(always)]
     pub fn set_inv_analog_input_1(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 10.23_f32 < value {
@@ -20788,25 +21078,27 @@ impl M162TemperatureSet3 {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xa2)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 100;
     pub const INV_TORQUE_SHUDDER_MIN: f32 = -3276.8_f32;
     pub const INV_TORQUE_SHUDDER_MAX: f32 = 3276.7_f32;
     pub const INV_MOTOR_TEMP_MIN: f32 = -3276.8_f32;
     pub const INV_MOTOR_TEMP_MAX: f32 = 3276.7_f32;
-    pub const INV_HOT_SPOT_TEMP_MIN: f32 = -3276.8_f32;
-    pub const INV_HOT_SPOT_TEMP_MAX: f32 = 3276.7_f32;
+    pub const INV_HOT_SPOT_TEMP_INVERTER_MIN: f32 = -3276.8_f32;
+    pub const INV_HOT_SPOT_TEMP_INVERTER_MAX: f32 = 3276.7_f32;
     pub const INV_COOLANT_TEMP_MIN: f32 = -3276.8_f32;
     pub const INV_COOLANT_TEMP_MAX: f32 = 3276.7_f32;
-    /// Construct new M162_Temperature_Set_3 from values
+    /// Construct new 'M162_Temperature_Set_3' from values
     pub fn new(
         inv_torque_shudder: f32,
         inv_motor_temp: f32,
-        inv_hot_spot_temp: f32,
+        inv_hot_spot_temp_inverter: f32,
         inv_coolant_temp: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_torque_shudder(inv_torque_shudder)?;
         res.set_inv_motor_temp(inv_motor_temp)?;
-        res.set_inv_hot_spot_temp(inv_hot_spot_temp)?;
+        res.set_inv_hot_spot_temp_inverter(inv_hot_spot_temp_inverter)?;
         res.set_inv_coolant_temp(inv_coolant_temp)?;
         Ok(res)
     }
@@ -20814,7 +21106,7 @@ impl M162TemperatureSet3 {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Torque_Shudder
+    /// Get value of 'INV_Torque_Shudder'
     ///
     /// Shudder compensation value of torque
     ///
@@ -20826,7 +21118,7 @@ impl M162TemperatureSet3 {
     pub fn inv_torque_shudder(&self) -> f32 {
         self.inv_torque_shudder_raw()
     }
-    /// Get raw value of INV_Torque_Shudder
+    /// Get raw value of 'INV_Torque_Shudder'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -20841,7 +21133,7 @@ impl M162TemperatureSet3 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Torque_Shudder
+    /// Set value of 'INV_Torque_Shudder'
     #[inline(always)]
     pub fn set_inv_torque_shudder(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -20856,7 +21148,7 @@ impl M162TemperatureSet3 {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Motor_Temp
+    /// Get value of 'INV_Motor_Temp'
     ///
     /// Motor Temperature Sensor
     ///
@@ -20868,7 +21160,7 @@ impl M162TemperatureSet3 {
     pub fn inv_motor_temp(&self) -> f32 {
         self.inv_motor_temp_raw()
     }
-    /// Get raw value of INV_Motor_Temp
+    /// Get raw value of 'INV_Motor_Temp'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -20883,7 +21175,7 @@ impl M162TemperatureSet3 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Motor_Temp
+    /// Set value of 'INV_Motor_Temp'
     #[inline(always)]
     pub fn set_inv_motor_temp(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -20898,7 +21190,7 @@ impl M162TemperatureSet3 {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Hot_Spot_Temp
+    /// Get value of 'INV_Hot_Spot_Temp_Inverter'
     ///
     /// Estimated inverter hot spot temperature
     ///
@@ -20907,10 +21199,10 @@ impl M162TemperatureSet3 {
     /// - Unit: "temperature:C"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn inv_hot_spot_temp(&self) -> f32 {
-        self.inv_hot_spot_temp_raw()
+    pub fn inv_hot_spot_temp_inverter(&self) -> f32 {
+        self.inv_hot_spot_temp_inverter_raw()
     }
-    /// Get raw value of INV_Hot_Spot_Temp
+    /// Get raw value of 'INV_Hot_Spot_Temp_Inverter'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -20919,15 +21211,18 @@ impl M162TemperatureSet3 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn inv_hot_spot_temp_raw(&self) -> f32 {
+    pub fn inv_hot_spot_temp_inverter_raw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[16..32].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Hot_Spot_Temp
+    /// Set value of 'INV_Hot_Spot_Temp_Inverter'
     #[inline(always)]
-    pub fn set_inv_hot_spot_temp(&mut self, value: f32) -> Result<(), CanError> {
+    pub fn set_inv_hot_spot_temp_inverter(
+        &mut self,
+        value: f32,
+    ) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: M162TemperatureSet3::MESSAGE_ID,
@@ -20940,7 +21235,7 @@ impl M162TemperatureSet3 {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Coolant_Temp
+    /// Get value of 'INV_Coolant_Temp'
     ///
     /// Estimated Coolant Temperature
     ///
@@ -20952,7 +21247,7 @@ impl M162TemperatureSet3 {
     pub fn inv_coolant_temp(&self) -> f32 {
         self.inv_coolant_temp_raw()
     }
-    /// Get raw value of INV_Coolant_Temp
+    /// Get raw value of 'INV_Coolant_Temp'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -20967,7 +21262,7 @@ impl M162TemperatureSet3 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Coolant_Temp
+    /// Set value of 'INV_Coolant_Temp'
     #[inline(always)]
     pub fn set_inv_coolant_temp(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -21043,23 +21338,25 @@ impl M161TemperatureSet2 {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xa1)
     });
-    pub const INV_STALL_BURST_MODEL_TEMP_MIN: f32 = -3276.8_f32;
-    pub const INV_STALL_BURST_MODEL_TEMP_MAX: f32 = 3276.7_f32;
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 100;
+    pub const INV_HOT_SPOT_TEMP_MOTOR_MIN: f32 = -3276.8_f32;
+    pub const INV_HOT_SPOT_TEMP_MOTOR_MAX: f32 = 3276.7_f32;
     pub const INV_RTD2_TEMPERATURE_MIN: f32 = -3276.8_f32;
     pub const INV_RTD2_TEMPERATURE_MAX: f32 = 3276.7_f32;
     pub const INV_RTD1_TEMPERATURE_MIN: f32 = -3276.8_f32;
     pub const INV_RTD1_TEMPERATURE_MAX: f32 = 3276.7_f32;
     pub const INV_CONTROL_BOARD_TEMP_MIN: f32 = -3276.8_f32;
     pub const INV_CONTROL_BOARD_TEMP_MAX: f32 = 3276.7_f32;
-    /// Construct new M161_Temperature_Set_2 from values
+    /// Construct new 'M161_Temperature_Set_2' from values
     pub fn new(
-        inv_stall_burst_model_temp: f32,
+        inv_hot_spot_temp_motor: f32,
         inv_rtd2_temperature: f32,
         inv_rtd1_temperature: f32,
         inv_control_board_temp: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
-        res.set_inv_stall_burst_model_temp(inv_stall_burst_model_temp)?;
+        let mut res = Self { raw: [0x00; 8] };
+        res.set_inv_hot_spot_temp_motor(inv_hot_spot_temp_motor)?;
         res.set_inv_rtd2_temperature(inv_rtd2_temperature)?;
         res.set_inv_rtd1_temperature(inv_rtd1_temperature)?;
         res.set_inv_control_board_temp(inv_control_board_temp)?;
@@ -21069,19 +21366,19 @@ impl M161TemperatureSet2 {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Stall_Burst_Model_Temp
+    /// Get value of 'INV_Hot_Spot_Temp_Motor'
     ///
-    /// Hottest temperature estimated from the stall burst thermal model feature
+    /// Estimated motor hot spot temperature
     ///
     /// - Min: -3276.8
     /// - Max: 3276.7
     /// - Unit: "temperature:C"
     /// - Receivers: Vector__XXX
     #[inline(always)]
-    pub fn inv_stall_burst_model_temp(&self) -> f32 {
-        self.inv_stall_burst_model_temp_raw()
+    pub fn inv_hot_spot_temp_motor(&self) -> f32 {
+        self.inv_hot_spot_temp_motor_raw()
     }
-    /// Get raw value of INV_Stall_Burst_Model_Temp
+    /// Get raw value of 'INV_Hot_Spot_Temp_Motor'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -21090,18 +21387,15 @@ impl M161TemperatureSet2 {
     /// - Byte order: LittleEndian
     /// - Value type: Signed
     #[inline(always)]
-    pub fn inv_stall_burst_model_temp_raw(&self) -> f32 {
+    pub fn inv_hot_spot_temp_motor_raw(&self) -> f32 {
         let signal = self.raw.view_bits::<Lsb0>()[48..64].load_le::<i16>();
         let factor = 0.1_f32;
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Stall_Burst_Model_Temp
+    /// Set value of 'INV_Hot_Spot_Temp_Motor'
     #[inline(always)]
-    pub fn set_inv_stall_burst_model_temp(
-        &mut self,
-        value: f32,
-    ) -> Result<(), CanError> {
+    pub fn set_inv_hot_spot_temp_motor(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
             return Err(CanError::ParameterOutOfRange {
                 message_id: M161TemperatureSet2::MESSAGE_ID,
@@ -21114,7 +21408,7 @@ impl M161TemperatureSet2 {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_RTD2_Temperature
+    /// Get value of 'INV_RTD2_Temperature'
     ///
     /// RTD input 2 (PT1000) Temperature
     ///
@@ -21126,7 +21420,7 @@ impl M161TemperatureSet2 {
     pub fn inv_rtd2_temperature(&self) -> f32 {
         self.inv_rtd2_temperature_raw()
     }
-    /// Get raw value of INV_RTD2_Temperature
+    /// Get raw value of 'INV_RTD2_Temperature'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -21141,7 +21435,7 @@ impl M161TemperatureSet2 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_RTD2_Temperature
+    /// Set value of 'INV_RTD2_Temperature'
     #[inline(always)]
     pub fn set_inv_rtd2_temperature(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -21156,7 +21450,7 @@ impl M161TemperatureSet2 {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_RTD1_Temperature
+    /// Get value of 'INV_RTD1_Temperature'
     ///
     /// RTD input 1 (PT1000) Temperature
     ///
@@ -21168,7 +21462,7 @@ impl M161TemperatureSet2 {
     pub fn inv_rtd1_temperature(&self) -> f32 {
         self.inv_rtd1_temperature_raw()
     }
-    /// Get raw value of INV_RTD1_Temperature
+    /// Get raw value of 'INV_RTD1_Temperature'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -21183,7 +21477,7 @@ impl M161TemperatureSet2 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_RTD1_Temperature
+    /// Set value of 'INV_RTD1_Temperature'
     #[inline(always)]
     pub fn set_inv_rtd1_temperature(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -21198,7 +21492,7 @@ impl M161TemperatureSet2 {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Control_Board_Temp
+    /// Get value of 'INV_Control_Board_Temp'
     ///
     /// Control Board Temperature
     ///
@@ -21210,7 +21504,7 @@ impl M161TemperatureSet2 {
     pub fn inv_control_board_temp(&self) -> f32 {
         self.inv_control_board_temp_raw()
     }
-    /// Get raw value of INV_Control_Board_Temp
+    /// Get raw value of 'INV_Control_Board_Temp'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -21225,7 +21519,7 @@ impl M161TemperatureSet2 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Control_Board_Temp
+    /// Set value of 'INV_Control_Board_Temp'
     #[inline(always)]
     pub fn set_inv_control_board_temp(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -21301,6 +21595,8 @@ impl M160TemperatureSet1 {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xa0)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 100;
     pub const INV_GATE_DRIVER_BOARD_TEMP_MIN: f32 = -3276.8_f32;
     pub const INV_GATE_DRIVER_BOARD_TEMP_MAX: f32 = 3276.7_f32;
     pub const INV_MODULE_C_TEMP_MIN: f32 = -3276.8_f32;
@@ -21309,14 +21605,14 @@ impl M160TemperatureSet1 {
     pub const INV_MODULE_B_TEMP_MAX: f32 = 3276.7_f32;
     pub const INV_MODULE_A_TEMP_MIN: f32 = -3276.8_f32;
     pub const INV_MODULE_A_TEMP_MAX: f32 = 3276.7_f32;
-    /// Construct new M160_Temperature_Set_1 from values
+    /// Construct new 'M160_Temperature_Set_1' from values
     pub fn new(
         inv_gate_driver_board_temp: f32,
         inv_module_c_temp: f32,
         inv_module_b_temp: f32,
         inv_module_a_temp: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_gate_driver_board_temp(inv_gate_driver_board_temp)?;
         res.set_inv_module_c_temp(inv_module_c_temp)?;
         res.set_inv_module_b_temp(inv_module_b_temp)?;
@@ -21327,7 +21623,7 @@ impl M160TemperatureSet1 {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Gate_Driver_Board_Temp
+    /// Get value of 'INV_Gate_Driver_Board_Temp'
     ///
     /// Gate Driver Board Temperature
     ///
@@ -21339,7 +21635,7 @@ impl M160TemperatureSet1 {
     pub fn inv_gate_driver_board_temp(&self) -> f32 {
         self.inv_gate_driver_board_temp_raw()
     }
-    /// Get raw value of INV_Gate_Driver_Board_Temp
+    /// Get raw value of 'INV_Gate_Driver_Board_Temp'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -21354,7 +21650,7 @@ impl M160TemperatureSet1 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Gate_Driver_Board_Temp
+    /// Set value of 'INV_Gate_Driver_Board_Temp'
     #[inline(always)]
     pub fn set_inv_gate_driver_board_temp(
         &mut self,
@@ -21372,7 +21668,7 @@ impl M160TemperatureSet1 {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Module_C_Temp
+    /// Get value of 'INV_Module_C_Temp'
     ///
     /// IGBT Module C Temperature
     ///
@@ -21384,7 +21680,7 @@ impl M160TemperatureSet1 {
     pub fn inv_module_c_temp(&self) -> f32 {
         self.inv_module_c_temp_raw()
     }
-    /// Get raw value of INV_Module_C_Temp
+    /// Get raw value of 'INV_Module_C_Temp'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -21399,7 +21695,7 @@ impl M160TemperatureSet1 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Module_C_Temp
+    /// Set value of 'INV_Module_C_Temp'
     #[inline(always)]
     pub fn set_inv_module_c_temp(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -21414,7 +21710,7 @@ impl M160TemperatureSet1 {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Module_B_Temp
+    /// Get value of 'INV_Module_B_Temp'
     ///
     /// IGBT Module B Temperature
     ///
@@ -21426,7 +21722,7 @@ impl M160TemperatureSet1 {
     pub fn inv_module_b_temp(&self) -> f32 {
         self.inv_module_b_temp_raw()
     }
-    /// Get raw value of INV_Module_B_Temp
+    /// Get raw value of 'INV_Module_B_Temp'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -21441,7 +21737,7 @@ impl M160TemperatureSet1 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Module_B_Temp
+    /// Set value of 'INV_Module_B_Temp'
     #[inline(always)]
     pub fn set_inv_module_b_temp(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -21456,7 +21752,7 @@ impl M160TemperatureSet1 {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Module_A_Temp
+    /// Get value of 'INV_Module_A_Temp'
     ///
     /// IGBT Module A Temperature
     ///
@@ -21468,7 +21764,7 @@ impl M160TemperatureSet1 {
     pub fn inv_module_a_temp(&self) -> f32 {
         self.inv_module_a_temp_raw()
     }
-    /// Get raw value of INV_Module_A_Temp
+    /// Get raw value of 'INV_Module_A_Temp'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -21483,7 +21779,7 @@ impl M160TemperatureSet1 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Module_A_Temp
+    /// Set value of 'INV_Module_A_Temp'
     #[inline(always)]
     pub fn set_inv_module_a_temp(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -21559,6 +21855,8 @@ impl M174FirmwareInfo {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xae)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 100;
     pub const INV_DATE_CODE_YYYY_MIN: u16 = 0_u16;
     pub const INV_DATE_CODE_YYYY_MAX: u16 = 65535_u16;
     pub const INV_DATE_CODE_MMDD_MIN: u16 = 0_u16;
@@ -21567,14 +21865,14 @@ impl M174FirmwareInfo {
     pub const INV_SW_VERSION_MAX: u16 = 65535_u16;
     pub const INV_PROJECT_CODE_EEP_VER_MIN: u16 = 0_u16;
     pub const INV_PROJECT_CODE_EEP_VER_MAX: u16 = 65535_u16;
-    /// Construct new M174_Firmware_Info from values
+    /// Construct new 'M174_Firmware_Info' from values
     pub fn new(
         inv_date_code_yyyy: u16,
         inv_date_code_mmdd: u16,
         inv_sw_version: u16,
         inv_project_code_eep_ver: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_date_code_yyyy(inv_date_code_yyyy)?;
         res.set_inv_date_code_mmdd(inv_date_code_mmdd)?;
         res.set_inv_sw_version(inv_sw_version)?;
@@ -21585,7 +21883,7 @@ impl M174FirmwareInfo {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_DateCode_YYYY
+    /// Get value of 'INV_DateCode_YYYY'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -21595,7 +21893,7 @@ impl M174FirmwareInfo {
     pub fn inv_date_code_yyyy(&self) -> u16 {
         self.inv_date_code_yyyy_raw()
     }
-    /// Get raw value of INV_DateCode_YYYY
+    /// Get raw value of 'INV_DateCode_YYYY'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -21609,7 +21907,7 @@ impl M174FirmwareInfo {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_DateCode_YYYY
+    /// Set value of 'INV_DateCode_YYYY'
     #[inline(always)]
     pub fn set_inv_date_code_yyyy(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -21627,7 +21925,7 @@ impl M174FirmwareInfo {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_DateCode_MMDD
+    /// Get value of 'INV_DateCode_MMDD'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -21637,7 +21935,7 @@ impl M174FirmwareInfo {
     pub fn inv_date_code_mmdd(&self) -> u16 {
         self.inv_date_code_mmdd_raw()
     }
-    /// Get raw value of INV_DateCode_MMDD
+    /// Get raw value of 'INV_DateCode_MMDD'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -21651,7 +21949,7 @@ impl M174FirmwareInfo {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_DateCode_MMDD
+    /// Set value of 'INV_DateCode_MMDD'
     #[inline(always)]
     pub fn set_inv_date_code_mmdd(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -21669,7 +21967,7 @@ impl M174FirmwareInfo {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_SW_Version
+    /// Get value of 'INV_SW_Version'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -21679,7 +21977,7 @@ impl M174FirmwareInfo {
     pub fn inv_sw_version(&self) -> u16 {
         self.inv_sw_version_raw()
     }
-    /// Get raw value of INV_SW_Version
+    /// Get raw value of 'INV_SW_Version'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -21693,7 +21991,7 @@ impl M174FirmwareInfo {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_SW_Version
+    /// Set value of 'INV_SW_Version'
     #[inline(always)]
     pub fn set_inv_sw_version(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -21711,7 +22009,7 @@ impl M174FirmwareInfo {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Project_Code_EEP_Ver
+    /// Get value of 'INV_Project_Code_EEP_Ver'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -21721,7 +22019,7 @@ impl M174FirmwareInfo {
     pub fn inv_project_code_eep_ver(&self) -> u16 {
         self.inv_project_code_eep_ver_raw()
     }
-    /// Get raw value of INV_Project_Code_EEP_Ver
+    /// Get raw value of 'INV_Project_Code_EEP_Ver'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -21735,7 +22033,7 @@ impl M174FirmwareInfo {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Project_Code_EEP_Ver
+    /// Set value of 'INV_Project_Code_EEP_Ver'
     #[inline(always)]
     pub fn set_inv_project_code_eep_ver(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -21814,6 +22112,8 @@ impl M175DiagDataMessage {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xaf)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const INV_DIAG_RUN_FAULTS_HI_MIN: u16 = 0_u16;
     pub const INV_DIAG_RUN_FAULTS_HI_MAX: u16 = 65535_u16;
     pub const INV_DIAG_VQS_CMD_MIN: f32 = -1000_f32;
@@ -21854,9 +22154,9 @@ impl M175DiagDataMessage {
     pub const INV_DIAG_SEGMENT_MAX: u8 = 5_u8;
     pub const INV_DIAG_RECORD_MIN: u8 = 0_u8;
     pub const INV_DIAG_RECORD_MAX: u8 = 160_u8;
-    /// Construct new M175_Diag_Data_Message from values
+    /// Construct new 'M175_Diag_Data_Message' from values
     pub fn new(inv_diag_segment: u8, inv_diag_record: u8) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_diag_segment(inv_diag_segment)?;
         res.set_inv_diag_record(inv_diag_record)?;
         Ok(res)
@@ -21865,7 +22165,7 @@ impl M175DiagDataMessage {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// Get raw value of INV_Diag_Segment
+    /// Get raw value of 'INV_Diag_Segment'
     ///
     /// - Start bit: 8
     /// - Signal size: 8 bits
@@ -21933,7 +22233,7 @@ impl M175DiagDataMessage {
             }
         }
     }
-    /// Set value of INV_Diag_Segment
+    /// Set value of 'INV_Diag_Segment'
     #[inline(always)]
     fn set_inv_diag_segment(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 5_u8 < value {
@@ -21951,7 +22251,7 @@ impl M175DiagDataMessage {
         self.raw.view_bits_mut::<Lsb0>()[8..16].store_le(value);
         Ok(())
     }
-    /// Set value of INV_Diag_Segment
+    /// Set value of 'INV_Diag_Segment'
     #[inline(always)]
     pub fn set_m0(
         &mut self,
@@ -21963,7 +22263,7 @@ impl M175DiagDataMessage {
         self.set_inv_diag_segment(0)?;
         Ok(())
     }
-    /// Set value of INV_Diag_Segment
+    /// Set value of 'INV_Diag_Segment'
     #[inline(always)]
     pub fn set_m1(
         &mut self,
@@ -21975,7 +22275,7 @@ impl M175DiagDataMessage {
         self.set_inv_diag_segment(1)?;
         Ok(())
     }
-    /// Set value of INV_Diag_Segment
+    /// Set value of 'INV_Diag_Segment'
     #[inline(always)]
     pub fn set_m2(
         &mut self,
@@ -21987,7 +22287,7 @@ impl M175DiagDataMessage {
         self.set_inv_diag_segment(2)?;
         Ok(())
     }
-    /// Set value of INV_Diag_Segment
+    /// Set value of 'INV_Diag_Segment'
     #[inline(always)]
     pub fn set_m3(
         &mut self,
@@ -21999,7 +22299,7 @@ impl M175DiagDataMessage {
         self.set_inv_diag_segment(3)?;
         Ok(())
     }
-    /// Set value of INV_Diag_Segment
+    /// Set value of 'INV_Diag_Segment'
     #[inline(always)]
     pub fn set_m4(
         &mut self,
@@ -22011,7 +22311,7 @@ impl M175DiagDataMessage {
         self.set_inv_diag_segment(4)?;
         Ok(())
     }
-    /// Set value of INV_Diag_Segment
+    /// Set value of 'INV_Diag_Segment'
     #[inline(always)]
     pub fn set_m5(
         &mut self,
@@ -22023,7 +22323,7 @@ impl M175DiagDataMessage {
         self.set_inv_diag_segment(5)?;
         Ok(())
     }
-    /// INV_Diag_Record
+    /// Get value of 'INV_Diag_Record'
     ///
     /// - Min: 0
     /// - Max: 160
@@ -22033,7 +22333,7 @@ impl M175DiagDataMessage {
     pub fn inv_diag_record(&self) -> u8 {
         self.inv_diag_record_raw()
     }
-    /// Get raw value of INV_Diag_Record
+    /// Get raw value of 'INV_Diag_Record'
     ///
     /// - Start bit: 0
     /// - Signal size: 8 bits
@@ -22047,7 +22347,7 @@ impl M175DiagDataMessage {
         let factor = 1;
         u8::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Diag_Record
+    /// Set value of 'INV_Diag_Record'
     #[inline(always)]
     pub fn set_inv_diag_record(&mut self, value: u8) -> Result<(), CanError> {
         if value < 0_u8 || 160_u8 < value {
@@ -22148,7 +22448,7 @@ impl M175DiagDataMessageInvDiagSegmentM0 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// INV_Diag_Sin_Used
+    /// Get value of 'INV_Diag_Sin_Used'
     ///
     /// - Min: -5
     /// - Max: 5
@@ -22158,7 +22458,7 @@ impl M175DiagDataMessageInvDiagSegmentM0 {
     pub fn inv_diag_sin_used(&self) -> i16 {
         self.inv_diag_sin_used_raw()
     }
-    /// Get raw value of INV_Diag_Sin_Used
+    /// Get raw value of 'INV_Diag_Sin_Used'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -22173,7 +22473,7 @@ impl M175DiagDataMessageInvDiagSegmentM0 {
         let signal = signal as i16;
         i16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Diag_Sin_Used
+    /// Set value of 'INV_Diag_Sin_Used'
     #[inline(always)]
     pub fn set_inv_diag_sin_used(&mut self, value: i16) -> Result<(), CanError> {
         if value < -5_i16 || 5_i16 < value {
@@ -22192,7 +22492,7 @@ impl M175DiagDataMessageInvDiagSegmentM0 {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Diag_Gamma_Observer
+    /// Get value of 'INV_Diag_Gamma_Observer'
     ///
     /// - Min: 0
     /// - Max: 360
@@ -22202,7 +22502,7 @@ impl M175DiagDataMessageInvDiagSegmentM0 {
     pub fn inv_diag_gamma_observer(&self) -> f32 {
         self.inv_diag_gamma_observer_raw()
     }
-    /// Get raw value of INV_Diag_Gamma_Observer
+    /// Get raw value of 'INV_Diag_Gamma_Observer'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -22217,7 +22517,7 @@ impl M175DiagDataMessageInvDiagSegmentM0 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Gamma_Observer
+    /// Set value of 'INV_Diag_Gamma_Observer'
     #[inline(always)]
     pub fn set_inv_diag_gamma_observer(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 360_f32 < value {
@@ -22232,7 +22532,7 @@ impl M175DiagDataMessageInvDiagSegmentM0 {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Diag_Gamma_Resolver
+    /// Get value of 'INV_Diag_Gamma_Resolver'
     ///
     /// - Min: 0
     /// - Max: 360
@@ -22242,7 +22542,7 @@ impl M175DiagDataMessageInvDiagSegmentM0 {
     pub fn inv_diag_gamma_resolver(&self) -> f32 {
         self.inv_diag_gamma_resolver_raw()
     }
-    /// Get raw value of INV_Diag_Gamma_Resolver
+    /// Get raw value of 'INV_Diag_Gamma_Resolver'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -22257,7 +22557,7 @@ impl M175DiagDataMessageInvDiagSegmentM0 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Gamma_Resolver
+    /// Set value of 'INV_Diag_Gamma_Resolver'
     #[inline(always)]
     pub fn set_inv_diag_gamma_resolver(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 360_f32 < value {
@@ -22299,7 +22599,7 @@ impl M175DiagDataMessageInvDiagSegmentM1 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// INV_Diag_Ib
+    /// Get value of 'INV_Diag_Ib'
     ///
     /// - Min: -2000
     /// - Max: 2000
@@ -22309,7 +22609,7 @@ impl M175DiagDataMessageInvDiagSegmentM1 {
     pub fn inv_diag_ib(&self) -> f32 {
         self.inv_diag_ib_raw()
     }
-    /// Get raw value of INV_Diag_Ib
+    /// Get raw value of 'INV_Diag_Ib'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -22324,7 +22624,7 @@ impl M175DiagDataMessageInvDiagSegmentM1 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Ib
+    /// Set value of 'INV_Diag_Ib'
     #[inline(always)]
     pub fn set_inv_diag_ib(&mut self, value: f32) -> Result<(), CanError> {
         if value < -2000_f32 || 2000_f32 < value {
@@ -22339,7 +22639,7 @@ impl M175DiagDataMessageInvDiagSegmentM1 {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Diag_Ia
+    /// Get value of 'INV_Diag_Ia'
     ///
     /// - Min: -2000
     /// - Max: 2000
@@ -22349,7 +22649,7 @@ impl M175DiagDataMessageInvDiagSegmentM1 {
     pub fn inv_diag_ia(&self) -> f32 {
         self.inv_diag_ia_raw()
     }
-    /// Get raw value of INV_Diag_Ia
+    /// Get raw value of 'INV_Diag_Ia'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -22364,7 +22664,7 @@ impl M175DiagDataMessageInvDiagSegmentM1 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Ia
+    /// Set value of 'INV_Diag_Ia'
     #[inline(always)]
     pub fn set_inv_diag_ia(&mut self, value: f32) -> Result<(), CanError> {
         if value < -2000_f32 || 2000_f32 < value {
@@ -22379,7 +22679,7 @@ impl M175DiagDataMessageInvDiagSegmentM1 {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Diag_Cos_Used
+    /// Get value of 'INV_Diag_Cos_Used'
     ///
     /// - Min: -5
     /// - Max: 5
@@ -22389,7 +22689,7 @@ impl M175DiagDataMessageInvDiagSegmentM1 {
     pub fn inv_diag_cos_used(&self) -> i16 {
         self.inv_diag_cos_used_raw()
     }
-    /// Get raw value of INV_Diag_Cos_Used
+    /// Get raw value of 'INV_Diag_Cos_Used'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -22404,7 +22704,7 @@ impl M175DiagDataMessageInvDiagSegmentM1 {
         let signal = signal as i16;
         i16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Diag_Cos_Used
+    /// Set value of 'INV_Diag_Cos_Used'
     #[inline(always)]
     pub fn set_inv_diag_cos_used(&mut self, value: i16) -> Result<(), CanError> {
         if value < -5_i16 || 5_i16 < value {
@@ -22450,7 +22750,7 @@ impl M175DiagDataMessageInvDiagSegmentM2 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// INV_Diag_Iq_cmd
+    /// Get value of 'INV_Diag_Iq_cmd'
     ///
     /// - Min: -2000
     /// - Max: 2000
@@ -22460,7 +22760,7 @@ impl M175DiagDataMessageInvDiagSegmentM2 {
     pub fn inv_diag_iq_cmd(&self) -> f32 {
         self.inv_diag_iq_cmd_raw()
     }
-    /// Get raw value of INV_Diag_Iq_cmd
+    /// Get raw value of 'INV_Diag_Iq_cmd'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -22475,7 +22775,7 @@ impl M175DiagDataMessageInvDiagSegmentM2 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Iq_cmd
+    /// Set value of 'INV_Diag_Iq_cmd'
     #[inline(always)]
     pub fn set_inv_diag_iq_cmd(&mut self, value: f32) -> Result<(), CanError> {
         if value < -2000_f32 || 2000_f32 < value {
@@ -22490,7 +22790,7 @@ impl M175DiagDataMessageInvDiagSegmentM2 {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Diag_Vdc
+    /// Get value of 'INV_Diag_Vdc'
     ///
     /// - Min: 0
     /// - Max: 1000
@@ -22500,7 +22800,7 @@ impl M175DiagDataMessageInvDiagSegmentM2 {
     pub fn inv_diag_vdc(&self) -> f32 {
         self.inv_diag_vdc_raw()
     }
-    /// Get raw value of INV_Diag_Vdc
+    /// Get raw value of 'INV_Diag_Vdc'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -22515,7 +22815,7 @@ impl M175DiagDataMessageInvDiagSegmentM2 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Vdc
+    /// Set value of 'INV_Diag_Vdc'
     #[inline(always)]
     pub fn set_inv_diag_vdc(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 1000_f32 < value {
@@ -22530,7 +22830,7 @@ impl M175DiagDataMessageInvDiagSegmentM2 {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Diag_Ic
+    /// Get value of 'INV_Diag_Ic'
     ///
     /// - Min: -2000
     /// - Max: 2000
@@ -22540,7 +22840,7 @@ impl M175DiagDataMessageInvDiagSegmentM2 {
     pub fn inv_diag_ic(&self) -> f32 {
         self.inv_diag_ic_raw()
     }
-    /// Get raw value of INV_Diag_Ic
+    /// Get raw value of 'INV_Diag_Ic'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -22555,7 +22855,7 @@ impl M175DiagDataMessageInvDiagSegmentM2 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Ic
+    /// Set value of 'INV_Diag_Ic'
     #[inline(always)]
     pub fn set_inv_diag_ic(&mut self, value: f32) -> Result<(), CanError> {
         if value < -2000_f32 || 2000_f32 < value {
@@ -22597,7 +22897,7 @@ impl M175DiagDataMessageInvDiagSegmentM3 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// INV_Diag_FW_Output
+    /// Get value of 'INV_Diag_FW_Output'
     ///
     /// - Min: -2000
     /// - Max: 2000
@@ -22607,7 +22907,7 @@ impl M175DiagDataMessageInvDiagSegmentM3 {
     pub fn inv_diag_fw_output(&self) -> f32 {
         self.inv_diag_fw_output_raw()
     }
-    /// Get raw value of INV_Diag_FW_Output
+    /// Get raw value of 'INV_Diag_FW_Output'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -22622,7 +22922,7 @@ impl M175DiagDataMessageInvDiagSegmentM3 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_FW_Output
+    /// Set value of 'INV_Diag_FW_Output'
     #[inline(always)]
     pub fn set_inv_diag_fw_output(&mut self, value: f32) -> Result<(), CanError> {
         if value < -2000_f32 || 2000_f32 < value {
@@ -22637,7 +22937,7 @@ impl M175DiagDataMessageInvDiagSegmentM3 {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Diag_Mod_Index
+    /// Get value of 'INV_Diag_Mod_Index'
     ///
     /// - Min: 0
     /// - Max: 2
@@ -22647,7 +22947,7 @@ impl M175DiagDataMessageInvDiagSegmentM3 {
     pub fn inv_diag_mod_index(&self) -> f32 {
         self.inv_diag_mod_index_raw()
     }
-    /// Get raw value of INV_Diag_Mod_Index
+    /// Get raw value of 'INV_Diag_Mod_Index'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -22662,7 +22962,7 @@ impl M175DiagDataMessageInvDiagSegmentM3 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Mod_Index
+    /// Set value of 'INV_Diag_Mod_Index'
     #[inline(always)]
     pub fn set_inv_diag_mod_index(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 2_f32 < value {
@@ -22677,7 +22977,7 @@ impl M175DiagDataMessageInvDiagSegmentM3 {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Diag_Id_cmd
+    /// Get value of 'INV_Diag_Id_cmd'
     ///
     /// - Min: -2000
     /// - Max: 2000
@@ -22687,7 +22987,7 @@ impl M175DiagDataMessageInvDiagSegmentM3 {
     pub fn inv_diag_id_cmd(&self) -> f32 {
         self.inv_diag_id_cmd_raw()
     }
-    /// Get raw value of INV_Diag_Id_cmd
+    /// Get raw value of 'INV_Diag_Id_cmd'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -22702,7 +23002,7 @@ impl M175DiagDataMessageInvDiagSegmentM3 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Id_cmd
+    /// Set value of 'INV_Diag_Id_cmd'
     #[inline(always)]
     pub fn set_inv_diag_id_cmd(&mut self, value: f32) -> Result<(), CanError> {
         if value < -2000_f32 || 2000_f32 < value {
@@ -22744,7 +23044,7 @@ impl M175DiagDataMessageInvDiagSegmentM4 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// INV_Diag_Vqs_Cmd
+    /// Get value of 'INV_Diag_Vqs_Cmd'
     ///
     /// - Min: -1000
     /// - Max: 1000
@@ -22754,7 +23054,7 @@ impl M175DiagDataMessageInvDiagSegmentM4 {
     pub fn inv_diag_vqs_cmd(&self) -> f32 {
         self.inv_diag_vqs_cmd_raw()
     }
-    /// Get raw value of INV_Diag_Vqs_Cmd
+    /// Get raw value of 'INV_Diag_Vqs_Cmd'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -22769,7 +23069,7 @@ impl M175DiagDataMessageInvDiagSegmentM4 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Vqs_Cmd
+    /// Set value of 'INV_Diag_Vqs_Cmd'
     #[inline(always)]
     pub fn set_inv_diag_vqs_cmd(&mut self, value: f32) -> Result<(), CanError> {
         if value < -1000_f32 || 1000_f32 < value {
@@ -22784,7 +23084,7 @@ impl M175DiagDataMessageInvDiagSegmentM4 {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Diag_Vd_Cmd
+    /// Get value of 'INV_Diag_Vd_Cmd'
     ///
     /// - Min: -1000
     /// - Max: 1000
@@ -22794,7 +23094,7 @@ impl M175DiagDataMessageInvDiagSegmentM4 {
     pub fn inv_diag_vd_cmd(&self) -> f32 {
         self.inv_diag_vd_cmd_raw()
     }
-    /// Get raw value of INV_Diag_Vd_Cmd
+    /// Get raw value of 'INV_Diag_Vd_Cmd'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -22809,7 +23109,7 @@ impl M175DiagDataMessageInvDiagSegmentM4 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Vd_Cmd
+    /// Set value of 'INV_Diag_Vd_Cmd'
     #[inline(always)]
     pub fn set_inv_diag_vd_cmd(&mut self, value: f32) -> Result<(), CanError> {
         if value < -1000_f32 || 1000_f32 < value {
@@ -22824,7 +23124,7 @@ impl M175DiagDataMessageInvDiagSegmentM4 {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Diag_Vq_Cmd
+    /// Get value of 'INV_Diag_Vq_Cmd'
     ///
     /// - Min: -1000
     /// - Max: 1000
@@ -22834,7 +23134,7 @@ impl M175DiagDataMessageInvDiagSegmentM4 {
     pub fn inv_diag_vq_cmd(&self) -> f32 {
         self.inv_diag_vq_cmd_raw()
     }
-    /// Get raw value of INV_Diag_Vq_Cmd
+    /// Get raw value of 'INV_Diag_Vq_Cmd'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -22849,7 +23149,7 @@ impl M175DiagDataMessageInvDiagSegmentM4 {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Diag_Vq_Cmd
+    /// Set value of 'INV_Diag_Vq_Cmd'
     #[inline(always)]
     pub fn set_inv_diag_vq_cmd(&mut self, value: f32) -> Result<(), CanError> {
         if value < -1000_f32 || 1000_f32 < value {
@@ -22891,7 +23191,7 @@ impl M175DiagDataMessageInvDiagSegmentM5 {
     pub fn new() -> Self {
         Self { raw: [0u8; 8] }
     }
-    /// INV_Diag_Run_Faults_Hi
+    /// Get value of 'INV_Diag_Run_Faults_Hi'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -22901,7 +23201,7 @@ impl M175DiagDataMessageInvDiagSegmentM5 {
     pub fn inv_diag_run_faults_hi(&self) -> u16 {
         self.inv_diag_run_faults_hi_raw()
     }
-    /// Get raw value of INV_Diag_Run_Faults_Hi
+    /// Get raw value of 'INV_Diag_Run_Faults_Hi'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -22915,7 +23215,7 @@ impl M175DiagDataMessageInvDiagSegmentM5 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Diag_Run_Faults_Hi
+    /// Set value of 'INV_Diag_Run_Faults_Hi'
     #[inline(always)]
     pub fn set_inv_diag_run_faults_hi(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -22933,7 +23233,7 @@ impl M175DiagDataMessageInvDiagSegmentM5 {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Diag_Run_Faults_Lo
+    /// Get value of 'INV_Diag_Run_Faults_Lo'
     ///
     /// - Min: 0
     /// - Max: 65535
@@ -22943,7 +23243,7 @@ impl M175DiagDataMessageInvDiagSegmentM5 {
     pub fn inv_diag_run_faults_lo(&self) -> u16 {
         self.inv_diag_run_faults_lo_raw()
     }
-    /// Get raw value of INV_Diag_Run_Faults_Lo
+    /// Get raw value of 'INV_Diag_Run_Faults_Lo'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -22957,7 +23257,7 @@ impl M175DiagDataMessageInvDiagSegmentM5 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Diag_Run_Faults_Lo
+    /// Set value of 'INV_Diag_Run_Faults_Lo'
     #[inline(always)]
     pub fn set_inv_diag_run_faults_lo(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 65535_u16 < value {
@@ -22975,7 +23275,7 @@ impl M175DiagDataMessageInvDiagSegmentM5 {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Diag_PWM_Freq
+    /// Get value of 'INV_Diag_PWM_Freq'
     ///
     /// - Min: 0
     /// - Max: 24
@@ -22985,7 +23285,7 @@ impl M175DiagDataMessageInvDiagSegmentM5 {
     pub fn inv_diag_pwm_freq(&self) -> u16 {
         self.inv_diag_pwm_freq_raw()
     }
-    /// Get raw value of INV_Diag_PWM_Freq
+    /// Get raw value of 'INV_Diag_PWM_Freq'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -22999,7 +23299,7 @@ impl M175DiagDataMessageInvDiagSegmentM5 {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Diag_PWM_Freq
+    /// Set value of 'INV_Diag_PWM_Freq'
     #[inline(always)]
     pub fn set_inv_diag_pwm_freq(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 24_u16 < value {
@@ -23022,6 +23322,7 @@ impl M175DiagDataMessageInvDiagSegmentM5 {
 ///
 /// - Standard ID: 514 (0x202)
 /// - Size: 8 bytes
+/// - Transmitter: BMS
 ///
 /// Sent by BMS
 #[derive(Clone, Copy)]
@@ -23041,16 +23342,17 @@ impl BmsCurrentLimit {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0x202)
     });
+    pub const MESSAGE_SIZE: usize = 8;
     pub const BMS_MAX_CHARGE_CURRENT_MIN: u16 = 0_u16;
     pub const BMS_MAX_CHARGE_CURRENT_MAX: u16 = 1000_u16;
     pub const BMS_MAX_DISCHARGE_CURRENT_MIN: u16 = 0_u16;
     pub const BMS_MAX_DISCHARGE_CURRENT_MAX: u16 = 1000_u16;
-    /// Construct new BMS_Current_Limit from values
+    /// Construct new 'BMS_Current_Limit' from values
     pub fn new(
         bms_max_charge_current: u16,
         bms_max_discharge_current: u16,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_bms_max_charge_current(bms_max_charge_current)?;
         res.set_bms_max_discharge_current(bms_max_discharge_current)?;
         Ok(res)
@@ -23059,7 +23361,7 @@ impl BmsCurrentLimit {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// BMS_Max_Charge_Current
+    /// Get value of 'BMS_Max_Charge_Current'
     ///
     /// Maximum charge current from BMS
     ///
@@ -23071,7 +23373,7 @@ impl BmsCurrentLimit {
     pub fn bms_max_charge_current(&self) -> u16 {
         self.bms_max_charge_current_raw()
     }
-    /// Get raw value of BMS_Max_Charge_Current
+    /// Get raw value of 'BMS_Max_Charge_Current'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -23085,7 +23387,7 @@ impl BmsCurrentLimit {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of BMS_Max_Charge_Current
+    /// Set value of 'BMS_Max_Charge_Current'
     #[inline(always)]
     pub fn set_bms_max_charge_current(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 1000_u16 < value {
@@ -23103,7 +23405,7 @@ impl BmsCurrentLimit {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// BMS_Max_Discharge_Current
+    /// Get value of 'BMS_Max_Discharge_Current'
     ///
     /// Maximum discharge current from BMS
     ///
@@ -23115,7 +23417,7 @@ impl BmsCurrentLimit {
     pub fn bms_max_discharge_current(&self) -> u16 {
         self.bms_max_discharge_current_raw()
     }
-    /// Get raw value of BMS_Max_Discharge_Current
+    /// Get raw value of 'BMS_Max_Discharge_Current'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -23129,7 +23431,7 @@ impl BmsCurrentLimit {
         let factor = 1;
         u16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of BMS_Max_Discharge_Current
+    /// Set value of 'BMS_Max_Discharge_Current'
     #[inline(always)]
     pub fn set_bms_max_discharge_current(&mut self, value: u16) -> Result<(), CanError> {
         if value < 0_u16 || 1000_u16 < value {
@@ -23210,6 +23512,8 @@ impl M176FastInfo {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xb0)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 3;
     pub const INV_FAST_DC_BUS_VOLTAGE_MIN: f32 = -3276.8_f32;
     pub const INV_FAST_DC_BUS_VOLTAGE_MAX: f32 = 3276.7_f32;
     pub const INV_FAST_MOTOR_SPEED_MIN: i16 = -32768_i16;
@@ -23218,14 +23522,14 @@ impl M176FastInfo {
     pub const INV_FAST_TORQUE_FEEDBACK_MAX: f32 = 3276.7_f32;
     pub const INV_FAST_TORQUE_COMMAND_MIN: f32 = -3276.8_f32;
     pub const INV_FAST_TORQUE_COMMAND_MAX: f32 = 32767.7_f32;
-    /// Construct new M176_Fast_Info from values
+    /// Construct new 'M176_Fast_Info' from values
     pub fn new(
         inv_fast_dc_bus_voltage: f32,
         inv_fast_motor_speed: i16,
         inv_fast_torque_feedback: f32,
         inv_fast_torque_command: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_fast_dc_bus_voltage(inv_fast_dc_bus_voltage)?;
         res.set_inv_fast_motor_speed(inv_fast_motor_speed)?;
         res.set_inv_fast_torque_feedback(inv_fast_torque_feedback)?;
@@ -23236,7 +23540,7 @@ impl M176FastInfo {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Fast_DC_Bus_Voltage
+    /// Get value of 'INV_Fast_DC_Bus_Voltage'
     ///
     /// DC Bus Voltage
     ///
@@ -23248,7 +23552,7 @@ impl M176FastInfo {
     pub fn inv_fast_dc_bus_voltage(&self) -> f32 {
         self.inv_fast_dc_bus_voltage_raw()
     }
-    /// Get raw value of INV_Fast_DC_Bus_Voltage
+    /// Get raw value of 'INV_Fast_DC_Bus_Voltage'
     ///
     /// - Start bit: 48
     /// - Signal size: 16 bits
@@ -23263,7 +23567,7 @@ impl M176FastInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Fast_DC_Bus_Voltage
+    /// Set value of 'INV_Fast_DC_Bus_Voltage'
     #[inline(always)]
     pub fn set_inv_fast_dc_bus_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -23278,7 +23582,7 @@ impl M176FastInfo {
         self.raw.view_bits_mut::<Lsb0>()[48..64].store_le(value);
         Ok(())
     }
-    /// INV_Fast_Motor_Speed
+    /// Get value of 'INV_Fast_Motor_Speed'
     ///
     /// Motor speed
     ///
@@ -23290,7 +23594,7 @@ impl M176FastInfo {
     pub fn inv_fast_motor_speed(&self) -> i16 {
         self.inv_fast_motor_speed_raw()
     }
-    /// Get raw value of INV_Fast_Motor_Speed
+    /// Get raw value of 'INV_Fast_Motor_Speed'
     ///
     /// - Start bit: 32
     /// - Signal size: 16 bits
@@ -23305,7 +23609,7 @@ impl M176FastInfo {
         let signal = signal as i16;
         i16::from(signal).saturating_mul(factor).saturating_add(0)
     }
-    /// Set value of INV_Fast_Motor_Speed
+    /// Set value of 'INV_Fast_Motor_Speed'
     #[inline(always)]
     pub fn set_inv_fast_motor_speed(&mut self, value: i16) -> Result<(), CanError> {
         if value < -32768_i16 || 32767_i16 < value {
@@ -23324,7 +23628,7 @@ impl M176FastInfo {
         self.raw.view_bits_mut::<Lsb0>()[32..48].store_le(value);
         Ok(())
     }
-    /// INV_Fast_Torque_Feedback
+    /// Get value of 'INV_Fast_Torque_Feedback'
     ///
     /// The estimated torque
     ///
@@ -23336,7 +23640,7 @@ impl M176FastInfo {
     pub fn inv_fast_torque_feedback(&self) -> f32 {
         self.inv_fast_torque_feedback_raw()
     }
-    /// Get raw value of INV_Fast_Torque_Feedback
+    /// Get raw value of 'INV_Fast_Torque_Feedback'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -23351,7 +23655,7 @@ impl M176FastInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Fast_Torque_Feedback
+    /// Set value of 'INV_Fast_Torque_Feedback'
     #[inline(always)]
     pub fn set_inv_fast_torque_feedback(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 3276.7_f32 < value {
@@ -23366,7 +23670,7 @@ impl M176FastInfo {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Fast_Torque_Command
+    /// Get value of 'INV_Fast_Torque_Command'
     ///
     /// The commanded torque
     ///
@@ -23378,7 +23682,7 @@ impl M176FastInfo {
     pub fn inv_fast_torque_command(&self) -> f32 {
         self.inv_fast_torque_command_raw()
     }
-    /// Get raw value of INV_Fast_Torque_Command
+    /// Get raw value of 'INV_Fast_Torque_Command'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -23393,7 +23697,7 @@ impl M176FastInfo {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Fast_Torque_Command
+    /// Set value of 'INV_Fast_Torque_Command'
     #[inline(always)]
     pub fn set_inv_fast_torque_command(&mut self, value: f32) -> Result<(), CanError> {
         if value < -3276.8_f32 || 32767.7_f32 < value {
@@ -23469,16 +23773,18 @@ impl M177TorqueCapability {
     pub const MESSAGE_ID: embedded_can::Id = Id::Standard(unsafe {
         StandardId::new_unchecked(0xb1)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 10;
     pub const INV_TORQUE_CAPABILITY_REGEN_MIN: f32 = -3276.8_f32;
     pub const INV_TORQUE_CAPABILITY_REGEN_MAX: f32 = 0_f32;
     pub const INV_TORQUE_CAPABILITY_MOTOR_MIN: f32 = 0_f32;
     pub const INV_TORQUE_CAPABILITY_MOTOR_MAX: f32 = 3276.7_f32;
-    /// Construct new M177_Torque_Capability from values
+    /// Construct new 'M177_Torque_Capability' from values
     pub fn new(
         inv_torque_capability_regen: f32,
         inv_torque_capability_motor: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_inv_torque_capability_regen(inv_torque_capability_regen)?;
         res.set_inv_torque_capability_motor(inv_torque_capability_motor)?;
         Ok(res)
@@ -23487,7 +23793,7 @@ impl M177TorqueCapability {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// INV_Torque_Capability_Regen
+    /// Get value of 'INV_Torque_Capability_Regen'
     ///
     /// The regen torque capability of the inverter given the current operating point.
     ///
@@ -23499,7 +23805,7 @@ impl M177TorqueCapability {
     pub fn inv_torque_capability_regen(&self) -> f32 {
         self.inv_torque_capability_regen_raw()
     }
-    /// Get raw value of INV_Torque_Capability_Regen
+    /// Get raw value of 'INV_Torque_Capability_Regen'
     ///
     /// - Start bit: 16
     /// - Signal size: 16 bits
@@ -23514,7 +23820,7 @@ impl M177TorqueCapability {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Torque_Capability_Regen
+    /// Set value of 'INV_Torque_Capability_Regen'
     #[inline(always)]
     pub fn set_inv_torque_capability_regen(
         &mut self,
@@ -23532,7 +23838,7 @@ impl M177TorqueCapability {
         self.raw.view_bits_mut::<Lsb0>()[16..32].store_le(value);
         Ok(())
     }
-    /// INV_Torque_Capability_Motor
+    /// Get value of 'INV_Torque_Capability_Motor'
     ///
     /// The motoring torque capability of the inverter given the current operating point.
     ///
@@ -23544,7 +23850,7 @@ impl M177TorqueCapability {
     pub fn inv_torque_capability_motor(&self) -> f32 {
         self.inv_torque_capability_motor_raw()
     }
-    /// Get raw value of INV_Torque_Capability_Motor
+    /// Get raw value of 'INV_Torque_Capability_Motor'
     ///
     /// - Start bit: 0
     /// - Signal size: 16 bits
@@ -23559,7 +23865,7 @@ impl M177TorqueCapability {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of INV_Torque_Capability_Motor
+    /// Set value of 'INV_Torque_Capability_Motor'
     #[inline(always)]
     pub fn set_inv_torque_capability_motor(
         &mut self,
@@ -23638,21 +23944,23 @@ impl Status {
     pub const MESSAGE_ID: embedded_can::Id = Id::Extended(unsafe {
         ExtendedId::new_unchecked(0x18ff50e5)
     });
+    pub const MESSAGE_SIZE: usize = 8;
+    pub const MESSAGE_CYCLE_TIME_MS: u32 = 1000;
     pub const OUTPUT_CURRENT_MIN: f32 = 0_f32;
     pub const OUTPUT_CURRENT_MAX: f32 = 0_f32;
     pub const OUTPUT_VOLTAGE_MIN: f32 = 0_f32;
     pub const OUTPUT_VOLTAGE_MAX: f32 = 0_f32;
-    /// Construct new Status from values
+    /// Construct new 'Status' from values
     pub fn new(
-        communication_state: bool,
-        state: bool,
-        input_voltage: bool,
-        temperature: bool,
-        hw_status: bool,
+        communication_state: StatusCommunicationState,
+        state: StatusState,
+        input_voltage: StatusInputVoltage,
+        temperature: StatusTemperature,
+        hw_status: StatusHwStatus,
         output_current: f32,
         output_voltage: f32,
     ) -> Result<Self, CanError> {
-        let mut res = Self { raw: [0u8; 8] };
+        let mut res = Self { raw: [0x00; 8] };
         res.set_communication_state(communication_state)?;
         res.set_state(state)?;
         res.set_input_voltage(input_voltage)?;
@@ -23666,7 +23974,7 @@ impl Status {
     pub fn raw(&self) -> &[u8; 8] {
         &self.raw
     }
-    /// CommunicationState
+    /// Get value of 'CommunicationState'
     ///
     /// Charger communication state
     ///
@@ -23683,7 +23991,7 @@ impl Status {
             _ => StatusCommunicationState::_Other(self.communication_state_raw()),
         }
     }
-    /// Get raw value of CommunicationState
+    /// Get raw value of 'CommunicationState'
     ///
     /// - Start bit: 36
     /// - Signal size: 1 bits
@@ -23696,14 +24004,18 @@ impl Status {
         let signal = self.raw.view_bits::<Lsb0>()[36..37].load_le::<u8>();
         signal == 1
     }
-    /// Set value of CommunicationState
+    /// Set value of 'CommunicationState'
     #[inline(always)]
-    pub fn set_communication_state(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_communication_state(
+        &mut self,
+        value: StatusCommunicationState,
+    ) -> Result<(), CanError> {
+        let value = bool::from(value);
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[36..37].store_le(value);
         Ok(())
     }
-    /// State
+    /// Get value of 'State'
     ///
     /// Charger starting state
     ///
@@ -23720,7 +24032,7 @@ impl Status {
             _ => StatusState::_Other(self.state_raw()),
         }
     }
-    /// Get raw value of State
+    /// Get raw value of 'State'
     ///
     /// - Start bit: 35
     /// - Signal size: 1 bits
@@ -23733,14 +24045,15 @@ impl Status {
         let signal = self.raw.view_bits::<Lsb0>()[35..36].load_le::<u8>();
         signal == 1
     }
-    /// Set value of State
+    /// Set value of 'State'
     #[inline(always)]
-    pub fn set_state(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_state(&mut self, value: StatusState) -> Result<(), CanError> {
+        let value = bool::from(value);
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[35..36].store_le(value);
         Ok(())
     }
-    /// InputVoltage
+    /// Get value of 'InputVoltage'
     ///
     /// Charger input voltage
     ///
@@ -23757,7 +24070,7 @@ impl Status {
             _ => StatusInputVoltage::_Other(self.input_voltage_raw()),
         }
     }
-    /// Get raw value of InputVoltage
+    /// Get raw value of 'InputVoltage'
     ///
     /// - Start bit: 34
     /// - Signal size: 1 bits
@@ -23770,14 +24083,18 @@ impl Status {
         let signal = self.raw.view_bits::<Lsb0>()[34..35].load_le::<u8>();
         signal == 1
     }
-    /// Set value of InputVoltage
+    /// Set value of 'InputVoltage'
     #[inline(always)]
-    pub fn set_input_voltage(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_input_voltage(
+        &mut self,
+        value: StatusInputVoltage,
+    ) -> Result<(), CanError> {
+        let value = bool::from(value);
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[34..35].store_le(value);
         Ok(())
     }
-    /// Temperature
+    /// Get value of 'Temperature'
     ///
     /// Charger temperature
     ///
@@ -23794,7 +24111,7 @@ impl Status {
             _ => StatusTemperature::_Other(self.temperature_raw()),
         }
     }
-    /// Get raw value of Temperature
+    /// Get raw value of 'Temperature'
     ///
     /// - Start bit: 33
     /// - Signal size: 1 bits
@@ -23807,14 +24124,15 @@ impl Status {
         let signal = self.raw.view_bits::<Lsb0>()[33..34].load_le::<u8>();
         signal == 1
     }
-    /// Set value of Temperature
+    /// Set value of 'Temperature'
     #[inline(always)]
-    pub fn set_temperature(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_temperature(&mut self, value: StatusTemperature) -> Result<(), CanError> {
+        let value = bool::from(value);
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[33..34].store_le(value);
         Ok(())
     }
-    /// HWStatus
+    /// Get value of 'HWStatus'
     ///
     /// Charger status
     ///
@@ -23831,7 +24149,7 @@ impl Status {
             _ => StatusHwStatus::_Other(self.hw_status_raw()),
         }
     }
-    /// Get raw value of HWStatus
+    /// Get raw value of 'HWStatus'
     ///
     /// - Start bit: 32
     /// - Signal size: 1 bits
@@ -23844,14 +24162,15 @@ impl Status {
         let signal = self.raw.view_bits::<Lsb0>()[32..33].load_le::<u8>();
         signal == 1
     }
-    /// Set value of HWStatus
+    /// Set value of 'HWStatus'
     #[inline(always)]
-    pub fn set_hw_status(&mut self, value: bool) -> Result<(), CanError> {
+    pub fn set_hw_status(&mut self, value: StatusHwStatus) -> Result<(), CanError> {
+        let value = bool::from(value);
         let value = value as u8;
         self.raw.view_bits_mut::<Lsb0>()[32..33].store_le(value);
         Ok(())
     }
-    /// OutputCurrent
+    /// Get value of 'OutputCurrent'
     ///
     /// Output Current
     ///
@@ -23863,7 +24182,7 @@ impl Status {
     pub fn output_current(&self) -> f32 {
         self.output_current_raw()
     }
-    /// Get raw value of OutputCurrent
+    /// Get raw value of 'OutputCurrent'
     ///
     /// - Start bit: 23
     /// - Signal size: 16 bits
@@ -23878,7 +24197,7 @@ impl Status {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of OutputCurrent
+    /// Set value of 'OutputCurrent'
     #[inline(always)]
     pub fn set_output_current(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
@@ -23892,7 +24211,7 @@ impl Status {
         self.raw.view_bits_mut::<Msb0>()[16..32].store_be(value);
         Ok(())
     }
-    /// OutputVoltage
+    /// Get value of 'OutputVoltage'
     ///
     /// Output Voltage
     ///
@@ -23904,7 +24223,7 @@ impl Status {
     pub fn output_voltage(&self) -> f32 {
         self.output_voltage_raw()
     }
-    /// Get raw value of OutputVoltage
+    /// Get raw value of 'OutputVoltage'
     ///
     /// - Start bit: 7
     /// - Signal size: 16 bits
@@ -23919,7 +24238,7 @@ impl Status {
         let offset = 0_f32;
         (signal as f32) * factor + offset
     }
-    /// Set value of OutputVoltage
+    /// Set value of 'OutputVoltage'
     #[inline(always)]
     pub fn set_output_voltage(&mut self, value: f32) -> Result<(), CanError> {
         if value < 0_f32 || 0_f32 < value {
