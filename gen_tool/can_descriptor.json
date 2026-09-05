@@ -464,11 +464,10 @@
 
         "an1_fl_shockpot": {
             "id": 902,
-            "length": 6,
+            "length": 4,
             "signals": [
                 "an1_uint12",
-                "length_mm",
-                "length_delta"
+                "length_mm"
             ],
             "comment": "Front left shockpot data",
             "bus_name": "daq",
@@ -478,11 +477,10 @@
         },
         "an1_fr_shockpot": {
             "id": 903,
-            "length": 6,
+            "length": 4,
             "signals": [
                 "an1_uint12",
-                "length_mm",
-                "length_delta"
+                "length_mm"
             ],
             "comment": "Front right shockpot data",
             "bus_name": "daq",
@@ -492,11 +490,10 @@
         },
         "an1_rl_shockpot": {
             "id": 904,
-            "length": 6,
+            "length": 4,
             "signals": [
                 "an1_uint12",
-                "length_mm",
-                "length_delta"
+                "length_mm"
             ],
             "comment": "Rear left shockpot data",
             "bus_name": "daq",
@@ -506,11 +503,10 @@
         },
         "an1_rr_shockpot": {
             "id": 905,
-            "length": 6,
+            "length": 4,
             "signals": [
                 "an1_uint12",
-                "length_mm",
-                "length_delta"
+                "length_mm"
             ],
             "comment": "Rear right shockpot data",
             "bus_name": "daq",
@@ -521,11 +517,10 @@
 
         "an1_fl_loadcell": {
             "id": 906,
-            "length": 6,
+            "length": 4,
             "signals": [
                 "an1_uint12",
-                "force_N",
-                "force_delta"
+                "force_N"
             ],
             "comment": "Front left pushrod loadcell data",
             "bus_name": "daq",
@@ -535,11 +530,10 @@
         },
         "an1_fr_loadcell": {
             "id": 907,
-            "length": 6,
+            "length": 4,
             "signals": [
                 "an1_uint12",
-                "force_N",
-                "force_delta"
+                "force_N"
             ],
             "comment": "Front right pushrod loadcell data",
             "bus_name": "daq",
@@ -549,11 +543,10 @@
         },
         "an1_rl_loadcell": {
             "id": 908,
-            "length": 6,
+            "length": 4,
             "signals": [
                 "an1_uint12",
-                "force_N",
-                "force_delta"
+                "force_N"
             ],
             "comment": "Rear left pushrod loadcell data",
             "bus_name": "daq",
@@ -563,11 +556,10 @@
         },
         "an1_rr_loadcell": {
             "id": 909,
-            "length": 6,
+            "length": 4,
             "signals": [
                 "an1_uint12",
-                "force_N",
-                "force_delta"
+                "force_N"
             ],
             "comment": "Rear right pushrod loadcell data",
             "bus_name": "daq",
@@ -578,10 +570,9 @@
 
         "an1_fl_wheelspeed": {
             "id": 910,
-            "length": 4,
+            "length": 2,
             "signals": [
-                "wheel_rpm",
-                "wheel_rpm_delta"
+                "wheel_rpm"
             ],
             "comment": "Front left wheelspeed data",
             "bus_name": "daq",
@@ -591,10 +582,9 @@
         },
         "an1_fr_wheelspeed": {
             "id": 911,
-            "length": 4,
+            "length": 2,
             "signals": [
-                "wheel_rpm",
-                "wheel_rpm_delta"
+                "wheel_rpm"
             ],
             "comment": "Front right wheelspeed data",
             "bus_name": "daq",
@@ -604,10 +594,9 @@
         },
         "an1_rl_wheelspeed": {
             "id": 912,
-            "length": 4,
+            "length": 2,
             "signals": [
-                "wheel_rpm",
-                "wheel_rpm_delta"
+                "wheel_rpm"
             ],
             "comment": "Rear left wheelspeed data",
             "bus_name": "daq",
@@ -617,10 +606,9 @@
         },
         "an1_rr_wheelspeed": {
             "id": 913,
-            "length": 4,
+            "length": 2,
             "signals": [
-                "wheel_rpm",
-                "wheel_rpm_delta"
+                "wheel_rpm"
             ],
             "comment": "Rear right wheelspeed data",
             "bus_name": "daq",
