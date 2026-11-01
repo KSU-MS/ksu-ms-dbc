@@ -1316,7 +1316,7 @@
             "units": "Percentage"
         },
         {
-            "name": "vcu_steering_angle",
+            "name": "steering_angle",
             "start": 48,
             "length": 16,
             "is_signed": true,
