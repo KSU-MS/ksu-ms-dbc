@@ -161,7 +161,7 @@
 
         "vcu_pedals_travel": {
             "id": 196,
-            "length": 6,
+            "length": 8,
             "signals": [
                 "vcu_apps1_travel",
                 "vcu_apps2_travel",
