@@ -165,7 +165,8 @@
             "signals": [
                 "vcu_apps1_travel",
                 "vcu_apps2_travel",
-                "vcu_bse_travel"
+                "vcu_bse_travel",
+                "steering_angle"
             ],
             "comment": "VCU calculated pedal travels",
             "bus_name": "inverter",
@@ -1314,7 +1315,18 @@
             "comment": "0 to 100%",
             "units": "Percentage"
         },
-
+        {
+            "name": "vcu_steering_angle",
+            "start": 48,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "Steering angle, voltage, low- left high - right"
+        },
         {
             "name": "hall_OK",
             "start": 0,
