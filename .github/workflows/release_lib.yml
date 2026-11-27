@@ -17,6 +17,9 @@ jobs:
       with:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Test the generator and every vehicle's DBC
+      run: nix develop -c pytest -q gen_tool
+
     - name: Run the nix app
       run: |
         git status 
@@ -27,6 +30,12 @@ jobs:
       with:
         name: dbc-file
         path: ./result/*.dbc
+
+    - name: Upload every vehicle's DBC
+      uses: actions/upload-artifact@v4
+      with:
+        name: vehicle-dbc-files
+        path: ./result/vehicles/*.dbc
 
           
   generate-and-release-pio-lib:

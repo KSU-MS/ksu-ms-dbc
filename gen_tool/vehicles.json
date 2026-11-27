@@ -1,0 +1,72 @@
+{
+  "comment": "The cars the DBCs are built for (vehicles.py): the physical CAN buses, which bus each logical network of can_descriptor.json's messages (their bus_name) is on, the vendor DBCs every car has, and each car's inverters. Vehicle names match kmslap's drivetrain variants (python-data-analysis, kmslap/car/drivetrain.py), so a simulated car and its DBC line up by name. The default vehicle builds car.dbc, the one the firmware pins; every vehicle also builds car_<name>.dbc.",
+  "buses": {
+    "KSX": {"bitrate": 500000, "comment": "can bus of KSU motorsports vehicles"}
+  },
+  "networks": {
+    "daq": "KSX",
+    "inverter": "KSX",
+    "accumulator": "KSX"
+  },
+  "common_dbcs": ["Orion", "elcon", "Megasquirt", "messageNEW"],
+  "inverter_kinds": {
+    "cascadia_pm100": {
+      "comment": "Cascadia Motion PM100DX with the EMRAX 228 HV: its own DBC, as is (one per car: its IDs are fixed)",
+      "dbc": "20240625-Gen5-CAN-DB",
+      "single": true
+    },
+    "dti_hv500": {
+      "comment": "DTI HV500 / F-SiC (DTI's CAN map v2.5, extended IDs: packet ID << 8 | node ID; standard IDs, packet << 5 | node, would collide with the module temperatures on one bus)",
+      "template_dbc": "inverters/dti_hv500_can2_map_v25_EID.dbc",
+      "ids": "dti_extended",
+      "strip_prefix": "HV500_",
+      "senders": {"HV500_controller": "inverter", "HV500_commands": "vcu"}
+    },
+    "amk_kw26": {
+      "comment": "AMK KW26-S5-FSE-4Q racing kit: Actual Values 1 / 2 and Setpoints 1, base address + node address",
+      "template": "inverters/amk_kw26.json",
+      "ids": "base_plus_node"
+    }
+  },
+  "vehicles": {
+    "rwd_emrax": {
+      "default": true,
+      "comment": "the car as it is: EMRAX 228 HV through the chain and LSD, Cascadia PM100DX",
+      "inverters": [{"name": "rear", "kind": "cascadia_pm100", "network": "inverter"}]
+    },
+    "awd_emrax_dti": {
+      "comment": "the EMRAX at the rear, DTI hub motors at the front",
+      "inverters": [
+        {"name": "rear", "kind": "cascadia_pm100", "network": "inverter"},
+        {"name": "fl", "kind": "dti_hv500", "node": 1, "network": "inverter"},
+        {"name": "fr", "kind": "dti_hv500", "node": 2, "network": "inverter"}
+      ]
+    },
+    "awd_emrax_amk": {
+      "comment": "the EMRAX at the rear, AMK hub motors at the front",
+      "inverters": [
+        {"name": "rear", "kind": "cascadia_pm100", "network": "inverter"},
+        {"name": "fl", "kind": "amk_kw26", "node": 1, "network": "inverter"},
+        {"name": "fr", "kind": "amk_kw26", "node": 2, "network": "inverter"}
+      ]
+    },
+    "4wd_dti": {
+      "comment": "DTI hub motors at all four wheels (no EMRAX, chain or diff)",
+      "inverters": [
+        {"name": "fl", "kind": "dti_hv500", "node": 1, "network": "inverter"},
+        {"name": "fr", "kind": "dti_hv500", "node": 2, "network": "inverter"},
+        {"name": "rl", "kind": "dti_hv500", "node": 3, "network": "inverter"},
+        {"name": "rr", "kind": "dti_hv500", "node": 4, "network": "inverter"}
+      ]
+    },
+    "4wd_amk": {
+      "comment": "AMK hub motors at all four wheels (the four-in-one KW26 box)",
+      "inverters": [
+        {"name": "fl", "kind": "amk_kw26", "node": 1, "network": "inverter"},
+        {"name": "fr", "kind": "amk_kw26", "node": 2, "network": "inverter"},
+        {"name": "rl", "kind": "amk_kw26", "node": 5, "network": "inverter"},
+        {"name": "rr", "kind": "amk_kw26", "node": 6, "network": "inverter"}
+      ]
+    }
+  }
+}

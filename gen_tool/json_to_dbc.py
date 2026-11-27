@@ -6,6 +6,14 @@ from utils import get_dbc_files
 
 
 def cantools_json_to_dbc(input_json: str, outfilename: str, dbs=[]):
+    """Write input_json's messages, then those of the DBCs in dbs, to outfilename.dbc."""
+    cantools.db.dump_file(build_database(input_json, dbs), outfilename + ".dbc")
+
+
+def build_database(input_json: str, dbs=[], buses=None, extra_messages=(), extra_nodes=()):
+    """The cantools Database of input_json's messages (can_descriptor.json), then
+    extra_messages (built elsewhere: vehicles.py's inverters), then the messages of the
+    DBCs in dbs. buses: the cantools Buses (default: the one KSX bus)."""
     with open(input_json) as file:
         can_json_input = json.load(file)
 
@@ -40,7 +48,8 @@ def cantools_json_to_dbc(input_json: str, outfilename: str, dbs=[]):
                 new_signal.offset = signal["conversion"]["offset"]
 
             if "choices" in signal["conversion"]:
-                new_signal.choices = signal["conversion"]["choices"]
+                # JSON keys are strings; a value table's are the raw values
+                new_signal.choices = {int(k): v for k, v in signal["conversion"]["choices"].items()}
 
         # Set if its signed, if Null assume it isn't
         try:
@@ -175,6 +184,11 @@ def cantools_json_to_dbc(input_json: str, outfilename: str, dbs=[]):
             print(f"No bus specified for message {message}")
         list_of_cantools_msgs.append(new_message)
 
+    list_of_cantools_msgs.extend(extra_messages)
+    for name in extra_nodes:
+        if name not in nodes:
+            nodes.append(name)
+
     for db in dbs:
         for message in db.messages:
             list_of_cantools_msgs.append(message)
@@ -184,30 +198,22 @@ def cantools_json_to_dbc(input_json: str, outfilename: str, dbs=[]):
             if name not in nodes:
                 nodes.append(name)
 
-    buses = [cantools.db.Bus("KSX", "can bus of KSU motorsports vehicles", 500000)]
+    if buses is None:
+        buses = [cantools.db.Bus("KSX", "can bus of KSU motorsports vehicles", 500000)]
 
     node_objs = [cantools.db.Node(name) for name in nodes]
 
-    new_db = cantools.db.Database(list_of_cantools_msgs, nodes=node_objs, buses=buses)
-
-    cantools.db.dump_file(new_db, outfilename + ".dbc")
+    return cantools.db.Database(list_of_cantools_msgs, nodes=node_objs, buses=buses)
 
 
-def json_gen(outfile, infile, dbs):
-    filename = outfile
-    inputfile = infile
-    db_args = dbs
-    db_list = []
-    for arg in db_args:
-        db = get_dbc_files(arg)
-        db_list.append(db)
-    cantools_json_to_dbc(input_json=inputfile, outfilename=filename, dbs=db_list)
+def json_gen(infile, outfile, dbs):
+    """infile: the descriptor JSON; outfile: the DBC's path without .dbc; dbs: keywords
+    of the DBCs in dbc-files/ to add."""
+    db_list = [get_dbc_files(arg) for arg in dbs]
+    cantools_json_to_dbc(input_json=infile, outfilename=outfile, dbs=db_list)
 
 
 if __name__ == "__main__":
+    # json_to_dbc.py <descriptor.json> <output path without .dbc> <dbc keyword>...
     print(sys.argv)
-    args_outfile = sys.argv[1]
-    args_infile = sys.argv[2]
-    args_other_dbcs = sys.argv[3:]
-    print(args_other_dbcs)
-    json_gen(args_infile, args_outfile, args_other_dbcs)
+    json_gen(sys.argv[1], sys.argv[2], sys.argv[3:])

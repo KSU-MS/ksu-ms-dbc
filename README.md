@@ -50,3 +50,43 @@ the generator takes in multiple arguments: here is an example command and likely
 ```python .\json_to_dbc.py .\can_descriptor.json .\dbc-files\ksu-ev Orion RMS_PM```
 
 the first argument, ```.\can_descriptor.json``` is the input json file which gets translated to a cantools Database object in the script. the second argument ```.\dbc-files\ksu-ev``` is the output path for the generated dbc file. the last two args (and more can be added) are keywords for additional DBC files to include in the final output dbc
+
+## Vehicles: one DBC per car configuration
+
+`gen_tool/vehicles.json` describes the cars the DBCs are built for:
+
+- `buses`: the physical CAN buses (name, bitrate);
+- `networks`: which bus each logical network a message names (`bus_name`: `daq`,
+  `inverter`, `accumulator`) is on. Today all are on one bus, `KSX`; splitting the car
+  onto more buses is an edit here;
+- `inverter_kinds`: how a kind's messages come in: a vendor DBC as is (Cascadia
+  PM100DX with the EMRAX), DTI's HV500 DBC instantiated per node (extended IDs,
+  `packet << 8 | node`), or the AMK KW26 racing kit's telegrams
+  (`gen_tool/inverters/amk_kw26.json`, from AMK's manual PDK_205481, base address +
+  node);
+- `vehicles`: each car's inverters by position (`rear`, `fl`, `fr`, `rl`, `rr`), kind and
+  node. Names match the drivetrain variants simulated in python-data-analysis
+  (`kmslap/car/drivetrain.py`): `rwd_emrax` (the car as it is, the default),
+  `awd_emrax_dti`, `awd_emrax_amk`, `4wd_dti`, `4wd_amk`.
+
+`python3 gen_tool/vehicles.py --out dbc-output` (or `nix build`) writes `car.dbc`, the
+default vehicle's (what the firmware pins), and `vehicles/car_<name>.dbc` for each.
+Inverter messages are named after their position, `inv_<position>_<message>`
+(`inv_fl_setpoints_1`, `inv_rr_erpm_duty_voltage`), sent by `inv_<position>`.
+
+## Tests
+
+```sh
+nix develop -c pytest -q gen_tool
+```
+
+`gen_tool/tests/` builds every vehicle and checks:
+- that the default vehicle is the single-DBC build;
+- that no two messages share an ID on a bus;
+- that every DBC reloads with cantools' strict checks (overlapping signals, signals past the frame);
+- that each signal's declared range fits its field;
+- that every message round-trips;
+- the AMK messages against the manual's tables;
+- the DTI instances against DTI's DBC.
+
+CI runs them before building.

@@ -898,6 +898,40 @@
                 "pi"
             ]
         },
+        "pi_motor_torque_command": {
+            "id": 17,
+            "length": 8,
+            "signals": [
+                "pi_motor_torque_fl",
+                "pi_motor_torque_fr",
+                "pi_motor_torque_rl",
+                "pi_motor_torque_rr",
+                "pi_motor_engage",
+                "pi_motor_counter",
+                "pi_motor_checksum"
+            ],
+            "comment": "Hub motor cars: the Pi's torque for each hub motor (+ drive, - regen), 100 Hz. The VCU holds their sum to the driver's request (FSAE EV.3.1.3) and each to its motor's limits; counter, CRC and engage rules as pi_torque_command (kms-vcu docs/pi-supervisor.md). A motor the car doesn't have must be 0",
+            "bus_name": "daq",
+            "senders": [
+                "pi"
+            ]
+        },
+
+        "vcu_motor_torque_commands": {
+            "id": 206,
+            "length": 8,
+            "signals": [
+                "vcu_motor_torque_fl",
+                "vcu_motor_torque_fr",
+                "vcu_motor_torque_rl",
+                "vcu_motor_torque_rr"
+            ],
+            "comment": "Hub motor cars: the torque the VCU commands each hub motor (+ drive, - regen), 100 Hz",
+            "bus_name": "daq",
+            "senders": [
+                "vcu"
+            ]
+        },
 
         "vcu_uds_request": {
             "id": 2016,
@@ -2323,6 +2357,124 @@
             "start": 56,
             "length": 8,
             "comment": "CRC-8 SAE J1850 over the ID (2 bytes, little endian) and bytes 0-6"
+        },
+
+        {
+            "name": "pi_motor_torque_fl",
+            "start": 0,
+            "length": 12,
+            "is_signed": true,
+            "conversion": {"scale": 0.02, "offset": 0, "is_float": true},
+            "min": -40.96,
+            "max": 40.94,
+            "comment": "Torque at the fl hub motor's shaft (+ drive, - regen)",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "pi_motor_torque_fr",
+            "start": 12,
+            "length": 12,
+            "is_signed": true,
+            "conversion": {"scale": 0.02, "offset": 0, "is_float": true},
+            "min": -40.96,
+            "max": 40.94,
+            "comment": "Torque at the fr hub motor's shaft (+ drive, - regen)",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "pi_motor_torque_rl",
+            "start": 24,
+            "length": 12,
+            "is_signed": true,
+            "conversion": {"scale": 0.02, "offset": 0, "is_float": true},
+            "min": -40.96,
+            "max": 40.94,
+            "comment": "Torque at the rl hub motor's shaft (+ drive, - regen)",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "pi_motor_torque_rr",
+            "start": 36,
+            "length": 12,
+            "is_signed": true,
+            "conversion": {"scale": 0.02, "offset": 0, "is_float": true},
+            "min": -40.96,
+            "max": 40.94,
+            "comment": "Torque at the rr hub motor's shaft (+ drive, - regen)",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "pi_motor_engage",
+            "start": 48,
+            "length": 1,
+            "comment": "The Pi wants control",
+            "units": "bool"
+        },
+
+        {
+            "name": "pi_motor_counter",
+            "start": 52,
+            "length": 4,
+            "comment": "Rolling counter, +1 each frame"
+        },
+
+        {
+            "name": "pi_motor_checksum",
+            "start": 56,
+            "length": 8,
+            "comment": "CRC-8 SAE J1850 over the ID (2 bytes, little endian) and bytes 0-6"
+        },
+
+        {
+            "name": "vcu_motor_torque_fl",
+            "start": 0,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {"scale": 0.01, "offset": 0, "is_float": true},
+            "min": -327.68,
+            "max": 327.67,
+            "comment": "Torque commanded to the fl hub motor (+ drive, - regen)",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "vcu_motor_torque_fr",
+            "start": 16,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {"scale": 0.01, "offset": 0, "is_float": true},
+            "min": -327.68,
+            "max": 327.67,
+            "comment": "Torque commanded to the fr hub motor (+ drive, - regen)",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "vcu_motor_torque_rl",
+            "start": 32,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {"scale": 0.01, "offset": 0, "is_float": true},
+            "min": -327.68,
+            "max": 327.67,
+            "comment": "Torque commanded to the rl hub motor (+ drive, - regen)",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "vcu_motor_torque_rr",
+            "start": 48,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {"scale": 0.01, "offset": 0, "is_float": true},
+            "min": -327.68,
+            "max": 327.67,
+            "comment": "Torque commanded to the rr hub motor (+ drive, - regen)",
+            "units": "Newton-meters"
         },
 
         {

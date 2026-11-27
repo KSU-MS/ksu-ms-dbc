@@ -41,5 +41,18 @@
           default = pkgs.can_pkg;
         }
       );
+
+      # nix develop -c pytest gen_tool
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          default = pkgs.mkShell {
+            packages = [ (pkgs.python313.withPackages (ps: [ ps.cantools ps.pytest ])) ];
+          };
+        }
+      );
     };
 }
