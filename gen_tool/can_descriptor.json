@@ -841,6 +841,88 @@
             "senders": [
                 "dash"
             ]
+        },
+
+        "vcu_traction_control": {
+            "id": 204,
+            "length": 8,
+            "signals": [
+                "vcu_tc_selected",
+                "vcu_tc_active",
+                "vcu_tc_no_vectornav",
+                "vcu_tc_no_motor_speed",
+                "vcu_tc_gear_ratio_fault",
+                "vcu_tc_waiting_for_lift",
+                "vcu_tc_slip",
+                "vcu_tc_speed",
+                "vcu_tc_scale",
+                "vcu_tc_grip"
+            ],
+            "comment": "Traction control status, 20 Hz (kms-vcu docs/traction-control.md)",
+            "bus_name": "daq",
+            "senders": [
+                "vcu"
+            ]
+        },
+
+        "vcu_pi_status": {
+            "id": 205,
+            "length": 8,
+            "signals": [
+                "vcu_pi_mode",
+                "vcu_pi_reason",
+                "vcu_pi_rejected_frames",
+                "vcu_pi_driver_torque",
+                "vcu_pi_torque_sent",
+                "vcu_pi_ceiling"
+            ],
+            "comment": "The VCU's view of the Pi's torque ceiling, 100 Hz (kms-vcu docs/pi-supervisor.md)",
+            "bus_name": "daq",
+            "senders": [
+                "vcu"
+            ]
+        },
+
+        "pi_torque_command": {
+            "id": 16,
+            "length": 8,
+            "signals": [
+                "pi_torque_ceiling",
+                "pi_engage",
+                "pi_counter",
+                "pi_checksum"
+            ],
+            "comment": "The Pi's torque ceiling for the VCU, 100 Hz. Bytes 3-5 and unused bits must be 0 (kms-vcu docs/pi-supervisor.md)",
+            "bus_name": "daq",
+            "senders": [
+                "pi"
+            ]
+        },
+
+        "vcu_uds_request": {
+            "id": 2016,
+            "length": 8,
+            "signals": [
+                "vcu_uds_request_data"
+            ],
+            "comment": "UDS over ISO-TP to the VCU: firmware update (kms-vcu docs/ota.md)",
+            "bus_name": "daq",
+            "senders": [
+                "tester"
+            ]
+        },
+
+        "vcu_uds_response": {
+            "id": 2024,
+            "length": 8,
+            "signals": [
+                "vcu_uds_response_data"
+            ],
+            "comment": "UDS over ISO-TP from the VCU",
+            "bus_name": "daq",
+            "senders": [
+                "vcu"
+            ]
         }
     },
 
@@ -1133,8 +1215,7 @@
                     "2": "TRACTIVE_SYSTEM_ENERGIZED",
                     "3": "TRACTIVE_SYSTEM_ENABLED",
                     "4": "READY_TO_DRIVE",
-                    "5": "LAUNCH_WAIT",
-                    "6": "LAUNCH"
+                    "7": "TRACTIVE_SYSTEM_FAULT"
                 }
             },
             "min": 0,
@@ -1442,7 +1523,7 @@
             "name": "vcu_target_parameter",
             "start": 0,
             "length": 8,
-            "comment": "look in the vcu.hpp file in the VCU repo for the enum of targets"
+            "comment": "look in the vcu.hpp file in the VCU repo for the enum of targets (6: traction control mode)"
         },
         {
             "name": "vcu_parameter_value",
@@ -1615,7 +1696,7 @@
             "length": 1,
             "byte_order": "little_endian",
             "is_signed": false,
-            "comment": "status of button6 on dash (1 = pressed)",
+            "comment": "status of button6 on dash (1 = pressed). VCU: traction control on/off",
             "units": "bool"
         },
 
@@ -2007,6 +2088,255 @@
             },
             "comment": "Temperature in degrees celcius",
             "units": "Celcius"
+        },
+
+        {
+            "name": "vcu_tc_selected",
+            "start": 0,
+            "length": 2,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "is_float": false,
+                "choices": {
+                    "0": "off",
+                    "1": "slip",
+                    "2": "grip map"
+                }
+            },
+            "comment": "What the driver or pits chose"
+        },
+
+        {
+            "name": "vcu_tc_active",
+            "start": 2,
+            "length": 2,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "is_float": false,
+                "choices": {
+                    "0": "off",
+                    "1": "slip",
+                    "2": "grip map"
+                }
+            },
+            "comment": "What's controlling now: off while it has stepped aside"
+        },
+
+        {
+            "name": "vcu_tc_no_vectornav",
+            "start": 8,
+            "length": 1,
+            "comment": "No fresh VectorNav speed",
+            "units": "bool"
+        },
+
+        {
+            "name": "vcu_tc_no_motor_speed",
+            "start": 9,
+            "length": 1,
+            "comment": "No fresh motor speed",
+            "units": "bool"
+        },
+
+        {
+            "name": "vcu_tc_gear_ratio_fault",
+            "start": 10,
+            "length": 1,
+            "comment": "Motor and rear wheel speeds disagree with the final drive",
+            "units": "bool"
+        },
+
+        {
+            "name": "vcu_tc_waiting_for_lift",
+            "start": 11,
+            "length": 1,
+            "comment": "A change waits for the driver to lift",
+            "units": "bool"
+        },
+
+        {
+            "name": "vcu_tc_slip",
+            "start": 16,
+            "length": 16,
+            "is_signed": true,
+            "conversion": {
+                "scale": 0.001,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "Rear slip ratio the controller measures"
+        },
+
+        {
+            "name": "vcu_tc_speed",
+            "start": 32,
+            "length": 16,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "Ground speed estimate",
+            "units": "m/s"
+        },
+
+        {
+            "name": "vcu_tc_scale",
+            "start": 48,
+            "length": 8,
+            "conversion": {
+                "scale": 0.01,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "Torque multiplier"
+        },
+
+        {
+            "name": "vcu_tc_grip",
+            "start": 56,
+            "length": 8,
+            "conversion": {
+                "scale": 0.02,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "Grip map mode: learned friction coefficient"
+        },
+
+        {
+            "name": "vcu_pi_mode",
+            "start": 0,
+            "length": 1,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "is_float": false,
+                "choices": {
+                    "0": "local",
+                    "1": "pi"
+                }
+            },
+            "comment": "Who has control"
+        },
+
+        {
+            "name": "vcu_pi_reason",
+            "start": 1,
+            "length": 4,
+            "conversion": {
+                "scale": 1,
+                "offset": 0,
+                "is_float": false,
+                "choices": {
+                    "0": "ok",
+                    "1": "silent",
+                    "2": "not requested",
+                    "3": "bad checksum",
+                    "4": "bad counter",
+                    "5": "bad value",
+                    "6": "settling",
+                    "7": "waiting for lift"
+                }
+            },
+            "comment": "Why control is local"
+        },
+
+        {
+            "name": "vcu_pi_rejected_frames",
+            "start": 8,
+            "length": 8,
+            "comment": "Pi frames rejected since boot (stops at 255)"
+        },
+
+        {
+            "name": "vcu_pi_driver_torque",
+            "start": 16,
+            "length": 16,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "The driver's pedal request",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "vcu_pi_torque_sent",
+            "start": 32,
+            "length": 16,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "What the VCU commands",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "vcu_pi_ceiling",
+            "start": 48,
+            "length": 16,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "The ceiling in force (0xFFFF raw: none)",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "pi_torque_ceiling",
+            "start": 0,
+            "length": 16,
+            "conversion": {
+                "scale": 0.1,
+                "offset": 0,
+                "is_float": true
+            },
+            "comment": "Most torque the VCU may command",
+            "units": "Newton-meters"
+        },
+
+        {
+            "name": "pi_engage",
+            "start": 16,
+            "length": 1,
+            "comment": "The Pi wants control",
+            "units": "bool"
+        },
+
+        {
+            "name": "pi_counter",
+            "start": 48,
+            "length": 4,
+            "comment": "Rolling counter, +1 each frame"
+        },
+
+        {
+            "name": "pi_checksum",
+            "start": 56,
+            "length": 8,
+            "comment": "CRC-8 SAE J1850 over the ID (2 bytes, little endian) and bytes 0-6"
+        },
+
+        {
+            "name": "vcu_uds_request_data",
+            "start": 0,
+            "length": 64,
+            "comment": "ISO-TP frame"
+        },
+
+        {
+            "name": "vcu_uds_response_data",
+            "start": 0,
+            "length": 64,
+            "comment": "ISO-TP frame"
         }
     ]
 }
