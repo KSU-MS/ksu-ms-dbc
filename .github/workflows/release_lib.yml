@@ -59,6 +59,35 @@ jobs:
         echo "{\n\"name\": \"can_lib\",\n\"version\": \"1.0.1\",\n\"build\": {\n\t\"flags\": [\n\t\t\"-Iinc\",\n\t\t\"-Ilib\",\n\t\t\"-Iconf\"\n\t]\n}\n}" >> /can_lib/library.json
         tar -czvf /output/can_lib.tar.gz /can_lib
 
+    - name: Download every vehicle's DBC
+      uses: actions/download-artifact@v4
+      with:
+        name: vehicle-dbc-files
+        path: /vehicle_dbc
+
+    # can_lib_<vehicle>.tar.gz for each vehicle: the same library name and
+    # API as can_lib (car.h, can_obj_car_h_t), so firmware picks a vehicle by
+    # which one it depends on. dbcc names its output after the input file,
+    # hence each one copied to car.dbc first
+    - name: Generate code for each vehicle
+      run: |
+        mkdir -p /output/vehicles
+        for dbc in /vehicle_dbc/car_*.dbc; do
+          vehicle=$(basename "$dbc" .dbc); vehicle=${vehicle#car_}
+          mkdir -p "/vehicle_src/$vehicle" "/vehicle_lib/$vehicle/can_lib"
+          cp "$dbc" "/vehicle_src/$vehicle/car.dbc"
+          (cd /app && ./dbcc -s -o "/vehicle_lib/$vehicle/can_lib" "/vehicle_src/$vehicle/car.dbc")
+          cp /can_lib/library.json "/vehicle_lib/$vehicle/can_lib/"
+          tar -czvf "/output/vehicles/can_lib_$vehicle.tar.gz" -C "/vehicle_lib/$vehicle" can_lib
+          cp "$dbc" "/output/vehicles/ksu_can_$vehicle.dbc"
+        done
+
+    - name: Keep the vehicle libraries for the release
+      uses: actions/upload-artifact@v4
+      with:
+        name: vehicle-libs
+        path: /output/vehicles/*
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -91,6 +120,24 @@ jobs:
         asset_path: /dbc/car.dbc
         asset_name: ksu_can.dbc
         asset_content_type: text/plain
+
+
+  release-vehicle-libs:
+    needs: generate-and-release-pio-lib
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download the vehicle libraries
+      uses: actions/download-artifact@v4
+      with:
+        name: vehicle-libs
+        path: vehicles
+
+    - name: Add them to the release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # the tag generate-and-release-pio-lib created
+        TAG: ${{ github.ref_name == 'vcu-traction-pi' && format('vcu-traction-pi-{0}', github.run_number) || github.run_number }}
+      run: gh release upload "$TAG" vehicles/* --repo "$GITHUB_REPOSITORY"
 
 
   generate-and-release-rust-lib:

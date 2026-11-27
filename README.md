@@ -74,6 +74,10 @@ default vehicle's (what the firmware pins), and `vehicles/car_<name>.dbc` for ea
 Inverter messages are named after their position, `inv_<position>_<message>`
 (`inv_fl_setpoints_1`, `inv_rr_erpm_duty_voltage`), sent by `inv_<position>`.
 
+Each release also carries `can_lib_<name>.tar.gz` and `ksu_can_<name>.dbc` for every
+vehicle. The library is named `can_lib` with the same `car.h` API as the default one,
+so firmware chooses a vehicle by which tarball it depends on.
+
 ## Tests
 
 ```sh
