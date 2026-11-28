@@ -150,7 +150,8 @@
                 "vcu_brake_implausible",
                 "vcu_bspd_current_high",
                 "vcu_bspd_brake_high",
-                "vcu_max_torque"
+                "vcu_max_torque",
+                "vcu_power_limit_kw"
             ],
             "comment": "Vehicle Control Unit Status message",
             "bus_name": "inverter",
@@ -1345,6 +1346,15 @@
             "is_signed": false,
             "comment": "max torque setting in Newton-meters",
             "units": "Newton-meters"
+        },
+        {
+            "name": "vcu_power_limit_kw",
+            "start": 32,
+            "length": 8,
+            "byte_order": "little_endian",
+            "is_signed": false,
+            "comment": "The power limit for all the motors together. 80 (EV.3.3.1) at every power-up; over 80 only while set_parameter 0 (power limit) has raised it for testing: never at competition",
+            "units": "kW"
         },
 
         {
